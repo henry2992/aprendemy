@@ -1,0 +1,20 @@
+<h1>App#index</h1>
+<p>Find me in app/views/app/index.html.erb</p>
+
+
+
+<% @categories.each do |category|%>
+       
+       <h1><%= category.title %></h1> 
+
+       <% category.subcategories.each do |subcategory|%>
+
+       			<%= subcategory.title %>
+       	
+       			
+       			<%= link_to subcategory.title, {controller: "subcategory", action: "show", id: subcategory.id}  %>
+
+       <% end %>
+
+                
+<% end %>
