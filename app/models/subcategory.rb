@@ -1,5 +1,5 @@
 class Subcategory < ActiveRecord::Base
 	belongs_to :category
 
-	has_many :exercises
+	has_many :questions
 end

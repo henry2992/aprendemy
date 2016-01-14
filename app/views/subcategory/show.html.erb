@@ -1,8 +1,10 @@
-<h1><%= @subcategory.title %></h1>
-<p>Find me in app/views/subcategory/show.html.erb</p>
+<h1> Questions </h1>
 
 
-<% @exercises.each do |exercise|%>
+	<% @questions.each do |question| %>
 
-	<%= exercise.question %>
-<%end%>
+		<%= question.text %>
+
+
+		
+	<% end %>

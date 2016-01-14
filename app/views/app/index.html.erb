@@ -12,9 +12,17 @@
        			<%= subcategory.title %>
        	
        			
-       			<%= link_to subcategory.title, {controller: "subcategory", action: "show", id: subcategory.id}  %>
+       			<%= form_tag({:controller => "subcategory", :action => "question", id: subcategory.id }) do %>
+       			  <div class="center">
+					 <%= submit_tag "Start!", :class => "submit"%>
+				  </div>  
+                            <% end %>
 
+                           
        <% end %>
 
-                
+
+
+  
+
 <% end %>

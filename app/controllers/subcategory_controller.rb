@@ -1,22 +1,55 @@
 class SubcategoryController < ApplicationController
 
-  before_action :set_subcategory, only: [:show]
-  
-  def show
-  	@exercises =  @subcategory.exercises
+
+  def start
+    @subcategory = params[:id]
+    redirect_to :action => "question"
   end
 
 
+  def question
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subcategory
-      @subcategory = Subcategory.find(params[:id])
+    @user = current_user
+
+    @answered_questions = @user.answers.count
+
+    id =  params[:id]
+
+    @total = Subcategory.where(:id => id).count
+
+    @subcategory = Subcategory.find_by_id(id)
+    
+    @subcategory.questions.each do |question|
+      @question = question    
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def subcategory_params
-      params.require(:subcategory).permit(:title)
-    end
+    
+    
+  end
+
+  def answer
+   
+     choiceid = params[:choice]
+     
+     @choice = choiceid ? Choice.find(choiceid) : nil
+     
+     if @choice and @choice.correct
+        @correct = true
+     else
+        @correct = false
+     end
+
+
+
+  end
+   
+   
+  
+  def show
+    @subcategory = Subcategory.find(params[:id])
+  	@questions =  @subcategory.questions
+  end
+
+
 
 end

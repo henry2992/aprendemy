@@ -1,0 +1,37 @@
+
+
+<h1> Questions </h1>
+
+<h4> Total Questions <%= @total %> </h4>
+<h4> User asnwered questions <%= @answered_questions %> </h4>
+
+
+
+
+		<%= @question.text %>
+
+			<%= form_tag({:controller => "subcategory", :action => "answer"}) do %>
+				<% @question.choices.each do |choice| %>
+
+					<%= radio_button_tag(:choice, choice.id) %>
+					<%= label_tag("choice_".concat(choice.id.to_s).to_sym, choice.text) %>
+					<br>
+					
+
+				<%end%>
+
+				<%= submit_tag("Responder", :class => "submit") %>
+					
+		
+
+		<br>
+		<p>------------------<p>
+	<% end %>
+
+
+	<h4> User  <%= @user.answers.each do |answer| %> </h4>
+		<%= answer.id %>
+	<%end%>
+
+
+
