@@ -1,28 +1,10 @@
+<% if current_user %>
+              <li> Signed in as: <%=current_user.email%></li>   
+              <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
+       <%end%>
+
 <h1>App#index</h1>
-<p>Find me in app/views/app/index.html.erb</p>
 
 
 
-<% @categories.each do |category|%>
-       
-       <h1><%= category.title %></h1> 
-
-       <% category.subcategories.each do |subcategory|%>
-
-       			<%= subcategory.title %>
-       	
-       			
-       			<%= form_tag({:controller => "subcategory", :action => "question", id: subcategory.id }) do %>
-       			  <div class="center">
-					 <%= submit_tag "Start!", :class => "submit"%>
-				  </div>  
-                            <% end %>
-
-                           
-       <% end %>
-
-
-
-  
-
-<% end %>
