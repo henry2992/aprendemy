@@ -1,0 +1,19 @@
+<h1>All Questions for <%= @sub_category.name if @sub_category %></h1>
+<p><%= link_to "New question",  new_category_sub_category_question_path(@category, @sub_category, @question) %></p>
+
+<ul>
+<% @questions.each do |question| %>
+  <li>
+    <%= link_to question.content, category_sub_category_question_path(category) %>
+    <% if category.sub_categories %>
+      <ul>
+        <% question.choices.each do |choice| %>
+          <li>
+            <%= link_to choice.content, category_sub_category_question_choice_path(@category, @sub_category, question, choice)  %>
+          </li>
+        <% end  %>
+      </ul>
+    <% end %>
+  </li>
+<% end if @questions %>
+</ul>

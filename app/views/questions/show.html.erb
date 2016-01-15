@@ -1,0 +1,23 @@
+<% if @question %>
+
+  <h1><%= @question.content %></h1>
+  <%= link_to "All categories", categories_path %> |
+  <%= link_to @category.name, category_path(@category) %> |
+  <%= link_to @sub_category.name, category_sub_category_path(@category, @sub_category) %> |
+  <%= link_to "Edit", edit_category_sub_category_question_path(@category, @sub_category, @question)%> |
+  <%= link_to "Delete", new_category_sub_category_question_path(@category, @sub_category, @question), method: :delete %>
+
+  <p>
+    <%= link_to "Create answer",  new_category_sub_category_question_choice_path(@category, @sub_category, @question) %>
+  </p>
+
+  <ul>
+    <% @question.choices.each do |choice| %>
+    <% option_class = @question.choice_id == choice.id ? "correct" : "" %>
+      <li class="<%= option_class%>" >
+        <%= link_to choice.content, category_sub_category_question_choice_path(@category, @sub_category, @question, choice) %>
+      </li>
+    <% end if @category.sub_categories %>
+  </ul>
+
+<% end %>

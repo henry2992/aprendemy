@@ -1,8 +1,10 @@
-<h1>All categories</h1>
+<h1>Sub categories for <%= @category %></h1>
+<p><%= link_to "All categories", categories_path %></p>
+<p><%= link_to "< Back to Category", category_path(@category) %></p>
 <p><%= link_to "New category", new_category_path %></p>
 
 <ul>
 <% @sub_categories.each do |sub_category| %>
-  <li><%= link_to sub_category.name, category_sub_category_path(sub_category) %></li>
+  <li><%= link_to sub_category.name, category_sub_category_path(@category, sub_category) %></li>
 <% end if @sub_categories %>
 </ul>

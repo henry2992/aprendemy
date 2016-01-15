@@ -1,7 +1,7 @@
 class SubCategoriesController < ApplicationController
 
   def index
-    @categories = SubCategory.all
+    get_category && @sub_categories = SubCategory.includes(:questions).sub_categories.all
   end
 
   def new
@@ -21,17 +21,21 @@ class SubCategoriesController < ApplicationController
   end
 
   def edit
-    @sub_category = SubCategory.find_by_id(params[:id])
+    get_category && @sub_category = SubCategory.find_by_id(params[:id])
     render :new
   end
 
   def show
+    @category = Category.find_by_id(params[:category_id])
     @sub_category = SubCategory.find_by_id(params[:id])
+    @question = Question.new
   end
 
   def update
+    get_category
     @sub_category = SubCategory.find_by_id(params[:id])
     @sub_category.update(sub_category_params) if @sub_category
+    redirect_to category_sub_category_path(@category, @sub_category)
   end
 
   def delete
@@ -42,6 +46,10 @@ class SubCategoriesController < ApplicationController
 
   def sub_category_params
     params.require(:sub_category).permit(:name)
+  end
+
+  def get_category
+    @category = Category.find_by_id(params[:category_id])
   end
 
 end

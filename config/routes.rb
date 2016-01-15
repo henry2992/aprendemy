@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :sub_categories do
       resources :answered_questions
       resources :questions do
-        resources :answers
+        resources :choices
       end
     end
   end
@@ -21,9 +21,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :sessions, only: [:create, :destroy]
-
-
+  resources :sessions, only: [:new, :create, :destroy]
 
 
 end

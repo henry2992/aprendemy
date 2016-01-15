@@ -1,7 +1,8 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @categories = Category.all
+    @categories = Category.all.includes(:sub_categories)
   end
 
   def new
@@ -9,7 +10,8 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.create(category_params)
+    binding.pry
+    @category = current_user.categories.create(category_params)
     if @category
       flash[:success] = "Category '#{@category.name}' has been created successfully"
     else
@@ -24,12 +26,13 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by_id(params[:id])
+    @category = Category.includes(:sub_categories).find_by_id(params[:id])
   end
 
   def update
     @category = Category.find_by_id(params[:id])
     @category.update(category_params) if @category
+    render :show
   end
 
   def delete
