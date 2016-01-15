@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-
+  before_filter :
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all
   end
