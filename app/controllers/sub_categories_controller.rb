@@ -11,7 +11,7 @@ class SubCategoriesController < ApplicationController
 
   def create
     @category = Category.find_by_id(params[:category_id])
-    @sub_category = @category.sub_categories.create(sub_category_params) if @category
+    @sub_category = @category.sub_categories.create(sub_category_params.merge(user_id: current_user)) if @category
     if @sub_category
       flash[:success] = "SubCategory '#{@sub_category.name}' has been created successfully"
     else
