@@ -1,0 +1,9 @@
+<% if @sub_category %>
+  <h1><%= @sub_category.name %></h1>
+  <%= link_to "Edit", edit_category_path(@sub_category)%> |
+  <%= link_to "Create a sub category", new_category_sub_category_path(@sub_category) %>
+
+  <% @sub_category.questions.each do |question| %>
+    <% link_to question.content, question_path(question) %>
+  <% end if @sub_categories.questions %>
+<% end %>
