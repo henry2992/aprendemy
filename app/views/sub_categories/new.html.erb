@@ -1,6 +1,6 @@
 <h3> New Sub-Category </h3>
 
-<%= form_for ([@category, @sub_category]) do |f| %>
+<%= form_for [@category, @sub_category] do |f| %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>

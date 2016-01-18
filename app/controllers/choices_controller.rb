@@ -34,7 +34,7 @@ class ChoicesController < ApplicationController
       @choice = Choice.find_by_id(params[:id])
       @choice.update(choice_params) if @choice
       update_if_correct_choice
-      show_choices_index
+      render :show
     end
 
     def delete

@@ -4,7 +4,7 @@
   <%= link_to "All categories", categories_path %> |
   <%= link_to @category.name, category_path(@category) %> |
   <%= link_to @sub_category.name, category_sub_category_path(@category, @sub_category) %> |
-  <%= link_to "Edit", edit_category_sub_category_question_path(@category, @sub_category, @question)%> |
+  <%= link_to "Edit", edit_category_sub_category_question_path(@category, @sub_category, @question) %> |
   <%= link_to "Delete", new_category_sub_category_question_path(@category, @sub_category, @question), method: :delete %>
 
   <p>

@@ -27,7 +27,7 @@ class SubCategoriesController < ApplicationController
 
   def show
     @category = Category.find_by_id(params[:category_id])
-    @sub_category = SubCategory.find_by_id(params[:id])
+    @sub_category = SubCategory.includes(:questions).find_by_id(params[:id])
     @question = Question.new
   end
 
@@ -35,7 +35,7 @@ class SubCategoriesController < ApplicationController
     get_category
     @sub_category = SubCategory.find_by_id(params[:id])
     @sub_category.update(sub_category_params) if @sub_category
-    redirect_to category_sub_category_path(@category, @sub_category)
+    render :show
   end
 
   def delete

@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_filter :
+
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all
   end
@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
     get_category_and_sub
     @question = Question.find_by_id(params[:id])
     @question.update(question_params) if @question
-    show_questions_index
+    render :show
   end
 
   def delete
