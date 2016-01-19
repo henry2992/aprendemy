@@ -1,0 +1,22 @@
+<% if @sub_category %>
+  <h1><%= @sub_category.name %></h1>
+  <p>
+    <%= link_to "All categories", categories_path, remote: true %> |
+    <%= link_to "< Back to Category", category_path(@category), remote: true %> |
+    <%= link_to "Edit", category_sub_category_path(@category, @sub_category) %> |
+    <%= link_to "Create a question", new_category_sub_category_question_path(@category, @sub_category, @question) %> |
+    <%= link_to "Edit questions in this category", category_sub_category_questions_path(@category, @sub_category) %>
+  </p>
+
+<p>Questions</p>
+
+  <ul>
+    <% @sub_category.questions.each do |question| %>
+      <li class="question_<%= question.id %>">
+        <p>
+          <%= render partial: "questions/show", locals: { question: question}%>
+        </p>
+      </li>
+    <% end if @sub_category.questions %>
+  </ul>
+<% end %>

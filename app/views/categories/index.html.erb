@@ -1,0 +1,26 @@
+<h1>All categories</h1>
+<p><%= link_to "+ New catgory", new_category_path %></p>
+
+<div class="main-bg">
+<aside class="sidebar">
+  <ul>
+    <% @categories.each do |category| %>
+      <li>
+        <%= link_to category.name, category_path(category), remote: true %>
+        <% if category.sub_categories %>
+          <ul>
+            <% category.sub_categories.each do |sub_category| %>
+              <li><%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true  %></li>
+            <% end  %>
+          </ul>
+        <% end %>
+      </li>
+    <% end if @categories %>
+  </ul>
+</aside>
+
+<content id="main">
+  <content>
+    <%#= render partial: "sub_categories/statistics_table", locals: { category: @categories.first } %>
+  </content>
+</content>

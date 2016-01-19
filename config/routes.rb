@@ -1,22 +1,29 @@
 Rails.application.routes.draw do
-  
+
   root 'home#index'
 
   get 'app', to: 'app#index'
 
   #QUESTIONS
 
-
+  resources :categories do
+    resources :sub_categories do
+      resources :questions do
+        resources :answered_questions
+        resources :choices
+      end
+    end
+  end
 
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :sessions, only: [:create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
+  devise_scope :user do
+    match '/sessions/user', to: 'devise/sessions#create', via: :post
+  end
 
- 
- 
 end

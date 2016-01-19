@@ -11,7 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109172929) do
+ActiveRecord::Schema.define(version: 20160118023155) do
+
+  create_table "answered_questions", force: :cascade do |t|
+    t.boolean  "correct",     default: false
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.integer  "choice_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "sub_categories_count", default: 0
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "choice_id"
+    t.integer  "user_id"
+    t.integer  "sub_category_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "answered_questions_count", default: 0
+  end
+
+  create_table "sub_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "questions_count", default: 0
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.string   "role"
+    t.integer  "user_role_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,6 +78,9 @@ ActiveRecord::Schema.define(version: 20160109172929) do
     t.datetime "updated_at",                          null: false
     t.string   "provider"
     t.string   "uid"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "questions_count",        default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

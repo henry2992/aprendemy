@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '535013649094679503d86be04e2408c29f4e3b6ff65a5b78033fab947f0be4ae51153419128a9fa8608e6bada2f0dbf8c4f709cc9e4d34afc5d448104150a3d2'
+  # config.secret_key = 'f23e8d0109bb374f6a8e35ddab654a2b9811e9361eb3a82de52eab8c19e9c4fbf9466df61cd1c8fad1ca13da6627b65818b8e11cd0462146521739313dfa24ef'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -99,7 +99,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '180a81d090fa1b82b0cb5a234786a1b4513976a71c2c4dfbc4c898feeb4030ced716d87143d69ee777499d67b5b42221af5d54234b08d7fd502e40d893dc4f86'
+  # config.pepper = '3e9789831acb6523fad0995a9ee8797d766085852b4eff20dca78b7646ee77e1889a220bc691b2282b4045a260b23015ed391be481f787692da7f808e1c842d3'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -230,12 +230,13 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
+  config.sign_out_via = :delete
 
-  config.sign_out_via = :get
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email', info_fields: 'email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -245,8 +246,6 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-
-  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email', info_fields: 'email'
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
