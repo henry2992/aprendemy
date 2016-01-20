@@ -15,4 +15,8 @@ class SubCategory < ActiveRecord::Base
   def answered_incorrectly user_id
     self.questions.where(id: self.answered_questions.where(user_id: user_id, correct: false).pluck(:question_id))
   end
+
+  def unanswered_questions user_id
+    self.questions.includes(:choices).where('id NOT IN (?)', self.answered_questions.where(user_id: user_id).pluck(:question_id))
+  end
 end

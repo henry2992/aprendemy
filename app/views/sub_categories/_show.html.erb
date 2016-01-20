@@ -5,18 +5,23 @@
     <%= link_to "< Back to Category", category_path(@category), remote: true %> |
     <%= link_to "Edit", category_sub_category_path(@category, @sub_category) %> |
     <%= link_to "Create a question", new_category_sub_category_question_path(@category, @sub_category, @question) %> |
-    <%= link_to "Edit questions in this category", category_sub_category_questions_path(@category, @sub_category) %>
+    <%= link_to "Edit questions in this category", category_sub_category_questions_path(@category, @sub_category) %> |
+  </p>
+
+  <p>
+    <%= link_to "Unanswered questions", category_sub_category_path(@category, @sub_category), remote: true %> |
+    <%= link_to "Show answered questions", category_sub_category_show_answered_questions_path(@category, @sub_category), remote: true %>
   </p>
 
 <p>Questions</p>
 
   <ul>
-    <% @sub_category.questions.each do |question| %>
+    <% @questions.each do |question| %>
       <li class="question_<%= question.id %>">
         <p>
           <%= render partial: "questions/show", locals: { question: question}%>
         </p>
       </li>
-    <% end if @sub_category.questions %>
+    <% end %>
   </ul>
 <% end %>

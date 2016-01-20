@@ -11,12 +11,7 @@ class ChoicesController < ApplicationController
     def create
       get_category_and_sub_and_question
       @choice = @question.choices.create(choice_params.except(:is_answer))
-      if @choice
-        update_if_correct_choice
-        flash[:success] = "New question has been created successfully"
-      else
-        flash[:danger] = "An error occured. Please try again."
-      end
+      update_choice
       show_choices_index
     end
 
@@ -59,6 +54,15 @@ class ChoicesController < ApplicationController
       redirect_to category_sub_category_question_choice_path(@category, @sub_category, @question, @choice)
     end
 
+    def update_choice
+      if @choice
+        update_if_correct_choice
+        flash[:success] = "New question has been created successfully"
+      else
+        flash[:danger] = "An error occured. Please try again."
+      end
+    end
+    
     def update_if_correct_choice
       @question.update(choice_id: @choice.id) if params[:correct_choice] == "1"
     end
