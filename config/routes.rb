@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :categories do
     resources :sub_categories do
+      get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
       resources :questions do
         resources :answered_questions
         resources :choices

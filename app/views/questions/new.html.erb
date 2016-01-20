@@ -1,9 +1,13 @@
-<h3> New Category </h3>
+<h3> Question </h3>
 
 <%= form_for [@category, @sub_category, @question] do |f| %>
   <div class="field">
     <%= f.label :content %><br />
     <%= f.text_field :content, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :explanation %><br />
+    <%= f.text_field :explanation %>
   </div>
 
   <div class="actions">

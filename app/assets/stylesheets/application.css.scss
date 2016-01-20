@@ -39,3 +39,16 @@
     }
   }
 }
+.full-width {
+  width: 100%;
+}
+
+.questions {
+  display: flex;
+  flex-wrap: wrap;
+}
+.explanation {
+  color: #32B332;
+  flex: 4;
+  margin-left: 20px;
+}
