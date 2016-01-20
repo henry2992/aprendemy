@@ -1,4 +1,5 @@
 class SubCategoriesController < ApplicationController
+  before_filter :authenticate_user!
 
   def index
     get_category && @sub_categories = SubCategory.includes(:questions).sub_categories.all
@@ -26,9 +27,16 @@ class SubCategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find_by_id(params[:category_id])
-    @sub_category = SubCategory.includes(:questions).find_by_id(params[:id])
+    get_category && @sub_category = SubCategory.find_by_id(params[:id])
+    @questions = @sub_category.unanswered_questions(current_user.id)
     @question = Question.new
+  end
+
+  def show_answered_questions
+    get_category && @sub_category = SubCategory.find_by_id(params[:sub_category_id])
+    @questions = @sub_category.questions_answered(current_user.id)
+    @question = Question.new
+    render :show
   end
 
   def update
