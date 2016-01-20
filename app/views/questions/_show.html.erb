@@ -2,9 +2,9 @@
 <% answered_question ||= get_answered_question(question.id) %>
 <%= question.content %>
 
-<div class="full-width">
+<div class="full-width questions">
 
-  <div class="half-width">
+  <div>
     <%= form_for [@category, @sub_category, question, answered_question], remote: true do |f| %>
 
       <% if answered_question.choices %>
@@ -22,10 +22,10 @@
     <% end %>
 
   </div>
-  
-  <div class="half-width">
+
+  <div class="explanation">
     <p>
-      <%= question.explanation %>
+      <%= question.explanation if answered_question.id %>
     </p>
   </div>
 </div>
