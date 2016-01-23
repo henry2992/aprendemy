@@ -1,0 +1,532 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/***********  GLOBAl *************/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+body{
+  font-size: 16px;
+  color: #3D3D3D;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: "Roboto Slab",sans-serif;
+  font-weight: 400;
+  color: #06476B;
+}
+.white{
+    color: white !important;
+}
+
+/************************************/
+
+/***** NAVBAR HOME *****/
+.navbar {
+    margin-bottom: 0px;
+    background-color: rgb(6, 71, 107);
+  border-color: rgb(6, 71, 107);
+}
+
+.aprendemy-logo img{
+  width: 225px;
+  margin-top: -30px;
+  margin-left: -10px;
+}
+
+.navtext-color{
+    background-color: transparent !important;
+
+}
+.navtext-color:hover{
+    color: #3FBEE8 !important;
+}
+
+/*Over write*/
+.nav>li>a{
+    padding: 0 !important;
+}
+/**/
+.dropdown{
+    background: #3FBEE8  none repeat scroll 0% 0%;
+    padding: 15px;
+    margin-top: 1px
+}
+.navbar-default .navbar-nav > li > a{
+    color: white;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    color: white;
+    background-color: #3FBEE8 ;
+}
+.navbar-default .navbar-nav>li>a:hover{
+    color: white;
+    background-color: #3FBEE8;
+}
+.navbar-default .navbar-nav>li>a:visited{
+    color: white;
+    background-color: #3FBEE8 ;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: rgb(6,200,244) !important;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: #3FBEE8  !important;
+}
+
+
+.navbar-default .navbar-toggle .icon-bar{
+    background-color: rgb(6,200,244) !important;
+}
+
+.navbar-default .navbar-collapse{
+    border-color: rgb(6,200,244) !important;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+    margin-top: 3px;
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 100%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+
+/***** HOME BANNER ****/
+#home-banner{
+  margin-top: 50px;
+  background-attachment: fixed;
+  background-size: 240px 240px;
+  background-color: #ECF8FE;
+  background-image: url(<%= asset_path('icon_banner.svg')%>); 
+  background-repeat: repeat;
+  background-position: 0px 0px;
+}
+
+.home-banner-img-container{
+    display: table;
+    margin: 20px auto 0 auto;
+}
+
+.mobile-img-banner{
+  width: 250px; 
+}
+
+.home-banner-main-container{
+    margin-top: 15px;
+}
+
+.home-banner-content-heading{
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 30px;
+}
+.home_banner-content_group{
+    margin-top: 20px;
+}
+
+.home_banner-content_group li{
+    margin-bottom: 5px;
+    font-size: 0.875em;
+}
+.home-banner-buttons{
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.aprendemy-btn{
+    display: block;
+    padding: 5px;
+    width: 225px;
+    margin: 15px auto 0 auto;
+}
+.link-facebook{
+  color: white;
+}
+
+.link-facebook:hover{
+  text-decoration:none;
+  color: white;
+}
+
+
+/************ Comunity Section*****************/
+
+.home-comunity-section{
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+
+/******* Home-resources-section *********/
+
+
+.home-resources-section{
+  text-align: center;
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+
+
+.home_section_heading{
+  margin-top: 0px;
+  margin-bottom: 18px !important;
+  position: relative;
+  text-align: center;
+  font-size: 1.125em;
+  line-height: 24px;
+}
+.home_section_heading span {
+    position: relative;
+    background: #FFF none repeat scroll 0% 0%;
+    z-index: 2;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.home_section_heading::before {
+    content: "";
+    display: block;
+    border-top: 1px solid #E3E3E3;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+
+.home_section_caption {
+    text-align: center;
+    color: #7D7D7D;
+    font-size: 0.875em; 
+  line-height: 24px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.line-section {
+    width: 100%;
+    height: 1px;
+    background: #E3E3E3 none repeat scroll 0% 0%;
+    margin-top: 30px !important;
+    margin-bottom: 50px;
+}
+
+.resources-img{
+    width: 100px;
+}
+.home-resources-heading{
+    margin-top: 10px !important;
+    margin-bottom: 6px !important;
+}
+.home-resources-p{
+    font-size: 0.825em;
+    margin-top: 15px !important;
+    margin-bottom: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+
+/**** Home What is Aprendemy Section ****/
+
+.home-aprendemy-section{
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+
+.home_section_wrapper{
+  background: #F3F3F3 none repeat scroll 0% 0%;
+}
+
+.home_section_wrapper .home_section_heading span {
+    background: #F3F3F3 none repeat scroll 0% 0%;
+}
+.aprendemy-text{
+   top: center;
+}
+
+.aprendemy-img{
+    width: 100px;
+}
+
+.img-hidden-lg{
+    display: none;
+}
+
+
+/*********** PAYMENT ***************/
+
+.home-payment-section{
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+.form-card {
+    padding: 30px;
+    border-radius: 5px;
+    margin-top: 30px;
+    background: #FFF none repeat scroll 0% 0%;
+    text-align: left;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+ .trial-banner {
+    background-color: rgb(63,190,232);
+    border-radius: 5px 5px 0px 0px;
+    text-align: center;
+    font-weight: 500;
+    padding: 20px;
+    margin: -30px -30px 30px;
+    color: #FFF;
+}
+
+.input-text, textarea {
+    background: #E8EBED none repeat scroll 0% 0%;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #576366;
+    width: 100%;
+    font-family: "Roboto Slab",sans-serif;
+    padding: 12px 15px;
+    outline: 0px none;
+    border: 2px solid #E8EBED;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all 0.2s ease 0s;
+}
+
+
+.free-trial-button {
+    background-color: rgb(63,190,232);
+    border: 2px solid;
+    border-color: rgb(63,190,232);
+    color: #FFF;
+    font-size: 16px;
+    height: 52px;
+    line-height: 48px;
+    padding: 0px 32px;
+
+    box-sizing: border-box;
+    -moz-appearance: none;
+    -moz-user-select: none;
+    transition: color 0.3s ease 0s, background-color 0.3s ease 0s, border-color 0.3s ease 0s, width 0.3s ease 0s, opacity 0.3s ease 0s;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Roboto Slab",sans-serif;   
+    font-weight: 500;
+    position: relative;
+    margin-top: 20px;
+    outline: medium none;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: baseline;
+    white-space: nowrap;
+
+    width: 100%;
+
+}
+
+/*** FOOTER ***/
+.footer{
+  background: #06476B none repeat scroll 0% 0%;
+}
+.copyright{
+    color: white;
+    margin: 0;
+}
+.footer-img img{
+    width: 100px;
+}
+
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+    .home-banner-img-container{
+        padding: 5px;
+        margin: 40px auto 0 auto;
+
+    }
+    .mobile-img-banner{
+        width: 350px;   
+    }
+    .home-banner-content-heading{
+        text-align: center;
+        font-size: 1.3em;
+        line-height: 36px;
+
+    }
+
+    .home-resources-section-img-container {
+        margin-bottom: 50px;
+    }
+
+    .img-hidden-sm{
+        display: none;
+    }
+    .img-hidden-lg{
+        display: inline-block;
+    }
+
+    .aprendemy-img{
+        width: 200px;
+    }
+
+    .center-container{
+        display: flex;
+        justify-content: center;
+    }
+    .aprendemy-text{
+        align-self: center;
+    }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+    .home-banner-content-heading{
+        margin-top: 50px !important;
+        margin-bottom: 35px !important;
+       font-size: 2.5em; 
+    }
+    .mobile-img-banner {
+        width: 500px;
+        margin-left: -35px;
+        margin-top: 15px;
+    }
+    .center-list{
+        display: block;
+        width: 375px;
+        margin: 0 auto 0 auto;
+    }
+    .lg-screen-container{
+        width: 992px;
+        margin: 0 auto 0 auto;
+    }  
+    .line-section {
+        width: 992px;
+        margin: 30px auto 50px auto !important;
+    }
+
+    .home-aprendemy-section{
+        padding-bottom: 0px;
+    }
+    .home-resources-section{
+        padding-bottom: 0px;
+    }
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+/***************************/
+
+
+
+
+.correct {
+  a, input, label {
+    color: #2D942D;
+    background-color: #CCC0C0;
+  }
+}
+.wrong {
+  a, input, label {
+    color: #F51F06;
+    background-color: #CCC0C0;
+  }
+}
+
+.main-bg {
+  display: flex;
+  aside {
+    margin: 10px
+  }
+  content {
+    margin: 20px;
+    ul {
+      list-style: none;
+    }
+  }
+}
+.full-width {
+  width: 100%;
+}
+
+.questions {
+  display: flex;
+  flex-wrap: wrap;
+}
+.explanation {
+  color: #32B332;
+  flex: 4;
+  margin-left: 20px;
+}
