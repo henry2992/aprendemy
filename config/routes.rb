@@ -2,10 +2,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get 'app', to: 'app#index'
 
   #QUESTIONS
-
   resources :categories do
     resources :sub_categories do
       get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
