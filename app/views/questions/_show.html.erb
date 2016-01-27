@@ -11,7 +11,7 @@
         <ul>
           <% question.choices.each do |choice| %>
             <% was_selected = answered_question.choice_id == choice.id %>
-            <li class="<%= correct_or_wrong(answered_question) if was_selected %>">
+            <li class="<%= correct_or_wrong(question, choice, answered_question, was_selected) %>">
               <%= f.radio_button :choice_id, choice.id, checked: was_selected %>
               <%= f.label :choice_id, choice.content %>
             </li>
