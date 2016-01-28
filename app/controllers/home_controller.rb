@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   helper_method :resource_name, :resource, :devise_mapping
 
   def resource_name
-	:user
+	    :user
   end
 	 
   def resource
@@ -16,6 +16,7 @@ class HomeController < ApplicationController
   end
 
   def index
+
   end
 
 

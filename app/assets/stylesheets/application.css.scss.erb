@@ -38,9 +38,9 @@ h1, h2, h3, h4, h5, h6 {
     color: white !important;
 }
 
-/************************************/
+/*****************************************************/
 
-/***** NAVBAR HOME *****/
+/***************** NAVBAR HOME ********************/
 .navbar {
     margin-bottom: 0px;
     background-color: rgb(6, 71, 107);
@@ -146,7 +146,82 @@ h1, h2, h3, h4, h5, h6 {
     background-color:#59b5fa;
 }
 
-/***** HOME BANNER ****/
+
+/***************** NAVBAR APPLICATION ********************/
+
+.navbar {
+    border-radius: 0px !important;
+}
+
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin-top: 20px;
+}
+
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.navbar-content
+{
+    width:320px;
+    padding: 15px;
+    padding-bottom:0px;
+}
+.navbar-content:before, .navbar-content:after
+{
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.navbar-nav.navbar-right:last-child {
+margin-right: 15px !important;
+}
+.navbar-footer 
+{
+    background-color:#DDD;
+}
+.navbar-footer-content { padding:15px 15px 15px 15px; }
+.dropdown-menu {
+padding: 0px;
+overflow: hidden;
+}
+
+.avatar-img{
+  width: 50px;
+}
+
+.dropdown {
+    background: transparent;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+  background: transparent;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+  background: transparent;
+}
+
+.in-app-anchor{
+  color: white !important;
+}
+
+
+
+
+
+
+/******************** HOME BANNER ************************/
 #home-banner{
   margin-top: 50px;
   background-attachment: fixed;
@@ -341,7 +416,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 14px;
     color: #576366;
     width: 100%;
-    font-family: "Roboto Slab",sans-serif;
     padding: 12px 15px;
     outline: 0px none;
     border: 2px solid #E8EBED;
@@ -360,7 +434,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 52px;
     line-height: 48px;
     padding: 0px 32px;
-
     box-sizing: border-box;
     -moz-appearance: none;
     -moz-user-select: none;
@@ -368,7 +441,6 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 4px;
     cursor: pointer;
     display: inline-block;
-    font-family: "Roboto Slab",sans-serif;   
     font-weight: 500;
     position: relative;
     margin-top: 20px;
@@ -394,6 +466,486 @@ h1, h2, h3, h4, h5, h6 {
     width: 100px;
 }
 
+/*************** HOME APPLICATION WRAPPER************************/
+
+/******** APPLICATION ******/
+
+.nav-stacked > li + li {
+    margin-top: 0px !important;
+}
+
+.application-wrapper{
+  background-color: #EEF2F6;
+  position: absolute;
+  width: 100%;
+  padding-bottom: 50px; 
+}
+
+.application-navbar{
+  padding: 0px;
+  height: 100%;
+}
+
+
+.application-navbar-profile{
+  background-color: #E1E7EC;
+  text-align: center;
+  padding-top: 35px;
+  padding-bottom: 25px;
+
+  border-width: 1px;
+  border-style: solid;
+  -moz-border-top-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  border-image: none;
+  border-color: #DAE1E8 #D3DDE5 #B6C8D8;
+  box-shadow: 0px 1px 0px 0px rgba(56, 61, 72, 0.09);
+  border-radius: 3px;
+}
+.link-heading{
+  text-align: center;
+  font-size: 1.5em;
+  padding-top: 5px !important;
+}
+
+.link-list-group-options li:hover{
+  background-color: #e8ecef;
+}
+
+.link-list-group-options li a {
+    padding: 10px 0px 5px 10px;
+    display: block;
+    font-weight: 400;
+    color: #546986;
+}
+
+.app-navbar-profile-img{
+  width: 100px;
+  border-radius: 50%;
+  border: 7px solid #3FBEE8;
+}
+
+.app-navbar-heading{
+  font-size: 1em;
+}
+
+.app-navbar-text{
+  font-size: 0.75em;
+}
+
+.navbar-links{
+  background-color: #FFF;
+  border-width: 1px;
+  border-style: solid;
+  -moz-border-top-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  border-image: none;
+  border-color: #DAE1E8 #D3DDE5 #B6C8D8;
+  box-shadow: 0px 1px 0px 0px rgba(56, 61, 72, 0.09);
+  margin-bottom: 14px;
+  border-radius: 3px;
+  margin-top: 15px;
+}
+.link-list-group-container{
+  margin-top: 5px;
+}
+
+.link-list-group-container ul{
+  list-style-type: none;
+  padding: 0px !important;
+}
+.link-list-group-options{
+  margin-bottom: 0px !important;
+}
+
+.list{
+  border-top: 1px solid #DFE4E8;
+  transition: background-color 0.2s ease 0s;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+span.icon {
+    height: 16px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: -1px;
+    margin-right: 4px;
+    margin-left: 10px;
+}
+
+.icon-home {
+
+    background: transparent url(<%= asset_path('home.png')%>) no-repeat;
+}
+
+.icon-exercises{
+  background: transparent url(<%= asset_path('exercises.png')%>) no-repeat;
+}
+
+.icon-simulator{
+  background: transparent url(<%= asset_path('simulador.png')%>) no-repeat;
+}
+
+.icon-online{
+  background: transparent url(<%= asset_path('online.png')%>) no-repeat;
+}
+
+.icon-stats{
+  background: transparent url(<%= asset_path('stats.png')%>) no-repeat;
+}
+
+.icon-help{
+  background: transparent url(<%= asset_path('help.png')%>) no-repeat;
+}
+
+
+/****** CONTENT **********************************************/
+.content-wrapper{
+  background-color: rgb(238,242,246);
+}
+
+.application-content{
+  margin-left: 5%;
+  width: 90%;
+}
+
+
+/***** ****************** Payment ********************************/
+
+/*****************
+Pre Settings
+******************/
+ul li {
+        list-style-type: none; 
+}
+ 
+#banner_wrapper {
+        background: #d1edf9;
+        border: 1px solid #759BAA;
+        box-shadow: 0px 0px 5px #9EC8D8;
+        height: 300px;
+        margin: 40px auto 0;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+}
+ 
+#banner_wrapper #content {
+        margin: 30px auto 0;
+        text-align: center;
+        position: relative;
+        z-index: 2;    
+}
+ 
+#banner_wrapper #content h2 {
+    color: #137dd5;
+    font-size: 50px;
+        margin: 0;
+        animation: delayed-fade-animation 2s 1 ease-in-out;    
+        -webkit-animation: delayed-fade-animation 2s 1 ease-in-out;
+    -moz-animation: delayed-fade-animation 2s 1 ease-in-out;   
+}
+ 
+#banner_wrapper #content p {
+
+    color: #137dd5;
+    font-size: 20px;
+        animation: delayed-fade-animation 3s 1 ease-in-out;
+        -webkit-animation: delayed-fade-animation 3s 1 ease-in-out;    
+    -moz-animation: delayed-fade-animation 3s 1 ease-in-out;   
+}
+ 
+#banner_wrapper ul#flying-man {
+    height: 100px;
+        margin: 0;
+        padding: 0;
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+        z-index: 2;
+    overflow: visible;
+        width: 250px;
+        animation: flying-man-animation 3s 1 ease-out;
+        -webkit-animation: flying-man-animation 3s 1 ease-out;
+    -moz-animation: flying-man-animation 3s 1 ease-out;
+}
+ 
+#banner_wrapper ul#flying-man li {
+    background: url(<%= asset_path('flyingman.gif')%>) no-repeat left top;
+    height: 100px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    overflow: visible;
+    width: 150px;
+    animation: floating-animation 1s infinite ease-in-out;
+    -webkit-animation: floating-animation 1s infinite ease-in-out;
+    -moz-animation: floating-animation 1s infinite ease-in-out;
+}
+ 
+#banner_wrapper ul#bottom-cloud li {
+    width: 100%;
+    height: 165px;
+    background: url(<%= asset_path('bottom_cloud.png')%>) left bottom;
+    z-index: 0;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+ 
+#banner_wrapper #moving-clouds {
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+        animation: cloud-animation 30s infinite linear;
+        -webkit-animation: cloud-animation 30s infinite linear;
+    -moz-animation: cloud-animation 30s infinite linear;
+}
+ 
+#banner_wrapper #moving-clouds #group-1 {
+    width:500px;
+        padding: 0;
+    position: absolute;
+    left:0px;
+}
+#banner_wrapper #moving-clouds #group-2 {
+    width: 500px;
+        padding: 0;
+    position: absolute;
+    left: 500px;
+}
+ 
+#banner_wrapper .cloud-1 {
+    width: 140px;
+    height: 65px;
+    background: url(<%= asset_path('cloud01.png')%>) no-repeat left top;
+    position: absolute;
+    top: 10px;
+    left: 70px;
+}
+ 
+#banner_wrapper .cloud-2 {
+    width: 86px;
+    height: 40px;
+    background: url(<%= asset_path('cloud02.png')%>) no-repeat left top;
+    position: absolute;
+    top: -25px;
+    left: 300px;
+}
+ 
+#banner_wrapper .cloud-3 {
+    width: 120px;
+    height: 55px;
+    background: url(<%= asset_path('cloud03.png')%>) no-repeat left top;
+    position: absolute;
+    top: 100px;
+    left: 350px;
+}
+ 
+#banner_wrapper .cloud-4 {
+    width: 86px;
+    height: 40px;
+    background: url(<%= asset_path('cloud02.png')%>)  no-repeat left top;
+    position: absolute;
+    top: 75px;
+    left: 10px;
+}
+
+/*****************
+Animation Settings
+******************/
+/*CSS Standard*/
+@keyframes flying-man-animation {
+    0%   {left: -200px;}
+    100% {left: 20px;}
+}
+ 
+@keyframes floating-animation {
+        0% { bottom: 0px; }    
+        50% { bottom: 3px; }
+        100% { bottom: 0px; }
+}
+ 
+@keyframes delayed-fade-animation {
+    0%   {opacity: 0;}
+    80%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+ 
+@keyframes cloud-animation {
+    0%       {left: 0px;}
+    99.9999%   {left: -500px;}
+    100%     {left: 0px;}
+}
+ 
+/*Mozilla Browser*/
+@-moz-keyframes flying-man-animation {
+    0%   {left: -200px;}
+    100% {left: 20px;}
+}
+ 
+@-moz-keyframes floating-animation {
+        0% { bottom: 0px; }    
+        50% { bottom: 3px; }
+        100% { bottom: 0px; }
+}
+ 
+@-moz-keyframes delayed-fade-animation {
+    0%   {opacity: 0;}
+    80%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+ 
+@-moz-keyframes cloud-animation {
+    0%       {left: 0px;}
+    99.9999%   {left: -500px;}
+    100%     {left: 0px;}
+}
+ 
+/*Webkit Browser*/
+@-webkit-keyframes flying-man-animation {
+    0%   {left: -200px;}
+    100% {left: 20px;}
+}
+ 
+@-webkit-keyframes floating-animation {
+        0% { bottom: 0px; }    
+        50% { bottom: 3px; }
+        100% { bottom: 0px; }
+}
+ 
+@-webkit-keyframes delayed-fade-animation {
+    0%   {opacity: 0;}
+    80%  {opacity: 0;}
+    100% {opacity: 1;}
+}
+ 
+@-webkit-keyframes cloud-animation {
+    0%       {left: 0px;}
+    99.9999%   {left: -500px;}
+    100%     {left: 0px;}
+}
+
+
+
+
+
+/****** ********** Tools ************** ****/
+
+.test{
+  border: red solid 2px;
+  height: 100%;
+}
+
+.test1{
+  border: blue solid 2px;
+
+}
+
+/***** News *****/
+
+.news-holder{
+  text-align: center;
+}
+
+.content-margin{
+  margin-top: 35px;
+}
+
+.application-content-header{
+  padding: 10px 20px 15px;
+  background-color: #FFF;
+  border-radius: 2px 2px 0px 0px;
+  border-width: 1px;
+  border-style: solid;
+  -moz-border-top-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  border-image: none;
+  border-color: #DEE6EE #D3DDE5;
+}
+
+.app-text-holder{
+  padding: 0;
+    background-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    border-image: none;
+    border-color: #DAE1E8 #D3DDE5 #B6C8D8;
+    box-shadow: 0px 1px 0px 0px rgba(56, 61, 72, 0.09);
+    margin: -1px 0px 0px;
+    border-radius: 3px;
+}
+
+.news-content-text{
+  font-size: 13px;
+  color: #383D48;
+  margin: 0px;
+  padding-bottom: 10px;
+  line-height: 20px;
+  display: inline-block;
+  width: 70%;
+  vertical-align: middle;
+}
+
+.news-img{
+  display:block;
+    margin:auto;
+  width: 100px;
+  /*vertical-align: middle;
+  top: 0;*/
+}
+
+.exercises-img{
+  width: 20%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.exercises-text{
+  width: 75%;
+  display: inline-block;
+  vertical-align: middle; 
+}
+
+.exercises-text h4{
+  text-align: center;
+  color: #3FBEE8;
+}
+
+.exercises-text p{
+  font-size: 12px;
+  color: #383D48;
+  margin: 10px 0 0 0px;
+  padding: 0px 0 0 10px;
+  line-height: 20px;
+  height: 80px;
+  overflow: hidden;
+}
+.tools-panel{
+  border-radius: 8px;
+  background: #FFF none repeat scroll 0% 0%;
+  border: 1px solid #E5E5E5;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.tools-panel:hover{
+    box-shadow: 0px 0px 10px #888;
+}
 
 
 /***************** MEDIA QUERIES ******************/
@@ -445,6 +997,51 @@ h1, h2, h3, h4, h5, h6 {
     .aprendemy-text{
         align-self: center;
     }
+
+    /***** NavBar APPLICATION *******/
+    .avatar-container{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .img-responsive{
+      width: 100px;
+      
+    }
+      .img-text{
+        width: 100px;
+    }
+    .nav-info-container{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .navbar-mobile-bg{
+      background-color: white;
+    }
+    
+    .exercises-img{
+      width: 50px;
+    }
+}
+
+/****** Image Fix for Exercises **************/
+@media only screen and (min-width : 420px) {
+
+  
+  .exercises-img{
+    width: 80px;
+  }
+
+
+}
+
+/********* Vertical NavBar Fix **********/
+@media only screen and (max-width : 768px) {
+
+  .application-navbar{
+    width: 90%;
+    margin-left: 5%;
+  }
+
 }
 
 /* Desktops and laptops ----------- */
@@ -479,6 +1076,41 @@ h1, h2, h3, h4, h5, h6 {
     }
     .home-resources-section{
         padding-bottom: 0px;
+    }
+
+    /****** Application Content *********/
+    .avatar-container{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .img-responsive{
+      width: 100px;
+      
+    }
+      .img-text{
+        width: 100px;
+    }
+    .nav-info-container{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+    .app-text-holder{
+      padding: 20px 25px;
+    }
+
+    .news-holder{
+      text-align: left;
+    }
+
+    .news-img{
+      display: inline-block;
+      width: 100px;
+      vertical-align: middle;
+      top: 0;
+    }
+    .exercises-img{
+      width: 20%;
     }
 
 }

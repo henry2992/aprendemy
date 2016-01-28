@@ -37,8 +37,15 @@
 </head>
 <body>
 
+<!-- Navbar -->
+<% if user_signed_in? %>
+	<%= render "layouts/navbar_app.html" %>
+<% else %>
+	<%= render 'layouts/navbar_sing_in.html' %>
+<% end %>
+<!-- Navbar -->
 
-<%= render 'layouts/navbar_sing_in.html' %>
+
 <%= render 'layouts/flash' %>
 <%= yield %>
 

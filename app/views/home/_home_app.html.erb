@@ -1,0 +1,170 @@
+<div class="application-wrapper container-fluid">
+		<div class="row">
+			<div class="application-navbar col-sm-3 col-md-2">
+				<div class="application-navbar-profile">
+					<%= image_tag("avatar.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
+					<h1 class="app-navbar-heading">Henry Remache</h1>
+					<p class="app-navbar-text"><%= current_user.email %></p>
+
+				</div>
+				<div class="navbar-links section">
+					<h1 class="link-heading">Herramientas</h1>
+				    <div class="link-list-group-container">
+				    	<ul class="link-list-group-options nav-pills nav-stacked">
+
+				    		<li class="list">
+					         	<a href="/">
+					            	<span class="icon icon-home"></span>Inicio
+					            </a>
+					        </li>
+					        <li class="list">
+					         	<a href="/categories">
+					            	<span class="icon icon-exercises"></span>Ejercicios
+					            </a>
+					        </li>
+					        <li class="list">
+					          	<a href="" class="">
+					            	<span class="icon icon-simulator"></span>Simuladores
+					        	</a>
+					        </li>
+					        <li class="list">
+					          	<a href="" class="">
+					           		<span class="icon icon-online"></span>Clases en Vivo
+					        	</a>
+					        </li>
+					        <li class="list">
+					          	<a href="" class="">
+					           		<span class="icon icon-stats"></span>Estadísticas
+					        	</a>
+					        </li>
+					    </ul>	
+				    </div>   
+				</div>
+				<div class="navbar-links section">
+					<h1 class="link-heading">Comunidad</h1>
+				    <div class="link-list-group-container">
+				    	<ul class="link-list-group-options nav-pills nav-stacked">
+				    		<li class="list">
+					         	<a >
+					            	<span class="icon icon-face"></span>Facebook
+					            </a>
+					        </li>
+					        <li class="list">
+					         	<a>
+					            	<span class="icon icon-help"></span>Soporte
+					            </a>
+					        </li>
+					    </ul>	
+				    </div>   
+				</div>
+				
+			</div>
+			<div class="content-wrapper col-sm-9 col-md-10 ">
+				<div class="application-content row">
+					<div class="row">
+					<div id="banner_wrapper">
+					    <div id="content">
+					        <h2>Quieres aprobar el Enes como un super heroe?</h2>
+					        <p><a href="#">Compra tu Licencia Ya!</a></p>
+					    </div><!-- END content -->
+					     
+					    <div id="moving-clouds">
+					        <ul id="group-1">
+					            <li class="cloud-1"></li>
+					            <li class="cloud-2"></li>
+					            <li class="cloud-3"></li>
+					            <li class="cloud-4"></li>
+					        </ul>
+					        <ul id="group-2">
+					            <li class="cloud-1"></li>
+					            <li class="cloud-2"></li>
+					            <li class="cloud-3"></li>
+					            <li class="cloud-4"></li>
+					        </ul>
+					    </div><!-- END moving-clouds -->
+					     
+					    <ul id="flying-man">
+					        <li></li>
+					    </ul><!-- END flying-man -->
+					     
+					    <ul id="bottom-cloud">
+					        <li></li>
+					    </ul><!-- END water -->
+					     
+					</div><!-- END banner_wrapper -->
+					</div>
+
+
+					<div class="content-margin row"> 
+						<div class="application-content-header">
+							<h3>Herramientas</h3>
+						</div>
+								<div class="app-text-holder row">
+									<div class="col-sm-6">
+										<div class="tools-panel">
+											<%= image_tag("exercises-lg.png", class: "exercises-img", alt: "Apredemy-ejercicios") %>
+											<div class="exercises-text">
+												<h4> Ejercicios </h4>
+												<p >  
+									        		Estamos muy contentos de que te hayas unido aquí a Aprendemy. Haz que tus estudiantes visiten  y se registren.
+									    		</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="tools-panel">
+											<%= image_tag("simulador-lg.png", class: "exercises-img", alt: "Apredemy-simuladores") %>
+											<div class="exercises-text">
+												<h4> Simuladores </h4>
+												<p >  
+									        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
+									    		</p>
+											</div>
+										</div>
+									</div>
+								<div class="col-sm-6">
+									<div class="tools-panel">
+										<%= image_tag("online-lg.png", class: "exercises-img", alt: "Apredemy-clases-en-vivo") %>
+										<div class="exercises-text">
+											<h4> Clases En Vivo </h4>
+											<p >  
+								        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
+								    		</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="tools-panel">
+										<%= image_tag("stats-lg.png", class: "exercises-img", alt: "Apredemy-estadisticas") %>
+										<div class="exercises-text">
+											<h4> Estadísticas </h4>
+											<p >  
+								        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
+								    		</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+					</div>
+
+					<div class=" content-margin row">
+						<div class="application-content-header">
+							<h3>Noticias Importantes</h3>
+						</div>
+						<div class="app-text-holder news-holder">
+								<%= image_tag("isotipo.png", class: "news-img", alt: "Apredemy-logo") %>
+					            <p class="news-content-text">  
+					        		Estamos muy contentos de que te hayas unido aquí a Aprendemy. <br> <br> Haz que tus estudiantes visiten  y se registren. (Si ya tienen una cuenta, sólo tienen que iniciar sesión.) En pocos minutos todos estaréis conectados en vuestra propia clase en línea :) <br> <br> Feliz Aprendizaje, <br> Tu Equipo de Aprendemy.            
+					    		</p>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
