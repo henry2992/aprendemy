@@ -2,8 +2,14 @@
 		<div class="row">
 			<div class="application-navbar col-sm-3 col-md-2">
 				<div class="application-navbar-profile">
-					<%= image_tag("avatar.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
-					<h1 class="app-navbar-heading">Henry Remache</h1>
+					<% if (current_user.image != nil) %>
+						<img src="<%= current_user.image%>" class="app-navbar-profile-img" alt="Apredemy-foto-usuario">
+					<% else %>
+						<%= image_tag("avatar.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
+					<%end%>
+					
+					
+					<h1 class="app-navbar-heading"><%= current_user.first_name %> <%= current_user.last_name %></h1>
 					<p class="app-navbar-text"><%= current_user.email %></p>
 
 				</div>
@@ -18,9 +24,9 @@
 					            </a>
 					        </li>
 					        <li class="list">
-					         	<a href="/categories">
-					            	<span class="icon icon-exercises"></span>Ejercicios
-					            </a>
+					        	<%= link_to categories_path  do%>
+								   <span class="icon icon-exercises"></span>Ejercicios
+								<% end %>
 					        </li>
 					        <li class="list">
 					          	<a href="" class="">
@@ -101,7 +107,7 @@
 						</div>
 								<div class="app-text-holder row">
 									<div class="col-sm-6">
-										<div class="tools-panel">
+										<div onclick="location.href='/categories'" class="tools-panel">
 											<%= image_tag("exercises-lg.png", class: "exercises-img", alt: "Apredemy-ejercicios") %>
 											<div class="exercises-text">
 												<h4> Ejercicios </h4>

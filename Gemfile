@@ -12,7 +12,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'pg'
 
 # User Autentification
 gem 'devise'
@@ -20,8 +19,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 #Admin
 gem 'rails_admin'
-#Bootstrap
+#Bootstrap and Font Awesome
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem "font-awesome-rails"
 
 
 group :development, :test do

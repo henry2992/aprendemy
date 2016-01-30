@@ -31,7 +31,8 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  
+  config.authentication_keys = [:email, :first_name, :last_name]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -142,7 +143,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..72
+  config.password_length = 6..72
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -236,7 +237,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email', info_fields: 'email'
+  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email, public_profile', info_fields: 'email, first_name, last_name', :image_size => 'large'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

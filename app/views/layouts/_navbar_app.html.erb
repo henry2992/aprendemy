@@ -17,7 +17,7 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      	<ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown"><a href="#" class="in-app-anchor dropdown-toggle" data-toggle="dropdown"> Bienvenido Henry
+                    <li class="dropdown"><a href="#" class="in-app-anchor dropdown-toggle" data-toggle="dropdown"> Bienvenido <%= current_user.first_name %>
                         <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="navbar-mobile-bg">
@@ -30,7 +30,7 @@
                                             </p>
                                         </div>
                                         <div class="col-md-7 nav-info-container">
-                                            <span>Henry Remache</span>
+                                            <span><%= current_user.first_name %> <%= current_user.last_name %></span>
                                             <p class="text-muted small">
                                                 <%= current_user.email %>
                                             </p>
