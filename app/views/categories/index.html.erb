@@ -1,12 +1,10 @@
 <div class="application-wrapper container-fluid">
     <div class="row">
       <div class="application-navbar col-sm-3 col-md-2">
-        <div class="application-navbar-profile">
-          <img src="images/avatar.png" alt="aprendemy-avatar" class="app-navbar-profile-img">
-          <h1 class="app-navbar-heading">Henry Remache</h1>
-          <p class="app-navbar-text">henry2992@hotmail.com</p>
 
-        </div>
+        <%= render 'home/navbar_image.html' %>
+
+
         <div class="navbar-links section">
           <h1 class="link-heading">Herramientas</h1>
             <div class="link-list-group-container">
@@ -83,9 +81,7 @@
 
       <div class="content-wrapper col-sm-9 col-md-10 ">
         <div class="application-content row">
-          <div class="app-payment content-margin row">
-            <h3>Here goes banner to buy the license</h3>
-          </div>
+            <%= render 'home/banner.html' %>
 
           <div class="content-margin row"> 
             <div class="application-content-header">
@@ -96,7 +92,7 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum porttitor justo, ut euismod sem viverra eget. Mauris auctor pellentesque felis, in venenatis augue tincidunt eu. Nunc ullamcorper arcu urna, vitae venenatis quam volutpat sit amet. Fusce rutrum, nibh id condimentum sodales, lacus nisl malesuada neque, sit amet congue sem turpis eget sapien. Sed nec tortor vel ligula facilisis molestie eu facilisis risus. Suspendisse vel nisl id libero facilisis tincidunt. Donec id leo vel orci euismod tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.           
                     </p>
                     <div class="exercises-img-holder">
-                      <img src="images/exercise-menu.png">
+                      <%= image_tag("exercise-menu.png", alt: "Apredemy-ejercicios") %>
                     </div>
                       <table class="table table-bordered">
                         <thead>

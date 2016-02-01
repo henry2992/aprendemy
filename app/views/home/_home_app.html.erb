@@ -1,18 +1,10 @@
 <div class="application-wrapper container-fluid">
 		<div class="row">
 			<div class="application-navbar col-sm-3 col-md-2">
-				<div class="application-navbar-profile">
-					<% if (current_user.image != nil) %>
-						<img src="<%= current_user.image%>" class="app-navbar-profile-img" alt="Apredemy-foto-usuario">
-					<% else %>
-						<%= image_tag("avatar.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
-					<%end%>
-					
-					
-					<h1 class="app-navbar-heading"><%= current_user.first_name %> <%= current_user.last_name %></h1>
-					<p class="app-navbar-text"><%= current_user.email %></p>
+				
+				<%= render 'home/navbar_image.html' %>
 
-				</div>
+
 				<div class="navbar-links section">
 					<h1 class="link-heading">Herramientas</h1>
 				    <div class="link-list-group-container">
@@ -67,38 +59,8 @@
 			</div>
 			<div class="content-wrapper col-sm-9 col-md-10 ">
 				<div class="application-content row">
-					<div class="row">
-					<div id="banner_wrapper">
-					    <div id="content">
-					        <h2>Quieres aprobar el Enes como un super heroe?</h2>
-					        <p><a href="#">Compra tu Licencia Ya!</a></p>
-					    </div><!-- END content -->
-					     
-					    <div id="moving-clouds">
-					        <ul id="group-1">
-					            <li class="cloud-1"></li>
-					            <li class="cloud-2"></li>
-					            <li class="cloud-3"></li>
-					            <li class="cloud-4"></li>
-					        </ul>
-					        <ul id="group-2">
-					            <li class="cloud-1"></li>
-					            <li class="cloud-2"></li>
-					            <li class="cloud-3"></li>
-					            <li class="cloud-4"></li>
-					        </ul>
-					    </div><!-- END moving-clouds -->
-					     
-					    <ul id="flying-man">
-					        <li></li>
-					    </ul><!-- END flying-man -->
-					     
-					    <ul id="bottom-cloud">
-					        <li></li>
-					    </ul><!-- END water -->
-					     
-					</div><!-- END banner_wrapper -->
-					</div>
+
+					<%= render 'home/banner.html' %>
 
 
 					<div class="content-margin row"> 

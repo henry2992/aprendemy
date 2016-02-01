@@ -29,7 +29,6 @@
 	text-align: center;
 	padding-top: 35px;
 	padding-bottom: 25px;
-
 	border-width: 1px;
 	border-style: solid;
 	-moz-border-top-colors: none;
@@ -116,27 +115,27 @@ span.icon {
 }
 
 .icon-home {
-    background: transparent url("../images/home.png") no-repeat;
+    background: transparent url(<%= asset_path('home.png')%>) no-repeat;
 }
 
 .icon-exercises{
-	background: transparent url("../images/exercises.png") no-repeat;
+	background: transparent url(<%= asset_path('exercises.png')%>) no-repeat;
 }
 
 .icon-simulator{
-	background: transparent url("../images/simulador.png") no-repeat;
+	background: transparent url(<%= asset_path('simulador.png')%>) no-repeat;
 }
 
 .icon-online{
-	background: transparent url("../images/online.png") no-repeat;
+	background: transparent url(<%= asset_path('online.png')%>) no-repeat;
 }
 
 .icon-stats{
-	background: transparent url("../images/stats.png") no-repeat;
+	background: transparent url(<%= asset_path('stats.png')%>) no-repeat;
 }
 
 .icon-help{
-	background: transparent url("../images/help.png") no-repeat;
+	background: transparent url(<%= asset_path('help.png')%>) no-repeat;
 }
 
 
@@ -214,7 +213,7 @@ ul li {
 }
  
 #banner_wrapper ul#flying-man li {
-        background: url(../images/flyingman.gif) no-repeat left top;
+    background: url(<%= asset_path('flyingman.gif')%>) no-repeat left top;
     height: 100px;
     position: absolute;
     bottom: 0px;
@@ -229,7 +228,7 @@ ul li {
 #banner_wrapper ul#bottom-cloud li {
     width: 100%;
     height: 165px;
-    background: url(../images/bottom_cloud.png) left bottom;
+    background: url(<%= asset_path('bottom_cloud.png')%>) left bottom;
     z-index: 0;
     position: absolute;
     bottom: 0px;
@@ -261,7 +260,7 @@ ul li {
 #banner_wrapper .cloud-1 {
     width: 140px;
     height: 65px;
-    background: url(../images/cloud01.png) no-repeat left top;
+    background: url(<%= asset_path('cloud01.png')%>) no-repeat left top;
     position: absolute;
     top: 10px;
     left: 70px;
@@ -270,7 +269,7 @@ ul li {
 #banner_wrapper .cloud-2 {
     width: 86px;
     height: 40px;
-    background: url(../images/cloud02.png) no-repeat left top;
+    background: url(<%= asset_path('cloud02.png')%>) no-repeat left top;
     position: absolute;
     top: -25px;
     left: 300px;
@@ -279,7 +278,7 @@ ul li {
 #banner_wrapper .cloud-3 {
     width: 120px;
     height: 55px;
-    background: url(../images/cloud03.png) no-repeat left top;
+    background: url(<%= asset_path('cloud03.png')%>) no-repeat left top;
     position: absolute;
     top: 100px;
     left: 350px;
@@ -288,7 +287,7 @@ ul li {
 #banner_wrapper .cloud-4 {
     width: 86px;
     height: 40px;
-    background: url(../images/cloud02.png) no-repeat left top;
+    background: url(<%= asset_path('cloud02.png')%>) no-repeat left top;
     position: absolute;
     top: 75px;
     left: 10px;
