@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:content, :choice_id, :explanation)
+    params.require(:question).permit(:content, :choice_id, :explanation, :picture)
   end
 
   def get_category_and_sub
