@@ -6,7 +6,6 @@ gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
-
 gem 'pg'
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -22,7 +21,10 @@ gem 'rails_admin'
 #Bootstrap and Font Awesome
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem "font-awesome-rails"
-
+#Picture Uploader
+gem 'carrierwave', '~> 0.10.0'
+gem 'mini_magick', '~> 4.3', '>= 4.3.6'
+gem 'fog'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -4,4 +4,6 @@ class Question < ActiveRecord::Base
   belongs_to :user
   belongs_to :sub_categories, counter_cache: true
 
+  mount_uploader :picture, PictureUploader
+  
 end
