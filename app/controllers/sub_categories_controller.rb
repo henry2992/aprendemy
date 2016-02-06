@@ -1,5 +1,6 @@
 class SubCategoriesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :user_is_admin?, except: [ :index, :show ]
 
   def index
     get_category && @sub_categories = SubCategory.includes(:questions).sub_categories.all
@@ -8,6 +9,7 @@ class SubCategoriesController < ApplicationController
   def new
     @category = Category.find_by_id(params[:category_id])
     @sub_category = SubCategory.new
+    render_js_only
   end
 
   def create
@@ -30,6 +32,7 @@ class SubCategoriesController < ApplicationController
     get_category && @sub_category = SubCategory.find_by_id(params[:id])
     @questions = @sub_category.unanswered_questions(current_user.id)
     @question = Question.new
+    render_js_only
   end
 
   def show_answered_questions

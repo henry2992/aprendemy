@@ -1,27 +1,34 @@
 <% if @sub_category %>
-  <h1><%= @sub_category.name %></h1>
-  <p>
-    <%= link_to "All categories", categories_path, remote: true %> |
-    <%= link_to "< Back to Category", category_path(@category), remote: true %> |
-    <%= link_to "Edit", category_sub_category_path(@category, @sub_category) %> |
-    <%= link_to "Create a question", new_category_sub_category_question_path(@category, @sub_category, @question) %> |
-    <%= link_to "Edit questions in this category", category_sub_category_questions_path(@category, @sub_category) %> |
-  </p>
+		<div class="content-wrapper col-sm-9 col-md-10 ">
+			<div class="application-content row">
+				<div class="app-payment content-margin row">
+					<h3>Here goes banner to buy the license</h3>
+				</div>
 
-  <p>
-    <%= link_to "Unanswered questions", category_sub_category_path(@category, @sub_category), remote: true %> |
-    <%= link_to "Show answered questions", category_sub_category_show_answered_questions_path(@category, @sub_category), remote: true %>
-  </p>
+				<div class="content-margin row">
+					<div class="application-content-header">
+						<h3>Sinónimos</h3>
+					</div>
+          <div class="app-text-holder row">
+            <%= link_to "Preguntas por resolver.", category_sub_category_path(@category, @sub_category), class:"btn btn-info", remote: true %>
+            <%= link_to "Responder resueltas.", category_sub_category_show_answered_questions_path(@category, @sub_category), class:"btn btn-info",  remote: true %>
+          </div>
 
-<p>Questions</p>
 
-  <ul>
-    <% @questions.each do |question| %>
-      <li class="question_<%= question.id %>">
-        <p>
-          <%= render partial: "questions/show", locals: { question: question}%>
-        </p>
-      </li>
-    <% end %>
-  </ul>
+          <div class="exercises-answers-holder row">
+            <% @questions.each do |question| %>
+              <div class="question_<%= question.id %>">
+                <p>
+                  <%= render partial: "questions/show", locals: { question: question} %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+
+
+				</div>
+
+			</div>
+
+		</div>
 <% end %>

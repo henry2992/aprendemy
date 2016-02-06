@@ -1,7 +1,6 @@
 
 <p>
   <%= link_to "< Back to Categories", categories_path(@category) %> |
-  <%= link_to "New question",  new_category_sub_category_question_path(@category, @sub_category, @question) %>
 </p>
 
 <h1>All Questions for <%= @sub_category.name if @sub_category %></h1>

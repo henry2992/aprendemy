@@ -1,31 +1,28 @@
 <% question ||= @question %>
 <% answered_question ||= get_answered_question(question.id) %>
-<%= question.content %>
 
-<div class="full-width questions">
 
-  <div>
-    <%= form_for [@category, @sub_category, question, answered_question], remote: true do |f| %>
-
-      <% if answered_question.choices %>
-        <ul>
-          <% question.choices.each do |choice| %>
-            <% was_selected = answered_question.choice_id == choice.id %>
-            <li class="<%= correct_or_wrong(question, choice, answered_question, was_selected) %>">
-              <%= f.radio_button :choice_id, choice.id, checked: was_selected %>
-              <%= f.label :choice_id, choice.content %>
-            </li>
-          <% end  %>
-        </ul>
-      <% end %>
-      <%= f.submit "Submit answer" unless answered_question.id %>
+<div>
+  <p><%= question.content %></p>
+  <%= form_for [@category, @sub_category, question, answered_question], remote: true do |f| %>
+    <% if answered_question.choices %>
+      <% question.choices.each do |choice| %>
+        <% was_selected = answered_question.choice_id == choice.id %>
+          <% right_answer = correct_or_wrong(question, choice, answered_question, was_selected); %>
+          <%= f.radio_button :choice_id, choice.id, checked: was_selected, class: "#{right_answer}" %>
+          <span class="<%= right_answer %>"><%= choice.content %></span>
+          <br>
+      <% end  %>
     <% end %>
+    <div class="answer-question-btn">
+      <%= (f.submit "Responder", class: "btn btn-info") unless answered_question.id %>
+    </div>
 
-  </div>
-
+  <% end %>
   <div class="explanation">
     <p>
       <%= question.explanation if answered_question.id %>
     </p>
   </div>
+  <hr>
 </div>

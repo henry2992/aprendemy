@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :user_is_admin?, except: [ :index, :show ]
 
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all
@@ -6,6 +8,7 @@ class QuestionsController < ApplicationController
 
   def new
     get_category_and_sub && @question = Question.new
+    render_js_only
   end
 
   def create
@@ -26,6 +29,7 @@ class QuestionsController < ApplicationController
 
   def show
     get_category_and_sub && @question = Question.find_by_id(params[:id])
+    render_js_only
   end
 
   def update

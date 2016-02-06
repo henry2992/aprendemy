@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-
   #QUESTIONS
   resources :categories do
     resources :sub_categories do
@@ -13,7 +12,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

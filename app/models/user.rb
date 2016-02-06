@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :sub_categories
   has_many :questions
 
+  has_one :user_role
+
   def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 		  user.email = auth.info.email
@@ -19,4 +21,8 @@ class User < ActiveRecord::Base
       user.image = auth.info.image
 	  end
 	end
+
+  def is_admin?
+    self.user_role.role == 'admin' if self.user_role
+  end
 end

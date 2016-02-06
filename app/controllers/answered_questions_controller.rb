@@ -1,5 +1,6 @@
 class AnsweredQuestionsController < ApplicationController
-
+  before_filter :authenticate_user!
+  before_filter :user_is_admin?, only: [ :delete ]
 
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all

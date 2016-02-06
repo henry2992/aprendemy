@@ -5,13 +5,6 @@
   <%= link_to @category.name, category_path(@category) %> |
   <%= link_to @sub_category.name, category_sub_category_path(@category, @sub_category) %> |
   <%= link_to @question.content, category_sub_category_question_path(@category, @sub_category, @question) %>
-  <p>
-    <%= link_to "Edit", edit_category_sub_category_question_choice_path(@category, @sub_category, @question, @choice)%> |
-    <%= link_to "Delete", category_sub_category_question_choice_path(@category, @sub_category, @question, @choice), method: :delete %>
-  </p>
-  <p>
-    <%= link_to "Create choice",  new_category_sub_category_question_choice_path(@category, @sub_category, @question) %>
-  </p>
 
   <p>Choice is <%= @choice.content %></p>
 
