@@ -26,13 +26,14 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3', '>= 4.3.6'
 gem 'fog'
 gem "fog-aws"
+gem "queue_classic", "~> 3.0.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-nav'
   gem 'byebug'
   gem 'pry-rails'
-  
+
 end
 
 group :development do

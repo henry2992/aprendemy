@@ -15,6 +15,9 @@
       <tr class="table-category">
         <td><%= category.name %></td>
         <td align="center"><%= category.questions.count %></td>
+        <td align="center"><%= category.questions_answered(current_user.id).count %></td>
+        <td align="center"><%= category.questions_answered_correctly(current_user.id).count %></td>
+        <td align="center"><%= category.questions_answered_incorrectly(current_user.id).count %></td>
       </tr>
       <% category.sub_categories.each do |sub_category| %>
 

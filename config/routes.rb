@@ -13,6 +13,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :simulators do
+    get 'show_simulator_answered_questions', to: 'simulators#show_answered_questions', as: :show_answered_questions
+    resources :questions do
+      resources :simulator_answered_questions
+    end
+  end
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

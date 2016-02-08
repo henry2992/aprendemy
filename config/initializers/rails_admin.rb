@@ -41,5 +41,10 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model SimulatedCategory do
+    edit do
+      field :category, :belongs_to_association
+    end
+  end
 
 end

@@ -16,8 +16,10 @@ class SubCategory < ActiveRecord::Base
     self.questions.where(id: self.answered_questions.where(user_id: user_id, correct: false).pluck(:question_id))
   end
 
+
   def unanswered_questions user_id
     answered_question_ids = self.answered_questions.where(user_id: user_id).pluck(:question_id)
     self.questions.includes(:choices).where('id NOT IN (?)', (answered_question_ids unless answered_question_ids.empty?) || 0)
   end
+
 end

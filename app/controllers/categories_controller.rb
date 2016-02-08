@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :check_if_admin, except: [ :index, :show ]
+  before_filter :user_is_admin?, except: [ :index, :show ]
 
   # Helper Methods for Devise Start
   helper_method :resource_name, :resource, :devise_mapping
@@ -17,7 +17,6 @@ class CategoriesController < ApplicationController
     @devise_mapping ||= Devise.mappings[:user]
   end
   # Helper Methods for Devise End
-
 
   def index
     @categories = Category.all.includes(:sub_categories)

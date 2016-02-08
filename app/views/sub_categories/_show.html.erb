@@ -1,34 +1,34 @@
 <% if @sub_category %>
-		<div class="content-wrapper col-sm-9 col-md-10 ">
-			<div class="application-content row">
-				<div class="app-payment content-margin row">
-					<h3>Here goes banner to buy the license</h3>
+	<div class="content-wrapper col-sm-9 col-md-10 ">
+		<div class="application-content row">
+			<div class="app-payment content-margin row">
+				<h3>Here goes banner to buy the license</h3>
+			</div>
+
+			<div class="content-margin row">
+
+				<div class="application-content-header">
+					<h3>Sinónimos</h3>
 				</div>
 
-				<div class="content-margin row">
-					<div class="application-content-header">
-						<h3>Sinónimos</h3>
-					</div>
-          <div class="app-text-holder row">
-            <%= link_to "Preguntas por resolver.", category_sub_category_path(@category, @sub_category), class:"btn btn-info", remote: true %>
-            <%= link_to "Responder resueltas.", category_sub_category_show_answered_questions_path(@category, @sub_category), class:"btn btn-info",  remote: true %>
-          </div>
+        <div class="app-text-holder row">
+          <%= link_to "Preguntas por resolver.", category_sub_category_path(@category, @sub_category), class:"btn btn-info", remote: true %>
+          <%= link_to "Responder resueltas.", category_sub_category_show_answered_questions_path(@category, @sub_category), class:"btn btn-info", remote: true %>
+        </div>
 
-
-          <div class="exercises-answers-holder row">
-            <% @questions.each do |question| %>
-              <div class="question_<%= question.id %>">
-                <p>
-                  <%= render partial: "questions/show", locals: { question: question} %>
-                </p>
-              </div>
-            <% end %>
-          </div>
-
-
-				</div>
-
+        <div class="exercises-answers-holder row">
+          <% @questions.each do |question| %>
+            <div class="question_<%= question.id %>">
+              <p>
+                <%= render partial: "questions/show", locals: { question: question} %>
+              </p>
+            </div>
+          <% end %>
+        </div>
 			</div>
 
 		</div>
+
+	</div>
+
 <% end %>

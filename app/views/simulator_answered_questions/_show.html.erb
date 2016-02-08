@@ -1,0 +1,24 @@
+<% question ||= @question %>
+<% answered_question ||= (@answered_question || get_answered_question(SimulatorAnsweredQuestion, question.id)) %>
+
+<div>
+  <p><%= question.content %></p>
+  <%= form_for [@simulator, question, answered_question], remote: true do |f| %>
+    <% question.choices.each do |choice| %>
+      <% was_selected = answered_question.choice_id == choice.id %>
+      <% status = right_answer? question, choice, answered_question, was_selected; %>
+      <%= f.radio_button :choice_id, choice.id, checked: was_selected, class: "#{status}" %>
+      <span class="<%= status %>"><%= choice.content %></span>
+      <br>
+    <% end if question.choices %>
+    <div class="answer-question-btn">
+      <%= (f.submit "Responder", class: "btn btn-info") if answered_question.unanswered? %>
+    </div>
+  <% end %>
+  <div class="explanation">
+    <p>
+      <%= question.explanation unless answered_question.unanswered? %>
+    </p>
+  </div>
+  <hr>
+</div>

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :categories, counter_cache: true
   has_many :sub_categories
   has_many :questions
+  has_many :simulators
+  has_many :simulator_question_and_answers
 
   has_one :user_role
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205003943) do
+ActiveRecord::Schema.define(version: 20160207153011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,42 @@ ActiveRecord::Schema.define(version: 20160205003943) do
     t.string   "explanation"
     t.string   "picture"
     t.string   "url"
+  end
+
+  create_table "simulated_categories", force: :cascade do |t|
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "simulator_question_and_answers", force: :cascade do |t|
+    t.boolean  "correct",      default: false
+    t.integer  "simulator_id"
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.integer  "choice_id_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "simulator_types", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "total_questions"
+    t.time     "time_duration"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "simulators", force: :cascade do |t|
+    t.integer  "user_id_id"
+    t.boolean  "completed",       default: true
+    t.time     "time_left",       default: '2000-01-01 00:00:30'
+    t.string   "simulation_type", default: "mini"
+    t.datetime "last_started",    default: '2016-02-07 15:45:01'
+    t.datetime "last_paused"
+    t.datetime "time_completed"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   create_table "sub_categories", force: :cascade do |t|

@@ -256,6 +256,8 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (2.16.0)
+    queue_classic (3.0.3)
+      pg (>= 0.17, < 0.19)
     rack (1.6.4)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
@@ -377,6 +379,7 @@ DEPENDENCIES
   pry-nav
   pry-rails
   puma (~> 2.16)
+  queue_classic (~> 3.0.0)
   rails (= 4.2.4)
   rails_12factor
   rails_admin
