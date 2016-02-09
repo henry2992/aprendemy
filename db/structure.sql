@@ -376,7 +376,10 @@ CREATE TABLE simulator_types (
     total_questions integer,
     time_duration time without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    description character varying,
+    "limit" integer,
+    points integer
 );
 
 
@@ -471,38 +474,6 @@ ALTER SEQUENCE sub_categories_id_seq OWNED BY sub_categories.id;
 
 
 --
--- Name: user_roles; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE user_roles (
-    id integer NOT NULL,
-    role character varying DEFAULT 'user'::character varying,
-    user_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: user_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE user_roles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE user_roles_id_seq OWNED BY user_roles.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -526,7 +497,8 @@ CREATE TABLE users (
     last_name character varying,
     questions_count integer DEFAULT 0,
     image character varying,
-    gender boolean
+    gender boolean,
+    role integer DEFAULT 0
 );
 
 
@@ -623,13 +595,6 @@ ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categor
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY user_roles ALTER COLUMN id SET DEFAULT nextval('user_roles_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -711,14 +676,6 @@ ALTER TABLE ONLY simulators
 
 ALTER TABLE ONLY sub_categories
     ADD CONSTRAINT sub_categories_pkey PRIMARY KEY (id);
-
-
---
--- Name: user_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY user_roles
-    ADD CONSTRAINT user_roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -839,4 +796,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160207175425');
 INSERT INTO schema_migrations (version) VALUES ('20160208003122');
 
 INSERT INTO schema_migrations (version) VALUES ('20160208103655');
+
+INSERT INTO schema_migrations (version) VALUES ('20160208222320');
 

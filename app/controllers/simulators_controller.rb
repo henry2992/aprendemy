@@ -4,8 +4,8 @@ class SimulatorsController < ApplicationController
   include SimulatorsHelper
 
   def index
-    @simulators = current_user.simulators.includes(:questions)
-    render_js_only
+    @simulators = current_user.simulators
+    @simulator_types = SimulatorType.all
   end
 
   def new
@@ -30,12 +30,11 @@ class SimulatorsController < ApplicationController
 
   def show
     @simulator = current_user.simulators.includes(:questions).find_by_id(params[:id])
-    @questions = @simulator.questions
-    render_js_only
+    @questions = @simulator.unanswered_questions if @simulator
   end
 
   def update
-    @simulator = simulator.find_by_id(params[:id])
+    @simulator = Simulator.find_by_id(params[:id])
     @simulator.update(simulator_params) if @simulator
     render :show
   end

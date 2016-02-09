@@ -3,8 +3,20 @@ class Simulator < ActiveRecord::Base
   belongs_to :user
   has_many :simulator_answered_questions
   has_many :questions, through: :simulator_answered_questions
-  
+
   def questions_answered
-    Question.where('id in (?)', self.simulator_answered_questions.where.not(choice_id: nil).pluck(:question_id))
+    Question.where('id in (?)', self.simulator_answered_questions.where.not(status: 'unanswered').pluck(:question_id))
+  end
+
+  def answered_correctly
+    self.questions.where(id: self.simulator_answered_questions.correct.pluck(:question_id))
+  end
+
+  def answered_incorrectly
+    self.questions.where(id: self.simulator_answered_questions.wrong.pluck(:question_id))
+  end
+
+  def unanswered_questions
+    Question.where('id in (?)', self.simulator_answered_questions.unanswered.pluck(:question_id))
   end
 end

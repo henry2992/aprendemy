@@ -36,11 +36,6 @@
 											        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
 											    		</p>
 													</div>
-													<div class="app-text-holder row">
-														<% @simulator_types.each do |simulator_type| %>
-														<%= button_to simulator_type.name, simulators_path, method: 'post', params: { simulator_type_id: simulator_type.id}, class:"btn btn-info", remote: true  %>
-														<% end %>
-													</div>
 												</div>
 											</div>
 										<div class="col-sm-6">

@@ -1,5 +1,3 @@
-root = File.expand_path('../../../',  __FILE__)
-require "#{root}/app/helpers/application_helper.rb"
 
 RailsAdmin.config do |config|
 
@@ -14,7 +12,7 @@ RailsAdmin.config do |config|
   ## == Cancan ==
   # config.authorize_with :cancan
   config.authorize_with do
-    unless admin?
+    unless current_user.admin?
       flash[:danger] = "You do not have access to the Admin page"
       redirect_to main_app.root_path
     end

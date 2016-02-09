@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
+  enum role: [:free, :paid, :admin]
 
   has_many :categories, counter_cache: true
   has_many :sub_categories
@@ -24,7 +25,5 @@ class User < ActiveRecord::Base
 	  end
 	end
 
-  def is_admin?
-    self.user_role.role == 'admin' if self.user_role
-  end
+
 end

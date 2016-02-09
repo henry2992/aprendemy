@@ -1,3 +1,56 @@
 // Place all the styles related to the Simulators controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.app-content-p{
+
+	font-size: 13px;
+	color: #383D48;
+	margin: 0px;
+	padding-bottom: 10px;
+	line-height: 20px;
+
+
+}
+
+.simulator-panel{
+	border-radius: 8px;
+	background: #FFF none repeat scroll 0% 0%;
+	border: 1px solid #E5E5E5;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.simulator-panel:hover{
+	box-shadow: 0px 0px 10px #888;
+}
+
+.simulator-title{
+	background-color: #3FBEE8;
+	margin-left: 0px;
+	padding: 10px !important;
+	border-radius: 8px 8px 0px 0px;
+}
+.simulator-heading{
+	color: white;
+	text-align: center;
+}
+.simulator-text p{
+	font-size: 12px;
+	color: #383D48;
+	margin: 10px 0 0 0px;
+	padding: 0px 0 0 10px;
+	line-height: 20px;
+	overflow: hidden;
+}
+.simulator-list{
+	 display: table;
+	margin: 15px auto 15px auto ;
+}
+.simulator-start{
+	display: table !important;
+	margin: 15px auto 15px auto !important;
+}
+
+.simulator-icon-text{
+	display: inline-block;
+}

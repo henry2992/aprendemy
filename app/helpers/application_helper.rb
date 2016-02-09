@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def admin?
-    current_user.is_admin? if logged_in?
+    current_user.admin? if logged_in?
   end
 
   def logged_in?

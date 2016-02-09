@@ -19,23 +19,23 @@ class SimulatorAnsweredQuestionsController < ApplicationController
   end
 
   def edit
-    get_simulator_and_question && @answered_question = AnsweredQuestion.find_by_id(params[:id])
+    get_simulator_and_question && @answered_question = SimulatorAnsweredQuestion.find_by_id(params[:id])
     render :new
   end
 
   def show
-    get_simulator_and_question && @answered_question = AnsweredQuestion.find_by_id(params[:id])
+    get_simulator_and_question
+    @questions = @simulator.questions
   end
 
   def update
     get_simulator_and_question
-    @answered_question = SimulatorAnsweredQuestion.find_by_id(params[:id])
     @answered_question.update(answered_question_params) if @answered_question
     render :show
   end
 
   def delete
-    AnsweredQuestion.find_by_id(params[:id]).destroy!
+    SimulatorAnsweredQuestion.find_by_id(params[:id]).destroy!
     flash[:notice] = "Question has been deleted successfully"
     show_answered_question
   end
@@ -52,6 +52,7 @@ class SimulatorAnsweredQuestionsController < ApplicationController
   def get_simulator_and_question
     @simulator = Simulator.find_by_id(params[:simulator_id])
     @question = Question.find_by_id(params[:question_id])
+    @answered_question = SimulatorAnsweredQuestion.find_by(simulator_id: @simulator.id, question_id: @question.id)
   end
 
   def show_answered_question

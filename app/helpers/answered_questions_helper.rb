@@ -1,7 +1,11 @@
 module AnsweredQuestionsHelper
 
   def get_answered_question model, question_id
-     model.find_by(user_id: current_user.id, question_id: question_id) || AnsweredQuestion.new
+     model.find_by(user_id: current_user.id, question_id: question_id) || model.new
+  end
+
+  def get_simulator_answered_question model, simulator_id, question_id
+     model.find_by(user_id: current_user.id, question_id: question_id, simulator_id: simulator_id) || model.new
   end
 
   def correct_or_wrong question, choice, answered_question, was_selected
@@ -10,5 +14,9 @@ module AnsweredQuestionsHelper
 
   def right_answer? question, choice, answered_question, was_selected
     ( (was_selected ? answered_question.status : ("correct" if choice.id == question.choice_id )) unless answered_question.unanswered?) || ""
+  end
+
+  def options
+    ['A )', 'B )', 'C )', 'D )', 'E )']
   end
 end
