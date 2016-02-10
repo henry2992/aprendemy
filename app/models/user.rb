@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   has_many :answered_questions
   has_many :simulator_answered_questions
 
-  has_one :user_role
 
   def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
