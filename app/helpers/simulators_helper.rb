@@ -11,7 +11,8 @@ module SimulatorsHelper
 
   def get_individual_questions_for_simulator questions_per_category
     @questions = []
-    SimulatedCategory.includes(:category).each do |simul|
+    @simulated_categories = SimulatedCategory.includes(:category).all
+    @simulated_categories.each do |simul|
       @questions = @questions + simul.category.questions.limit(questions_per_category).order("RANDOM()")
     end
     question_ids = @questions.map { |q|  q.id }

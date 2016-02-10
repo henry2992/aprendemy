@@ -1,392 +1,56 @@
+<% questions_meta = []; count = 0 %>
+		<div class="application-wrapper container-fluid">
+			<div class="row">
 
-	<div class="application-wrapper container-fluid">
-		<div class="row">
+				<div class="content-wrapper">
 
-			<div class="content-wrapper">
+					<div class="application-content ">
+						<div class="simulator-test-holder col-sm-9 ">
 
-				<div class="application-content ">
+							<% @simulated_categories.each do |simulated_category| %>
+								<% category = simulated_category.category %>
+								<div class="simulator-heading">
+									<h3><%= category.name %></h3>
+								</div>
 
-					<div class="simulator-test-holder col-sm-9 ">
-						<div class="simulator-heading">
-							<h3><%= (simulator_type.name if @simulator_type) || "Category"  %></h3>
-						</div>
-						<div class="simulator-questions">
-							<div class="subcategory-holder">
-								<h4>Analogías Verbales</h4>
-								<p>De los siguientes ejercicios, seleccione la opción que mejor exprese una RELACIÓN SIMILAR a la de las palabras en mayúsculas.</p>
-								<hr>
-								<!-- @questions.select{|question| question[:sub_category_id] == simulator_type.category_id} -->
-								<% @questions.each do |question| %>
-									<div class="question_<%= question.id %>">
-										<p>
-											<%= render partial: "simulator_answered_questions/show", locals: { question: question} %>
-										</p>
+								<% category.sub_categories.each do |sub_category| %>
+									<div class="simulator-questions">
+										<div class="subcategory-holder">
+											<h4><%= sub_category.name %></h4>
+											<p>De los siguientes ejercicios, seleccione la opción que mejor exprese una RELACIÓN SIMILAR a la de las palabras en mayúsculas.</p>
+											<hr>
+
+											<% sub_questions = @questions.select{|question| question[:sub_category_id] == sub_category.id} %>
+											<% sub_questions.each do |sub_question| %>
+												<% count += 1 %>
+												<% answered_question ||=  get_simulator_answered_question(SimulatorAnsweredQuestion, @simulator.id, sub_question.id) %>
+												<div class="question_<%= sub_question.id %>">
+													<%= render "simulators/question", question: sub_question, answered_question: answered_question, question_no: count %>
+													<% questions_meta << answered_question_meta(sub_question.id, answered_question, count) %>
+												</div>
+											<% end if sub_questions %>
+
+										</div>
 									</div>
-								<% end if @questions %>
-							</div>
-							<div class="subcategory-holder">
-								<h4>Analogías Verbales</h4>
-								<p>De los siguientes ejercicios, seleccione la opción que mejor exprese una RELACIÓN SIMILAR a la de las palabras en mayúsculas.</p>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-							</div>
-							<div class="subcategory-holder">
-								<h4>Analogías Verbales</h4>
-								<p>De los siguientes ejercicios, seleccione la opción que mejor exprese una RELACIÓN SIMILAR a la de las palabras en mayúsculas.</p>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-							</div>
-							<div class="subcategory-holder">
-								<h4>Analogías Verbales</h4>
-								<p>De los siguientes ejercicios, seleccione la opción que mejor exprese una RELACIÓN SIMILAR a la de las palabras en mayúsculas.</p>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-							</div>
-							<div class="subcategory-holder">
-								<h4>Analogías Verbales</h4>
-								<p>De los siguientes ejercicios, seleccione la opción que mejor exprese una RELACIÓN SIMILAR a la de las palabras en mayúsculas.</p>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-								<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-									<form action="">
-									  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-									  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-									  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-									  <input type="radio" name="gender" value="other" > D) Opción D.
-									</form>
-								<hr>
-							</div>
-						</div>
+								<% end %> <!--sub_category loop -->
 
-						<!-- NEW CATEGORY -->
-							<div class="simulator-heading">
-								<h3>Category 2</h3>
-							</div>
-							<div class="simulator-questions">
-
-								<div class="subcategory-holder">
-									<h4>Analogías Verbales</h4>
-									<p>De los siguientes ejercicios, seleccione la opción que mejor exprese una RELACIÓN SIMILAR a la de las palabras en mayúsculas.</p>
-									<hr>
-									<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-										<form action="">
-										  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-										  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-										  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-										  <input type="radio" name="gender" value="other" > D) Opción D.
-										</form>
-									<hr>
-									<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-										<form action="">
-										  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-										  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-										  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-										  <input type="radio" name="gender" value="other" > D) Opción D.
-										</form>
-									<hr>
-									<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-										<form action="">
-										  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-										  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-										  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-										  <input type="radio" name="gender" value="other" > D) Opción D.
-										</form>
-									<hr>
-									<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-										<form action="">
-										  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-										  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-										  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-										  <input type="radio" name="gender" value="other" > D) Opción D.
-										</form>
-									<hr>
-									<p>¿Qué número continúa en la sucesión: 2; 3; 4; 6; 9; 14;......?</p>
-										<form action="">
-										  <input type="radio" name="gender" value="male"  > A) Opción A.<br>
-										  <input type="radio" name="gender" value="female"> B) Opción B.<br>
-										  <input type="radio" name="gender" value="other" > C) Opción C.<br>
-										  <input type="radio" name="gender" value="other" > D) Opción D.
-										</form>
-									<hr>
-								</div>
-							</div>
-							<!-- FINAL BTN -->
-							<div class="simulator-bnt-holder">
-
-								<div>
-									<button class="btn btn-success simulator-btn" onclick=""><span class="fa fa-check-square-o"></span> Calificar</button>
-								</div>
-
-							</div>
+							<% end if @simulated_categories && @simulator %><!--simulated_category loop -->
 
 						</div>
 
+						<div class="simulator-time-holder top col-sm-3">
+							<div class="">
+								<b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id="">01:09:05</span>
+							</div>
+							<div>
+								<button class="btn btn-success simulator-btn" onclick=""><span class="fa fa-check-square-o"></span> Calificar</button>
+							</div>
+						</div>
 
+						<%= render "simulators/visual_colored_cues", questions_meta: questions_meta %>
 
 
 					</div>
-
-
-					<div class="simulator-time-holder top col-sm-3">
-						<div class="">
-							<b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id="">01:09:05</span>
-						</div>
-						<div>
-							<button class="btn btn-success simulator-btn" onclick=""><span class="fa fa-check-square-o"></span> Calificar</button>
-						</div>
-					</div>
-
-					<div class="simulator-visual-clues col-sm-3 ">
-
-
-						<div class="row simulator-sections-clues">
-							<h3 class="simulator-clues-heading">Secciones</h3>
-
-							<div class="clues-subheading ">Verbal</div>
-							<div class="clues-subheading">Matematico</div>
-							<div class="clues-subheading">Abstracto</div>
-						</div>
-
-						<div class="row">
-							<div class=" simulator-clue">1</div>
-							<div class=" simulator-clue">2</div>
-							<div class=" simulator-clue">3</div>
-							<div class=" simulator-clue">4</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue clue-answered">5</div>
-							<div class=" simulator-clue">6</div>
-							<div class=" simulator-clue">7</div>
-							<div class=" simulator-clue">8</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">9</div>
-							<div class=" simulator-clue clue-later">10</div>
-							<div class=" simulator-clue">11</div>
-							<div class=" simulator-clue clue-later">12</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue clue-answered">13</div>
-							<div class=" simulator-clue">14</div>
-							<div class=" simulator-clue">15</div>
-							<div class=" simulator-clue">16</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">17</div>
-							<div class=" simulator-clue clue-answered">18</div>
-							<div class=" simulator-clue">19</div>
-							<div class=" simulator-clue">10</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">17</div>
-							<div class=" simulator-clue clue-answered">18</div>
-							<div class=" simulator-clue">19</div>
-							<div class=" simulator-clue">10</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">17</div>
-							<div class=" simulator-clue clue-answered">18</div>
-							<div class=" simulator-clue">19</div>
-							<div class=" simulator-clue">10</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">17</div>
-							<div class=" simulator-clue clue-answered">18</div>
-							<div class=" simulator-clue">19</div>
-							<div class=" simulator-clue">10</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">17</div>
-							<div class=" simulator-clue clue-answered">18</div>
-							<div class=" simulator-clue">19</div>
-							<div class=" simulator-clue">10</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">17</div>
-							<div class=" simulator-clue clue-answered">18</div>
-							<div class=" simulator-clue">19</div>
-							<div class=" simulator-clue">10</div>
-						</div>
-						<div class="row">
-							<div class=" simulator-clue">17</div>
-							<div class=" simulator-clue clue-answered">18</div>
-							<div class=" simulator-clue">19</div>
-							<div class=" simulator-clue">10</div>
-						</div>
-						<div class="visual-colored-clues row">
-							<ul>
-								<div>
-									<span class="simulator-clue-answered"></span><li class="list-simulator-clue">Answered</li>
-								</div>
-								<div>
-									<span class="simulator-clue-later"></span><li class="list-simulator-clue">Later</li>
-								</div>
-								<div>
-									<span class="simulator-clue-no-answer"></span><li class="list-simulator-clue">No asnwer</li>
-								</div>
-							</ul>
-
-						</div>
-					</div>
-
-
-
-
-
-
 				</div>
-
 			</div>
-
-
 		</div>
-
-	</div>

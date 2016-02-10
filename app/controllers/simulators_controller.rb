@@ -17,7 +17,7 @@ class SimulatorsController < ApplicationController
     simulator_type = get_simulator_type params[:simulator_type_id]
     if simulator_type && create_simulator(simulator_type)
       get_individual_questions_for_simulator get_total_questions_per_category(simulator_type)
-      show_flash
+      # show_flash
     end
     render :show
   end
@@ -30,7 +30,8 @@ class SimulatorsController < ApplicationController
 
   def show
     @simulator = current_user.simulators.includes(:questions).find_by_id(params[:id])
-    @questions = @simulator.unanswered_questions if @simulator
+    @questions = @simulator.questions if @simulator
+    @simulated_categories = SimulatedCategory.all
   end
 
   def update

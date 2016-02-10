@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   has_many :sub_categories
   has_many :questions
   has_many :simulators
-  has_many :simulator_question_and_answers
+  has_many :answered_questions
+  has_many :simulator_answered_questions
 
   has_one :user_role
 

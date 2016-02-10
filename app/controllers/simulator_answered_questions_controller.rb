@@ -12,8 +12,9 @@ class SimulatorAnsweredQuestionsController < ApplicationController
 
   def create
     get_simulator_and_question
-    @answered_question = @question.answered_questions.create(answered_question_params)
+    @answered_question = @question.simulator_answered_questions.create(answered_question_params)
     if @answered_question
+      get_clue_class
       render :show
     end
   end
@@ -31,6 +32,7 @@ class SimulatorAnsweredQuestionsController < ApplicationController
   def update
     get_simulator_and_question
     @answered_question.update(answered_question_params) if @answered_question
+    get_clue_class
     render :show
   end
 
@@ -43,8 +45,8 @@ class SimulatorAnsweredQuestionsController < ApplicationController
   private
 
   def answered_question_params
-    params.require(:simulator_answered_question).permit(:choice_id).merge({
-      status: answer_is_correct,
+    params.require(:simulator_answered_question).permit(:choice_id, :marked_status).merge({
+      status: answer_status,
       user_id: current_user.id
     })
   end
@@ -59,8 +61,12 @@ class SimulatorAnsweredQuestionsController < ApplicationController
     redirect_to :show
   end
 
-  def answer_is_correct
-    status = (@question.choice_id == params[:simulator_answered_question][:choice_id].to_i) ? 'correct' : 'wrong'
+  def answer_status
+    user_choice = params[:simulator_answered_question][:choice_id]
+    (@question.choice_id == user_choice.to_i  ? 'correct' : 'wrong' if user_choice) || 'unanswered'
   end
 
+  def get_clue_class
+    @clue_class = clue_status(!@answered_question.unanswered?,  @answered_question.marked?)
+  end
 end

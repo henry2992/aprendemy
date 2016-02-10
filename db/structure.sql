@@ -343,7 +343,8 @@ CREATE TABLE simulator_answered_questions (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     simulator_id integer,
-    status integer DEFAULT 0
+    status integer DEFAULT 0,
+    marked_status integer DEFAULT 0
 );
 
 
@@ -409,14 +410,14 @@ ALTER SEQUENCE simulator_types_id_seq OWNED BY simulator_types.id;
 CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
-    completed boolean DEFAULT false,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
     last_started timestamp without time zone DEFAULT '2016-02-07 15:45:01.681526'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    simulator_type_id integer
+    simulator_type_id integer,
+    status integer DEFAULT 0
 );
 
 
@@ -798,4 +799,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160208003122');
 INSERT INTO schema_migrations (version) VALUES ('20160208103655');
 
 INSERT INTO schema_migrations (version) VALUES ('20160208222320');
+
+INSERT INTO schema_migrations (version) VALUES ('20160210100402');
 

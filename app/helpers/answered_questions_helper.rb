@@ -19,4 +19,12 @@ module AnsweredQuestionsHelper
   def options
     ['A )', 'B )', 'C )', 'D )', 'E )']
   end
+
+  def clue_status answered, marked
+    (answered ? 'answered' : (marked ? 'later' : ''))
+  end
+
+  def answered_question_meta question_id, sub_question, count
+    {id: question_id, answered: !sub_question.unanswered?, marked: sub_question.marked?, serial_no: count }
+  end
 end

@@ -1,3 +1,3 @@
 class SimulatedCategory < ActiveRecord::Base
-  belongs_to :category, inverse_of: :simulated_categories
+  belongs_to :category, inverse_of: :simulated_categories, dependent: :destroy
 end

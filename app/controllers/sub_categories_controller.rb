@@ -1,6 +1,6 @@
 class SubCategoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, except: [ :index, :show ]
+  before_filter :user_is_admin?, only: [ :edit, :delete]
 
   def index
     get_category && @sub_categories = SubCategory.includes(:questions).sub_categories.all
