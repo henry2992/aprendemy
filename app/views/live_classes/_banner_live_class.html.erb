@@ -235,8 +235,8 @@
 		<%= image_tag("class.png", alt: "Apredemy-clases-en-vivo") %>
 		<div class="class-info-p">
 			<h2 class="live-class-heading">Tema: <%= @enes.subject %></h2>
-			<p> Explicacion del tema de verbal.</p>
-			<h2 class="live-class-heading" >Profe: <%= @enes.professor %>.</h2>
+			<p> <%= @enes.explanation %></p>
+			<h2 class="live-class-heading" >Profe: <%= @enes.professor %></h2>
 		</div>		
 	</div>
 </div>
