@@ -44,10 +44,26 @@ class SimulatorsController < ApplicationController
     simulator.find_by_id(params[:id]).destroy!
   end
 
+  def pause_simulator
+    @simulator = Simulator.find_by_id(params[:simulator_id])
+    @message = !@simulator.completed? ? save_simulator_time : "You have previously completed this simulator. You cannot further modify it"
+    respond_to {|format| format.js {render partial: "pause_simulator.js" } } if @simulator
+  end
+
   private
 
   def simulator_params
     params.require(:simulator).permit(:name)
   end
 
+  def save_simulator_time
+    current_time = params[:timer]
+    message = ""
+    if current_time.eql?('00:00:00')
+      message = "This simulation has been completed" if @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed')
+    else
+      message = "This simulation has been paused" if @simulator.update(last_paused: Time.now, time_left: current_time, status: 'paused')
+    end
+    message
+  end
 end

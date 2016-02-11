@@ -4,6 +4,7 @@ class Simulator < ActiveRecord::Base
   has_many :simulator_answered_questions
   has_many :questions, through: :simulator_answered_questions
   belongs_to :simulator_type, dependent: :destroy
+  enum status: [:paused, :completed]
 
   def questions_answered
     Question.where('id in (?)', self.simulator_answered_questions.where.not(status: 'unanswered').pluck(:question_id))

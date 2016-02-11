@@ -1,0 +1,22 @@
+
+<!-- Modal -->
+<div id="pausedSimulationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">This simulator has been paused</h4>
+      </div>
+      <div class="modal-body">
+        <p>Click the close button to go back to your dashboard</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Back to Dashboard", simulators_path, class: "btn btn-default" %>
+        <!-- <%= link_to "Back to Dashboard", simulators_path, class: "btn btn-default", data: {dismiss: 'modal'} %> -->
+      </div>
+    </div>
+
+  </div>
+</div>

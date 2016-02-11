@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :simulators do
     get 'show_simulator_answered_questions', to: 'simulators#show_answered_questions', as: :show_answered_questions
+    post 'pause', to: 'simulators#pause_simulator', as: :pause_simulator
     resources :questions do
       resources :simulator_answered_questions
     end

@@ -4,4 +4,9 @@ $(document).on('ready page:load', function(){
     var question_form = $(this).data('form');
     $("."+question_form).submit();
   })
+
+  $("#pauseTimerBtn").click(function(e){
+    var time_left = $("#countDownTimer").html();
+    $(".simulator-pause-form").append(`<input type="hidden" name="timer" value="${time_left}">`)
+  })
 })

@@ -38,14 +38,7 @@
 
 						</div>
 
-						<div class="simulator-time-holder top col-sm-3">
-							<div class="">
-								<b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id="">01:09:05</span>
-							</div>
-							<div>
-								<button class="btn btn-success simulator-btn" onclick=""><span class="fa fa-check-square-o"></span> Calificar</button>
-							</div>
-						</div>
+						<%= render "simulators/timer" %>
 
 						<%= render "simulators/visual_colored_cues", questions_meta: questions_meta %>
 
@@ -54,3 +47,4 @@
 				</div>
 			</div>
 		</div>
+<%= render "modal" %>
