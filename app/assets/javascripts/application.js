@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
-//= require_tree .
+//= require_tree 
+//= require flipclock.min
+//= require local_time
