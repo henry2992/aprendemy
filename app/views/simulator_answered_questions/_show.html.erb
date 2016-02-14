@@ -14,7 +14,7 @@
       <% count += 1 %>
     <% end if question.choices %>
     <div class="answer-question-btn">
-      <%= (f.submit "Responder", class: "btn btn-info") if answered_question.unanswered? %>
+      <%= (f.submit "Responder", class: "btn btn-info") if answered_question.unanswered? && !@simulator.completed? %>
     </div>
   <% end %>
   <div class="explanation">
