@@ -20,6 +20,8 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all.includes(:sub_categories)
+    @series = []
+    @sub_category_dates = []
   end
 
   def new

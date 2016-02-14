@@ -1,3 +1,5 @@
+<% @series = []; @simulators_date = []; simulators_answered = []; simulators_correct = []; simulators_incorrect = [] %>
+<% answered = 0; correct = 0; incorrect = 0; total = 0; questions_count = 0 %>
 
 <table class="table table-bordered">
   <thead>
@@ -16,16 +18,27 @@
 
   <tbody>
     <% simulators.each do |simulator| %>
-      <% simulator_type = simulator.simulator_type  %>
+      <!-- individual simulator stats -->
+      <% simulator_type = simulator.simulator_type %>
+      <% total = simulator_type.total_questions %>
+      <% questions_count = simulator.questions.count %>
+      <% answered = simulator.questions_answered.count %>
+      <% simulators_answered << ((answered.to_f/(questions_count > 0 ? questions_count.to_f : 1)) * 100) %>
+      <% correct = simulator.answered_correctly.count; %>
+      <% simulators_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
+      <% incorrect = simulator.answered_incorrectly.count %>
+      <% simulators_incorrect << ((incorrect.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
+      <% @simulators_date << simulator.updated_at %>
+
       <tr class="table-category">
         <td><%= simulator_type.name  %></td>
         <td align="center"><%= time_ago_in_words(simulator.updated_at, include_seconds: true) %> ago</td>
         <td align="center"><%= simulator.status %></td>
-        <td align="center"><%= "#{simulator.questions_answered.count} / #{simulator_type.total_questions}" %></td>
-        <td align="center"><%= simulator.questions_answered.count %></td>
-        <td align="center"><%= simulator.answered_correctly.count %></td>
-        <td align="center"><%= simulator.answered_incorrectly.count %></td>
-        <td align="center"><%= "#{simulator.questions_answered.count} / #{simulator_type.total_questions}" %></td>
+        <td align="center"><%= "#{answered} / #{total}" %></td>
+        <td align="center"><%= answered %></td>
+        <td align="center"><%= correct %></td>
+        <td align="center"><%= incorrect %></td>
+        <td align="center"><%= "#{simulator.questions_answered.count} / #{total}" %></td>
         <td align="center">
           <%= link_to "continuar Examen", simulator_path(simulator), class: "btn btn-info simulator-start" %>
         </td>
@@ -33,3 +46,7 @@
     <% end if simulators %>
   </tbody>
 </table>
+
+<% @series << {name: 'Question answered', data: simulators_answered, color: '#7cb5ec'} %>
+<% @series << {name: 'Answered correctly', data: simulators_correct, color: '#90ed7d' }%>
+<% @series << {name: 'Answered incorrectly', data: simulators_incorrect, color: '#EA586B' } %>

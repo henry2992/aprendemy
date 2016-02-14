@@ -6,6 +6,8 @@ class SimulatorsController < ApplicationController
   def index
     @simulators = current_user.simulators
     @simulator_types = SimulatorType.all
+    @series = []
+    @simulator_dates = []
   end
 
   def new
