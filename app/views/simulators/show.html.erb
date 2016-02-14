@@ -25,7 +25,13 @@
 												<% count += 1 %>
 												<% answered_question ||=  get_simulator_answered_question(SimulatorAnsweredQuestion, @simulator.id, sub_question.id) %>
 												<div class="question_<%= sub_question.id %>">
-													<%= render "simulators/question", question: sub_question, answered_question: answered_question, question_no: count %>
+													<% unless @simulator.completed? %>
+														<%= render "simulators/question", question: sub_question, answered_question: answered_question, question_no: count %>
+													<% else %>
+														<p>
+															<%= render partial: "simulator_answered_questions/show", locals: { question: sub_question} %>
+														</p>
+													<% end %>
 													<% questions_meta << answered_question_meta(sub_question.id, answered_question, count) %>
 												</div>
 											<% end if sub_questions %>
@@ -38,7 +44,9 @@
 
 						</div>
 
-						<%= render "simulators/timer" %>
+						<% unless @simulator.completed? %>
+							<%= render "simulators/timer" %>
+						<% end %>
 
 						<%= render "simulators/visual_colored_cues", questions_meta: questions_meta %>
 
