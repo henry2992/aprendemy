@@ -1,5 +1,4 @@
 <h1>All Choices for <%= @question.content if @question %></h1>
-<p><%= link_to "New choice",  new_category_sub_category_question_path(@category, @sub_category, @question) %></p>
 
 <ul>
 <% @choices.each do |choice| %>

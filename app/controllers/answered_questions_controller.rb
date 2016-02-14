@@ -1,5 +1,6 @@
 class AnsweredQuestionsController < ApplicationController
-
+  before_filter :authenticate_user!
+  before_filter :user_is_admin?, only: [ :delete ]
 
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all
@@ -30,13 +31,13 @@ class AnsweredQuestionsController < ApplicationController
     get_category_and_sub
     @answered_question = AnsweredQuestion.find_by_id(params[:id])
     @answered_question.update(answered_question_params) if @answered_question
-    show_index
+    render :show
   end
 
   def delete
     AnsweredQuestion.find_by_id(params[:id]).destroy!
     flash[:notice] = "Question has been deleted successfully"
-    show_index
+    render :index
   end
 
   private
@@ -54,9 +55,6 @@ class AnsweredQuestionsController < ApplicationController
     @question = Question.find_by_id(params[:question_id])
   end
 
-  def show_index
-    redirect_to category_sub_category_question_path(@category, @sub_category, @question)
-  end
 
   def answer_is_correct
     @question.choice_id == params[:answered_question][:choice_id].to_i

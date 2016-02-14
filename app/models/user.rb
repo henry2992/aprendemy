@@ -5,10 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
+  enum role: [:free, :paid, :admin]
 
   has_many :categories, counter_cache: true
   has_many :sub_categories
   has_many :questions
+  has_many :simulators
+  has_many :answered_questions
+  has_many :simulator_answered_questions
 
   def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -19,4 +23,6 @@ class User < ActiveRecord::Base
       user.image = auth.info.image
 	  end
 	end
+
+
 end

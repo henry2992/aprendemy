@@ -1,0 +1,35 @@
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Simulator type</th>
+      <th>Last taken</th>
+      <th width="50">Status</th>
+      <th width="50">Total questions</th>
+      <th width="50">Questions Answered</th>
+      <th width="50">Preguntas correctas</th>
+      <th width="50">Preguntas incorrectas</th>
+      <th width="50">Total time</th>
+      <th width="50">Link</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% simulators.each do |simulator| %>
+      <% simulator_type = simulator.simulator_type  %>
+      <tr class="table-category">
+        <td><%= simulator_type.name  %></td>
+        <td align="center"><%= time_ago_in_words(simulator.updated_at, include_seconds: true) %> ago</td>
+        <td align="center"><%= simulator.status %></td>
+        <td align="center"><%= "#{simulator.questions_answered.count} / #{simulator_type.total_questions}" %></td>
+        <td align="center"><%= simulator.questions_answered.count %></td>
+        <td align="center"><%= simulator.answered_correctly.count %></td>
+        <td align="center"><%= simulator.answered_incorrectly.count %></td>
+        <td align="center"><%= "#{simulator.questions_answered.count} / #{simulator_type.total_questions}" %></td>
+        <td align="center">
+          <%= link_to "continuar Examen", simulator_path(simulator), class: "btn btn-info simulator-start" %>
+        </td>
+      </tr>
+    <% end if simulators %>
+  </tbody>
+</table>

@@ -1,0 +1,18 @@
+<script>
+  var testTimeUp = function(){
+    $("#pauseTimerBtn").click();
+  }
+  <% if @simulator %>
+    var hours_left = '<%= @simulator.time_left.hour %>'
+    var minutes_left = '<%= @simulator.time_left.min %>'
+    var seconds_left = '<%= @simulator.time_left.sec %>'
+    $("#countDownTimer").countdowntimer({
+      hours: hours_left,
+      minutes: minutes_left,
+      seconds: seconds_left,
+      size : "lg",
+      pauseButton : "pauseTimerBtn",
+      timeUp: testTimeUp
+    });
+  <% end %>
+</script>

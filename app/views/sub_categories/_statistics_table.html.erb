@@ -1,26 +1,37 @@
-<% category ||= @category %>
-<h3><%= category.name %></h3>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>Sub Category</th>
-      <th>Total questions</th>
-      <th>Questions Answered</th>
-      <th>Correct</th>
-      <th>Incorrect</th>
+      <th>Area</th>
+      <th width="50">Total questions</th>
+      <th width="50">Questions Answered</th>
+      <th width="50">Preguntas correctas</th>
+      <th width="50">Preguntas incorrectas</th>
     </tr>
   </thead>
-  <tbody>
-  <% category.sub_categories.each do |sub_category| %>
 
-  <tr>
-    <td><%= sub_category.name %></td>
-    <td><%= sub_category.questions.count %></td>
-    <td><%= sub_category.questions_answered(current_user.id).count %></td>
-    <td><%= sub_category.answered_correctly(current_user.id).count %></td>
-    <td><%= sub_category.answered_incorrectly(current_user.id).count %></td>
-  </tr>
-  <% end if category %>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr class="table-category">
+        <td><%= category.name %></td>
+        <td align="center"><%= category.questions.count %></td>
+        <td align="center"><%= category.questions_answered(current_user.id).count %></td>
+        <td align="center"><%= category.questions_answered_correctly(current_user.id).count %></td>
+        <td align="center"><%= category.questions_answered_incorrectly(current_user.id).count %></td>
+      </tr>
+      <% category.sub_categories.each do |sub_category| %>
+
+        <tr class="table-category">
+          <td class="table-subcategory"><i class="glyphicon glyphicon-ok-circle">
+            <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true  %>
+          </td>
+          <td align="center"><%= sub_category.questions.count %></td>
+          <td align="center"><%= sub_category.questions_answered(current_user.id).count %></td>
+          <td align="center"><%= sub_category.answered_correctly(current_user.id).count %></td>
+          <td align="center"><%= sub_category.answered_incorrectly(current_user.id).count %></td>
+        </tr>
+
+      <% end if category %>
+    <% end if @categories %>
   </tbody>
 </table>

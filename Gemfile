@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -25,15 +25,17 @@ gem "font-awesome-rails"
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3', '>= 4.3.6'
 gem 'fog'
-#Time Tracker
-gem 'local_time'
+
+gem "fog-aws"
+gem "queue_classic", "~> 3.0.0"
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-nav'
   gem 'byebug'
-  
+  gem 'pry-rails'
+
 end
 
 group :development do

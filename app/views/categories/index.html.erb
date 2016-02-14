@@ -1,136 +1,34 @@
 <div class="application-wrapper container-fluid">
     <div class="row">
-      <div class="application-navbar col-sm-3 col-md-2">
+      <%= render 'layouts/user_sidebar' %>
+      <div class="main-bg">
+        <content>
 
-        <%= render 'home/navbar_image.html' %>
+          <div class="content-wrapper col-sm-9 col-md-10 ">
+            <div class="application-content row">
+              <%= render 'home/banner.html' %>
 
+              <div class="content-margin row">
 
-        <div class="navbar-links section">
-          <h1 class="link-heading">Herramientas</h1>
-            <div class="link-list-group-container">
-              <ul class="link-list-group-options nav-pills nav-stacked">
-
-                <li class="list">
-                    <a href="">
-                        <span class="icon icon-home"></span>Inicio
-                      </a>
-                  </li>
-                  <li class="list active">
-                    <a href="">
-                        <span class="icon icon-exercises"></span>Ejercicios
-                      </a>
-                  </li>
-
-                  <!-- SUB Menus -->
-                  <% @categories.each do |category| %>
-                        <li class="dropdown-exercises list-submenu" >
-                            <i class="fa fa-pencil"></i><span style="padding-left: 10px"><%= category.name %></span>
-                            <% if category.sub_categories %>
-                              <ul class="nested-submenu">
-                                <% category.sub_categories.each do |sub_category| %>
-                                  <li>
-                                    <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true %>
-                                  </li>
-                                <% end  %>
-                              </ul>
-                            <% end %>
-                        </li>
-                  <% end %>
-                  <!-- Submenu Final -->
-
-                      <li class="list">
-                      <a href="" class="">
-                        <span class="icon icon-simulator"></span>Simuladores
-                    </a>
-                  </li>
-                  <li class="list">
-                      <a href="" class="">
-                        <span class="icon icon-online"></span>Clases en Vivo
-                    </a>
-                  </li>
-                  <li class="list">
-                      <a href="" class="">
-                        <span class="icon icon-stats"></span>Estadísticas
-                    </a>
-                  </li>
-
-                      
-              </ul>
-            </div>  
-        </div>
-
-        <div class="navbar-links section">
-          <h1 class="link-heading">Comunidad</h1>
-            <div class="link-list-group-container">
-              <ul class="link-list-group-options nav-pills nav-stacked">
-
-                <li class="list">
-                    <a >
-                        <span class="icon icon-face"></span>Facebook
-                      </a>
-                  </li>
-                  <li class="list">
-                    <a>
-                        <span class="icon icon-help"></span>Soporte
-                      </a>
-                  </li>
-              </ul> 
-            </div>   
-        </div>    
-      </div>
-
-      <div class="content-wrapper col-sm-9 col-md-10 ">
-        <div class="application-content row">
-            <%= render 'home/banner.html' %>
-
-          <div class="content-margin row"> 
-            <div class="application-content-header">
-              <h3>Ejercicios</h3>
-            </div>
-              <div class="app-text-holder row">
-                    <p class="exercises-text-explanation">  
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum porttitor justo, ut euismod sem viverra eget. Mauris auctor pellentesque felis, in venenatis augue tincidunt eu. Nunc ullamcorper arcu urna, vitae venenatis quam volutpat sit amet. Fusce rutrum, nibh id condimentum sodales, lacus nisl malesuada neque, sit amet congue sem turpis eget sapien. Sed nec tortor vel ligula facilisis molestie eu facilisis risus. Suspendisse vel nisl id libero facilisis tincidunt. Donec id leo vel orci euismod tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.           
-                    </p>
-                    <div class="exercises-img-holder">
-                      <%= image_tag("exercise-menu.png", alt: "Apredemy-ejercicios") %>
-                    </div>
-                      <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th>Area</th>
-                            <th width="50">Preguntas correctas</th>
-                            <th width="50">Preguntas incorrectas</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <!-- Math -->
-                          <tr class="table-category">
-                            <td >Razonamiento Numérico</td>
-                            <td align="center">2</td>
-                            <td align="center">1</td>
-                          </tr>
-                          <tr >
-                            <td class="table-subcategory"><i class="glyphicon glyphicon-ok-circle"></i>Regla de tres</td>
-                            <td align="center">2</td>
-                            <td align="center">1</td>
-                          </tr>
-                          <!-- Abstract -->
-                          <tr class="table-category">
-                            <td>Razonamiento Abstracto</td>
-                            <td align="center">0</td>
-                            <td align="center">0</td>
-                          </tr>
-                          <!-- Verbal -->
-                          <tr class="table-category">
-                            <td>Razonamiento Verbal</td>
-                            <td align="center">1</td>
-                            <td align="center">1</td>
-                          </tr>
-                        </tbody>
-                      </table>   
+                <div class="application-content-header">
+                  <h3>Ejercicios</h3>
+                </div>
+                  <div class="app-text-holder row main-bg ">
+                        <p class="exercises-text-explanation">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum porttitor justo, ut euismod sem viverra eget. Mauris auctor pellentesque felis, in venenatis augue tincidunt eu. Nunc ullamcorper arcu urna, vitae venenatis quam volutpat sit amet. Fusce rutrum, nibh id condimentum sodales, lacus nisl malesuada neque, sit amet congue sem turpis eget sapien. Sed nec tortor vel ligula facilisis molestie eu facilisis risus. Suspendisse vel nisl id libero facilisis tincidunt. Donec id leo vel orci euismod tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        </p>
+                        <div class="exercises-img-holder">
+                          <%= image_tag("exercise-menu.png", alt: "Apredemy-ejercicios") %>
+                        </div>
+                        <content>
+                          <%= render partial: "sub_categories/statistics_table", locals: { category: @categories.first } %>
+                        </content>
+                  </div>
               </div>
           </div>
-      </div>
+        </div>
+      </content>
+
     </div>
   </div>
 </div>
@@ -139,30 +37,25 @@
 <p><%= link_to "+ New catgory", new_category_path %></p>
 
 <div class="main-bg">
-<aside class="sidebar">
-  <ul>
-    <% @categories.each do |category| %>
-      <li>
-        <%= link_to category.name, category_path(category), remote: true %>
-        <% if category.sub_categories %>
-          <ul>
-            <% category.sub_categories.each do |sub_category| %>
-              <li><%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true  %></li>
-            <% end  %>
-          </ul>
-        <% end %>
-      </li>
-    <% end if @categories %>
-  </ul>
-</aside>
-
- <div class="main-bg">
-        <content id="main">
-            <content>
-                  <%= render partial: "sub_categories/statistics_table", locals: { category: @categories.first } %>
-             </content>
-        </content>
+  <aside class="sidebar">
+    <ul>
+      <% @categories.each do |category| %>
+        <li>
+          <%= link_to category.name, category_path(category), remote: true %>
+          <% if category.sub_categories %>
+            <ul>
+              <% category.sub_categories.each do |sub_category| %>
+                <li><%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true  %></li>
+              <% end  %>
+            </ul>
+          <% end %>
+        </li>
+      <% end if @categories %>
+    </ul>
+  </aside>
 </div>
+
+
 
 
 
@@ -176,9 +69,3 @@
      $(this).find('ul').toggle();
   });
 </script>
-
-
-
-
-
-

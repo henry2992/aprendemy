@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-
   #QUESTIONS
   resources :categories do
     resources :sub_categories do
@@ -17,6 +16,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :simulators do
+    get 'show_simulator_answered_questions', to: 'simulators#show_answered_questions', as: :show_answered_questions
+    post 'pause', to: 'simulators#pause_simulator', as: :pause_simulator
+    resources :questions do
+      resources :simulator_answered_questions
+    end
+  end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

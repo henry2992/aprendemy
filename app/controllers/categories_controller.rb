@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :user_is_admin?, except: [ :index, :show ]
 
   # Helper Methods for Devise Start
   helper_method :resource_name, :resource, :devise_mapping
@@ -7,17 +8,15 @@ class CategoriesController < ApplicationController
   def resource_name
     :user
   end
-   
+
   def resource
     @resource ||= User.new
   end
- 
+
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
   # Helper Methods for Devise End
-
-
 
   def index
     @categories = Category.all.includes(:sub_categories)
@@ -25,6 +24,7 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    render_js_only
   end
 
   def create
@@ -44,6 +44,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.includes(:sub_categories).find_by_id(params[:id])
+    render_js_only
   end
 
   def update

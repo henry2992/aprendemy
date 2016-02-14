@@ -11,7 +11,7 @@ default: &default
 
 development:
   <<: *default
-  database: db/aprendemy_development_db
+  database: aprendemy_development_db
 
 
 # Warning: The database defined as "test" will be erased and

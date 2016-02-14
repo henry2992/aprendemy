@@ -1,0 +1,38 @@
+<% row_break = "</div><div class='row'>"; count = 0 %>
+
+<div class="simulator-visual-clues col-sm-3 ">
+
+
+  <div class="row simulator-sections-clues">
+    <h3 class="simulator-clues-heading">Secciones</h3>
+    <% @simulated_categories.each do |simul| %>
+      <div class="clues-subheading "><%= simul.category.name %></div>
+    <% end if @simulated_categories %>
+  </div>
+
+  <div class="row">
+    <% questions_meta.each do |question_meta| %>
+      <% clue_class = clue_status(question_meta[:answered], question_meta[:marked])%>
+      <div class="simulator-clue clue-<%= question_meta[:id] %> clue-<%= clue_class %>">
+        <%= question_meta[:serial_no] %>
+      </div>
+      <% count += 1%>
+      <%= row_break.html_safe if (count % 4) == 0  %>
+    <% end %>
+  </div>
+
+  <div class="visual-colored-clues row">
+    <ul>
+      <div>
+        <span class="simulator-clue-answered"></span><li class="list-simulator-clue">Answered</li>
+      </div>
+      <div>
+        <span class="simulator-clue-later"></span><li class="list-simulator-clue">Later</li>
+      </div>
+      <div>
+        <span class="simulator-clue-no-answer"></span><li class="list-simulator-clue">No answer</li>
+      </div>
+    </ul>
+
+  </div>
+</div>

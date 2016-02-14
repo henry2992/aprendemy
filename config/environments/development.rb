@@ -41,5 +41,6 @@ Rails.application.configure do
 
   # Added by Cent. The default url options for user by devise
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  
+
+
 end
