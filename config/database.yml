@@ -12,6 +12,12 @@ default: &default
 development:
   <<: *default
   database: aprendemy_development_db
+  adapter: postgresql
+  encoding: unicode
+  database: metals-directory_development
+  pool: 5
+  host: localhost
+  port: 5432   
 
 
 # Warning: The database defined as "test" will be erased and
