@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+
+  
+
   root 'home#index'
 
   #QUESTIONS
@@ -30,5 +33,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     match '/sessions/user', to: 'devise/sessions#create', via: :post
   end
+
+  # LIVE CLASSES
+  get 'live_classes/index'
 
 end

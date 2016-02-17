@@ -1,0 +1,39 @@
+<div class="application-wrapper container-fluid">
+	<div class="row">
+		<div class="application-navbar col-sm-3 col-md-2">
+			
+			<%= render 'home/vertical_navbar.html' %>
+			
+		</div>
+		<div class="content-wrapper col-sm-9 col-md-10 ">
+			<div class="application-content row">
+				
+				<%= render 'home/banner.html' %>
+
+
+				<div class="content-margin row"> 
+					<div class="application-content-header">
+						<h3>Clases en vivo</h3>
+					</div>
+					<div class="app-text-holder row">
+						<div>
+							<p class="classes-content-p">  
+				        		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum porttitor justo, ut euismod sem viverra eget. Mauris auctor pellentesque felis, in venenatis augue tincidunt eu. Nunc ullamcorper arcu urna, vitae venenatis quam volutpat sit amet. Fusce rutrum, nibh id condimentum sodales, lacus nisl malesuada neque, sit amet congue sem turpis eget sapien. Sed nec tortor vel ligula facilisis molestie eu facilisis risus. Suspendisse vel nisl id libero facilisis tincidunt. Donec id leo vel orci euismod tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.           
+				    		</p>
+					    </div>	
+
+						<% if @enes.online_now == false %>
+							<%= render 'live_classes/banner_live_class.html' %>
+						<% else %>
+							<%= render 'live_classes/online_live_class.html' %>
+						<% end%>	
+
+					</div>
+					
+				</div>
+
+			</div>	
+		</div>
+	</div>
+</div>
+

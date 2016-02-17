@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
   enum role: [:free, :paid, :admin]
 
+  mount_uploader :image, PictureUploader
+
   has_many :categories, counter_cache: true
   has_many :sub_categories
   has_many :questions
@@ -20,7 +22,7 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      user.image = auth.info.image
+      user.remote_image_url = auth.info.image.gsub('http://','https://')
 	  end
 	end
 
