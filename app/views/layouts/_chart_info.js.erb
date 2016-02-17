@@ -1,0 +1,48 @@
+<script>
+// $(document).on('ready page:load', function() {
+    var sanitized_categories = [], sanitized_series = [];
+    <% categories.each do |category| %>
+      sanitized_categories.push("<%= category %>")
+    <% end %>
+    <% @series.each do |series| %>
+      sanitized_series.push({name: "<%= series[:name] %>", data: <%= series[:data] %>, color: "<%= series[:color]%>"})
+    <% end %>
+
+    $('#chart_container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: "<%= title %>"
+        },
+        subtitle: {
+            text: 'All value are in percentages'
+        },
+        xAxis: {
+            categories: sanitized_categories,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Questions (%)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: sanitized_series
+    });
+// });
+</script>

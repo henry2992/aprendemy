@@ -14,6 +14,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require thirdparty/require_all
 //= require turbolinks
-//= require_tree 
-//= require flipclock.min
+//= require_tree .
+
+

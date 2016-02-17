@@ -35,7 +35,7 @@ group :development, :test do
   gem 'pry-nav'
   gem 'byebug'
   gem 'pry-rails'
-
+  gem 'foreman'
 end
 
 group :development do

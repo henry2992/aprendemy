@@ -20,7 +20,7 @@ module SimulatorsHelper
   end
 
   def create_simulator simulator_type
-    @simulator = Simulator.create(simulator_type_id: simulator_type.id, user_id: current_user.id)
+    @simulator = Simulator.create(simulator_type_id: simulator_type.id, user_id: current_user.id, time_left: simulator_type.time_duration)
   end
 
   def show_flash

@@ -1,3 +1,5 @@
+<% sub_cats_answered = []; sub_cats_correct = []; sub_cats_incorrect = [] %>
+<% answered = 0; correct = 0; incorrect = 0; total = 0; questions_count = 0 %>
 
 <table class="table table-bordered">
   <thead>
@@ -20,18 +22,32 @@
         <td align="center"><%= category.questions_answered_incorrectly(current_user.id).count %></td>
       </tr>
       <% category.sub_categories.each do |sub_category| %>
+      <!-- individual sub_category stats -->
+      <% total = sub_category.questions.count %>
+      <% answered = sub_category.questions_answered(current_user.id).count %>
+      <% sub_cats_answered << ((answered.to_f/(total > 0 ? total.to_f : 1)) * 100) %>
+      <% correct = sub_category.answered_correctly(current_user.id).count %>
+      <% sub_cats_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
+      <% incorrect =  sub_category.answered_incorrectly(current_user.id).count %>
+      <% sub_cats_incorrect << ((incorrect.to_f/(answered > 0 ? (answered.to_f) : 1)) * 100) %>
+      <% @sub_category_dates << sub_category.updated_at %>
 
         <tr class="table-category">
           <td class="table-subcategory"><i class="glyphicon glyphicon-ok-circle">
             <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true  %>
           </td>
-          <td align="center"><%= sub_category.questions.count %></td>
-          <td align="center"><%= sub_category.questions_answered(current_user.id).count %></td>
-          <td align="center"><%= sub_category.answered_correctly(current_user.id).count %></td>
-          <td align="center"><%= sub_category.answered_incorrectly(current_user.id).count %></td>
+          <td align="center"><%= total %></td>
+          <td align="center"><%= answered %></td>
+          <td align="center"><%= correct %></td>
+          <td align="center"><%= incorrect %></td>
         </tr>
 
       <% end if category %>
     <% end if @categories %>
   </tbody>
 </table>
+
+
+<% @series << {name: 'Question answered', data: sub_cats_answered, color: '#7cb5ec'} %>
+<% @series << {name: 'Answered correctly', data: sub_cats_correct, color: '#90ed7d' } %>
+<% @series << {name: 'Answered incorrectly', data: sub_cats_incorrect, color: '#EA586B' }%>
