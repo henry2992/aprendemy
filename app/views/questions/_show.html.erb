@@ -7,20 +7,25 @@
   <% if question.picture.to_s != '' %>
     <p><%= image_tag( question.picture, class: "question-img", alt: "Pregunta Apredemy") %></p>
   <% end%>
+
   <%= form_for [@category, @sub_category, question, answered_question], remote: true do |f| %>
-    <% question.choices.each do |choice| %>
+    <% question.choices.order(id: :asc).each do |choice| %>
       <% was_selected = answered_question.choice_id == choice.id %>
+
         <% right_answer = correct_or_wrong(question, choice, answered_question, was_selected); %>
         <%= f.radio_button :choice_id, choice.id, checked: was_selected, class: "#{right_answer}" %>
+
         <span class="<%= right_answer %>"><%= " #{options[count]}  #{choice.content}" %></span>
         <br>
         <% count += 1 %>
     <% end if question.choices  %>
+
     <div class="answer-question-btn">
       <%= (f.submit "Responder", class: "btn btn-info") unless answered_question.id %>
     </div>
 
   <% end %>
+
   <div class="explanation">
     <p>
       <%= question.explanation if answered_question.id %>

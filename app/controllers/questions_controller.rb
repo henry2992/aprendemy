@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
 
   def show
     get_category_and_sub && @question = Question.find_by_id(params[:id])
-    render_js_only
+    # render_js_only
   end
 
   def update
