@@ -18,6 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 #Admin
 gem 'rails_admin'
+gem 'rename'
 #Bootstrap and Font Awesome
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem "font-awesome-rails"

@@ -6,6 +6,17 @@ li.dropdown-exercises ul {
 	display : none;
 }
 
+.icon-category{
+	display: inline-block;
+	vertical-align: middle;
+}
+.category-name{
+	padding-left: 10px;
+	display: inline-block;
+	width: 90%;
+	vertical-align: middle;
+}
+
 .list-submenu{
 	padding: 10px 0 10px 10px !important;
 	font-size: 14px;

@@ -17,15 +17,14 @@
                         <p class="exercises-text-explanation">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut bibendum porttitor justo, ut euismod sem viverra eget. Mauris auctor pellentesque felis, in venenatis augue tincidunt eu. Nunc ullamcorper arcu urna, vitae venenatis quam volutpat sit amet. Fusce rutrum, nibh id condimentum sodales, lacus nisl malesuada neque, sit amet congue sem turpis eget sapien. Sed nec tortor vel ligula facilisis molestie eu facilisis risus. Suspendisse vel nisl id libero facilisis tincidunt. Donec id leo vel orci euismod tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
                         </p>
-                        <div class="exercises-img-holder">
-                          <%= image_tag("exercise-menu.png", alt: "Apredemy-ejercicios") %>
-                        </div>
+
                         <content>
                           <div class="app-text-holder row">
                             <div>
                                 <div id="chart_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                             </div>
                           </div>
+                          
                           <%= render partial: "sub_categories/statistics_table", locals: { category: @categories.first } %>
                         </content>
                         <%= render "layouts/chart_info.js", title: "Exercises stats", categories: @sub_category_dates, series: @series %>
@@ -39,35 +38,6 @@
     </div>
   </div>
 </div>
-
-<h1>All categories</h1>
-<p><%= link_to "+ New catgory", new_category_path %></p>
-
-<div class="main-bg">
-  <aside class="sidebar">
-    <ul>
-      <% @categories.each do |category| %>
-        <li>
-          <%= link_to category.name, category_path(category), remote: true %>
-          <% if category.sub_categories %>
-            <ul>
-              <% category.sub_categories.each do |sub_category| %>
-                <li><%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true  %></li>
-              <% end  %>
-            </ul>
-          <% end %>
-        </li>
-      <% end if @categories %>
-    </ul>
-  </aside>
-</div>
-
-
-
-
-
-
-
 
 
 <script type="text/javascript">

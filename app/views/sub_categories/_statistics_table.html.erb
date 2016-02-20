@@ -1,25 +1,27 @@
 <% sub_cats_answered = []; sub_cats_correct = []; sub_cats_incorrect = [] %>
 <% answered = 0; correct = 0; incorrect = 0; total = 0; questions_count = 0 %>
 
-<table class="table table-bordered">
+<h3 class="table-head">Tabla de Ejercicios</h3>
+
+<table class="table-exercises table table-bordered">
   <thead>
     <tr>
-      <th>Area</th>
-      <th width="50">Total questions</th>
-      <th width="50">Questions Answered</th>
-      <th width="50">Preguntas correctas</th>
-      <th width="50">Preguntas incorrectas</th>
+      <th class="tb-h">Area</th>
+      <!-- <th width="50">Preguntas</th> -->
+      <th class="tb-h tb-answered">Preguntas Contestadas</th>
+      <th class="tb-h">Preguntas correctas</th>
+      <th class="tb-h">Preguntas incorrectas</th>
     </tr>
   </thead>
 
   <tbody>
     <% @categories.each do |category| %>
       <tr class="table-category">
-        <td><%= category.name %></td>
-        <td align="center"><%= category.questions.count %></td>
-        <td align="center"><%= category.questions_answered(current_user.id).count %></td>
-        <td align="center"><%= category.questions_answered_correctly(current_user.id).count %></td>
-        <td align="center"><%= category.questions_answered_incorrectly(current_user.id).count %></td>
+        <td class="tb-r tb-category-heading"><%= category.name %></td>
+        <!-- <td align="center"><%= category.questions.count %></td> -->
+        <td class="tb-r tb-answered"><%= category.questions_answered(current_user.id).count %></td>
+        <td class="tb-r"><%= category.questions_answered_correctly(current_user.id).count %></td>
+        <td class="tb-r"><%= category.questions_answered_incorrectly(current_user.id).count %></td>
       </tr>
       <% category.sub_categories.each do |sub_category| %>
       <!-- individual sub_category stats -->
@@ -33,13 +35,14 @@
       <% @sub_category_dates << sub_category.updated_at %>
 
         <tr class="table-category">
-          <td class="table-subcategory"><i class="glyphicon glyphicon-ok-circle">
-            <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true  %>
+          <td class="table-subcategory tb-r">
+            <i class="glyphicon glyphicon-ok-circle icon-tb"></i>
+            <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true, :class=> 'sub_category-name'  %>
           </td>
-          <td align="center"><%= total %></td>
-          <td align="center"><%= answered %></td>
-          <td align="center"><%= correct %></td>
-          <td align="center"><%= incorrect %></td>
+          <!-- <td align="center"><%= total %></td> -->
+          <td class="tb-r tb-answered table-subcategory-r"><%= answered %></td>
+          <td class="tb-r table-subcategory-r"><%= correct %></td>
+          <td class="tb-r table-subcategory-r"><%= incorrect %></td>
         </tr>
 
       <% end if category %>

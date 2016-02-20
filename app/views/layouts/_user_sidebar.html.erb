@@ -13,16 +13,17 @@
                   <span class="icon icon-home"></span>Inicio
                 <% end %>
             </li>
-            <li class="list active">
+
+            <li class="list <%= 'active' if params[:controller] == 'categories' %>">
               <%= link_to categories_path  do%>
                 <span class="icon icon-exercises"></span>Ejercicios
               <% end %>
             </li>
-
             <!-- SUB Menus -->
             <% @categories.each do |category| %>
                   <li class="dropdown-exercises list-submenu" >
-                      <i class="fa fa-pencil"></i><span style="padding-left: 10px"><%= category.name %></span>
+                      <i class="fa fa-pencil icon-category"></i>
+                      <span class="category-name"><%= category.name %></span>
                       <% if category.sub_categories %>
                         <ul class="nested-submenu">
                           <% category.sub_categories.each do |sub_category| %>
@@ -36,23 +37,16 @@
             <% end if @categories %>
             <!-- Submenu Final -->
 
-            <li class="list">
+            <li class="list <%= 'active' if params[:controller] == 'simulators'%> ">
               <%= link_to simulators_path do %>
                 <span class="icon icon-simulator"></span>Simuladores
               <% end %>
             </li>
-            <li class="list">
-                <a href="" class="">
-                  <span class="icon icon-online"></span>Clases en Vivo
-              </a>
+            <li class="list <%= 'active' if params[:controller] == 'live_classes'%> ">
+              <%= link_to live_classes_index_path do %>
+                <span class="icon icon-simulator"></span>Clases en Vivo
+              <% end %>
             </li>
-            <li class="list">
-                <a href="" class="">
-                  <span class="icon icon-stats"></span>Estadísticas
-              </a>
-            </li>
-
-
         </ul>
       </div>
   </div>
