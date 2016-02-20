@@ -11,8 +11,8 @@
 	top: 210px;
 	right: 10px;
 	height: 60%;
-	overflow-y: scroll
-
+	overflow-y: scroll;
+	display: none;
 }
 
 .simulator-btn{
@@ -63,7 +63,8 @@
 	right: 10px;
 	border: rgb(182,220,236) solid 1px;
 	background-color: white;
-	padding-bottom:17px
+	padding-bottom:17px;
+	display: none;
 }
 
 
@@ -160,4 +161,41 @@
   color: green;
   float: right;
   font-size: 0.75em;
+}
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+
+}
+
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+	.simulator-time-holder{
+		display: block;
+	}
+
+	.simulator-visual-clues{
+		display: block;
+	}
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+   
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
 }

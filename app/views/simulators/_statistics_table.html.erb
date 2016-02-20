@@ -1,18 +1,19 @@
 <% @series = []; @simulators_date = []; simulators_answered = []; simulators_correct = []; simulators_incorrect = [] %>
 <% answered = 0; correct = 0; incorrect = 0; total = 0; questions_count = 0 %>
 
+
+<h3 class="table-simulator-head">Tabla de Simuladores</h3>
+
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Simulator type</th>
-      <th>Last taken</th>
-      <th width="50">Status</th>
-      <th width="50">Total questions</th>
-      <th width="50">Questions Answered</th>
-      <th width="50">Preguntas correctas</th>
-      <th width="50">Preguntas incorrectas</th>
-      <th width="50">Total time</th>
-      <th width="50">Link</th>
+      <th class="simulator-th">Tipo de Simulador</th>
+      <th class="simulator-th ">Estado</th>
+      <th class="simulator-th ">Preguntas Totales</th>
+      <th class="simulator-th simulator-tb-mobile" >Preguntas contestadas</th>
+      <th class="simulator-th simulator-tb-mobile">Preguntas correctas</th>
+      <th class="simulator-th simulator-tb-mobile">Preguntas incorrectas</th>
+      <th class="simulator-th">Link</th>
     </tr>
   </thead>
 
@@ -28,19 +29,22 @@
       <% simulators_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
       <% incorrect = simulator.answered_incorrectly.count %>
       <% simulators_incorrect << ((incorrect.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
-      <% @simulators_date << simulator.updated_at %>
 
       <tr class="table-category">
-        <td><%= simulator_type.name  %></td>
-        <td align="center"><%= time_ago_in_words(simulator.updated_at, include_seconds: true) %> ago</td>
-        <td align="center"><%= simulator.status %></td>
-        <td align="center"><%= "#{answered} / #{total}" %></td>
-        <td align="center"><%= answered %></td>
-        <td align="center"><%= correct %></td>
-        <td align="center"><%= incorrect %></td>
-        <td align="center"><%= "#{simulator.questions_answered.count} / #{total}" %></td>
-        <td align="center">
-          <%= link_to "continuar Examen", simulator_path(simulator), class: "btn btn-info simulator-start" %>
+        <td class="simulator-td"><%= simulator_type.name  %></td>
+        <td class="simulator-td"><%= simulator.status %></td>
+        <td class="simulator-td"><%= "#{answered} / #{total}" %></td>
+        <td class="simulator-td simulator-tb-mobile"><%= answered %></td>
+        <td class="simulator-td simulator-tb-mobile"><%= correct %></td>
+        <td class="simulator-td simulator-tb-mobile"><%= incorrect %></td>
+        <td class="simulator-td">
+
+        <%= link_to simulator_path(simulator) do %>
+                <span class="icon icon-simulator simulator-link-mobile"></span>
+                <span class="simulator-link-desktop">Ingresar al Examen</span>
+        <% end %>
+                
+        <%= link_to "", simulator_path(simulator), class: "btn btn-info simulator-start" %>
         </td>
       </tr>
     <% end if simulators %>

@@ -1,15 +1,24 @@
 // Place all the styles related to the Simulators controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.app-content-p{
 
+.simulator-text-explanation{
+	font-size: 0.875em;
+	text-align: justify;
+	padding: 10px !important;
+}
+
+.simulator-link-desktop{
+	display: none;
+}
+
+
+.app-content-p{
 	font-size: 13px;
 	color: #383D48;
 	margin: 0px;
 	padding-bottom: 10px;
 	line-height: 20px;
-
-
 }
 
 .simulator-panel{
@@ -71,4 +80,72 @@
 .question-img{
 	margin: 20px 0 20px 0;
 	width: 100%;
+}
+
+/*SIMULATOR INDEX*/
+
+.simulator-tb-mobile{
+	display: none;
+}
+.simulator-th{
+	font-size: 10px;
+}
+.simulator-td{
+	font-size: 10px;
+}
+
+.table-simulator-head{
+	text-align: center;
+	margin-top: 25px !important;
+	margin-bottom: 25px !important;
+}
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+
+}
+
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+	
+
+	.simulator-tb-mobile{
+		display: table-cell;
+	}
+	
+	.simulator-link-mobile{
+		display: none !important;
+	}
+
+	.simulator-link-desktop{
+		display: block;
+	}
+
+	
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+   .simulator-th{
+		font-size: 15px;
+	}
+	.simulator-td{
+		font-size: 15px;
+	}
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
 }

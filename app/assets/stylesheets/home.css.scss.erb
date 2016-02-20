@@ -153,6 +153,22 @@ span.icon {
 
 /***** ****************** Payment ********************************/
 
+.banner-principal{
+	font-size: 1.5em;
+	margin: 10px 0 10px 0 !important;
+}
+
+
+.banner-secondary{
+	color: #137dd5;
+}
+
+.banner-price{
+	color: rgb(26, 169, 157);
+	font-size: 2.5em;
+}
+
+
 /*****************
 Pre Settings
 ******************/
@@ -172,43 +188,50 @@ ul li {
 }
  
 #banner_wrapper #content {
-        margin: 30px auto 0;
-        text-align: center;
-        position: relative;
-        z-index: 2;    
+    /*margin: 30px auto 0;*/
+    text-align: center;
+    position: relative;
+    z-index: 2; 
+    margin-bottom: 15px;   
 }
  
 #banner_wrapper #content h2 {
         font-family: Tahoma, Geneva, sans-serif;
     color: #137dd5;
-    font-size: 50px;
-        margin: 0;
-        animation: delayed-fade-animation 2s 1 ease-in-out;    
-        -webkit-animation: delayed-fade-animation 2s 1 ease-in-out;
+    /*font-size: 50px;*/
+        
+    animation: delayed-fade-animation 2s 1 ease-in-out;    
+    -webkit-animation: delayed-fade-animation 2s 1 ease-in-out;
     -moz-animation: delayed-fade-animation 2s 1 ease-in-out;   
+}
+
+ 
+#banner_wrapper #content h4 { 
+    animation: delayed-fade-animation 3s 1 ease-in-out;    
+    -webkit-animation: delayed-fade-animation 3s 1 ease-in-out;
+    -moz-animation: delayed-fade-animation 3s 1 ease-in-out;   
 }
  
 #banner_wrapper #content p {
-        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     color: #137dd5;
     font-size: 20px;
-        animation: delayed-fade-animation 3s 1 ease-in-out;
-        -webkit-animation: delayed-fade-animation 3s 1 ease-in-out;    
-    -moz-animation: delayed-fade-animation 3s 1 ease-in-out;   
+        animation: delayed-fade-animation 4s 1 ease-in-out;
+        -webkit-animation: delayed-fade-animation 4s 1 ease-in-out;    
+    -moz-animation: delayed-fade-animation 4s 1 ease-in-out;   
 }
  
 #banner_wrapper ul#flying-man {
     height: 100px;
-        margin: 0;
-        padding: 0;
+    margin: 0;
+    padding: 0;
     position: absolute;
-    bottom: 25px;
+    /*bottom: 25px;*/
     left: 20px;
-        z-index: 2;
+    z-index: 2;
     overflow: visible;
-        width: 250px;
-        animation: flying-man-animation 3s 1 ease-out;
-        -webkit-animation: flying-man-animation 3s 1 ease-out;
+    width: 250px;
+    animation: flying-man-animation 3s 1 ease-out;
+    -webkit-animation: flying-man-animation 3s 1 ease-out;
     -moz-animation: flying-man-animation 3s 1 ease-out;
 }
  
@@ -219,17 +242,17 @@ ul li {
     bottom: 0px;
     left: 0px;
     overflow: visible;
-        width: 150px;
-        animation: floating-animation 1s infinite ease-in-out;
-        -webkit-animation: floating-animation 1s infinite ease-in-out;
+    width: 150px;
+
+    animation: floating-animation 1s infinite ease-in-out;
+    -webkit-animation: floating-animation 1s infinite ease-in-out;
     -moz-animation: floating-animation 1s infinite ease-in-out;
 }
  
 #banner_wrapper ul#bottom-cloud li {
     width: 100%;
     height: 165px;
-    background: url(<%= asset_path('bottom_cloud.png')%>) left bottom;
-    z-index: 0;
+    background: url(<%= asset_path('bottom_cloud.png')%>) left top;
     position: absolute;
     bottom: 0px;
     left: 0px;
@@ -260,7 +283,7 @@ ul li {
 #banner_wrapper .cloud-1 {
     width: 140px;
     height: 65px;
-    background: url(<%= asset_path('cloud01.png')%>) no-repeat left top;
+    background: url(<%= asset_path('cloud01.png')%>) no-repeat left top; 
     position: absolute;
     top: 10px;
     left: 70px;
@@ -269,7 +292,7 @@ ul li {
 #banner_wrapper .cloud-2 {
     width: 86px;
     height: 40px;
-    background: url(<%= asset_path('cloud02.png')%>) no-repeat left top;
+    background: url(<%= asset_path('cloud02.png')%>) no-repeat left top; 
     position: absolute;
     top: -25px;
     left: 300px;
@@ -278,7 +301,7 @@ ul li {
 #banner_wrapper .cloud-3 {
     width: 120px;
     height: 55px;
-    background: url(<%= asset_path('cloud03.png')%>) no-repeat left top;
+    background: url(<%= asset_path('cloud03.png')%>) no-repeat left top; 
     position: absolute;
     top: 100px;
     left: 350px;
@@ -287,7 +310,7 @@ ul li {
 #banner_wrapper .cloud-4 {
     width: 86px;
     height: 40px;
-    background: url(<%= asset_path('cloud02.png')%>) no-repeat left top;
+    background: url(<%= asset_path('cloud02.png')%>) no-repeat left top; 
     position: absolute;
     top: 75px;
     left: 10px;
@@ -367,6 +390,7 @@ Animation Settings
     99.9999%   {left: -500px;}
     100%     {left: 0px;}
 }
+
 
 
 
@@ -578,12 +602,69 @@ Animation Settings
 		width: 20%;
 	}
 
+	/*Banner*/
+	.banner-principal{
+		font-size: 2em;
+		margin-bottom: 15px !important;
+	}
+	.banner-h-2{
+		margin-top: 15px !important;
+		margin-bottom: 15px !important;
+	}
+	.banner-price{
+		margin-top: 15px !important;
+	}
+
+	#banner_wrapper ul#flying-man{
+		bottom: 25px;
+		left: 0px;
+	}
+	@keyframes flying-man-animation {
+	    0%   {left: -200px;}
+	    100% {left: 0px;}
+	}
+	@-webkit-keyframes flying-man-animation {
+	    0%   {left: -200px;}
+	    100% {left: 0px;}
+	}
+	@-moz-keyframes flying-man-animation {
+	    0%   {left: -200px;}
+	    100% {left: 0px;}
+	}
 }
 
 /* Desktops and laptops ----------- */
 @media only screen  and (min-width : 992px) {
 
-   
+   /*Banner*/
+	.banner-principal{
+		font-size: 3em;
+		margin-bottom: 25px !important;
+	}
+	.banner-h-2{
+		margin-top: 25px !important;
+		margin-bottom: 15px !important;
+	}
+	.banner-h-1{
+		margin-bottom: 15px !important;
+	}
+
+	#banner_wrapper ul#flying-man{
+		bottom: 25px;
+		left: 40px;
+	}
+	@keyframes flying-man-animation {
+	    0%   {left: -200px;}
+	    100% {left: 40px;}
+	}
+	@-webkit-keyframes flying-man-animation {
+	    0%   {left: -200px;}
+	    100% {left: 40px;}
+	}
+	@-moz-keyframes flying-man-animation {
+	    0%   {left: -200px;}
+	    100% {left: 40px;}
+	}
 
 }
 
