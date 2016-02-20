@@ -10,8 +10,8 @@
 				</div>
 
         <div class="app-text-holder question-btn-holder row">
-          <%= link_to "Preguntas por resolver", category_sub_category_path(@category, @sub_category), class:"btn btn-info sub-category-btn"%>
-          <%= link_to "Preguntas resueltas", category_sub_category_show_answered_questions_path(@category, @sub_category), class:"btn btn-info sub-category-btn" %>
+          <%= link_to "Preguntas por resolver", category_sub_category_path(@category, @sub_category), class:"btn btn-info sub-category-btn", remote: true %>
+          <%= link_to "Preguntas resueltas", category_sub_category_show_answered_questions_path(@category, @sub_category), class:"btn btn-info sub-category-btn", remote: true %>
         </div>
 
         <div class="exercises-answers-holder row">
