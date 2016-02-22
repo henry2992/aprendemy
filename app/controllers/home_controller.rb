@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   #Helper Methods to allow device resources to be used in home page
   helper_method :resource_name, :resource, :devise_mapping
 
+
   def resource_name
 	    :user
   end
@@ -17,6 +18,10 @@ class HomeController < ApplicationController
 
   def index
     @simulator_types = SimulatorType.all
+  end
+
+  def payments
+    
   end
 
 

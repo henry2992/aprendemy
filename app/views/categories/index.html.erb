@@ -19,13 +19,15 @@
                         </p>
 
                         <content>
+                          <%= render partial: "sub_categories/statistics_table", locals: { category: @categories.first } %>
+                          
                           <div class="app-text-holder row">
                             <div>
                                 <div id="chart_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                             </div>
                           </div>
                           
-                          <%= render partial: "sub_categories/statistics_table", locals: { category: @categories.first } %>
+                          
                         </content>
                         <%= render "layouts/chart_info.js", title: "Exercises stats", categories: @sub_category_dates, series: @series %>
 

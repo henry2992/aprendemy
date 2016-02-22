@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
 
-  
-
   root 'home#index'
 
   #QUESTIONS
@@ -35,6 +33,8 @@ Rails.application.routes.draw do
   end
 
   # LIVE CLASSES
-  get 'live_classes/index'
+  get '/live_classes' => 'live_classes#index'
+
+  get '/payments'   => 'home#payments'
 
 end

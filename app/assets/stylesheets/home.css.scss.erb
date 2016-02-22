@@ -54,7 +54,7 @@
     padding: 10px 0px 5px 10px;
     display: block;
     font-weight: 400;
-    color: #546986;
+    color: #3FBEE8;
 }
 
 .app-navbar-profile-img{
@@ -63,12 +63,33 @@
 	border: 7px solid #3FBEE8;
 }
 
+.rank-label-container {
+    margin-top: -15px;
+    text-align: center;
+}
+
+.label.label-default.rank-label {
+    background-color: #3FBEE8;
+    padding: 5px 10px 5px 10px;
+    border-radius: 27px;
+}
+
+
+
+
+
+
 .app-navbar-heading{
 	font-size: 1em;
+  margin-top: 25px !important;
 }
 
 .app-navbar-text{
 	font-size: 0.75em;
+}
+
+.isotipo-navbar{
+	width: 60px;
 }
 
 .navbar-links{
@@ -105,7 +126,7 @@
 	padding-bottom: 5px;
 }
 
-span.icon {
+.list-icon {
     height: 16px;
     width: 20px;
     display: inline-block;
@@ -113,6 +134,8 @@ span.icon {
     margin-right: 4px;
     margin-left: 10px;
 }
+
+
 
 .icon-home {
     background: transparent url(<%= asset_path('home.png')%>) no-repeat;
@@ -130,9 +153,6 @@ span.icon {
 	background: transparent url(<%= asset_path('online.png')%>) no-repeat;
 }
 
-.icon-stats{
-	background: transparent url(<%= asset_path('stats.png')%>) no-repeat;
-}
 
 .icon-help{
 	background: transparent url(<%= asset_path('help.png')%>) no-repeat;
@@ -151,7 +171,7 @@ span.icon {
 }
 
 
-/***** ****************** Payment ********************************/
+/***** ****************** BANNER ********************************/
 
 .banner-principal{
 	font-size: 1.5em;
@@ -166,6 +186,10 @@ span.icon {
 .banner-price{
 	color: rgb(26, 169, 157);
 	font-size: 2.5em;
+}
+
+.banner-link:hover{
+	text-decoration: none;
 }
 
 
@@ -408,7 +432,7 @@ Animation Settings
 
 }
 
-/***** News *****/
+/*************************** News ***********************************/
 
 .news-holder{
 	text-align: center;
@@ -464,20 +488,11 @@ Animation Settings
 	display:block;
     margin:auto;
 	width: 100px;
-	/*vertical-align: middle;
-	top: 0;*/
 }
 
-.exercises-img{
-	width: 20%;
-	display: inline-block;
-	vertical-align: middle;
-}
 
 .exercises-text{
-	width: 75%;
-	display: inline-block;
-	vertical-align: middle;	
+	width: 100%;
 }
 
 .exercises-text h4{
@@ -486,13 +501,13 @@ Animation Settings
 }
 
 .exercises-text p{
-	font-size: 12px;
+	font-size: 15px;
 	color: #383D48;
 	margin: 10px 0 0 0px;
 	padding: 0px 0 0 10px;
 	line-height: 20px;
-	height: 80px;
-	overflow: hidden;
+	/*height: 80px;
+	overflow: hidden;*/
 }
 .tools-panel{
 	border-radius: 8px;
@@ -508,6 +523,143 @@ Animation Settings
 .tools-panel:hover{
     box-shadow: 0px 0px 10px #888;
 }
+
+/******************* PAYMENTS ***************************/
+
+.payments-container{
+  background-color: rgb(246,246,246);
+}
+
+.payment-heading-text {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.payment-heading-text h3 {
+  text-align: center;
+  padding-top: 100px !important;
+  padding-bottom: 50px !important;
+}
+
+
+
+.payments-img-container{
+  width: 100%;
+  height: 200px;
+  background: url(<%= asset_path('footer.png')%>) ;
+  background-position: center;
+
+  background-repeat: none;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  /*background-size: 100% 100px;*/
+  margin-top: -80px;
+  position: relative;
+  border-bottom: 1px solid black;
+}
+
+/*PAyment options*/
+
+.payment-options{
+  margin-top: 50px;
+}
+.payment-tab{
+
+  width: 80%;
+  background: #fff;
+  box-shadow: 0px 0px 40px #888;
+  margin-top: 10px;
+  margin-left: 10%;
+  /*border: 1px solid black;*/
+  border-radius: 10px;
+
+  position: relative;
+}
+.payment-tab-heading{
+  background-color: rgb(232,136,46);
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+  padding: 20px;
+}
+
+.payment-tab-heading h3{
+  color: white !important;
+}
+
+.payment-tab-info{
+  padding: 25px;
+}
+
+.payment-tab-info p {
+  text-align: center;
+  font-weight: bold;
+}
+
+.price{
+  font-size: 2.5em;
+color: rgb(48, 122, 186)
+}
+
+.price-list li{
+  display: inline-block;
+  padding-left: 15px;
+}
+.btn-payments{
+  text-align: center; 
+  margin: 45px 0 25px 0 !important;
+}
+
+.btn-payments a {
+  
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+
+/*Payment Steps*/
+
+.payment-steps{
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+.confirm-payment{
+  margin-top: 50px;
+  width: 80%;
+  height: 300px;
+  background: #fff;
+  box-shadow: 0px 0px 40px #888;
+  margin-left: 10%;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+.whatsapp {
+  width: 100px;
+  background-color: rgb(48, 122, 182) !important;
+  margin: 20px auto;
+  border-radius: 50%;
+  height: 100px;
+  background: url(../images/whatsapp.png) center no-repeat;
+}
+
+.email {
+  width: 100px;
+  background-color: rgb(48, 122, 182) !important;
+  margin: 20px auto;
+  border-radius: 50%;
+  height: 100px;
+  background: url(../images/email.png) center no-repeat;
+
+}
+
+
+
+
 
 /***************** MEDIA QUERIES ******************/
 
@@ -535,9 +687,7 @@ Animation Settings
 		background-color: white;
 	}
 	
-	.exercises-img{
-		width: 50px;
-	}
+	
 
 
 }
@@ -546,9 +696,7 @@ Animation Settings
 @media only screen and (min-width : 420px) {
 
 	
-	.exercises-img{
-		width: 80px;
-	}
+	
 
 
 }
@@ -598,9 +746,7 @@ Animation Settings
 		vertical-align: middle;
 		top: 0;
 	}
-	.exercises-img{
-		width: 20%;
-	}
+	
 
 	/*Banner*/
 	.banner-principal{

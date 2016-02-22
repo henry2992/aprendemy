@@ -10,13 +10,13 @@
 
           <li class="list">
                 <%= link_to root_path  do%>
-                  <span class="icon icon-home"></span>Inicio
+                  <i class="fa fa-home list-icon"></i>Inicio
                 <% end %>
             </li>
 
             <li class="list <%= 'active' if params[:controller] == 'categories' %>">
               <%= link_to categories_path  do%>
-                <span class="icon icon-exercises"></span>Ejercicios
+                <i class="fa fa-book list-icon"></i>Ejercicios
               <% end %>
             </li>
             <!-- SUB Menus -->
@@ -39,12 +39,12 @@
 
             <li class="list <%= 'active' if params[:controller] == 'simulators'%> ">
               <%= link_to simulators_path do %>
-                <span class="icon icon-simulator"></span>Simuladores
+                <i class="fa fa-desktop list-icon"></i>Simuladores
               <% end %>
             </li>
             <li class="list <%= 'active' if params[:controller] == 'live_classes'%> ">
-              <%= link_to live_classes_index_path do %>
-                <span class="icon icon-simulator"></span>Clases en Vivo
+              <%= link_to live_classes_path do %>
+                <i class="fa fa-youtube-play list-icon"></i></span>Clases en Vivo
               <% end %>
             </li>
         </ul>
@@ -55,17 +55,11 @@
     <h1 class="link-heading">Comunidad</h1>
       <div class="link-list-group-container">
         <ul class="link-list-group-options nav-pills nav-stacked">
-
           <li class="list">
-              <a >
-                  <span class="icon icon-face"></span>Facebook
-                </a>
-            </li>
-            <li class="list">
-              <a>
-                  <span class="icon icon-help"></span>Soporte
-                </a>
-            </li>
+            <a href="mailto:hola@aprendemy.com">
+              <i class="fa fa-users list-icon"></i>Soporte
+            </a>
+          </li>
         </ul>
       </div>
   </div>

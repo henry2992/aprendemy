@@ -1,90 +1,75 @@
 <div class="application-wrapper container-fluid">
-		<div class="row">
+	<div class="row">
 
-			<%= render "layouts/user_sidebar" %>
+		<%= render "layouts/user_sidebar" %>
 
-			<div class="main-bg">
-        		<content>
+		<div class="main-bg">
+    		<content>
 
-					<div class="content-wrapper col-sm-9 col-md-10 ">
-						<div class="application-content row">
+				<div class="content-wrapper col-sm-9 col-md-10 ">
+					<div class="application-content row">
 
-							<%= render 'home/banner.html' %>
+					<%= render 'home/banner.html' %>
 
 
 
-							<div class="content-margin row">
-								<div class="application-content-header">
-									<h3>Herramientas</h3>
-								</div>
-										<div class="app-text-holder row">
-											<div class="col-sm-6">
-												<div onclick="location.href='/categories'" class="tools-panel">
-													<%= image_tag("exercises-lg.png", class: "exercises-img", alt: "Apredemy-ejercicios") %>
-													<div class="exercises-text">
-														<h4> Ejercicios </h4>
-														<p >
-											        		Estamos muy contentos de que te hayas unido aquí a Aprendemy. Haz que tus estudiantes visiten  y se registren.
-											    		</p>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<div class="tools-panel">
-													<%= image_tag("simulador-lg.png", class: "exercises-img", alt: "Apredemy-simuladores") %>
-													<div class="exercises-text">
-														<h4> Simuladores </h4>
-														<p >
-											        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
-											    		</p>
-													</div>
-												</div>
-											</div>
-										<div class="col-sm-6">
-											<div class="tools-panel">
-												<%= image_tag("online-lg.png", class: "exercises-img", alt: "Apredemy-clases-en-vivo") %>
-												<div class="exercises-text">
-													<h4> Clases En Vivo </h4>
-													<p >
-										        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
-										    		</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-6">
-											<div class="tools-panel">
-												<%= image_tag("stats-lg.png", class: "exercises-img", alt: "Apredemy-estadisticas") %>
-												<div class="exercises-text">
-													<h4> Estadísticas </h4>
-													<p >
-										        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
-										    		</p>
-												</div>
-											</div>
-										</div>
-									</div>
-
-							</div>
-
-							<div class=" content-margin row">
-								<div class="application-content-header">
-									<h3>Noticias Importantes</h3>
-								</div>
-								<div class="app-text-holder news-holder">
-										<%= image_tag("isotipo.png", class: "news-img", alt: "Apredemy-logo") %>
-							            <p class="news-content-text">
-							        		Estamos muy contentos de que te hayas unido aquí a Aprendemy. <br> <br> Haz que tus estudiantes visiten  y se registren. (Si ya tienen una cuenta, sólo tienen que iniciar sesión.) En pocos minutos todos estaréis conectados en vuestra propia clase en línea :) <br> <br> Feliz Aprendizaje, <br> Tu Equipo de Aprendemy.
+					<div class="content-margin row">
+						<div class="application-content-header">
+							<h3>Herramientas</h3>
+						</div>
+						<div class="app-text-holder row">
+							<div class="col-md-4">
+								<div onclick="location.href='/categories'" class="tools-panel">
+									<div class="exercises-text">
+										<h4><i class="fa fa-book list-icon"></i>Ejercicios </h4>
+										<p >
+							        		Estamos muy contentos de que te hayas unido aquí a Aprendemy. Haz que tus estudiantes visiten  y se registren.
 							    		</p>
+									</div>
 								</div>
-
 							</div>
+							<div class="col-md-4">
+								<div onclick="location.href='/simulators'" class="tools-panel">
+									<div class="exercises-text">
+										<h4><i class="fa fa-desktop list-icon"></i> Simuladores </h4>
+										<p >
+							        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
+							    		</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div onclick="location.href='/live_classes'" class="tools-panel">
+									<div class="exercises-text">
+										<h4><i class="fa fa-youtube-play list-icon"></i>Clases En Vivo</h4>
+										<p >
+							        		Estamos muy contentos de que te hayas unido aquí a Edmodo. Haz que tus estudiantes visiten  y se registren.
+							    		</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class=" content-margin row">
+						<div class="application-content-header">
+							<h3>Noticias Importantes</h3>
+						</div>
+						<div class="app-text-holder news-holder">
+								<%= image_tag("isotipo.png", class: "news-img", alt: "Apredemy-logo") %>
+					            <p class="news-content-text">
+					        		Estamos muy contentos de que te hayas unido aquí a Aprendemy. <br> <br> Haz que tus estudiantes visiten  y se registren. (Si ya tienen una cuenta, sólo tienen que iniciar sesión.) En pocos minutos todos estaréis conectados en vuestra propia clase en línea :) <br> <br> Feliz Aprendizaje, <br> Tu Equipo de Aprendemy.
+					    		</p>
 						</div>
 
 					</div>
+				</div>
 
-				</content>
-			</div>
+				</div>
 
+			</content>
 		</div>
 
 	</div>
+
+</div>

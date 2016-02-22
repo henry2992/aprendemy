@@ -1,9 +1,49 @@
 <div class="application-navbar-profile">
-	<% if (current_user.image != nil) %>
-		<img src="<%= current_user.image%>" class="app-navbar-profile-img" alt="Apredemy-foto-usuario">
-	<% else %>
-		<%= image_tag("avatar.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
-	<%end%>
+
+	<div class="profile-header-img">
+		<% if (current_user.image != nil) %>
+			<img src="<%= current_user.image%>" class="app-navbar-profile-img" alt="Apredemy-foto-usuario">
+		<% else %>
+			<%= image_tag("avatar.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
+		<%end%>
+
+		<div class="rank-label-container">
+	        <span class="label label-default rank-label">100 puntos</span>
+	    </div>
+	</div>
+
+
+
 	<h1 class="app-navbar-heading"><%= current_user.first_name %> <%= current_user.last_name %></h1>
 	<p class="app-navbar-text"><%= current_user.email %></p>
+
+
+	<p class="app-navbar-text">
+		Tu licencia expira en: 
+		<br>
+		15 días
+		<br>
+		<a href="/payments">Haste Premium</a>
+	</p>
+
+
+	<div>
+
+
+		<div id="fb-root"></div>
+		<script>
+			FB = null;
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  // if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=928864270524469";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+	    <!-- Your like button code -->
+	    <%= image_tag("isotipo.png", class: "isotipo-navbar", alt: "Apredemy-logo") %>
+	    <div class="fb-like" data-href="https://facebook.com/aprendemy" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+    </div>
+
 </div>
