@@ -1,36 +1,48 @@
 <!-- Home Banner Start -->
-	<div class="container-fluid" id="home-banner">
-		<div class="row lg-screen-container">
-			<div class="col-sm-5 col-md-4">
-				<div class="home-banner-img-container">
-					<%= image_tag("computers.png", class: "mobile-img-banner", alt: "Apredemy.com") %>
+	<div class="container-fluid container-animation" >
+
+		<div class='row'>
+			<div class='col-md-2'>
+				<div class="rocket animation-rocket">
+					<%= image_tag("rocket.png", class: "resources-img", id: "rocket" , alt: "Apredemy Cohete") %>		
 				</div>
+
+				<%= image_tag("cloud01.png", class: "animation-cloud", id: "cloud1" , alt: "Apredemy Nube") %>
+
+				<%= image_tag("cloud02.png", class: "animation-cloud", id: "cloud2" , alt: "Apredemy Nube") %>		
 			</div>
-			<div class="col-sm-7 col-md-8">
-				<div class="home-banner-main-container">
-		 			<h1 class="home-banner-content-heading">
-		 				93% de nuestro miembros obtienen mejores notas en el ENES, ahora tú tambien lo puedes hacer.
-					</h1>
-					<div class="center-list">
-						<ul class="home_banner-content_group">
-							<li>Más de 3000 ejercicios con explicaciones</li>
-							<li>Estadísticas Personalizadas</li>
-							<li>Clases en vivo</li>
-							<li>Simulacros del ENES</li>
-						</ul>
+		
+
+			<div class="home-banner-wrapper col-sm-12 col-md-10">
+					<div class="home-banner-main-container">
+			 			<h1 class="home-banner-content-heading">
+			 				El 93% de nuestro miembros obtienen mejores notas en el ENES
+						</h1>
+						<h3>Ahora tú tambien lo puedes hacer</h3>
 					</div>
-				</div>
-				<div class="home-banner-buttons">
-					<a href="#registration" class="aprendemy-btn btn btn-success"> Regístrate con tu Email </a>
-					<%= link_to "Regístrate con Facebook", "users/auth/facebook", class: "aprendemy-btn btn btn-primary" %>
-				</div>
+					<div class="home-banner-buttons">
+						<button type="button" class="aprendemy-btn btn btn-primary">Regístrate con Facebook</button>
+						<span>O con tu </span><a class="scroll" href="#registro">cuenta de correo electrónico.</a>
+					</div>
 			</div>
 		</div>
-	</div>
-	<!-- Home Community -->
-	<div class="home-comunity-section container">
-		<h4 class="home_bottom-signup_caption"> Únete a nuestra comunidad de más de 120.000 miembros y recibe ejercicios GRATUITOS todos los días </h4>
 
+		<ul id="bottom-cloud">
+			<li></li>
+		</ul>
+
+		<div class="bounce" id="here"><a href="#here" class="scroll"><i class="fa fa-angle-double-down"></i></a></div>
+	</div>
+
+	<!-- Home Community -->
+	<div class="home-community-section container" >
+		<h4 class="home_bottom-signup_caption"> Miles de Alumnos confian en nosotros. Únete a nuestra comunidad y descubre todas las ventajas que tenemos para ti.</h4>
+		<div class='community-icons'>
+			<a href="#"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+		    <a href="#"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+		    <a href="#"><i id="social-yt" class="fa fa-youtube-square fa-3x social"></i></a>
+		    <a href="#"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+	    </div>
 	</div>
 
 	<!-- Home Resources -->
@@ -39,7 +51,7 @@
 		<div class="lg-screen-container">
 			<h3 class="home_section_heading"><span>¿Qué te ofrecemos?</span></h3>
 			<p class="home_section_caption">
-				Aprendemy es una plataforma online que te ayuda a mejorar tus notas en los exámenes de la Senescyt con miles ejercicios y sus respuestas, estadisticas, clases en vivo, accesible donde quieras y cuando quieras.
+				Aprendemy es una plataforma online pensada para apoyarte en el proceso de ingreso a la Universidad. Nuestra tecnología y experiencia en educación te ayudará a mejorar tus notas en los exámenes de la Senescyt con miles ejercicios, respuestas, estadisticas, clases en vivo, accesible donde quieras y cuando quieras.
 			</p>
 		</div>
 		<div class="line-section"></div>
@@ -56,14 +68,14 @@
 				<%= image_tag("simulacros.png", class: "resources-img", alt: "Apredemy Simulacros") %>
 				<h3 class="home-resources-heading">Simulacros de Exámenes</h3>
 				<p class="home-resources-p">
-	              ¿Listo para tomar el examen real? ¡Descúbrelo! Con Aprendemy podrás tomar cuantos exámenes desees, cada vez obtendrás un informe detallado el cual te permite encontrar tus falencias y ajustar tu plan de estudio.
+	              ¿Listo para tomar el examen real? ¡Descúbrelo! Con Aprendemy podrás tomar cuantos exámenes desees obteniendo un informe detallado para ajustar tu plan de estudios y trabajar tus falencias.
 	            </p>
 			</div>
 			<div class="home-resources-section-img-container col-sm-6 col-md-3" >
 				<%= image_tag("estadisticas.png", class: "resources-img", alt: "Apredemy estadisticas") %>
 				<h3 class="home-resources-heading" >Estadísticas Personalizadas</h3>
 				<p class="home-resources-p">
-	              Observa tu progreso. ¿Quieres saber si tu esfuerzo rinde frutos? Gracias a StudyTime podrás saber cuánto has avanzado, tus fortalezas y debilidades, la cantidad de ejercicios correctos e incorrectos y mucho más.
+	              Observa tu progreso. Gracias a nuestra plataforma podrás conocer tus avances, tus fortalezas y debilidades, de manera que te centres en aquello que más necesitas y asegures la calidad de tu examen.
 	            </p>
 			</div>
 			<div class="home-resources-section-img-container col-sm-6 col-md-3">
@@ -81,7 +93,7 @@
 			<div class="lg-screen-container">
 				<h3 class="home_section_heading"><span>¿Qué es Aprendemy?</span></h3>
 				<p class="home_section_caption">
-					Aprendemy es una compañía de tecnología educativa que proporciona a los estudiantes, cursos específicos para los examenes del Senescyt con contenido, herramientas y servicios todo con el fin de aprender de manera más eficaz y tener éxito.
+					Aprendemy es tu mejor aliado para ingresar a la Universidad. Nuestro equipo a pensado en la manera de proporcionarte cursos específicos para que puedas rendir adecuadamente los exámenes estandarizados del país, e ingresar a la Universidad de tus sueños. 
 				</p>
 			</div>
 			<div class="line-section"></div>
@@ -95,7 +107,7 @@
 					<div class="aprendemy-text col-sm-8">
 						<h3 class="home-resources-heading">Donde quieras, cuando quieras</h3>
 						<p class="home-resources-p" >
-			              No pierdas tu tiempo sentado en un aula realizando solamente ejercicios, prepárate con los mejores. Únete a nuestros cursos en vivo con profesores preparados y con experiencia en enseñanza, descubre nuevas estrategias, infórmate de mejores métodos y sobre todo concéntrate en lo que realmente necesitas aprender.
+			              Olvídate de las aulas llenas, los horarios que no te cuadran y el molesto transporte. Tu tiempo es valioso y con Aprendemy podrás estudiar donde quieras y cuando quieras. Gracias a nuestra modalidad en línea puedes conectarte desde cualquier dispositivo y estudiar desde cualquier lugar sin desperciar tu tiempo y dinero.   
 			            </p>
 		            </div>
 				</div>
@@ -107,7 +119,7 @@
 					<div class="aprendemy-text col-sm-8">
 						<h3 class="home-resources-heading">Comunidad</h3>
 						<p class="home-resources-p" >
-			              No pierdas tu tiempo sentado en un aula realizando solamente ejercicios, prepárate con los mejores. Únete a nuestros cursos en vivo con profesores preparados y con experiencia en enseñanza, descubre nuevas estrategias, infórmate de mejores métodos y sobre todo concéntrate en lo que realmente necesitas aprender.
+			              Únete a una gran comunidad de estudiantes que ya están dentro de Aprendemy. Gracias a la gran cantidad de personas nuestra tecnología educativa mejora cada día, podrás trabajar a tu propio ritmo sin sentirte solo, y además con el apoyo de docentes expertos en el Enes.
 			            </p>
 		            </div>
 		            <div class="img-hidden-lg col-sm-4" >
@@ -122,7 +134,7 @@
 					<div class="aprendemy-text col-sm-8">
 						<h3 class="home-resources-heading">Situaciones Reales</h3>
 						<p class="home-resources-p" >
-			              No pierdas tu tiempo sentado en un aula realizando solamente ejercicios, prepárate con los mejores. Únete a nuestros cursos en vivo con profesores preparados y con experiencia en enseñanza, descubre nuevas estrategias, infórmate de mejores métodos y sobre todo concéntrate en lo que realmente necesitas aprender.
+			              Somos el resultado de un equipo experto en educación, todas nuestras herramientas han sido diseñadas en base a la experiencia de nuestros docentes y miles de alumnos. Gracias a ello la tecnología educativa de Aprendemy logra que puedas aprender más rápido y mejor y cumplir tus sueños de ingresar a la univerdad. 
 			            </p>
 		            </div>
 				</div>
@@ -134,7 +146,7 @@
 					<div class="aprendemy-text col-sm-8">
 						<h3 class="home-resources-heading">Ejercicios Rigurosos</h3>
 						<p class="home-resources-p" >
-			              No pierdas tu tiempo sentado en un aula realizando solamente ejercicios, prepárate con los mejores. Únete a nuestros cursos en vivo con profesores preparados y con experiencia en enseñanza, descubre nuevas estrategias, infórmate de mejores métodos y sobre todo concéntrate en lo que realmente necesitas aprender.
+			              ¿Será un camino fácil? Nuestro interés es que tengas facilidades, pero no por ello dejaremos de ser exigentes. Nuestros ejercicios y sus explicaciones están pensados para hacer ti un alumno de alto rendimiento, por ello te ofrecemos un curso con profesores expertos y ejercicios rigurosos.
 			            </p>
 		            </div>
 		            <div class="img-hidden-lg col-sm-4">
@@ -142,10 +154,12 @@
 					</div>
 				</div>
 	</div>
-	<div class="home-payment-section home_section_wrapper container-fluid">
+
+	<div id='registro' class="home-payment-section home_section_wrapper container-fluid">
 		<div class="row center-container lg-screen-container">
-			<div id="registration" class="col-sm-4 aprendemy-text">
-				<h1>Crear una cuenta gratis para empezar.</h1>
+			<div  class="col-sm-4 aprendemy-text">
+				<h1>Ingresa a la Universidad de tus sueños</h1>
+				<p>Crea una cuenta gratis para empezar.</p>
 			</div>
 			<div class="form-card col-sm-6 col-sm-offset-1">
 			  <p class="trial-banner basic">Empieza hoy mismo!</p>
@@ -154,17 +168,17 @@
 			      <%= devise_error_messages! %>
 			      <div class="row">
 			      	<div class="col-sm-6">
-			      	   <%= f.text_field :first_name, class: "input-text", :placeholder => "Nombre", autofocus: true %>
+			      	   <%= f.text_field :first_name, class: "input-text", :placeholder => "Nombre"%>
 				  	</div>
 				  
 				  	<div class="col-sm-6">
-				  		<%= f.text_field :last_name, class: "input-text", :placeholder => "Apellido", autofocus: true %>
+				  		<%= f.text_field :last_name, class: "input-text", :placeholder => "Apellido"%>
 				  	</div>
 				  	<div class="col-sm-12">
-				  		<%= f.email_field :email, class: "input-text", :placeholder => "Email", autofocus: true %>
+				  		<%= f.email_field :email, class: "input-text", :placeholder => "Email" %>
 				    </div>
 				    <div class="col-sm-12">
-					    <%= f.password_field :password, class: "input-text", :placeholder => "Password (Mínimo 8 caracteres)", autocomplete: "off" %>
+					    <%= f.password_field :password, class: "input-text", :placeholder => "Password (Mínimo 6 caracteres)", autocomplete: "off" %>
 					</div>
 					<div class="col-sm-12">
 						<%= f.password_field :password_confirmation, class: "input-text", :placeholder => "Confirmación de Password", autocomplete: "off" %>
@@ -187,4 +201,27 @@
         <div class="footer-img">
         	<%= image_tag("isotipo.png", class: "aprendemy-img", alt: "Apredemy Logo") %>
         </div>
+
+        <div class='community-icons-footer'>
+			<a href="#"><i id="social-fb-footer" class="fa fa-facebook-square fa-3x social"></i></a>
+		    <a href="#"><i id="social-tw-footer" class="fa fa-twitter-square fa-3x social"></i></a>
+		    <a href="#"><i id="social-yt-footer" class="fa fa-youtube-square fa-3x social"></i></a>
+		    <a href="#"><i id="social-em-footer" class="fa fa-envelope-square fa-3x social"></i></a>
+	    </div>
 	</div>
+
+	<script type="text/javascript">
+
+ 	 $(".scroll").click(function(event){
+         event.preventDefault();
+         //calculate destination place
+         var dest=0;
+         if($(this.hash).offset().top > $(document).height()-$(window).height()){
+              dest= $(document).height()-$(window).height();
+         }else{
+              dest=$(this.hash).offset().top;
+         }
+         //go to destination
+         $('html,body').animate({scrollTop:dest}, 1000,'swing');
+     });
+	</script>
