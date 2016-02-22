@@ -418,7 +418,7 @@ ul li {
 
 /*Arrow*/
 
-.fa {
+.scroll-down {
  width: 48px;
  display: block;
  text-align: center;
@@ -428,9 +428,7 @@ ul li {
  text-rendering: auto;
  -webkit-font-smoothing: antialiased;
 }
-.fa-angle-double-down:before {
-    /*content: "\f103"*/;
-}
+
  
 .bounce {
  position: absolute;
@@ -612,10 +610,13 @@ ul li {
     width: 100px;
 }
 
+.img-hidden-sm{
+  display: inline-block;
+}
+
 .img-hidden-lg{
     display: none;
 }
-
 
 /*********** PAYMENT ***************/
 
@@ -719,6 +720,14 @@ ul li {
 
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) {
+
+     .img-hidden-sm{
+      display: none;
+    }
+
+    .img-hidden-lg{
+      display: inline-block;
+    }
 
     .animation-rocket{
         display: inline-block;
