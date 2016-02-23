@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'categories/filter_chart', to: 'simulators#filter_chart', as: :categories_filter_chart
+  get 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

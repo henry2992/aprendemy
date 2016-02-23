@@ -52,6 +52,10 @@ class SimulatorsController < ApplicationController
     respond_to {|format| format.js {render partial: "pause_simulator.js" } } if @simulator
   end
 
+  def filter_chart
+    # our logic to filter chart by separate categories will be here
+  end
+
   private
 
   def simulator_params

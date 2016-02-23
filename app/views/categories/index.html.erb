@@ -28,8 +28,7 @@
                           </div>
                           <%= render partial: "sub_categories/statistics_table", locals: { category: @categories.first } %>
                         </content>
-                        <%= render "layouts/chart_info.js", title: "Exercises stats", categories: @sub_category_dates, series: @series %>
-
+                        <%= render "layouts/chart_info.js", title: "Exercises stats", categories: @sub_category_names, series: @series %>
                   </div>
               </div>
           </div>

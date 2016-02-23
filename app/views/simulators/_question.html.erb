@@ -8,7 +8,7 @@
     <%= form_for [simulator, question, answered_question], html: { class: form_class }, remote: true do |f| %>
       <div class="remind-later" >
         <label >
-          <%= f.check_box :marked_status, { class: "simulator-ajax-submittable", 'data-form': form_class }, 'marked', 'unmarked' %> Responder luego
+          <%= f.check_box :marked_status, { class: "simulator-ajax-submittable", data: {form: form_class} }, 'marked', 'unmarked' %> Responder luego
         </label>
       </div>
       <p><%= question_no %>) <%= question.content %></p>

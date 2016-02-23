@@ -25,12 +25,13 @@
       <!-- individual sub_category stats -->
       <% total = sub_category.questions.count %>
       <% answered = sub_category.questions_answered(current_user.id).count %>
-      <% sub_cats_answered << ((answered.to_f/(total > 0 ? total.to_f : 1)) * 100) %>
+      <%# sub_cats_answered << ((answered.to_f/(total > 0 ? total.to_f : 1)) * 100) %>
       <% correct = sub_category.answered_correctly(current_user.id).count %>
       <% sub_cats_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
       <% incorrect =  sub_category.answered_incorrectly(current_user.id).count %>
       <% sub_cats_incorrect << ((incorrect.to_f/(answered > 0 ? (answered.to_f) : 1)) * 100) %>
-      <% @sub_category_dates << sub_category.updated_at %>
+      <% @sub_category_names << sub_category.name %>
+      <%# @sub_category_dates << sub_category.updated_at %>
 
         <tr class="table-category">
           <td class="table-subcategory"><i class="glyphicon glyphicon-ok-circle">
@@ -48,6 +49,6 @@
 </table>
 
 
-<% @series << {name: 'Question answered', data: sub_cats_answered, color: '#7cb5ec'} %>
+<%# @series << {name: 'Question answered', data: sub_cats_answered, color: '#7cb5ec'} %>
 <% @series << {name: 'Answered correctly', data: sub_cats_correct, color: '#90ed7d' } %>
 <% @series << {name: 'Answered incorrectly', data: sub_cats_incorrect, color: '#EA586B' }%>
