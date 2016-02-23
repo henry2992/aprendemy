@@ -9,4 +9,12 @@ $(document).on('ready page:load', function(){
     var time_left = $("#countDownTimer").html();
     $(".simulator-pause-form").append(`<input type="hidden" name="timer" value="${time_left}">`)
   })
+
+  $('#chartFilter').change(function(){
+    $.ajax({
+      url: `${$(this).data("action")}`,
+      type: "GET",
+      data: {select_tag_value: $('#chartFilter option:selected').text()},
+    })
+  });
 })

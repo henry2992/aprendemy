@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.all.includes(:sub_categories)
     @series = []
-    @sub_category_dates = []
+    @sub_category_names = []
   end
 
   def new
@@ -57,6 +57,10 @@ class CategoriesController < ApplicationController
 
   def delete
     Category.find_by_id(params[:id]).destroy!
+  end
+
+  def filter_chart
+    # our logic to filter chart by separate categories will be here
   end
 
   private

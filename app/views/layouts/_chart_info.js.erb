@@ -1,5 +1,6 @@
 <script>
 // $(document).on('ready page:load', function() {
+    <% y_axis_title ||= 'Questions ( % )'; chart_type ||= 'spline' %>
     var sanitized_categories = [], sanitized_series = [];
     <% categories.each do |category| %>
       sanitized_categories.push("<%= category %>")
@@ -10,7 +11,7 @@
 
     $('#chart_container').highcharts({
         chart: {
-            type: 'column'
+            type: "<%= chart_type %>"
         },
         title: {
             text: "<%= title %>"
@@ -25,13 +26,13 @@
         yAxis: {
             min: 0,
             title: {
-                text: 'Questions (%)'
+                text: "<%= y_axis_title %>"
             }
         },
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
