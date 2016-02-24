@@ -30,4 +30,24 @@ module SimulatorsHelper
       flash[:danger] = "An error occured. Please try again."
     end
   end
+
+  def get_series(simulators)
+     @series = []; @simulators_date = []; simulators_answered = []; simulators_correct = []; simulators_incorrect = []
+     answered = 0; correct = 0; incorrect = 0; total = 0; questions_count = 0
+
+     simulators.each do |simulator|
+       questions_count = simulator.questions.count
+       answered = simulator.questions_answered.count
+       correct = simulator.answered_correctly.count;
+       simulators_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100)
+       incorrect = simulator.answered_incorrectly.count
+       simulators_incorrect << ((incorrect.to_f/(answered > 0 ? answered.to_f : 1)) * 100)
+       @simulators_date << time_ago_in_words(simulator.updated_at, include_seconds: true) + " ago"
+
+     end if simulators
+
+    # @series << {name: 'Question answered', data: simulators_answered, color: '#7cb5ec'}
+     @series << {name: 'Answered correctly', data: simulators_correct, color: '#90ed7d' }
+     @series << {name: 'Answered incorrectly', data: simulators_incorrect, color: '#EA586B' }
+  end
 end

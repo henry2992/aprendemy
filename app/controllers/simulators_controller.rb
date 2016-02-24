@@ -6,6 +6,7 @@ class SimulatorsController < ApplicationController
   def index
     @simulators = current_user.simulators
     @simulator_types = SimulatorType.all
+    @simulated_categories = SimulatedCategory.all
     @series = []
     @simulator_dates = []
   end
@@ -49,11 +50,14 @@ class SimulatorsController < ApplicationController
   def pause_simulator
     @simulator = Simulator.find_by_id(params[:simulator_id])
     @message = !@simulator.completed? ? save_simulator_time : "You have previously completed this simulator. You cannot further modify it"
-    respond_to {|format| format.js {render partial: "pause_simulator.js" } } if @simulator
+    respond_to {|format| format.json {render partial: "pause_simulator.js" } } if @simulator
   end
 
   def filter_chart
-    # our logic to filter chart by separate categories will be here
+    simulators = current_user.simulators.where('? = ?', params[:filter], params[:condition])
+    binding.pry
+    series = get_series(simulators)
+    respond_to {|format| format.js {render partial: "chart.js", simulators: simulators } }
   end
 
   private

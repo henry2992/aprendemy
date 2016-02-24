@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  post 'categories/filter_chart', to: 'simulators#filter_chart', as: :categories_filter_chart
+  post 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
+
   #QUESTIONS
   resources :categories do
     resources :sub_categories do
@@ -20,9 +23,6 @@ Rails.application.routes.draw do
       resources :simulator_answered_questions
     end
   end
-
-  get 'categories/filter_chart', to: 'simulators#filter_chart', as: :categories_filter_chart
-  get 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

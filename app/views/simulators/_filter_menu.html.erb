@@ -1,0 +1,28 @@
+<div class="filter-desc">Filter chart by: </div>
+<nav id="primary_nav_wrap">
+  <ul>
+    <li class="current-menu-item">
+      <a href="#">None</a>
+      <ul>
+        <li class="dir">Category</a>
+          <ul>
+            <% @simulated_categories.each do |simul| %>
+              <li><a href="#"><%= simul.category.name %></a></li>
+            <% end if @simulated_categories %>
+          </ul>
+        </li>
+        <li class="dir">Sub-category
+          <ul>
+            <% @simulated_categories.each do |simul| %>
+              <li><%= simul.category.name %></li>
+              <% sub_categories = simul.category.sub_categories %>
+              <% sub_categories.each do |sub_category| %>
+                <li><%= link_to sub_category.name, simulators_filter_chart_path(filter: "sub_category", condition: sub_category.name), remote: true, method: 'POST' %></a></li>
+              <% end if sub_categories %>
+            <% end if @simulated_categories %>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
