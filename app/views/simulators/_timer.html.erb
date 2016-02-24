@@ -3,7 +3,7 @@
     <b><span class="fa fa-clock-o"></span> Tiempo:</b> <div id="countDownTimer" class="inline-div"><span id="future_date"><span></div>
   </div>
   <div>
-    <%= button_to 'Pause here', simulator_pause_simulator_path(@simulator), id:'pauseTimerBtn', class: "btn btn-success simulator-btn", params: {timer: '00:00:32'}, form_class: "simulator-pause-form", data: {'toggle': "modal", 'target':"#pausedSimulationModal", 'backdrop':"static", 'keyboard':"false", disable_with: 'Paused. . .' }, remote: true %>
+    <%#= button_to 'Pause here', simulator_pause_simulator_path(@simulator), id:'pauseTimerBtn', class: "btn btn-success simulator-btn", params: {timer: '00:00:32'}, form_class: "simulator-pause-form", data: {'toggle': "modal", 'target':"#pausedSimulationModal", 'backdrop':"static", 'keyboard':"false", disable_with: 'Paused. . .' }, remote: true %>
 
     <button class="btn btn-info simulator-btn" onclick=""><span class="fa fa-home"></span>Menú</button>
   </div>
