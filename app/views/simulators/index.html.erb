@@ -34,13 +34,13 @@
                 </div> 
                 
 								<div class="app-text-holder row">
-									<%= select_tag(:filter, options_for_select([
+									<%= render "simulators/filter_menu" %>
+									<%#= select_tag(:filter, options_for_select([
 										['Total', 'total'],
 										['Category', 'category'],
 										['Sub Category', 'sub_category']],
 										'total'), remote: true, id: "chartFilter", data: {action: simulators_filter_chart_path} )
 								 %>
-
 									<div>
 											<div id="chart_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 									</div>
