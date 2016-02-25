@@ -13,10 +13,12 @@
   <div class="row">
     <% questions_meta.each do |question_meta| %>
       <% clue_class = clue_status(question_meta[:answered], question_meta[:marked])%>
-      <div class="simulator-clue clue-<%= question_meta[:id] %> clue-<%= clue_class %>">
-        <%= question_meta[:serial_no] %>
-      </div>
-      <% count += 1%>
+      <%= link_to "#question-#{question_meta[:id]}" do %>
+        <div class="simulator-clue clue-<%= question_meta[:id] %> clue-<%= clue_class %>">
+          <%= question_meta[:serial_no] %>
+        </div>
+        <% count += 1%>
+      <% end %>
       <%= row_break.html_safe if (count % 4) == 0  %>
     <% end %>
   </div>

@@ -19,6 +19,7 @@
 
   <tbody>
     <% simulators.each do |simulator| %>
+
       <!-- individual simulator stats -->
       <% simulator_type = simulator.simulator_type %>
       <% total = simulator_type.total_questions %>
@@ -37,8 +38,8 @@
         <td class="simulator-td"><%= simulator.status %></td>
         <td class="simulator-td"><%= "#{answered} / #{total}" %></td>
         <td class="simulator-td simulator-tb-mobile"><%= answered %></td>
-        <td class="simulator-td simulator-tb-mobile"><%= correct %></td>
-        <td class="simulator-td simulator-tb-mobile"><%= incorrect %></td>
+        <td class="simulator-td simulator-tb-mobile"><%= (correct if simulator.completed?) || "-" %></td>
+        <td class="simulator-td simulator-tb-mobile"><%= (incorrect if simulator.completed?) || "-"  %></td>
         <td class="simulator-td">
 
         <%= link_to simulator_path(simulator) do %>
