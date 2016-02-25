@@ -37,7 +37,7 @@ module SimulatorsHelper
 
      simulators.each do |simulator|
        questions_count = simulator.questions.count
-       answered = simulator.questions_answered.count
+       answered = simulator.answered_questions_list.count
        correct = simulator.answered_correctly.count;
        simulators_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100)
        incorrect = simulator.answered_incorrectly.count

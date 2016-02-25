@@ -1,1 +1,2 @@
-<% render "layouts/chart_info.js", title: "Simulators progress rate", categories: @simulators_date, series: @series %>
+$("#statistics_table").html("<%=j render 'simulators/statistics_table', simulators: @simulators %>")
+$(".current-menu-item #current_filter").html('<%= "#{@filter_args[:model]} : #{@filter_args[:model_name]}" || "none" %>')

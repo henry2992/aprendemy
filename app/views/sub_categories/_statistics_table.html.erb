@@ -19,14 +19,15 @@
       <tr class="table-category">
         <td class="tb-r tb-category-heading"><%= category.name %></td>
         <!-- <td align="center"><%= category.questions.count %></td> -->
-        <td class="tb-r tb-answered"><%= category.questions_answered(current_user.id).count %></td>
-        <td class="tb-r"><%= category.questions_answered_correctly(current_user.id).count %></td>
-        <td class="tb-r"><%= category.questions_answered_incorrectly(current_user.id).count %></td>
+        <td class="tb-r tb-answered"><%= category.answered_questions_list(current_user.id).count %></td>
+        <td class="tb-r"><%= category.answered_correctly(current_user.id).count %></td>
+        <td class="tb-r"><%= category.answered_incorrectly(current_user.id).count %></td>
       </tr>
+      
       <% category.sub_categories.each do |sub_category| %>
       <!-- individual sub_category stats -->
       <% total = sub_category.questions.count %>
-      <% answered = sub_category.questions_answered(current_user.id).count %>
+      <% answered = sub_category.answered_questions_list(current_user.id).count %>
       <%# sub_cats_answered << ((answered.to_f/(total > 0 ? total.to_f : 1)) * 100) %>
       <% correct = sub_category.answered_correctly(current_user.id).count %>
       <% sub_cats_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>

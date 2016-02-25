@@ -26,33 +26,25 @@
                     <% end %>
 
     						</div>
-								
+
 								<div class="app-text-holder row">
 									<%= render "simulators/filter_menu" %>
-									<%#= select_tag(:filter, options_for_select([
-									['Total', 'total'],
-									['Category', 'category'],
-									['Sub Category', 'sub_category']],
-									'total'), remote: true, id: "chartFilter", data: {action: simulators_filter_chart_path} )
-									%>
-									<div>
+
+									<div id="chart_holder">
 										<div id="chart_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 									</div>
 								</div>
 
                 <div class="app-text-holder row">
-                  <div>
+                  <div id="statistics_table">
                       <%= render 'simulators/statistics_table', simulators: @simulators %>
                   </div>
                 </div>
 
-
-
-
     					</div>
 
 
-							<%= render "layouts/chart_info.js", title: "Simulators progress rate", categories: @simulators_date, series: @series %>
+							<%#= render "layouts/chart_info.js", title: "Simulators progress rate", categories: @simulators_date, series: @series %>
     				</div>
     			</div>
 

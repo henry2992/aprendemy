@@ -1,13 +1,16 @@
+<% filter_args ||= @filter_args || {} %>
+
 <div class="filter-desc">Filter chart by: </div>
 <nav id="primary_nav_wrap">
   <ul>
     <li class="current-menu-item">
-      <a href="#">None</a>
+      <a id="current_filter" href="#"><%= filter_args[:model] || ": none" %></a>
       <ul>
+        <li class="dir"><%= link_to "none", simulators_filter_chart_path(model: "", model_id: "", model_name: "none"), remote: true, method: 'POST' %></a>
         <li class="dir">Category</a>
           <ul>
             <% @simulated_categories.each do |simul| %>
-              <li><a href="#"><%= simul.category.name %></a></li>
+              <li><%= link_to simul.category.name, simulators_filter_chart_path(model: "category", model_id: simul.category.id, model_name: simul.category.name), remote: true, method: 'POST' %></li>
             <% end if @simulated_categories %>
           </ul>
         </li>
@@ -17,7 +20,7 @@
               <li><%= simul.category.name %></li>
               <% sub_categories = simul.category.sub_categories %>
               <% sub_categories.each do |sub_category| %>
-                <li><%= link_to sub_category.name, simulators_filter_chart_path(filter: "sub_category", condition: sub_category.name), remote: true, method: 'POST' %></a></li>
+                <li><%= link_to sub_category.name, simulators_filter_chart_path(model: "sub_category", model_id: sub_category.id, model_name: simul.category.name), remote: true, method: 'POST' %></li>
               <% end if sub_categories %>
             <% end if @simulated_categories %>
           </ul>

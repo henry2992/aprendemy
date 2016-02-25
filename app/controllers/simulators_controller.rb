@@ -4,11 +4,7 @@ class SimulatorsController < ApplicationController
   include SimulatorsHelper
 
   def index
-    @simulators = current_user.simulators
-    @simulator_types = SimulatorType.all
-    @simulated_categories = SimulatedCategory.all
-    @series = []
-    @simulator_dates = []
+    init_class_variables
   end
 
   def new
@@ -20,14 +16,13 @@ class SimulatorsController < ApplicationController
     simulator_type = get_simulator_type params[:simulator_type_id]
     if simulator_type && create_simulator(simulator_type)
       get_individual_questions_for_simulator get_total_questions_per_category(simulator_type)
-      # show_flash
     end
     render :show
   end
 
   def show_answered_questions
     @simulator = current_user.simulators.find_by_id(params[:simulator_id])
-    @questions = @simulator.questions_answered if @simulator
+    @questions = @simulator.answered_questions_list if @simulator
     render :show
   end
 
@@ -54,10 +49,9 @@ class SimulatorsController < ApplicationController
   end
 
   def filter_chart
-    simulators = current_user.simulators.where('? = ?', params[:filter], params[:condition])
-    binding.pry
-    series = get_series(simulators)
-    respond_to {|format| format.js {render partial: "chart.js", simulators: simulators } }
+    init_class_variables
+    @filter_args = { model: params[:model], id: params[:model_id], model_name: params[:model_name]}
+    respond_to {|format| format.js {render partial: "chart.js" } }
   end
 
   private
@@ -74,6 +68,13 @@ class SimulatorsController < ApplicationController
     else
       message = "This simulation has been paused" if @simulator.update(last_paused: Time.now, time_left: current_time, status: 'paused')
     end
-    message
+  end
+
+  def init_class_variables
+    @simulators = current_user.simulators
+    @simulator_types = SimulatorType.all
+    @simulated_categories = SimulatedCategory.all
+    @series = []
+    @simulator_dates = []
   end
 end

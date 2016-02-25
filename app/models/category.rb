@@ -6,15 +6,15 @@ class Category < ActiveRecord::Base
 
   belongs_to :user
 
-  def questions_answered user_id
+  def answered_questions_list user_id
     Question.where('sub_category_id IN (?) AND id IN (?)', self.sub_categories.pluck(:id), AnsweredQuestion.where(user_id: user_id).pluck(:question_id) )
   end
 
-  def questions_answered_correctly user_id
+  def answered_correctly user_id
     Question.where('sub_category_id IN (?) AND id IN (?)', self.sub_categories.pluck(:id), AnsweredQuestion.where(user_id: user_id, correct: true).pluck(:question_id) )
   end
 
-  def questions_answered_incorrectly user_id
+  def answered_incorrectly user_id
     Question.where('sub_category_id IN (?) AND id IN (?)', self.sub_categories.pluck(:id), AnsweredQuestion.where(user_id: user_id, correct: false).pluck(:question_id) )
   end
 

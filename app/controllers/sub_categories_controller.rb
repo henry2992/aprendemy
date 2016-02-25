@@ -37,7 +37,7 @@ class SubCategoriesController < ApplicationController
 
   def show_answered_questions
     get_category && @sub_category = SubCategory.find_by_id(params[:sub_category_id])
-    @questions = @sub_category.questions_answered(current_user.id)
+    @questions = @sub_category.answered_questions_list(current_user.id)
     @question = Question.new
     render :show
   end
