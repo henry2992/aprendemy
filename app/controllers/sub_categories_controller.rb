@@ -30,7 +30,7 @@ class SubCategoriesController < ApplicationController
 
   def show
     get_category && @sub_category = SubCategory.find_by_id(params[:id])
-    @questions = @sub_category.unanswered_questions(current_user.id)
+    @questions = @sub_category.unanswered_questions(current_user.id).paginate(:page => params[:page], :per_page => 10)
     @question = Question.new
     render_js_only
   end
