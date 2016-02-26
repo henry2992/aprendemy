@@ -55,7 +55,7 @@
 </table>
 
 <%# @series << {name: 'Question answered', data: simulators_answered, color: '#7cb5ec'} %>
-<% @series << {name: 'Answered correctly', data: simulators_correct, color: '#90ed7d' }%>
-<% @series << {name: 'Answered incorrectly', data: simulators_incorrect, color: '#EA586B' } %>
+<% @series << {name: 'Correctas', data: simulators_correct, color: '#90ed7d' }%>
+<% @series << {name: 'Incorrectas', data: simulators_incorrect, color: '#EA586B' } %>
 
-<%= render "layouts/chart_info.js", title: "Simulators progress rate", categories: @simulators_date, series: @series %>
+<%= render "layouts/chart_info.js", title: "Progreso en Simuladores", categories: @simulators_date, series: @series %>

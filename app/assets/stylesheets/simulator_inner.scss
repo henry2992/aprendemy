@@ -7,16 +7,23 @@
 	background-color: rgb(218,238,246);
 	border: rgb(182,220,236) solid 1px;
 	padding-bottom: 30px;
-	position:fixed !important;
-	top: 210px;
+	position:fixed;
+	top: 240px;
 	right: 10px;
 	height: 60%;
-	overflow-y: scroll;
-	display: none;
+	overflow: hidden;
 }
 
+.simulator-visual-clues:hover{
+	overflow-y:scroll 
+}
+
+
 .simulator-btn{
-	margin-top: 25px
+	display: block;
+	margin: 10px auto;
+	width: 100px;
+
 }
 .simulator-bnt-holder{
 	text-align: center;
@@ -52,19 +59,48 @@
 	margin: -1px 0px 0px !important;
 	border-radius: 3px;
 }
+.remind-later{
+	color: green;
+	float: right;
+	font-size: 0.75em;
+}
+
+.simulator-exam-btn-holder{
+	padding: 20px 25px;
+	background-color: #FFF;
+	border-right: 1px;
+	border-left: 1px;
+	border-bottom: 1px;
+	border-top: 0;
+	border-style: solid;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	border-color: #DAE1E8 #D3DDE5 #B6C8D8;
+	box-shadow: 0px 1px 0px 0px rgba(56, 61, 72, 0.09);
+	margin: -1px 0px 0px !important;
+	border-radius: 3px;
+}
+
+.simulator-questions-btn{
+	display: inline-block;
+	width: 200px;
+}
+
 
 /*TIME HOLDER*/
 
 .simulator-time-holder{
 	text-align: center;
 	padding-top: 25px;
-	position:fixed !important;
+	position:fixed;
 	top: 87px;
 	right: 10px;
 	border: rgb(182,220,236) solid 1px;
 	background-color: white;
-	padding-bottom:17px;
-	display: none;
+	padding-bottom:17px
 }
 
 
@@ -86,7 +122,7 @@
 	color:#3FBEE8;
 	margin: 10px auto;
 	border: 2px #3FBEE8 solid;
-	width: 125px;
+	width: 90%;
 	border-radius: 15px;
 	background-color: white;
 }
@@ -156,13 +192,6 @@
 	background-color: red;
 	color: white;
 }
-
-.remind-later {
-  color: green;
-  float: right;
-  font-size: 0.75em;
-}
-
 
 /***************** MEDIA QUERIES ******************/
 
