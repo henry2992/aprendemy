@@ -1,7 +1,7 @@
 class SimulatorAnsweredQuestion < ActiveRecord::Base
-  belongs_to :user, dependent: :destroy
-  belongs_to :question, dependent: :destroy
-  belongs_to :simulator, dependent: :destroy
+  belongs_to :user
+  belongs_to :question
+  belongs_to :simulator
   enum status: [:unanswered, :correct, :wrong]
   enum marked_status: [:unmarked, :marked]
 
