@@ -5,9 +5,15 @@ $(document).on('ready page:load', function(){
     $("."+question_form).submit();
   })
 
-  $("#pauseTimerBtn").click(function(e){
-    var time_left = $("#countDownTimer").html();
-    $(".simulator-pause-form").append('<input type="hidden" name="timer" value=' + time_left + '>')
+  $("#submitTimerBtn").click(function(e){
+    var time_left;
+    if ($(".simulator-pause-form .timeValue").length) {
+      time_left = $("#countDownTimer .timeValue").val();
+      $(".simulator-pause-form .timeValue").remove();
+    } else {
+      time_left = $("#countDownTimer").html();
+    }
+    $(".simulator-pause-form").append('<input class="timeValue" type="hidden" name="timer" value=' + time_left + '>')
   })
 
   $('#chartFilter').change(function(){

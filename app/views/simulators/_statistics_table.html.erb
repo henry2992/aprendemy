@@ -10,6 +10,7 @@
       <th class="simulator-th">Tipo de Simulador</th>
       <th class="simulator-th ">Estado</th>
       <th class="simulator-th ">Preguntas Totales</th>
+      <th class="simulator-th simulator-tb-mobile" >Fecha</th>
       <th class="simulator-th simulator-tb-mobile" >Preguntas contestadas</th>
       <th class="simulator-th simulator-tb-mobile">Preguntas correctas</th>
       <th class="simulator-th simulator-tb-mobile">Preguntas incorrectas</th>
@@ -37,17 +38,18 @@
         <td class="simulator-td"><%= simulator_type.name  %></td>
         <td class="simulator-td"><%= simulator.status %></td>
         <td class="simulator-td"><%= "#{answered} / #{total}" %></td>
+        <td class="simulator-td simulator-tb-mobile"><%= simulator.updated_at.strftime("%b %d, %Y") %></td>
         <td class="simulator-td simulator-tb-mobile"><%= answered %></td>
         <td class="simulator-td simulator-tb-mobile"><%= (correct if simulator.completed?) || "-" %></td>
         <td class="simulator-td simulator-tb-mobile"><%= (incorrect if simulator.completed?) || "-"  %></td>
         <td class="simulator-td">
 
-        <%= link_to simulator_path(simulator) do %>
-                <span class="icon icon-simulator simulator-link-mobile"></span>
-                <span class="simulator-link-desktop">Ingresar al Examen</span>
-        <% end %>
+          <%= link_to simulator_path(simulator) do %>
+                  <span class="icon icon-simulator simulator-link-mobile"></span>
+                  <span class="simulator-link-desktop">Ingresar al Examen</span>
+          <% end %>
 
-        <%= link_to "", simulator_path(simulator), class: "btn btn-info simulator-start" %>
+          <%= link_to "", simulator_path(simulator), class: "btn btn-info simulator-start" %>
         </td>
       </tr>
     <% end if simulators %>
