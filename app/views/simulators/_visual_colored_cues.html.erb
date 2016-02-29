@@ -17,7 +17,7 @@
         <div class="simulator-clue clue-<%= question_meta[:id] %> clue-<%= clue_class %>">
           <%= question_meta[:serial_no] %>
         </div>
-        <% count += 1%>
+        <% count += 1 %>
       <% end %>
       <%= row_break.html_safe if (count % 4) == 0  %>
     <% end %>

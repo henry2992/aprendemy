@@ -13,9 +13,11 @@ class SimulatorsController < ApplicationController
   end
 
   def create
-    simulator_type = get_simulator_type params[:simulator_type_id]
-    if simulator_type && create_simulator(simulator_type)
-      get_individual_questions_for_simulator get_total_questions_per_category(simulator_type)
+    unless unfinished_simulator_exists
+      simulator_type = get_simulator_type params[:simulator_type_id]
+      if simulator_type && create_simulator(simulator_type)
+        get_individual_questions_for_simulator get_total_questions_per_category(simulator_type)
+      end
     end
     render :show
   end
@@ -51,9 +53,7 @@ class SimulatorsController < ApplicationController
   def finish_simulator
     @simulator = Simulator.find_by_id(params[:simulator_id])
     current_time = params[:timer]
-    mark_unanswered_questions_as_wrong
-    @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
-    @message = @simulator ? "Congratulations on completing this Simulator!" : "An error occured. Please try again."
+    update_if_greater_than_70_percent current_time
     respond_to {|format| format.js {render partial: "pause_simulator.js" } }
   end
 
@@ -67,31 +67,6 @@ class SimulatorsController < ApplicationController
 
   def simulator_params
     params.require(:simulator).permit(:name)
-  end
-
-  def save_simulator_time
-    current_time = params[:timer]
-    message = ""
-    if current_time.eql?('00:00:00')
-      message = "This simulation has been completed" if @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed')
-    else
-      message = "This simulation has been paused" if @simulator.update(last_paused: Time.now, time_left: current_time, status: 'paused')
-    end
-  end
-
-  def init_class_variables
-    @simulators = current_user.simulators
-    @simulator_types = SimulatorType.all
-    @simulated_categories = SimulatedCategory.all
-    @series = []
-    @simulator_dates = []
-  end
-
-  def mark_unanswered_questions_as_wrong
-     unanswered_questions = @simulator.answered_not
-     unanswered_questions.each do |question|
-       question.simulator_answered_questions.create(user_id: current_user.id, status: :wrong)
-     end
   end
 
 end

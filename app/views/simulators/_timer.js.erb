@@ -1,7 +1,39 @@
 <script>
   var testTimeUp = function(){
-    $("#pauseTimerBtn").click();
+    $("#finishTimerBtn").click();
   }
+
+  $(".submitForm").click(function(){
+    $("#finishTimerBtn").click();
+  })
+
+  $("#pauseLink").click(function() {
+    if ($(this).data('status').toLowerCase() === "pause") {
+      $(this).data('status', 'resume')
+      $("#submitTimerBtn").click();
+    } else {
+      $(this).data('status', 'pause')
+    }
+    $("#pauseTimerBtn").click();
+  })
+
+  $(".btn.pauseSimulator").on('click', function(){
+    $("#pauseTimerBtn").click();
+  })
+
+
+  var inFormOrLink;
+  $('a').on('click', function() { inFormOrLink = true; });
+  $('form').bind('submit', function() { inFormOrLink = true; });
+
+  $(window).on("beforeunload", function() {
+      var close = inFormOrLink ? "Do you really want to close?" : $("#submitTimerBtn").click() ;
+      return "You are currently on a simulator."
+  })
+  $(window).on("unload", function(){
+    window.removeEventListener('beforeunload', listener, false);
+  })
+
   <% if @simulator %>
     var hours_left = '<%= @simulator.time_left.hour %>'
     var minutes_left = '<%= @simulator.time_left.min %>'

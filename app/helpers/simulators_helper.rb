@@ -31,23 +31,50 @@ module SimulatorsHelper
     end
   end
 
-  def get_series(simulators)
-     @series = []; @simulators_date = []; simulators_answered = []; simulators_correct = []; simulators_incorrect = []
-     answered = 0; correct = 0; incorrect = 0; total = 0; questions_count = 0
-
-     simulators.each do |simulator|
-       questions_count = simulator.questions.count
-       answered = simulator.answered_questions_list.count
-       correct = simulator.answered_correctly.count;
-       simulators_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100)
-       incorrect = simulator.answered_incorrectly.count
-       simulators_incorrect << ((incorrect.to_f/(answered > 0 ? answered.to_f : 1)) * 100)
-       @simulators_date << time_ago_in_words(simulator.updated_at, include_seconds: true) + " ago"
-
-     end if simulators
-
-    # @series << {name: 'Question answered', data: simulators_answered, color: '#7cb5ec'}
-     @series << {name: 'Answered correctly', data: simulators_correct, color: '#90ed7d' }
-     @series << {name: 'Answered incorrectly', data: simulators_incorrect, color: '#EA586B' }
+  def save_simulator_time
+    current_time = params[:timer]
+    message = ""
+    if current_time.eql?('00:00:00')
+      message = "This simulation has been completed" if @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed')
+    else
+      message = "This simulation has been paused" if @simulator.update(last_paused: Time.now, time_left: current_time || @simulator.time_left, status: 'paused')
+    end
   end
+
+  def init_class_variables
+    @simulators = current_user.simulators.order(updated_at: :asc)
+    @simulator_types = SimulatorType.all
+    @simulated_categories = SimulatedCategory.all
+    @series = []
+    @simulator_dates = []
+  end
+
+  def mark_unanswered_questions_as_wrong unanswered_questions
+     unanswered_questions.each do |question|
+       question.simulator_answered_questions.find_or_create_by(user_id: current_user.id, status: :wrong, simulator_id: @simulator.id)
+     end
+  end
+
+  def unfinished_simulator_exists
+    @simulator = current_user.simulators.paused.first
+    @questions = @simulator.questions if @simulator
+    @simulated_categories = SimulatedCategory.all
+    flash[:notice] = "This is your previously incompleted simulator. \
+        You are not allowed to start a fresh one until you complete this one"
+  end
+
+  def update_if_greater_than_70_percent current_time
+    unanswered_questions = @simulator.answered_not
+    questions_count = @simulator.questions.count
+    average_unanswered = (unanswered_questions.count / questions_count) * 100
+    if average_unanswered >= 70
+      mark_unanswered_questions_as_wrong unanswered_questions
+      @message = @simulator ? "Congratulations on completing this Simulator!" : "An error occured. Please try again."
+      @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
+    else
+      @message = "You haven't answered 70% of the questions. Your simulator is only paused, not completed"
+      @simulator.update(time_completed: Time.now, time_left: current_time, status: 'paused') if @simulator
+    end
+  end
+
 end

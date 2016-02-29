@@ -1,0 +1,6 @@
+<% unless @simulator.completed? %>
+  <%= button_to 'Pause here', simulator_pause_simulator_path(@simulator), :id => 'submitTimerBtn', :class => "hide", :form_class => "simulator-pause-form", remote: true %>
+  <!-- pseudo pause -->
+  <%=link_to "Pause here", "#", :id => 'pauseTimerBtn', :class => "hide" %>
+  <%=link_to "Pause here", "#", :data => {'toggle' => "modal", 'target' => "#pausedSimulationModal", 'backdrop' => "static", 'keyboard' => "false", :disable_with => 'Paused. . .',  'status' => 'pause' }, :id => 'pauseLink', :class => "btn btn-success simulator-btn" %>
+<% end %>
