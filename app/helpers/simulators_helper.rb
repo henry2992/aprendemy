@@ -23,8 +23,8 @@ module SimulatorsHelper
     @simulator = Simulator.create(simulator_type_id: simulator_type.id, user_id: current_user.id, time_left: simulator_type.time_duration)
   end
 
-  def check_for_time_left
-    @simulator.update(time_left: @simulator.simulator_type.time_duration) unless @simulator.time_left
+  def check_for_time_left simulator
+    simulator.update(time_left: simulator.simulator_type.time_duration) unless simulator.time_left
   end
 
   def show_flash
@@ -60,11 +60,13 @@ module SimulatorsHelper
   end
 
   def unfinished_simulator_exists
-    @simulator = current_user.simulators.paused.first
-    @questions = @simulator.questions if @simulator
-    @simulated_categories = SimulatedCategory.all
-    flash[:notice] = "This is your previously incompleted simulator. \
-        You are not allowed to start a fresh one until you complete this one"
+    unless current_user.simulators.empty?
+      @simulator = current_user.simulators.paused.first
+      @questions = @simulator.questions if @simulator
+      @simulated_categories = SimulatedCategory.all
+      flash.now[:notice] = "This is your previously incompleted simulator. \
+          You are not allowed to start a fresh one until you complete this one"
+    end
   end
 
   def update_if_greater_than_70_percent current_time

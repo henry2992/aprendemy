@@ -1,11 +1,8 @@
 <script>
   var testTimeUp = function(){
+    window.removeEventListener('beforeunload', listener, false);
     $("#finishTimerBtn").click();
   }
-
-  $(".submitForm").click(function(){
-    $("#finishTimerBtn").click();
-  })
 
   $("#pauseLink").click(function() {
     if ($(this).data('status').toLowerCase() === "pause") {
@@ -27,10 +24,11 @@
   $('form').bind('submit', function() { inFormOrLink = true; });
 
   $(window).on("beforeunload", function() {
-      var close = inFormOrLink ? "Do you really want to close?" : $("#submitTimerBtn").click() ;
-      return "You are currently on a simulator."
+    $("#submitTimerBtn").click()
+    var close = inFormOrLink ? '' : "Do you really want to close?"  ;
+    return "You are currently on a simulator."
   })
-  
+
   $(window).on("unload", function(){
     window.removeEventListener('beforeunload', listener, false);
   })
