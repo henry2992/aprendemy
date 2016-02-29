@@ -74,7 +74,7 @@
 	display: inline-block;
 }
 .modal-backdrop.in {
-    opacity: 0.8 !important;
+    opacity: 0.9 !important;
 }
 
 .question-img{
@@ -115,12 +115,12 @@
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) {
 
-	
+
 
 	.simulator-tb-mobile{
 		display: table-cell;
 	}
-	
+
 	.simulator-link-mobile{
 		display: none !important;
 	}
@@ -129,7 +129,7 @@
 		display: block;
 	}
 
-	
+
 
 }
 

@@ -18,5 +18,3 @@
 //= require turbolinks
 //= require flipclock.min
 //= require_tree .
-
-

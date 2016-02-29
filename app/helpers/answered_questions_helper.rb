@@ -21,7 +21,8 @@ module AnsweredQuestionsHelper
   end
 
   def clue_status answered, marked
-    (answered ? 'answered' : (marked ? 'later' : ''))
+    # (answered ? 'answered' : (marked ? 'later' : ''))
+    (marked ? 'later' : (answered ? 'answered' : '' ))
   end
 
   def answered_question_meta question_id, sub_question, count
