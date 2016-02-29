@@ -23,6 +23,10 @@ module SimulatorsHelper
     @simulator = Simulator.create(simulator_type_id: simulator_type.id, user_id: current_user.id, time_left: simulator_type.time_duration)
   end
 
+  def check_for_time_left
+    @simulator.update(time_left: @simulator.simulator_type.time_duration) unless @simulator.time_left
+  end
+
   def show_flash
     if @questions
       flash[:success] = "simulator has been created successfully"
@@ -67,10 +71,9 @@ module SimulatorsHelper
     unanswered_questions = @simulator.answered_not
     questions_count = @simulator.questions.count
     average_unanswered = (unanswered_questions.count / questions_count) * 100
-    if average_unanswered >= 70
+    if average_unanswered >= 70 || current_time.eql?('00:00:00')
       mark_unanswered_questions_as_wrong unanswered_questions
-      @message = @simulator ? "Congratulations on completing this Simulator!" : "An error occured. Please try again."
-      @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
+      @message = current_time.eql?('00:00:00') ? "Unfortunately, your time is up!" : "Congratulations on completing this Simulator!"; @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
     else
       @message = "You haven't answered 70% of the questions. Your simulator is only paused, not completed"
       @simulator.update(time_completed: Time.now, time_left: current_time, status: 'paused') if @simulator

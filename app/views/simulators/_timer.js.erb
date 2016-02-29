@@ -30,6 +30,7 @@
       var close = inFormOrLink ? "Do you really want to close?" : $("#submitTimerBtn").click() ;
       return "You are currently on a simulator."
   })
+  
   $(window).on("unload", function(){
     window.removeEventListener('beforeunload', listener, false);
   })

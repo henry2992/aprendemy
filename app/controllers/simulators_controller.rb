@@ -19,6 +19,7 @@ class SimulatorsController < ApplicationController
         get_individual_questions_for_simulator get_total_questions_per_category(simulator_type)
       end
     end
+    check_for_time_left
     render :show
   end
 
@@ -32,6 +33,7 @@ class SimulatorsController < ApplicationController
     @simulator = current_user.simulators.includes(:questions).find_by_id(params[:id])
     @questions = @simulator.questions if @simulator
     @simulated_categories = SimulatedCategory.all
+    check_for_time_left
   end
 
   def update
