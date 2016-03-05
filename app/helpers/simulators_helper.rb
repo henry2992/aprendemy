@@ -16,7 +16,6 @@ module SimulatorsHelper
       @questions = @questions + simul.category.questions.limit(questions_per_category).order("RANDOM()")
     end
     question_ids = @questions.map { |q|  q.id }
-    binding.pry
     @questions = @questions.paginate(page: params[:page], per_page: 30)
     QC.enqueue "SimulatorAnsweredQuestion.create_simulation_questions", question_ids, current_user.id, @simulator.id
   end
