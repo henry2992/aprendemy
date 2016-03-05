@@ -8,6 +8,7 @@
 						<div class="simulator-test-holder col-sm-9 ">
 
 							<% @simulated_categories.each do |simulated_category| %>
+							<% binding.pry %>
 								<% category = simulated_category.category %>
 								<div class="simulator-heading">
 									<h3><%= category.name %></h3>
@@ -43,6 +44,8 @@
 								<% end %> <!--sub_category loop -->
 
 							<% end if @simulated_categories && @simulator %><!--simulated_category loop -->
+
+							<%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
 							<!-- FINAL BTN -->
 							<div class="simulator-bnt-holder">
 

@@ -16,6 +16,8 @@ module SimulatorsHelper
       @questions = @questions + simul.category.questions.limit(questions_per_category).order("RANDOM()")
     end
     question_ids = @questions.map { |q|  q.id }
+    binding.pry
+    @questions = @questions.paginate(page: params[:page], per_page: 30)
     QC.enqueue "SimulatorAnsweredQuestion.create_simulation_questions", question_ids, current_user.id, @simulator.id
   end
 
@@ -60,7 +62,7 @@ module SimulatorsHelper
   end
 
   def unfinished_simulator_exists
-    unless current_user.simulators.empty?
+    unless current_user.simulators.paused.empty?
       @simulator = current_user.simulators.paused.first
       @questions = @simulator.questions if @simulator
       @simulated_categories = SimulatedCategory.all
@@ -72,8 +74,8 @@ module SimulatorsHelper
   def update_if_greater_than_70_percent current_time
     unanswered_questions = @simulator.answered_not
     questions_count = @simulator.questions.count
-    average_unanswered = (unanswered_questions.count / questions_count) * 100
-    if average_unanswered >= 70 || current_time.eql?('00:00:00')
+    average_unanswered = (unanswered_questions.count.to_f / questions_count.to_f) * 100
+    if average_unanswered < 70 || current_time.eql?('00:00:00')
       mark_unanswered_questions_as_wrong unanswered_questions
       @message = current_time.eql?('00:00:00') ? "Unfortunately, your time is up!" : "Congratulations on completing this Simulator!"; @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
     else
