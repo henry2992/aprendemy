@@ -29,13 +29,14 @@ Rails.application.routes.draw do
 
   # USERS
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations' }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: "users/sessions" }
 
   resources :sessions, only: [:new, :create, :destroy]
 
   devise_scope :user do
     match '/sessions/user', to: 'devise/sessions#create', via: :post
   end
+
 
   # LIVE CLASSES
   get '/live_classes' => 'live_classes#index'

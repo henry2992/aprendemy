@@ -1,4 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
+
+  skip_before_filter :check_license
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
