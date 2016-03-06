@@ -184,9 +184,21 @@
 					<div class="col-sm-12">
 						<%= f.password_field :password_confirmation, class: "input-text", :placeholder => "Confirmación de Password", autocomplete: "off" %>
 					</div>
+					<br>
+
+					<div class="col-sm-12" >
+						<div class= "input-text" >
+			                <%= f.label :Género, class: "gender-text"%>
+			                <%= f.radio_button :gender, true %><%= image_tag("avatar-girl.png", :class=> 'img-gender' ) %>
+			                <%= f.radio_button :gender, false %><%= image_tag("avatar-guy", :class=> 'img-gender') %>
+			                </div>
+		            </div>
+		            
 					<div class="col-sm-12">
 						<%= f.submit "Reclama tu prueba gratis", class: "free-trial-button" %>
 					</div>
+
+
 				  </div>
 				<% end %>
 			</div>

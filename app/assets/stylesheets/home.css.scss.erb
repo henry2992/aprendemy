@@ -61,6 +61,7 @@
 	width: 100px;
 	border-radius: 50%;
 	border: 7px solid #3FBEE8;
+  height: 100px !important;
 }
 
 .rank-label-container {
@@ -73,11 +74,6 @@
     padding: 5px 10px 5px 10px;
     border-radius: 27px;
 }
-
-
-
-
-
 
 .app-navbar-heading{
 	font-size: 1em;
@@ -530,6 +526,10 @@ Animation Settings
   background-color: rgb(246,246,246);
 }
 
+.divider{
+  border-color: rgb(54,54,54);
+}
+
 .payment-heading-text {
   text-align: center;
   position: relative;
@@ -546,19 +546,14 @@ Animation Settings
 
 .payments-img-container{
   width: 100%;
-  height: 200px;
-  background: url(<%= asset_path('footer.png')%>) ;
-  background-position: center;
-
+  height: 60px;
+  background: url(<%= asset_path('footer.png')%>);
   background-repeat: none;
-
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
-  /*background-size: 100% 100px;*/
-  margin-top: -80px;
+  margin-top: 0px;
   position: relative;
   border-bottom: 1px solid black;
 }
@@ -569,15 +564,10 @@ Animation Settings
   margin-top: 50px;
 }
 .payment-tab{
-
-  width: 80%;
   background: #fff;
   box-shadow: 0px 0px 40px #888;
   margin-top: 10px;
-  margin-left: 10%;
-  /*border: 1px solid black;*/
   border-radius: 10px;
-
   position: relative;
 }
 .payment-tab-heading{
@@ -600,6 +590,12 @@ Animation Settings
   font-weight: bold;
 }
 
+.price-title{
+  text-align:center;
+  margin: 50px 0  !important;
+  font-size: 3em;
+}
+
 .price{
   font-size: 2.5em;
 color: rgb(48, 122, 186)
@@ -609,33 +605,82 @@ color: rgb(48, 122, 186)
   display: inline-block;
   padding-left: 15px;
 }
+
+
+#btnClick{
+  text-align: center !important;
+  margin: 15px 10%;
+  width: 80%;
+}
+
 .btn-payments{
   text-align: center; 
   margin: 45px 0 25px 0 !important;
 }
 
 .btn-payments a {
-  
   background-color: rgb(232,136,46);
   border-color: rgb(232,136,46);
+}
+
+.btn-payments a:hover {
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+.btn-payments a:active:focus{
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+.btn-payments a:active:hover{
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+
+.btn-payments a:focus {
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+
+/*PAyment Instructions*/
+
+
+.bank-payments{
+  background-color: rgb(254, 216, 49 );
+  padding: 25px;
+
+}
+
+.payment-instructions{
+  background-color: white;
+  border: 2px solid rgb(254, 216, 49 );
+  margin-top: 25px;
+}
+.banco-pichincha-logo{
+  text-align: center;
+}
+.banco-pichincha-logo img{
+  width:250px;
+  margin: 25px 0 35px;
+}
+
+.payment-intructions-texts{
+  padding: 15px;
 }
 
 /*Payment Steps*/
 
 .payment-steps{
-  margin-top: 100px;
+/*  margin-top: 100px;*/
   margin-bottom: 50px;
 }
 .confirm-payment{
   margin-top: 50px;
-  width: 80%;
   height: 300px;
   background: #fff;
-  box-shadow: 0px 0px 40px #888;
-  margin-left: 10%;
   border-radius: 10px;
   position: relative;
   text-align: center;
+  border: 2px solid rgb(48, 122, 182);
 }
 
 .whatsapp {
@@ -644,7 +689,7 @@ color: rgb(48, 122, 186)
   margin: 20px auto;
   border-radius: 50%;
   height: 100px;
-  background: url(../images/whatsapp.png) center no-repeat;
+  background: url(<%= asset_path('whatsapp.png')%>) center no-repeat;
 }
 
 .email {
@@ -653,10 +698,54 @@ color: rgb(48, 122, 186)
   margin: 20px auto;
   border-radius: 50%;
   height: 100px;
-  background: url(../images/email.png) center no-repeat;
-
+  background: url(<%= asset_path('email.png')%>) center no-repeat;
 }
 
+.phone {
+  width: 100px;
+  background-color: rgb(48, 122, 182) !important;
+  margin: 20px auto;
+  border-radius: 50%;
+  height: 100px;
+  background: url(<%= asset_path('phone.png')%>) center no-repeat;
+}
+
+
+/************** USER PROFILE EDIT ****************/
+
+.edit-profile-container{
+  padding-top: 45px;
+}
+.edit-profile-heading{
+  margin: 20px 0 !important;
+}
+.avatar-profile{
+  width: 200px !important;
+  height: 200px !important;
+}
+.change-picture-tex{
+  margin: 20px 0 !important;
+}
+.personal-info h3{
+  margin: 0 0 30px 0 !important;
+}
+
+.form-group{
+  margin-bottom: 15px !important;
+}
+
+.img-gender{
+  width: 35px !important;
+  margin-left: 5px;
+  margin-right: 30px;
+  border-radius: 50%;
+}
+
+/************** USER REGISTRATION CONTAINER *********************/
+
+.new-registration-holder{
+  margin-top: 60px;
+}
 
 
 
@@ -686,6 +775,11 @@ color: rgb(48, 122, 186)
 	.navbar-mobile-bg{
 		background-color: white;
 	}
+
+  .payments-img-container {
+    height: 110px;
+    background-position: initial;
+  }
 	
 	
 
@@ -722,9 +816,10 @@ color: rgb(48, 122, 186)
 	}
 	.img-responsive{
 		width: 100px;
-		
+    height: 100px !important;
 	}
-   	.img-text{
+
+  .img-text{
 	   	width: 100px;
 	}
 	.nav-info-container{
@@ -777,6 +872,17 @@ color: rgb(48, 122, 186)
 	    0%   {left: -200px;}
 	    100% {left: 0px;}
 	}
+
+  /*Payments*/
+
+  .payments-img-container {
+      height: 130px;
+      background-position: initial;
+  }
+
+  .banco-pichincha-logo img{
+    width:350px;
+  }
 }
 
 /* Desktops and laptops ----------- */
@@ -811,6 +917,12 @@ color: rgb(48, 122, 186)
 	    0%   {left: -200px;}
 	    100% {left: 40px;}
 	}
+
+  .payments-img-container {
+    height: 200px;
+    background-position: center;
+    margin-top: -60px;
+  }
 
 }
 

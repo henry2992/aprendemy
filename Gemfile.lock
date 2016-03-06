@@ -82,6 +82,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
+    flipclockjs-rails (0.7.7)
+      jquery-rails (>= 1.0.17)
     fog (1.37.0)
       fog-aliyun (>= 0.1.0)
       fog-atmos
@@ -372,6 +374,7 @@ DEPENDENCIES
   carrierwave (~> 0.10.0)
   coffee-rails (~> 4.1.0)
   devise
+  flipclockjs-rails (~> 0.7.7)
   fog
   fog-aws
   font-awesome-rails

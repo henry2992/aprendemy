@@ -32,6 +32,10 @@ gem "queue_classic", "~> 3.0.0"
 
 gem 'will_paginate', '~> 3.0.6'
 
+gem 'flipclockjs-rails', '~> 0.7.7'
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-nav'
