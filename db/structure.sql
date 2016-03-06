@@ -239,7 +239,40 @@ ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
 
 
 --
--- Name: live_classes; Type: TABLE; Schema: public; Owner: -
+-- Name: licenses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE licenses (
+    id integer NOT NULL,
+    user_id integer,
+    plan integer DEFAULT 10,
+    days_left integer DEFAULT 10,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: licenses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE licenses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: licenses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE licenses_id_seq OWNED BY licenses.id;
+
+
+--
+-- Name: live_classes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE live_classes (
@@ -275,7 +308,76 @@ ALTER SEQUENCE live_classes_id_seq OWNED BY live_classes.id;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: -
+-- Name: point_actions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE point_actions (
+    id integer NOT NULL,
+    action character varying,
+    description character varying,
+    points_alloted integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: point_actions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE point_actions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: point_actions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE point_actions_id_seq OWNED BY point_actions.id;
+
+
+--
+-- Name: points; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE points (
+    id integer NOT NULL,
+    owner_id integer,
+    owner_type character varying,
+    points integer,
+    point_action_id integer,
+    recipient_id integer,
+    recipient_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: points_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE points_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: points_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE points_id_seq OWNED BY points.id;
+
+
+--
+-- Name: questions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE questions (
@@ -587,7 +689,28 @@ ALTER TABLE ONLY choices ALTER COLUMN id SET DEFAULT nextval('choices_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY live_classes ALTER COLUMN id SET DEFAULT nextval('live_classes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY point_actions ALTER COLUMN id SET DEFAULT nextval('point_actions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY points ALTER COLUMN id SET DEFAULT nextval('points_id_seq'::regclass);
 
 
 --
@@ -671,7 +794,15 @@ ALTER TABLE ONLY choices
 
 
 --
--- Name: live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY licenses
+    ADD CONSTRAINT licenses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY live_classes
@@ -679,7 +810,23 @@ ALTER TABLE ONLY live_classes
 
 
 --
--- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: point_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY point_actions
+    ADD CONSTRAINT point_actions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: points_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY points
+    ADD CONSTRAINT points_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY questions
@@ -862,4 +1009,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160209182947');
 INSERT INTO schema_migrations (version) VALUES ('20160210012929');
 
 INSERT INTO schema_migrations (version) VALUES ('20160210100402');
+
+INSERT INTO schema_migrations (version) VALUES ('20160303000148');
+
+INSERT INTO schema_migrations (version) VALUES ('20160305074513');
+
+INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 

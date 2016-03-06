@@ -74,13 +74,22 @@ module SimulatorsHelper
     unanswered_questions = @simulator.answered_not
     questions_count = @simulator.questions.count
     average_unanswered = (unanswered_questions.count.to_f / questions_count.to_f) * 100
+    update_simulator unanswered_questions, average_unanswered, current_time
+  end
+
+  def update_simulator unanswered_questions, average_unanswered, current_time
     if average_unanswered < 70 || current_time.eql?('00:00:00')
       mark_unanswered_questions_as_wrong unanswered_questions
       @message = current_time.eql?('00:00:00') ? "Unfortunately, your time is up!" : "Congratulations on completing this Simulator!"; @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
+      assign_points_to_current_user
     else
       @message = "You haven't answered 70% of the questions. Your simulator is only paused, not completed"
       @simulator.update(time_completed: Time.now, time_left: current_time, status: 'paused') if @simulator
     end
   end
 
+  def assign_points_to_current_user
+    point_action = Point.find_by_action(:finish_simulator)
+    Point.create(owner_id: @simulator.id, owner_type: 'Simulator', points: @simulator.points, point_action_id: point_action.id, recipient_id: current_user.id, recipient_type: 'User') if @simulator.completed?
+  end
 end

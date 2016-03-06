@@ -12,7 +12,7 @@
 		<%end%>
 
 		<div class="rank-label-container">
-	        <span class="label label-default rank-label">100 puntos</span>
+	        <span class="label label-default rank-label"><%= current_user.points %> puntos</span>
 	    </div>
 	</div>
 
@@ -23,9 +23,9 @@
 
 
 	<p class="app-navbar-text">
-		Tu licencia expira en: 
+		Tu licencia expira en:
 		<br>
-		15 días
+		<%= current_user.license.days_left %> días
 		<br>
 		<a href="/payments">Haste Premium</a>
 	</p>
