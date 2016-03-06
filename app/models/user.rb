@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
-  after_create :create_license
+  after_create :create_user_license
 
   enum role: [:free, :paid, :admin]
 
