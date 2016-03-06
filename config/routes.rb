@@ -38,6 +38,6 @@ Rails.application.routes.draw do
   # LIVE CLASSES
   get '/live_classes' => 'live_classes#index'
 
-  get '/payments'   => 'home#payments'
+  get '/payments'   => 'home#payments', as: :payments
 
 end

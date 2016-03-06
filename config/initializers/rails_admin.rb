@@ -45,4 +45,23 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.label_methods.unshift(:rails_admin_displayed_label)
+  config.model Point do
+    edit do
+      field :point_action, :belongs_to_association
+      field :points
+      field :recipient_type
+      field :recipient_id
+      field :owner_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+      field :owner_type, :hidden do
+        default_value do
+          'User'
+        end
+      end
+    end
+  end
 end

@@ -19,6 +19,10 @@ class Simulator < ActiveRecord::Base
     end
   end
 
+  def points
+    Point.where(recipient_id: self.id, recipient_type: 'Simulator').sum(:points)
+  end
+
   private
 
   def category_filter
@@ -48,6 +52,5 @@ class Simulator < ActiveRecord::Base
       false
     end
   end
-
 
 end

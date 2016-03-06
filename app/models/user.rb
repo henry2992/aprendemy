@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
+  after_create :create_license
+
   enum role: [:free, :paid, :admin]
 
   mount_uploader :image, PictureUploader
@@ -15,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :simulators
   has_many :answered_questions
   has_many :simulator_answered_questions
+  has_one :license
 
   def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -26,5 +29,11 @@ class User < ActiveRecord::Base
 	  end
 	end
 
+  def points
+    Point.where(recipient_id: self.id, recipient_type: 'User').sum(:points)
+  end
 
+  def create_license
+    self.create_license unless self.admin?
+  end
 end
