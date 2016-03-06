@@ -16,7 +16,7 @@ module SimulatorsHelper
       @questions = @questions + simul.category.questions.limit(questions_per_category).order("RANDOM()")
     end
     question_ids = @questions.map { |q|  q.id }
-    @questions = @questions.paginate(page: params[:page], per_page: 30)
+    # create questions so that they'd be available even when the simulator is closed.
     QC.enqueue "SimulatorAnsweredQuestion.create_simulation_questions", question_ids, current_user.id, @simulator.id
   end
 
@@ -89,7 +89,7 @@ module SimulatorsHelper
   end
 
   def assign_points_to_current_user
-    point_action = Point.find_by_action(:finish_simulator)
+    point_action = PointAction.find_by_action(:finish_simulator)
     Point.create(owner_id: @simulator.id, owner_type: 'Simulator', points: @simulator.points, point_action_id: point_action.id, recipient_id: current_user.id, recipient_type: 'User') if @simulator.completed?
   end
 end

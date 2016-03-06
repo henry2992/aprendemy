@@ -12,8 +12,9 @@ class SimulatorAnsweredQuestionsController < ApplicationController
 
   def create
     get_simulator_and_question
-    @answered_question = @question.simulator_answered_questions.create(answered_question_params)
+    @answered_question = SimulatorAnsweredQuestion.find_or_create_by(simulator_id: @simulator.id, question_id: @question.id, user_id: current_user.id)
     if @answered_question
+      @answered_question.update(answered_question_params)
       get_clue_class
       render :show
     end
