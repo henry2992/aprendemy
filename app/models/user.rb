@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
-  after_create :create_user_license
+  after_create :create_license
 
   enum role: [:free, :paid, :admin]
 
@@ -37,6 +37,6 @@ class User < ActiveRecord::Base
   end
 
   def create_license
-    # self.create_license unless self.admin?
+    License.create(user: self) unless self.admin?
   end
 end

@@ -24,11 +24,7 @@
 
 	<p class="app-navbar-text">
 		Tu licencia expira en:
-		<br>
-		<!-- 
-		<%= %> días
-		 -->
-		<br>
+		<br><%= current_user.license.days_left %> días<br>
 		<a href="/payments">Haste Premium</a>
 	</p>
 
