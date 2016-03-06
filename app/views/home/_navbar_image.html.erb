@@ -2,13 +2,13 @@
 
 	<div class="profile-header-img">
 		<% if (current_user.image.present?) %>
+			<%= image_tag(current_user.image, class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
+		<% else %>
 			<% if (current_user.gender == false) %>
 				<%= image_tag("avatar-guy", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
 			<% else %>
 				<%= image_tag("avatar-girl", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
 			<%end %>
-		<% else %>
-			<%= image_tag(current_user.image, class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
 		<%end%>
 
 		<div class="rank-label-container">
@@ -25,7 +25,9 @@
 	<p class="app-navbar-text">
 		Tu licencia expira en:
 		<br>
-		<%= current_user.license.days_left %> días
+		<!-- 
+		<%= %> días
+		 -->
 		<br>
 		<a href="/payments">Haste Premium</a>
 	</p>

@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   def check_license
-    user_license = current_user.license
-    unless current_user.admin? || user_license.premium?
-      redirect_to payments_path if user_license.expired?
-      calculate_license_countdown(user_license) if user_license.free?
-    end
+    # user_license = current_user.license
+    # unless current_user.admin? || user_license.premium?
+      # redirect_to payments_path if user_license.expired?
+      # calculate_license_countdown(user_license) if user_license.free?
+    # end
   end
 
   def calculate_license_countdown license

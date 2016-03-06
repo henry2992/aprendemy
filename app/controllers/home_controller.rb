@@ -21,7 +21,6 @@ class HomeController < ApplicationController
   end
 
   def payments
-    
   end
 
 

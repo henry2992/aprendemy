@@ -239,7 +239,7 @@ ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
 
 
 --
--- Name: licenses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: licenses; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE licenses (
@@ -272,7 +272,7 @@ ALTER SEQUENCE licenses_id_seq OWNED BY licenses.id;
 
 
 --
--- Name: live_classes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: live_classes; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE live_classes (
@@ -308,7 +308,7 @@ ALTER SEQUENCE live_classes_id_seq OWNED BY live_classes.id;
 
 
 --
--- Name: point_actions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: point_actions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE point_actions (
@@ -341,7 +341,7 @@ ALTER SEQUENCE point_actions_id_seq OWNED BY point_actions.id;
 
 
 --
--- Name: points; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: points; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE points (
@@ -377,7 +377,7 @@ ALTER SEQUENCE points_id_seq OWNED BY points.id;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: questions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE questions (
@@ -553,7 +553,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-02-26 20:07:55.726025'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-03-06 03:54:06.127223'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -794,7 +794,7 @@ ALTER TABLE ONLY choices
 
 
 --
--- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY licenses
@@ -802,7 +802,7 @@ ALTER TABLE ONLY licenses
 
 
 --
--- Name: live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY live_classes
@@ -810,7 +810,7 @@ ALTER TABLE ONLY live_classes
 
 
 --
--- Name: point_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: point_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY point_actions
@@ -818,7 +818,7 @@ ALTER TABLE ONLY point_actions
 
 
 --
--- Name: points_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: points_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY points
@@ -826,7 +826,7 @@ ALTER TABLE ONLY points
 
 
 --
--- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
