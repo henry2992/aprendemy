@@ -38,9 +38,13 @@
 											<% end %>
 
 										</div>
-									</div>
-								<% end %> <!--sub questions check -->
-							<% end %> <!--sub_category loop -->
+									<% end %> <!--sub questions check -->
+								<% end %> <!--sub_category loop -->
+
+							<% end if @simulated_categories && @simulator %><!--simulated_category loop -->
+
+							<!-- FINAL BTN -->
+							<div class="simulator-bnt-holder">
 
 						<% end if @simulated_categories && @simulator %><!--simulated_category loop -->
 						<!-- FINAL BTN -->

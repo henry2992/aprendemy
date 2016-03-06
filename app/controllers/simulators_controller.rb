@@ -26,12 +26,14 @@ class SimulatorsController < ApplicationController
   def show_answered_questions
     @simulator = current_user.simulators.find_by_id(params[:simulator_id])
     @questions = @simulator.answered_questions_list if @simulator
+    # @questions = @questions.paginate(page: params[:page], per_page: 3)
     render :show
   end
 
   def show
     @simulator = current_user.simulators.includes(:questions).find_by_id(params[:id])
     @questions = @simulator.questions if @simulator
+    # @questions = @questions.paginate(page: params[:page], per_page: 3)
     @simulated_categories = SimulatedCategory.all
     check_for_time_left(@simulator) if @simulator
   end

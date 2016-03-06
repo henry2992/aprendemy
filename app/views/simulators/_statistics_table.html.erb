@@ -33,7 +33,6 @@
       <% simulators_incorrect << ((incorrect.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
 
       <% @simulators_date << time_ago_in_words(simulator.updated_at, include_seconds: true) + " ago" %>
-      <%# binding.pry %>
       <tr class="table-category">
         <td class="simulator-td"><%= simulator_type.name  %></td>
         <td class="simulator-td"><%= simulator.status %></td>
