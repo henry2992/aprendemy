@@ -37,6 +37,6 @@ class User < ActiveRecord::Base
   end
 
   def create_license
-    self.create_license unless self.admin?
+    # self.create_license unless self.admin?
   end
 end
