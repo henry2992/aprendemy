@@ -7,6 +7,7 @@
   $("#pauseLink").click(function() {
     if ($(this).data('status').toLowerCase() === "pause") {
       $(this).data('status', 'resume')
+      window.removeEventListener('beforeunload', listener, false);
       $("#submitTimerBtn").click();
     } else {
       $(this).data('status', 'pause')

@@ -31,7 +31,9 @@ gem "fog-aws"
 gem "queue_classic", "~> 3.0.0"
 
 gem 'will_paginate', '~> 3.0.6'
+
 gem 'flipclockjs-rails', '~> 0.7.7'
+
 
 
 group :development, :test do
