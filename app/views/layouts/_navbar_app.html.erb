@@ -24,13 +24,17 @@
                                 <div class="navbar-content">
                                     <div class="row">
                                         <div class="col-md-5 avatar-container">
-                                            <% if (current_user.image != nil) %>
-                                                <img src="<%= current_user.image%>" class="img-responsive" alt="Apredemy-foto-usuario">
+                                            <% if (current_user.image.present?) %>
+                                                <% if (current_user.gender == false) %>
+                                                    <%= image_tag("avatar-guy", class: "img-responsive", alt: "Apredemy-avatar") %>
+                                                <% else %>
+                                                    <%= image_tag("avatar-girl", class: "img-responsive", alt: "Apredemy-avatar") %>
+                                                <%end %>  
                                             <% else %>
-                                                <%= image_tag("avatar.png", class: "img-responsive", alt: "Apredemy-avatar") %>
+                                                <%= image_tag(current_user.image, class: "img-responsive", alt: "Apredemy-avatar") %>
                                             <%end%>
                                             <p class="text-center small img-text">
-                                                <a href="#">Cambiar Foto de Perfíl</a>
+                                                 <%= link_to 'Cambiar Foto de Perfíl', edit_user_registration_path %>
                                             </p>
                                         </div>
                                         <div class="col-md-7 nav-info-container">

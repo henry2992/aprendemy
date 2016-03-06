@@ -4,11 +4,11 @@
 }
 
 .simulator-visual-clues{
-	background-color: rgb(218,238,246);
-	border: rgb(182,220,236) solid 1px;
+	background-color: #daeef6;
+	border: #b6dcec solid 1px;
 	padding-bottom: 30px;
-	position:fixed;
-	top: 240px;
+	position: fixed !important;
+	top: 195px;
 	right: 10px;
 	height: 60%;
 	overflow: hidden;
@@ -95,12 +95,12 @@
 .simulator-time-holder{
 	text-align: center;
 	padding-top: 25px;
-	position:fixed;
+	position: fixed !important;
 	top: 87px;
 	right: 10px;
-	border: rgb(182,220,236) solid 1px;
+	border: #b6dcec solid 1px;
 	background-color: white;
-	padding-bottom:17px
+	padding-bottom: 17px;
 }
 
 

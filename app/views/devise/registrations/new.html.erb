@@ -1,29 +1,48 @@
-<h2>Sign up</h2>
+  <div id='registro' class="home-payment-section home_section_wrapper container-fluid">
+    <div class="row center-container lg-screen-container">
+      <div  class="col-sm-4 aprendemy-text">
+        <h1>Ingresa a la Universidad de tus sueños</h1>
+        <p>Crea una cuenta gratis para empezar.</p>
+      </div>
+      <div class="form-card col-sm-6 col-sm-offset-1">
+        <p class="trial-banner basic">Empieza hoy mismo!</p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="row">
+              <div class="col-sm-6">
+                 <%= f.text_field :first_name, class: "input-text", :placeholder => "Nombre"%>
+            </div>
+          
+            <div class="col-sm-6">
+              <%= f.text_field :last_name, class: "input-text", :placeholder => "Apellido"%>
+            </div>
+            <div class="col-sm-12">
+              <%= f.email_field :email, class: "input-text", :placeholder => "Email" %>
+            </div>
+            <div class="col-sm-12">
+              <%= f.password_field :password, class: "input-text", :placeholder => "Password (Mínimo 6 caracteres)", autocomplete: "off" %>
+          </div>
+          <div class="col-sm-12">
+            <%= f.password_field :password_confirmation, class: "input-text", :placeholder => "Confirmación de Password", autocomplete: "off" %>
+          </div>
+          <br>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+          <div class="col-sm-12" >
+            <div class= "input-text " >
+                      <%= f.label :Género, class: "gender-text"%>
+                      <%= f.radio_button :gender, true, class: 'errors-b' %><%= image_tag("avatar-girl.png", :class=> 'img-gender' ) %>
+                      <%= f.radio_button :gender, false %><%= image_tag("avatar-guy", :class=> 'img-gender') %>
+                      </div>
+                </div>
+                
+          <div class="col-sm-12">
+            <%= f.submit "Reclama tu prueba gratis", class: "free-trial-button" %>
+          </div>
+
+
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
