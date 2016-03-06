@@ -15,7 +15,7 @@
 
 								<% category.sub_categories.each do |sub_category| %>
 									<% sub_questions = @questions.select{|question| question[:sub_category_id] == sub_category.id} %>
-									<%  if sub_questions %>
+									<%  unless !sub_questions || sub_questions.empty? %>
 										<div class="simulator-questions">
 											<div class="subcategory-holder">
 												<h4><%= sub_category.name %></h4>
