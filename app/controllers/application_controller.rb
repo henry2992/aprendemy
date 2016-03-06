@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_filter :check_license, unless current_user.admin?
+  before_filter :check_license
 
   include ApplicationHelper, AnsweredQuestionsHelper
 
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def check_license
     user_license = current_user.license
-    unless user_license.premium?
+    unless current_user.admin? || user_license.premium?
       redirect_to payments_path if user_license.expired?
       calculate_license_countdown(user_license) if user_license.free?
     end

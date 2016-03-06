@@ -90,6 +90,6 @@ module SimulatorsHelper
 
   def assign_points_to_current_user
     point_action = Point.find_by_action(:finish_simulator)
-    Point.create(owner_id: , owner_type: , points: @simulator.points, point_action_id: point_action.id, recipient_id: current_user.id, recipient_type: 'User') if @simulator.completed?
+    Point.create(owner_id: @simulator.id, owner_type: 'Simulator', points: @simulator.points, point_action_id: point_action.id, recipient_id: current_user.id, recipient_type: 'User') if @simulator.completed?
   end
 end
