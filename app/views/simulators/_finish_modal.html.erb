@@ -7,14 +7,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-        <h4 class="modal-title">Are you sure you want to submit this simulation?</h4>
+        <h4 class="modal-title">¿Está seguro que desea calificar este simulador?</h4>
       </div>
       <div class="modal-body">
-        <p>Once submitted, all unanswered questions will be marked as wrong.</p>
+        <p>Una vez enviado, todas las preguntas sin respuesta serán marcadas como incorrectas.</p>
       </div>
       <div class="modal-footer">
-        <%= link_to "Yes, submit", "#", class: "btn submitForm btn-default", data: {dismiss: 'modal'} %>
-        <%= link_to "Cancel", "#", class: "btn btn-default", id: 'pauseTimer', data: {dismiss: 'modal'} %>
+        <%= link_to "Sí, enviar", "#", class: "btn submitForm btn-default", data: {dismiss: 'modal'} %>
+        <%= link_to "Cancelar", "#", class: "btn btn-default", id: 'pauseTimer', data: {dismiss: 'modal'} %>
         <script>
           $("#pauseTimer").click(function(){
             $("#pauseTimerBtn").click();

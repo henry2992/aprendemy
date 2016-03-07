@@ -9,6 +9,9 @@ es:
         first_name: Nombre
         last_name: Apellido
         gender: Género
+      simulator:
+        statuses: 
+          paused: pausado
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"

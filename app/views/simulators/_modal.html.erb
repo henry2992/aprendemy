@@ -7,13 +7,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-        <h4 class="modal-title"><%= @message || "Exit Simulator" %></h4>
+        <h4 class="modal-title"><%= @message || "Cerrar Simulador" %></h4>
       </div>
       <div class="modal-body">
-        <p>Click the close button to go back to your dashboard</p>
+        <p>Click en volver para regresar al tablero de simuladores.</p>
       </div>
       <div class="modal-footer">
-        <%= link_to "Back to Dashboard", simulators_path, class: "btn btn-default" %>
+        <%= link_to "Volver a Simuladores", simulators_path, class: "btn btn-default" %>
       </div>
     </div>
 

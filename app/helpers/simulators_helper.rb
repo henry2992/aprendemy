@@ -30,9 +30,9 @@ module SimulatorsHelper
 
   def show_flash
     if @questions
-      flash[:success] = "simulator has been created successfully"
+      flash[:success] = "El simulador ha sido creado exitosamente."
     else
-      flash[:danger] = "An error occured. Please try again."
+      flash[:danger] = "Un error ha ocurrido, por favor intente nuevamente."
     end
   end
 
@@ -40,9 +40,9 @@ module SimulatorsHelper
     current_time = params[:timer]
     message = ""
     if current_time.eql?('00:00:00')
-      message = "This simulation has been completed" if @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed')
+      message = "Este simulador ha sido completado" if @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed')
     else
-      message = "This simulation has been paused" if @simulator.update(last_paused: Time.now, time_left: current_time || @simulator.time_left, status: 'paused')
+      message = "Este simulador ha sido pausado" if @simulator.update(last_paused: Time.now, time_left: current_time || @simulator.time_left, status: 'paused')
     end
   end
 
@@ -65,8 +65,8 @@ module SimulatorsHelper
       @simulator = current_user.simulators.paused.first
       @questions = @simulator.questions if @simulator
       @simulated_categories = SimulatedCategory.all
-      flash.now[:notice] = "This is your previously incompleted simulator. \
-          You are not allowed to start a fresh one until you complete this one"
+      flash.now[:notice] = "Este es un simulador que no ha sido completado. \
+      No puedes comenzar uno nuevo hasta completar éste."
     end
   end
 
@@ -80,10 +80,10 @@ module SimulatorsHelper
   def update_simulator unanswered_questions, average_unanswered, current_time
     if average_unanswered < 70 || current_time.eql?('00:00:00')
       mark_unanswered_questions_as_wrong unanswered_questions
-      @message = current_time.eql?('00:00:00') ? "Unfortunately, your time is up!" : "Congratulations on completing this Simulator!"; @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
+      @message = current_time.eql?('00:00:00') ? "Desafortunadamente tu tiempo acabo!" : "Felicitaciones en completar este simulador!"; @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed') if @simulator
       assign_points_to_current_user
     else
-      @message = "You haven't answered 70% of the questions. Your simulator is only paused, not completed"
+      @message = "No ha respondido el 70% de las preguntas. Tu simulador será pausado."
       @simulator.update(time_completed: Time.now, time_left: current_time, status: 'paused') if @simulator
     end
   end

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
   after_create :create_license
 
+
   enum role: [:free, :paid, :admin]
 
   mount_uploader :image, PictureUploader

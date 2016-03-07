@@ -21,13 +21,13 @@
 	<h1 class="app-navbar-heading"><%= current_user.first_name %> <%= current_user.last_name %></h1>
 	<p class="app-navbar-text"><%= current_user.email %></p>
 
-
-	<p class="app-navbar-text">
-		Tu licencia expira en:
-		<br><%= current_user.license.days_left %> días<br>
-		<a href="/payments">Haste Premium</a>
-	</p>
-
+	<% if current_user.free? %>
+		<p class="app-navbar-text">
+			Tu licencia expira en:
+			<br><%= current_user.license.days_left %> días<br>
+			<a href="/payments">Hazte Premium</a>
+		</p>
+	<%end%>
 
 	<div>
 
