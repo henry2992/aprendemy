@@ -1,15 +1,9 @@
 <% unless @simulator.completed? %>
     <%= button_to 'Finish', simulator_finish_simulator_path(@simulator), :id => 'finishTimerBtn', :class => "hide", :form_class => "simulator-complete-form", :data => {'toggle' => "modal", 'target' => "#pausedSimulationModal", 'backdrop' => "static", 'keyboard' => "false", :disable_with => 'Verifying. . .' }, remote: true %>
+
+    
     <!-- pseudo-finish button -->
     <%= render 'pause_link' %>
 
 <% end %>
-
-
-<!-- FINAL BTN -->
-
-		<div>
-			<button class="btn btn-success simulator-questions-btn" onclick=""><span class="fa fa-check-square-o"></span> Calificar</button>
-			<button class="btn btn-info simulator-questions-btn" onclick=""><span class="fa fa-home"></span>Pausar</button>
-		</div>
 

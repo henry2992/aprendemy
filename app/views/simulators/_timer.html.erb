@@ -2,10 +2,13 @@
   <div class="">
     <b><span class="fa fa-clock-o"></span> Tiempo:</b> <div id="countDownTimer" class="inline-div"><span id="future_date"><span></div>
   </div>
-  <div>
-    <%= render "simulators/pause_button" %>
-    <%= render "pause_link" %>
-
-  </div>
+	  <div class="buttons-holder-mobile">
+	    <%= render "simulators/pause_button" %>
+	    <%= render "pause_link" %>
+	  </div>
 </div>
+
+
+
+
 <%= render "timer.js" %>

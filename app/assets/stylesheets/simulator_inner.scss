@@ -1,17 +1,17 @@
 .simulator-test-holder{
 	padding: 0 !important;
-	margin-top: 35px !important;
+	margin-top: 0px !important;
 }
 
 .simulator-visual-clues{
 	background-color: #daeef6;
 	border: #b6dcec solid 1px;
 	padding-bottom: 30px;
-	position: fixed !important;
-	top: 195px;
+	top: 240px;
 	right: 10px;
 	height: 60%;
 	overflow: hidden;
+	display: none !important;
 }
 
 .simulator-visual-clues:hover{
@@ -20,10 +20,9 @@
 
 
 .simulator-btn{
-	display: block;
+	display: block !important;
 	margin: 10px auto;
 	width: 100px;
-
 }
 .simulator-bnt-holder{
 	text-align: center;
@@ -93,14 +92,40 @@
 /*TIME HOLDER*/
 
 .simulator-time-holder{
-	text-align: center;
+	/*text-align: center;
 	padding-top: 25px;
-	position: fixed !important;
 	top: 87px;
 	right: 10px;
 	border: #b6dcec solid 1px;
 	background-color: white;
 	padding-bottom: 17px;
+	display: none;
+*/
+	text-align: center;
+	padding-top: 25px;
+	top: 60px;
+
+	right: 10px;
+	border: #b6dcec solid 1px;
+	background-color: white;
+	padding-bottom: 17px;
+
+	position: fixed !important;
+}
+
+.buttons-holder-mobile{
+	display: none;
+}
+
+.simulator-time-holder-mobile{
+	text-align: center;
+	padding-top: 25px;
+	margin-top: 25px;
+	border: #b6dcec solid 1px;
+	background-color: white;
+	padding-bottom: 17px;
+
+
 }
 
 
@@ -207,11 +232,25 @@
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) {
 
+	.simulator-test-holder{
+		margin-top: 35px !important;
+	}
 	.simulator-time-holder{
-		display: block;
+		display: block !important;
+		position: fixed !important;
+		top: 87px;
 	}
 
 	.simulator-visual-clues{
+		display: block !important;
+		position: fixed !important;
+	}
+
+	.simulator-time-holder-mobile{
+		display: none;
+	}
+
+	.buttons-holder-mobile{
 		display: block;
 	}
 

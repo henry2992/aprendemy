@@ -1,10 +1,12 @@
 <% questions_meta = []; count = 0 %>
+
 	<div class="application-wrapper container-fluid">
 			<div class="row">
 
 				<div class="content-wrapper">
 
 					<div class="application-content ">
+
 						<div class="simulator-test-holder col-sm-9 ">
 
 							<% @simulated_categories.each do |simulated_category| %>
@@ -16,6 +18,7 @@
 								<% category.sub_categories.each do |sub_category| %>
 									<% sub_questions = @questions.select{|question| question[:sub_category_id] == sub_category.id} %>
 									<%  unless !sub_questions || sub_questions.empty? %>
+
 										<div class="simulator-questions">
 											<div class="subcategory-holder">
 												<h4><%= sub_category.name %></h4>
@@ -40,22 +43,25 @@
 											</div>
 										</div>
 
-									</div>
+									
 								<% end %> <!--sub questions check -->
 							<% end %> <!--sub_category loop -->
 
 
-						<% end if @simulated_categories && @simulator %><!--simulated_category loop -->
-						<!-- FINAL BTN -->
-						<div class="simulator-bnt-holder">
+							<% end if @simulated_categories && @simulator %><!--
+							simulated_category loop -->
+							
+							
+							<!-- FINAL BTN -->
+							<div class="simulator-exam-btn-holder">
+								<div class="simulator-bnt-holder">
 
-							<div>
-								<%= render "simulators/finish_button" %>
-
+									<div>
+										<%= render "simulators/finish_button" %>
+									</div>
+								</div>
 							</div>
-
 						</div>
-					</div>
 
 					<% unless @simulator.completed? %>
 						<%= render "simulators/timer" %>
