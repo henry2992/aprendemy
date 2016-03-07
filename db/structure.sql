@@ -593,7 +593,8 @@ CREATE TABLE sub_categories (
     category_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    questions_count integer DEFAULT 0
+    questions_count integer DEFAULT 0,
+    description text
 );
 
 
@@ -1015,4 +1016,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160303000148');
 INSERT INTO schema_migrations (version) VALUES ('20160305074513');
 
 INSERT INTO schema_migrations (version) VALUES ('20160305213132');
+
+INSERT INTO schema_migrations (version) VALUES ('20160307003117');
 
