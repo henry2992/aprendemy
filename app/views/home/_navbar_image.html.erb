@@ -5,9 +5,9 @@
 			<%= image_tag(current_user.image, class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
 		<% else %>
 			<% if (current_user.gender == false) %>
-				<%= image_tag("avatar-guy", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
+				<%= image_tag("avatar-guy.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
 			<% else %>
-				<%= image_tag("avatar-girl", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
+				<%= image_tag("avatar-girl.png", class: "app-navbar-profile-img", alt: "Apredemy-avatar") %>
 			<%end %>
 		<%end%>
 
