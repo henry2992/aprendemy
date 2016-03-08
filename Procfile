@@ -1,2 +1,4 @@
 web: bundle exec puma -C config/puma.rb
-worker: bundle exec puma rake qc:work
+
+
+worker: bundle exec rake qc:work
