@@ -7,7 +7,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'f23e8d0109bb374f6a8e35ddab654a2b9811e9361eb3a82de52eab8c19e9c4fbf9466df61cd1c8fad1ca13da6627b65818b8e11cd0462146521739313dfa24ef'
-    config.secret_key = '222e98bb9c4c001d8ee6120ffc534da083c9d30518e7786318af6879c202fe973c6fa402143a9b081c5a389c7b37e685bfaa88df13506bf5bc68584d3d4fa570'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -237,7 +237,14 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email, public_profile', info_fields: 'email, first_name, last_name', :image_size => 'large'
+
+  {provider_ignores_state: true }
+  
+
+  require "omniauth-facebook"
+  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email, public_profile', info_fields: 'email, first_name, last_name', :image_size => 'large', provider_ignores_state: true
+
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
