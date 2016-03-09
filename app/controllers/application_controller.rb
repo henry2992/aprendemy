@@ -25,8 +25,9 @@ class ApplicationController < ActionController::Base
 
   def calculate_license_countdown license
     days_left = License.plans[:free] - ((Time.now - current_user.created_at).to_i / 1.day)
-    license.update!(days_left: days_left)
-    if license.days_left < 0
+    if days_left >= 0
+      license.update!(days_left: days_left)
+    else
       license.update!(days_left: nil, plan: :expired)
     end
   end
