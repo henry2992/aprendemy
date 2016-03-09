@@ -372,7 +372,7 @@ DEPENDENCIES
   byebug
   carrierwave (~> 0.10.0)
   coffee-rails (~> 4.1.0)
-  devise
+  devise (~> 3.5, >= 3.5.6)
   flipclockjs-rails (~> 0.7.7)
   fog
   fog-aws
@@ -382,7 +382,7 @@ DEPENDENCIES
   jquery-rails
   mini_magick (~> 4.3, >= 4.3.6)
   omniauth
-  omniauth-facebook
+  omniauth-facebook (~> 3.0)
   pg
   pry-nav
   pry-rails

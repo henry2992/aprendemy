@@ -15,9 +15,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem "font-awesome-rails"
 # User Autentification
-gem 'devise'
+gem 'devise', '~> 3.5', '>= 3.5.6'
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '~> 3.0'
+
 #Admin
 gem 'rails_admin'
 gem 'rename'
