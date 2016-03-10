@@ -24,15 +24,24 @@
                   <li class="dropdown-exercises list-submenu" >
                       <i class="fa fa-pencil icon-category"></i>
                       <span class="category-name"><%= category.name %></span>
+
                       <% if category.sub_categories %>
                         <ul class="nested-submenu">
                           <% category.sub_categories.each do |sub_category| %>
-                            <li>
-                              <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true %>
-                            </li>
+                            <% unless sub_category.questions.empty? %>
+                              
+                            
+                              <li>
+                                <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true %>
+                              </li>
+                            
+                            <%end %>
+
+
                           <% end  %>
                         </ul>
                       <% end %>
+
                   </li>
             <% end if @categories %>
             <!-- Submenu Final -->

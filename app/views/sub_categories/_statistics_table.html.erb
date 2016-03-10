@@ -25,29 +25,34 @@
       </tr>
       
       <% category.sub_categories.each do |sub_category| %>
-      <!-- individual sub_category stats -->
-      <% total = sub_category.questions.count %>
-      <% answered = sub_category.answered_questions_list(current_user.id).count %>
-      <%# sub_cats_answered << ((answered.to_f/(total > 0 ? total.to_f : 1)) * 100) %>
-      <% correct = sub_category.answered_correctly(current_user.id).count %>
-      <% sub_cats_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
-      <% incorrect =  sub_category.answered_incorrectly(current_user.id).count %>
-      <% sub_cats_incorrect << ((incorrect.to_f/(answered > 0 ? (answered.to_f) : 1)) * 100) %>
-      <% @sub_category_names << sub_category.name %>
-      <%# @sub_category_dates << sub_category.updated_at %>
 
-        <tr class="table-category">
-          <td class="table-subcategory tb-r">
-            <i class="glyphicon glyphicon-ok-circle icon-tb"></i>
-            <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true, :class=> 'sub_category-name'  %>
-          </td>
-          <!-- <td align="center"><%= total %></td> -->
-          <td class="tb-r tb-answered table-subcategory-r"><%= answered %></td>
-          <td class="tb-r table-subcategory-r"><%= correct %></td>
-          <td class="tb-r table-subcategory-r"><%= incorrect %></td>
-        </tr>
+      <!-- Filter Empty Subcategories -->
 
-      <% end if category %>
+      <% unless sub_category.questions.empty? %>
+          <!-- individual sub_category stats -->
+          <% total = sub_category.questions.count %>
+          <% answered = sub_category.answered_questions_list(current_user.id).count %>
+          <%# sub_cats_answered << ((answered.to_f/(total > 0 ? total.to_f : 1)) * 100) %>
+          <% correct = sub_category.answered_correctly(current_user.id).count %>
+          <% sub_cats_correct << ((correct.to_f/(answered > 0 ? answered.to_f : 1)) * 100) %>
+          <% incorrect =  sub_category.answered_incorrectly(current_user.id).count %>
+          <% sub_cats_incorrect << ((incorrect.to_f/(answered > 0 ? (answered.to_f) : 1)) * 100) %>
+          <% @sub_category_names << sub_category.name %>
+          <%# @sub_category_dates << sub_category.updated_at %>
+
+            <tr class="table-category">
+              <td class="table-subcategory tb-r">
+                <i class="glyphicon glyphicon-ok-circle icon-tb"></i>
+                <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true, :class=> 'sub_category-name'  %>
+              </td>
+              <!-- <td align="center"><%= total %></td> -->
+              <td class="tb-r tb-answered table-subcategory-r"><%= answered %></td>
+              <td class="tb-r table-subcategory-r"><%= correct %></td>
+              <td class="tb-r table-subcategory-r"><%= incorrect %></td>
+            </tr>
+
+          <% end if category %>
+      <% end %>
     <% end if @categories %>
   </tbody>
 </table>

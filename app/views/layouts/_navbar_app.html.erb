@@ -25,7 +25,7 @@
                                     <div class="row">
                                         <div class="col-md-5 avatar-container">
                                             <% if (current_user.image.present?) %>
-                                                <%= image_tag(current_user.image, class: "img-responsive", alt: "Apredemy-avatar") %>
+                                                <%= image_tag(current_user.image.url, class: "img-responsive", alt: "Apredemy-avatar") %>
                                             <% else %>
                                                 <% if (current_user.gender == false) %>
 

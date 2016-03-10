@@ -6,7 +6,7 @@
         <div class="text-center">
 
           <% if current_user.image.present? %>
-              <%= image_tag(current_user.image, class: "avatar-profile img-circle img-thumbnail", alt: "Apredemy-avatar") %>
+              <%= image_tag(current_user.image.url, class: "avatar-profile img-circle img-thumbnail", alt: "Apredemy-avatar") %>
           <% else %>
               <% if (current_user.gender == false) %>
                   <%= image_tag("avatar-guy.png", class: "avatar-profile img-circle img-thumbnail", alt: "Apredemy-avatar") %>

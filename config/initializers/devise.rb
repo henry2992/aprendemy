@@ -242,7 +242,7 @@ Devise.setup do |config|
   
 
   require "omniauth-facebook"
-  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email, public_profile', info_fields: 'email, first_name, last_name', :image_size => 'large', provider_ignores_state: true
+  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email, public_profile', info_fields: 'email, first_name, last_name', :image_size => 'large'
 
 
 

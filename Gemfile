@@ -25,14 +25,14 @@ gem 'rename'
 
 #Picture Uploader
 gem 'carrierwave', '~> 0.10.0'
-gem 'mini_magick', '~> 4.3', '>= 4.3.6'
-gem 'fog'
-
-gem "fog-aws"
+gem 'cloudinary'
+#Queue
 gem "queue_classic", "~> 3.0.0"
 
+#Pagination
 gem 'will_paginate', '~> 3.0.6'
 
+#Other
 gem 'flipclockjs-rails', '~> 0.7.7'
 
 
