@@ -15,9 +15,6 @@ class UserUploader < CarrierWave::Uploader::Base
 
   storage :file unless Rails.env == "production"
 
-  def public_id
-    return "user/#{model.id}" 
-  end 
  
 
 
