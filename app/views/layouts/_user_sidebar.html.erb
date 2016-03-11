@@ -28,7 +28,7 @@
                       <% if category.sub_categories %>
                         <ul class="nested-submenu">
                           <% category.sub_categories.each do |sub_category| %>
-                            <% unless sub_category.questions.empty? %>
+                            <% unless sub_category.questions.count == 0 %>
                               
                             
                               <li>

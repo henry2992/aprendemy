@@ -28,7 +28,7 @@
 
       <!-- Filter Empty Subcategories -->
 
-      <% unless sub_category.questions.empty? %>
+      <% unless sub_category.questions.count == 0 %>
           <!-- individual sub_category stats -->
           <% total = sub_category.questions.count %>
           <% answered = sub_category.answered_questions_list(current_user.id).count %>
