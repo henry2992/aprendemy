@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
 
   enum role: [:free, :paid, :admin]
 
-  mount_uploader :image, PictureUploader
+  mount_uploader :image, UserUploader
 
+  
   has_many :categories, counter_cache: true
   has_many :sub_categories
   has_many :questions
