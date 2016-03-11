@@ -16,7 +16,9 @@ class PictureUploader < CarrierWave::Uploader::Base
   storage :file unless Rails.env == "production"
 
   def public_id
-    return model.short_name
+    return model.id
   end 
  
+
+
 end
