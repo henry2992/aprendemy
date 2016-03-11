@@ -1,5 +1,5 @@
 <% flash.each do |message_type, message| %>
-  <div class="alert fade in alert-<%= message_type %> container">
+  <div class="<%= controller.controller_name%>-<%=action_name%> alert fade in alert-<%= message_type  %> container">
     <button class="close" data-dismiss="alert">&times;</button>
   	<div class="show-flash" data-message="<%= message %>"><%= message %></div>
 	</div>
