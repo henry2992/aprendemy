@@ -14,7 +14,6 @@ class UserUploader < CarrierWave::Uploader::Base
   # end
 
   storage :file unless Rails.env == "production"
-
  
 
 
