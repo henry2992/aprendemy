@@ -26,7 +26,7 @@
 									<div class="col-md-12">
 										Ingresa via
 										<div class="social-buttons">
-											<%= link_to "Facebook", "users/auth/facebook", class: "btn btn-fb" %>	   
+											<%= link_to "Facebook", "/users/auth/facebook", class: "btn btn-fb" %>	   
 										</div>
 		                                o
 		                                <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form") do |f| %>
@@ -37,6 +37,7 @@
 										    <%= f.password_field :password,  class: "form-control", :placeholder => "Password", autocomplete: "off" %>
 										    	<div class="help-block text-right">
 										    		<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+										    		<%= link_to "Olvidaste tu password?", new_password_path(resource_name) %>
 													<% end -%>
 										    	</div>
 										  </div>

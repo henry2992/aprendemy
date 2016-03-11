@@ -56,7 +56,8 @@ module SimulatorsHelper
 
   def mark_unanswered_questions_as_wrong unanswered_questions
      unanswered_questions.each do |question|
-       question.simulator_answered_questions.find_or_create_by(user_id: current_user.id, status: :wrong, simulator_id: @simulator.id)
+       updated_question = question.simulator_answered_questions.find_or_create_by(user_id: current_user.id, simulator_id: @simulator.id)
+       updated_question.update(status: :wrong, marked_status: :marked)
      end
   end
 

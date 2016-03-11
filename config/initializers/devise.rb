@@ -240,11 +240,7 @@ Devise.setup do |config|
 
   {provider_ignores_state: true }
   
-
-  require "omniauth-facebook"
-  config.omniauth :facebook, "928864270524469", "4d06618d37e07f8823ff752cd5bacac1",  scope: 'email, public_profile', info_fields: 'email, first_name, last_name', :image_size => 'large'
-
-
+  config.omniauth :facebook, ENV["FB_ACCESS_KEY"], ENV["FB_SECRET_KEY"],  scope: 'email, public_profile', info_fields: 'email, first_name, last_name', :image_size => 'large'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

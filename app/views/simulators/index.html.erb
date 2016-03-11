@@ -21,18 +21,19 @@
     						</div>
 
 								<div class="app-text-holder row">
-									<%= render "simulators/filter_menu" %>
-
-									<div id="chart_holder">
-										<div id="chart_container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-									</div>
-								</div>
+                  <div id="chart_holder">
+                    <div id="chart_container" style="min-width: 310px; height: 400px; margin: 0 auto">
+                    </div>
+                  </div>
+                </div>
 
                 <div class="app-text-holder row">
                   <div id="statistics_table">
                       <%= render 'simulators/statistics_table', simulators: @simulators %>
                   </div>
                 </div>
+                
+
 
     					</div>
 
