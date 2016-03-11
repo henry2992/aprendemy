@@ -5,7 +5,7 @@
 <div id="question-<%= question.id %>">
   <p><%= question.content %></p>
   <% if question.picture.to_s != '' %>
-    <p><%= image_tag( question.picture, class: "question-img", alt: "Pregunta Apredemy") %></p>
+    <p><%= image_tag( question.picture.url, class: "question-img", alt: "Pregunta Apredemy") %></p>
   <% end%>
 
   <%= form_for [@category, @sub_category, question, answered_question], remote: true do |f| %>
