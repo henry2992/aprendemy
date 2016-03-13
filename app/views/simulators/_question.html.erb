@@ -13,9 +13,9 @@
       </div>
       <p><%= question_no %>) <%= question.content %></p>
        <% if question.picture.to_s != '' %>
-        <p><%= image_tag( question.picture, class: "question-img", alt: "Pregunta Apredemy") %></p>
+        <p><%= image_tag( question.picture.url, class: "question-img", alt: "Pregunta Apredemy") %></p>
       <% end%>
-      <% question.choices.each do |choice| %>
+      <% question.choices.order(id: :asc).each do |choice| %>
         <% was_selected = answered_question.choice_id == choice.id %>
         <%= f.radio_button :choice_id, choice.id, :checked => was_selected, :class => "simulator-ajax-submittable", 'data-form' => form_class %>
         <%= " #{options[count]}  #{choice.content}" %></span>
