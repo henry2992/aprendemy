@@ -28,8 +28,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    get_category_and_sub && @question = Question.find_by_id(params[:id]).paginate(:page => params[:page], :per_page => 10)
-    render_js_only
+    get_category_and_sub && @question = Question.find_by_id(params[:id])
   end
 
   def update

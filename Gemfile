@@ -31,6 +31,7 @@ gem "queue_classic", "~> 3.0.0"
 
 #Pagination
 gem 'will_paginate', '~> 3.0.6'
+gem 'kaminari'
 
 #Other
 gem 'flipclockjs-rails', '~> 0.7.7'

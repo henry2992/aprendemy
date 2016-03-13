@@ -15,13 +15,18 @@
         </div>
 
         <div class="exercises-answers-holder row">
+          
+
           <% @questions.each do |question| %>
             <div class="question_<%= question.id %>">
+
               <p>
-                <%= render partial: "questions/show", locals: { question: question} %>
+                <%=  render partial: "questions/show", locals: { question: question} %>
               </p>
             </div>
           <% end %>
+
+          <%= paginate @questions, :window => 0, :remote => true %>
 
         </div>
 			</div>

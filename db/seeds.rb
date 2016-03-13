@@ -595,7 +595,7 @@ abs_11_counter = 1
 	end
 
 	#Rompecabezas
-	(841..870).each do |y|
+	(841..1000).each do |y|
 
 		Question.create( content: 'Pregunta de prueba Rompecabezas ' + abs_11_counter.to_s, sub_category_id: 29, explanation: "Explicacion" )
 
