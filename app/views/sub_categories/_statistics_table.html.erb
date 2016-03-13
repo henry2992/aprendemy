@@ -7,7 +7,7 @@
   <thead>
     <tr>
       <th class="tb-h">Area</th>
-      <th width="50">Preguntas</th>
+      <!-- <th width="50">Preguntas</th> -->
       <th class="tb-h tb-answered">Preguntas Contestadas</th>
       <th class="tb-h">Preguntas correctas</th>
       <th class="tb-h">Preguntas incorrectas</th>
@@ -18,7 +18,7 @@
     <% @categories.each do |category| %>
       <tr class="table-category">
         <td class="tb-r tb-category-heading"><%= category.name %></td>
-        <td align="center"><%= category.questions.count %></td> 
+        <!-- <td align="center"><%= category.questions.count %></td> --> -->
         <td class="tb-r tb-answered"><%= category.answered_questions_list(current_user.id).count %></td>
         <td class="tb-r"><%= category.answered_correctly(current_user.id).count %></td>
         <td class="tb-r"><%= category.answered_incorrectly(current_user.id).count %></td>
