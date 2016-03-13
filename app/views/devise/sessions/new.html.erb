@@ -1,30 +1,81 @@
 
-<div class="sessions-container container edit-profile-container">
-  <h2>Ingresar</h2>
-
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-
-    <% if devise_mapping.rememberable? -%>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+<div class="container sessions-container" >
+    
+    <div class="row">
+      <div class="sessions-holder-heading" >
+        <h1 >El 97% de nuestros estudiantes obtienen mejores notas en el ENES</h1>
+        <h3>Ahora tú tambien lo puedes hacer</h3>
       </div>
-    <% end -%>
+      <!-- left column -->
+      <div class="col-md-6">
 
-    <div class="actions">
-      <%= f.submit "Log in" %>
+        <div class="sessions-form-container ">
+          
+          <div class="home-sessions-buttons">
+            <%= link_to "Ingresa con Facebook", "auth/facebook", class: "aprendemy-btn btn btn-primary" %> 
+
+            <span>O con tu cuenta de correo electrónico.</a>
+          </div>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="field">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, autofocus: true %>
+                </div>
+
+                <div class="field">
+                  <%= f.label :password %><br />
+                  <%= f.password_field :password, autocomplete: "off" %>
+                </div>
+
+                <% if devise_mapping.rememberable? -%>
+                  <div class="field">
+                    <%= f.check_box :remember_me  %>
+                    <%= f.label :recordarme %>
+                  </div>
+                <% end -%>
+
+                <div class="actions">
+                  <%= f.submit "Ingresar", class: "sessions-btn btn btn-primary"  %>
+                </div>
+          <% end %>
+
+          <a class="sessions-link" href="/users/sign_up">¿No tienes una cuenta? Regístrate
+          </a>
+
+
+          <a class="sessions-link"href="/users/password/new">¿Olvidaste tu contraseña?</a>
+          <br>
+      </div>
+
+      </div>
+
+        <!-- edit form column -->
+        <div class="col-md-6">
+
+          <h3 class="home_section_heading"><span>¿Qué te ofrecemos?</span></h3>
+          <p class="home_section_caption">
+            Aprendemy es una plataforma online pensada para apoyarte en el proceso de ingreso a la Universidad. Nuestra tecnología y experiencia en educación te ayudará a mejorar tus notas en los exámenes de la Senescyt con miles ejercicios, respuestas, estadisticas, clases en vivo, accesible donde quieras y cuando quieras.
+          </p>
+    
+          <div class="sessions-img-container col-md-6" >
+            <%= image_tag("ejercicios.png", class: "sessions-img", alt: "Apredemy Ejercicio") %>
+            <h3 class="sessions-info-heading" >Ejercicios Interactivos</h3>
+          </div>
+          <div class="sessions-img-container col-md-6">
+            <%= image_tag("simulacros.png", class: "sessions-img", alt: "Apredemy Simuladores") %>
+            <h3 class="sessions-info-heading">Simulacros de Exámenes</h3>
+          </div>
+          <div class="sessions-img-container col-md-6" >
+            <%= image_tag("estadisticas.png", class: "sessions-img", alt: "Apredemy Estadisticas") %>
+            <h3 class="sessions-info-heading" >Estadísticas Personalizadas</h3>
+          </div>
+          <div class="sessions-img-container col-md-6">
+            <%= image_tag("vivo.png", class: "sessions-img", alt: "Apredemy Clases") %>
+            <h3 class="sessions-info-heading">Clases Online en Vivo</h3>
+          </div>
+      </div>
+      </div>
+       
     </div>
-  <% end %>
-
-<%= render "devise/shared/links" %>
-
-</div>
+  </div>
