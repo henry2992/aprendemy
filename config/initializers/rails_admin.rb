@@ -39,6 +39,20 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model 'LiveClass' do
+    edit do
+      field :subject
+      field :professor
+      field :url
+      field :online_now
+
+      field :time do
+        strftime_format "%Y-%m-%d %H:%M"
+      end
+      field :explanation
+    end
+  end
+
   config.model SimulatedCategory do
     edit do
       field :category, :belongs_to_association
