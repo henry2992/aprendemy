@@ -30,6 +30,12 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
+      gender = auth.extra.raw_info.gender
+      if gender == 'male'
+        user.gender = false
+      else
+        user.gender = true
+      end
       user.remote_image_url = auth.info.image.gsub('http://','https://')
 	  end
 	end
