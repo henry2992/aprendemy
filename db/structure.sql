@@ -284,7 +284,8 @@ CREATE TABLE live_classes (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     "time" timestamp without time zone,
-    explanation text
+    explanation text,
+    "Urlyoutube" character varying
 );
 
 
@@ -1018,4 +1019,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160305074513');
 INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307003117');
+
+INSERT INTO schema_migrations (version) VALUES ('20160405062817');
 

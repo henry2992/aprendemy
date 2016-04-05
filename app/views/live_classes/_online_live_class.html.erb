@@ -2,14 +2,14 @@
 	<h3 class="live-class-heading">En vivo en este momento:</h3>
 	
 	<div class="video-holder" >
-		<iframe class="video" src="<%= @enes.url %>" frameborder="0" allowfullscreen></iframe>
+		<iframe class="video" src="<%= @enes.url %>?autoplay=1" frameborder="0" allowfullscreen></iframe>
 	</div>
 	<div class="online-now-info">
 
 		<h2 class="live-class-heading">Tema: <%= @enes.subject %></h2>
 		<p> <%= @enes.explanation %></p>
 		<h2 class="live-class-heading" >Profe: <%= @enes.professor %></h2>
-		<a href="<%= @enes.url %>" class="btn btn-info youtube-start">Ver en Youtube</a>
+		<a href="<%= @enes.Urlyoutube %>" class="btn btn-info youtube-start"><i class="fa fa-youtube-play"></i>     Ver en Youtube</a>
 	</div>
 	
 </div>
