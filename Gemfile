@@ -36,6 +36,7 @@ gem 'kaminari'
 #Other
 gem 'flipclockjs-rails', '~> 0.7.7'
 gem 'figaro'
+gem 'haml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,6 +44,9 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
   gem 'foreman'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl'
+  gem 'database_cleaner'
 end
 
 group :development do
