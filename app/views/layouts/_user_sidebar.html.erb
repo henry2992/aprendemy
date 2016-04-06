@@ -1,6 +1,6 @@
 <div class="application-navbar col-sm-3 col-md-2">
 
-  <%= render 'home/navbar_image.html' %>
+  <%= render 'home/navbar_image' %>
 
 
   <div class="navbar-links section">
@@ -29,12 +29,12 @@
                         <ul class="nested-submenu">
                           <% category.sub_categories.each do |sub_category| %>
                             <% unless sub_category.questions.count == 0 %>
-                              
-                            
+
+
                               <li>
                                 <%= link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true %>
                               </li>
-                            
+
                             <%end %>
 
 

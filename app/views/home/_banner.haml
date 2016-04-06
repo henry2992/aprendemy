@@ -1,36 +1,29 @@
-<div class="row">
-	<a class="banner-link" href="/payments">
-		<div id="banner_wrapper">
-		    <div id="content">
-		        <h2 class='banner-principal'>¿Quieres aprobar el ENES como un súper héroe?</h2>
-		        <h4 class='banner-secondary banner-h-1'>Continúa utilizando nuestros productos por un único pago de: </h4>
-		        <h4><span class="banner-price">$29.99</span></h4>
-		        <h4 class='banner-secondary banner-h-2'>Haz click aquí y compra tu licencia hoy mismo.</h4>
-		    </div><!-- END content -->
-		     
-		    <div id="moving-clouds">
-		        <ul id="group-1">
-		            <li class="cloud-1"></li>
-		            <li class="cloud-2"></li>
-		            <li class="cloud-3"></li>
-		            <li class="cloud-4"></li>
-		        </ul>
-		        <ul id="group-2">
-		            <li class="cloud-1"></li>
-		            <li class="cloud-2"></li>
-		            <li class="cloud-3"></li>
-		            <li class="cloud-4"></li>
-		        </ul>
-		    </div><!-- END moving-clouds -->
-		     
-		    <ul id="flying-man">
-		        <li></li>
-		    </ul><!-- END flying-man -->
-		     
-		    <ul id="bottom-cloud">
-		        <li></li>
-		    </ul><!-- END water -->
-		     
-		</div><!-- END banner_wrapper -->
-	</a>
-</div>
+.row
+  %a.banner-link{:href => "/payments"}
+    #banner_wrapper
+      #content
+        %h2.banner-principal ¿Quieres aprobar el ENES como un súper héroe?
+        %h4.banner-secondary.banner-h-1 Continúa utilizando nuestros productos por un único pago de:
+        %h4
+          %span.banner-price $29.99
+        %h4.banner-secondary.banner-h-2 Haz click aquí y compra tu licencia hoy mismo.
+      / END content
+      #moving-clouds
+        %ul#group-1
+          %li.cloud-1
+          %li.cloud-2
+          %li.cloud-3
+          %li.cloud-4
+        %ul#group-2
+          %li.cloud-1
+          %li.cloud-2
+          %li.cloud-3
+          %li.cloud-4
+      / END moving-clouds
+      %ul#flying-man
+        %li
+      / END flying-man
+      %ul#bottom-cloud
+        %li
+      / END water
+    / END banner_wrapper
