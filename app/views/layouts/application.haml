@@ -25,9 +25,9 @@
   %body
     / Navbar
     - if user_signed_in?
-      = render "layouts/navbar_app.html"
+      = render "layouts/navbar_app"
     - else
-      = render 'layouts/navbar_sing_in.html'
+      = render "layouts/navbar_sing_in"
     / Navbar
     = render "layouts/flash"
     = yield
