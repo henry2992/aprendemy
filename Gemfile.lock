@@ -165,6 +165,7 @@ GEM
       rack (~> 1.1)
     rack-test (0.6.3)
       rack (>= 1.0)
+    railroady (1.4.2)
     rails (4.2.5)
       actionmailer (= 4.2.5)
       actionpack (= 4.2.5)
@@ -307,6 +308,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 2.16)
   queue_classic (~> 3.0.0)
+  railroady
   rails (= 4.2.5)
   rails_12factor
   rails_admin
