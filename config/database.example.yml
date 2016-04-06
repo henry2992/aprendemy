@@ -24,4 +24,4 @@ test:
 
 production:
   <<: *default
-  database: aprendemy_production_db
+  database: aprendemy_production
