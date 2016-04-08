@@ -1,11 +1,10 @@
-# Load DSL and Setup Up Stages
+# Load DSL and Setup Up Stages}
 require 'capistrano/setup'
-require 'capistrano/bundler'
-require 'capistrano/rails'
 
 # Includes default deployment tasks
 require 'capistrano/deploy'
-
+require 'capistrano/bundler'
+require 'capistrano/rails'
 
 
 # Includes tasks from other gems included in your Gemfile
@@ -22,8 +21,7 @@ require 'capistrano/deploy'
 require 'capistrano/rbenv'
 set :rbenv_custom_path, '/home/deploy/.rbenv'
 set :rbenv_type, :system # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.1.1'
-
+set :rbenv_ruby, '2.2.4'
 # require 'capistrano/chruby'
 # require 'capistrano/bundler'
 # require 'capistrano/rails/assets'
