@@ -1,0 +1,12 @@
+/ Modal
+#pausedSimulationModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        / <button type="button" class="close" data-dismiss="modal">×</button>
+        %h4.modal-title= @message || "Cerrar Simulador"
+      .modal-body
+        %p Click en volver para regresar al tablero de simuladores.
+      .modal-footer
+        = link_to "Volver a Simuladores", simulators_path, class: "btn btn-default"
