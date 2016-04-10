@@ -1,0 +1,12 @@
+.simulator-time-holder.top.col-sm-3
+  %div
+    %b
+      %span.fa.fa-clock-o
+      Tiempo:
+    #countDownTimer.inline-div
+      %span#future_date
+        %span
+  .buttons-holder-mobile
+    = render "simulators/pause_button"
+    = render "pause_link"
+= render "timer.js"
