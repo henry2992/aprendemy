@@ -67,7 +67,7 @@ module SimulatorsHelper
       @questions = @simulator.questions if @simulator
       @simulated_categories = SimulatedCategory.all
       flash.now[:notice] = "Este es un simulador que no ha sido completado. \
-      No puedes comenzar uno nuevo hasta completar éste."
+      No puedes comenzar uno nuevo hasta completar este."
     end
   end
 
