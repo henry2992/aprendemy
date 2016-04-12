@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, UserUploader
 
-  
+
   has_many :categories, counter_cache: true
   has_many :sub_categories
   has_many :questions

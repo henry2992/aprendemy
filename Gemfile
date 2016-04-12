@@ -55,9 +55,10 @@ group :development, :test do
   gem 'pry-rails'
   gem 'foreman'
   gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'railroady'
+  gem 'faker'
 end
 
 group :development do
