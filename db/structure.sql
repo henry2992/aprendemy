@@ -179,7 +179,8 @@ CREATE TABLE categories (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    sub_categories_count integer DEFAULT 0
+    sub_categories_count integer DEFAULT 0,
+    course_id integer
 );
 
 
@@ -232,6 +233,38 @@ CREATE SEQUENCE choices_id_seq
 --
 
 ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
+
+
+--
+-- Name: courses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE courses (
+    id integer NOT NULL,
+    name character varying,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: courses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE courses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: courses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
 
 
 --
@@ -686,6 +719,13 @@ ALTER TABLE ONLY choices ALTER COLUMN id SET DEFAULT nextval('choices_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq'::regclass);
 
 
@@ -788,6 +828,14 @@ ALTER TABLE ONLY categories
 
 ALTER TABLE ONLY choices
     ADD CONSTRAINT choices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY courses
+    ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
 
 
 --
@@ -1014,4 +1062,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160305074513');
 INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307003117');
+
+INSERT INTO schema_migrations (version) VALUES ('20160414013914');
+
+INSERT INTO schema_migrations (version) VALUES ('20160414014155');
 
