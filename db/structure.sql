@@ -434,6 +434,40 @@ ALTER SEQUENCE queue_classic_jobs_id_seq OWNED BY queue_classic_jobs.id;
 
 
 --
+-- Name: resources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE resources (
+    id integer NOT NULL,
+    generic_name character varying,
+    tutorial_id integer,
+    material_id integer,
+    material_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE resources_id_seq OWNED BY resources.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -698,6 +732,39 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: videos; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE videos (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: videos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE videos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: videos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE videos_id_seq OWNED BY videos.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -764,6 +831,13 @@ ALTER TABLE ONLY queue_classic_jobs ALTER COLUMN id SET DEFAULT nextval('queue_c
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY resources ALTER COLUMN id SET DEFAULT nextval('resources_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY simulated_categories ALTER COLUMN id SET DEFAULT nextval('simulated_categories_id_seq'::regclass);
 
 
@@ -807,6 +881,13 @@ ALTER TABLE ONLY tutorials ALTER COLUMN id SET DEFAULT nextval('tutorials_id_seq
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::regclass);
 
 
 --
@@ -882,6 +963,14 @@ ALTER TABLE ONLY queue_classic_jobs
 
 
 --
+-- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY resources
+    ADD CONSTRAINT resources_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: simulated_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -938,10 +1027,32 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY videos
+    ADD CONSTRAINT videos_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: idx_qc_on_name_only_unlocked; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_qc_on_name_only_unlocked ON queue_classic_jobs USING btree (q_name, id) WHERE (locked_at IS NULL);
+
+
+--
+-- Name: index_resources_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resources_on_material_type_and_material_id ON resources USING btree (material_type, material_id);
+
+
+--
+-- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resources_on_tutorial_id ON resources USING btree (tutorial_id);
 
 
 --
@@ -1067,4 +1178,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 INSERT INTO schema_migrations (version) VALUES ('20160307003117');
 
 INSERT INTO schema_migrations (version) VALUES ('20160412215148');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415213820');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415213904');
 
