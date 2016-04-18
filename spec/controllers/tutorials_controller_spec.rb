@@ -54,6 +54,7 @@ RSpec.describe TutorialsController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new tutorial as @tutorial" do
+      tutorial = Tutorial.create! valid_attributes
       get :new, {}, valid_session
       expect(assigns(:tutorial)).to be_a_new(Tutorial)
     end
