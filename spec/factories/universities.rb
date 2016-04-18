@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :university do
-    name "MyString"
-    province "MyString"
-    city "MyString"
-    website "MyString"
-    logo "MyString"
-    type 1
+    name Faker::University.name
+    province Faker::Address.street_name
+    city Faker::Address.city
+    website Faker::Internet.url
+    logo Faker::Company.logo
+    type Faker::Number.between(0, 1)
   end
 end

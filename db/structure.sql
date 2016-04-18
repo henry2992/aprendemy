@@ -221,7 +221,8 @@ CREATE TABLE categories (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    sub_categories_count integer DEFAULT 0
+    sub_categories_count integer DEFAULT 0,
+    course_id integer
 );
 
 
@@ -274,6 +275,38 @@ CREATE SEQUENCE choices_id_seq
 --
 
 ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
+
+
+--
+-- Name: courses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE courses (
+    id integer NOT NULL,
+    name character varying,
+    description character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: courses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE courses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: courses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
 
 
 --
@@ -469,6 +502,40 @@ CREATE SEQUENCE queue_classic_jobs_id_seq
 --
 
 ALTER SEQUENCE queue_classic_jobs_id_seq OWNED BY queue_classic_jobs.id;
+
+
+--
+-- Name: resources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE resources (
+    id integer NOT NULL,
+    generic_name character varying,
+    tutorial_id integer,
+    material_id integer,
+    material_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE resources_id_seq OWNED BY resources.id;
 
 
 --
@@ -689,6 +756,38 @@ ALTER SEQUENCE sub_categories_id_seq OWNED BY sub_categories.id;
 
 
 --
+-- Name: tutorials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tutorials (
+    id integer NOT NULL,
+    title character varying,
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: tutorials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tutorials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tutorials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tutorials_id_seq OWNED BY tutorials.id;
+
+
+--
 -- Name: universities; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -773,6 +872,39 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: videos; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE videos (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: videos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE videos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: videos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE videos_id_seq OWNED BY videos.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -798,6 +930,13 @@ ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_s
 --
 
 ALTER TABLE ONLY choices ALTER COLUMN id SET DEFAULT nextval('choices_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
 
 
 --
@@ -846,6 +985,13 @@ ALTER TABLE ONLY queue_classic_jobs ALTER COLUMN id SET DEFAULT nextval('queue_c
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY resources ALTER COLUMN id SET DEFAULT nextval('resources_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY schools ALTER COLUMN id SET DEFAULT nextval('schools_id_seq'::regclass);
 
 
@@ -888,6 +1034,13 @@ ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categor
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY tutorials ALTER COLUMN id SET DEFAULT nextval('tutorials_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY universities ALTER COLUMN id SET DEFAULT nextval('universities_id_seq'::regclass);
 
 
@@ -896,6 +1049,13 @@ ALTER TABLE ONLY universities ALTER COLUMN id SET DEFAULT nextval('universities_
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::regclass);
 
 
 --
@@ -928,6 +1088,14 @@ ALTER TABLE ONLY categories
 
 ALTER TABLE ONLY choices
     ADD CONSTRAINT choices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY courses
+    ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
 
 
 --
@@ -979,6 +1147,14 @@ ALTER TABLE ONLY queue_classic_jobs
 
 
 --
+-- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY resources
+    ADD CONSTRAINT resources_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: schools_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1027,6 +1203,14 @@ ALTER TABLE ONLY sub_categories
 
 
 --
+-- Name: tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tutorials
+    ADD CONSTRAINT tutorials_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: universities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1043,10 +1227,32 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY videos
+    ADD CONSTRAINT videos_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: idx_qc_on_name_only_unlocked; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_qc_on_name_only_unlocked ON queue_classic_jobs USING btree (q_name, id) WHERE (locked_at IS NULL);
+
+
+--
+-- Name: index_resources_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resources_on_material_type_and_material_id ON resources USING btree (material_type, material_id);
+
+
+--
+-- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resources_on_tutorial_id ON resources USING btree (tutorial_id);
 
 
 --
@@ -1170,6 +1376,16 @@ INSERT INTO schema_migrations (version) VALUES ('20160305074513');
 INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307003117');
+
+INSERT INTO schema_migrations (version) VALUES ('20160412215148');
+
+INSERT INTO schema_migrations (version) VALUES ('20160414013914');
+
+INSERT INTO schema_migrations (version) VALUES ('20160414014155');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415213820');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415213904');
 
 INSERT INTO schema_migrations (version) VALUES ('20160416213957');
 
