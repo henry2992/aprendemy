@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  resources :tutorials
+  resources :resources 
+  
   root 'home#index'
 
   post 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
