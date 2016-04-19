@@ -59,6 +59,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'railroady'
   gem 'faker'
+  gem 'rubocop', '~> 0.39.0', require: false
 end
 
 group :development do
