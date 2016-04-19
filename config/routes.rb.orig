@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
 
-  resources :courses  
+<<<<<<< HEAD
   resources :tutorials
   resources :resources 
   
+=======
+  resources :courses
+>>>>>>> courses
   root 'home#index'
 
   post 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart

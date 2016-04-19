@@ -18,8 +18,8 @@ categories = Category.create([{ name: 'RAZONAMIENTO MATEMÁTICO' }, { name: 'RAZ
 
 subcategories = SubCategory.create([
 									#Matematica
-									{ name: 'Operaciones Básicas', category_id: '1' }, 
-									{ name: 'Potenciación y Radicación', category_id: '1'  }, 
+									{ name: 'Operaciones Básicas', category_id: '1' },
+									{ name: 'Potenciación y Radicación', category_id: '1'  },
 									{ name: 'Razones y Proporciones', category_id: '1'  },
 									{ name: 'Reglas de Tres', category_id: '1'  },
 									{ name: 'Ecuaciones', category_id: '1'  },
@@ -27,27 +27,27 @@ subcategories = SubCategory.create([
 									{ name: 'Geometría', category_id: '1'  },
 									{ name: 'Probabilidad, Combinación y Variación', category_id: '1'  },
 									# Verbal
-									{ name: 'Hiperónimos', category_id: '2'  }, 
-									{ name: 'Hipónimos', category_id: '2'  }, 
-									{ name: 'Sinónimos', category_id: '2'  }, 
-									{ name: 'Antónimos', category_id: '2'  }, 
-									{ name: 'Presición Semántica', category_id: '2'  }, 
-									{ name: 'Interpretación de refranes', category_id: '2'  }, 
-									{ name: 'Analogías Verbales', category_id: '2'  }, 
-									{ name: 'Comprensión de Lectura', category_id: '2'  }, 
-									{ name: 'Término excluido', category_id: '2'  }, 
+									{ name: 'Hiperónimos', category_id: '2'  },
+									{ name: 'Hipónimos', category_id: '2'  },
+									{ name: 'Sinónimos', category_id: '2'  },
+									{ name: 'Antónimos', category_id: '2'  },
+									{ name: 'Presición Semántica', category_id: '2'  },
+									{ name: 'Interpretación de refranes', category_id: '2'  },
+									{ name: 'Analogías Verbales', category_id: '2'  },
+									{ name: 'Comprensión de Lectura', category_id: '2'  },
+									{ name: 'Término excluido', category_id: '2'  },
 									#Abstracto
-									{ name: 'Analogías entre figuras', category_id: '3'  }, 
-									{ name: 'Relación entre figuras', category_id: '3'  }, 
-									{ name: 'Secuencias gráficas horizontales', category_id: '3'  }, 
-									{ name: 'Matrices gráficas horizontales', category_id: '3'  }, 
-									{ name: 'Figuras excluidas', category_id: '3'  }, 
-									{ name: 'Matrices de superposición', category_id: '3'  }, 
-									{ name: 'Matrices gráficas', category_id: '3'  }, 
-									{ name: 'Matrices lógicas', category_id: '3'  }, 
+									{ name: 'Analogías entre figuras', category_id: '3'  },
+									{ name: 'Relación entre figuras', category_id: '3'  },
+									{ name: 'Secuencias gráficas horizontales', category_id: '3'  },
+									{ name: 'Matrices gráficas horizontales', category_id: '3'  },
+									{ name: 'Figuras excluidas', category_id: '3'  },
+									{ name: 'Matrices de superposición', category_id: '3'  },
+									{ name: 'Matrices gráficas', category_id: '3'  },
+									{ name: 'Matrices lógicas', category_id: '3'  },
 									{ name: 'Giros de figuras', category_id: '3'  },
-									{ name: 'Vistas de cuerpos', category_id: '3'  }, 
-									{ name: 'Figuras 3D', category_id: '3'  }, 
+									{ name: 'Vistas de cuerpos', category_id: '3'  },
+									{ name: 'Figuras 3D', category_id: '3'  },
 									{ name: 'Rompecabezas', category_id: '3'  }
 									])
 
@@ -69,7 +69,7 @@ math_8_counter = 1
 finder_start =  1
 finder_end =  5
 
-1.times do 
+1.times do
 	# Operaciones Básicas
 	(1..30).each do |y|
 
@@ -227,7 +227,7 @@ verb_9_counter = 1
 ##################
 
 
-1.times do 
+1.times do
 	# Hiperónimos
 	(241..270).each do |y|
 
@@ -404,7 +404,7 @@ abs_11_counter = 1
 
 
 
-1.times do 
+1.times do
 
 	# Analogías entre figuras
 	(511..540).each do |y|
@@ -612,17 +612,3 @@ abs_11_counter = 1
 	end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-

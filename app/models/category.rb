@@ -5,6 +5,7 @@ class Category < ActiveRecord::Base
   has_many :simulated_categories, inverse_of: :category
 
   belongs_to :user
+  belongs_to :course
 
   def answered_questions_list user_id
     Question.where('sub_category_id IN (?) AND id IN (?)', self.sub_categories.pluck(:id), AnsweredQuestion.where(user_id: user_id).pluck(:question_id) )
