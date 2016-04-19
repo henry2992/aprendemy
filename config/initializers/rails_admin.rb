@@ -78,17 +78,4 @@ RailsAdmin.config do |config|
       end
     end
   end
-  
-  # config.navigation_static_label = "Datos de Universidad"
-  config.model University do
-    label "Universidades"
-  end
-
-  config.model Career do
-    label "Carreras"
-  end
-
-  config.model School do
-    label "Facultades"
-  end
 end
