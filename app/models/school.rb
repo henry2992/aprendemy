@@ -6,5 +6,4 @@ class School < ActiveRecord::Base
 
 	mount_uploader :image, UserUploader
 	
-	self.inheritance_column = :_type_disabled
 end
