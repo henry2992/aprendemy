@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :course do
-    name "MyString"
-    description "MyString"
+    name Faker::Name.name
+    description Faker::Lorem.sentence
   end
 end

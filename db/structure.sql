@@ -170,6 +170,44 @@ ALTER SEQUENCE answered_questions_id_seq OWNED BY answered_questions.id;
 
 
 --
+-- Name: careers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE careers (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    image character varying,
+    website character varying,
+    type integer,
+    faculty character varying,
+    school_id integer,
+    university_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: careers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE careers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: careers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE careers_id_seq OWNED BY careers.id;
+
+
+--
 -- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -463,12 +501,79 @@ ALTER SEQUENCE queue_classic_jobs_id_seq OWNED BY queue_classic_jobs.id;
 
 
 --
+-- Name: resources; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE resources (
+    id integer NOT NULL,
+    generic_name character varying,
+    tutorial_id integer,
+    material_id integer,
+    material_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE resources_id_seq OWNED BY resources.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE schema_migrations (
     version character varying NOT NULL
 );
+
+
+--
+-- Name: schools; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE schools (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    image character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: schools_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE schools_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: schools_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE schools_id_seq OWNED BY schools.id;
 
 
 --
@@ -582,7 +687,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-04-08 00:40:40.565943'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-04-20 00:07:10.044372'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -647,6 +752,74 @@ ALTER SEQUENCE sub_categories_id_seq OWNED BY sub_categories.id;
 
 
 --
+-- Name: tutorials; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tutorials (
+    id integer NOT NULL,
+    title character varying,
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: tutorials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tutorials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tutorials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tutorials_id_seq OWNED BY tutorials.id;
+
+
+--
+-- Name: universities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE universities (
+    id integer NOT NULL,
+    name character varying,
+    province character varying,
+    city character varying,
+    website character varying,
+    type integer,
+    logo character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: universities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE universities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: universities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE universities_id_seq OWNED BY universities.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -695,10 +868,50 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: videos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE videos (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    url character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: videos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE videos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: videos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE videos_id_seq OWNED BY videos.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answered_questions ALTER COLUMN id SET DEFAULT nextval('answered_questions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY careers ALTER COLUMN id SET DEFAULT nextval('careers_id_seq'::regclass);
 
 
 --
@@ -768,6 +981,20 @@ ALTER TABLE ONLY queue_classic_jobs ALTER COLUMN id SET DEFAULT nextval('queue_c
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY resources ALTER COLUMN id SET DEFAULT nextval('resources_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY schools ALTER COLUMN id SET DEFAULT nextval('schools_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY simulated_categories ALTER COLUMN id SET DEFAULT nextval('simulated_categories_id_seq'::regclass);
 
 
@@ -803,7 +1030,28 @@ ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categor
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY tutorials ALTER COLUMN id SET DEFAULT nextval('tutorials_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY universities ALTER COLUMN id SET DEFAULT nextval('universities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::regclass);
 
 
 --
@@ -812,6 +1060,14 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 ALTER TABLE ONLY answered_questions
     ADD CONSTRAINT answered_questions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: careers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY careers
+    ADD CONSTRAINT careers_pkey PRIMARY KEY (id);
 
 
 --
@@ -887,6 +1143,22 @@ ALTER TABLE ONLY queue_classic_jobs
 
 
 --
+-- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY resources
+    ADD CONSTRAINT resources_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schools_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY schools
+    ADD CONSTRAINT schools_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: simulated_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -927,6 +1199,22 @@ ALTER TABLE ONLY sub_categories
 
 
 --
+-- Name: tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tutorials
+    ADD CONSTRAINT tutorials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: universities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY universities
+    ADD CONSTRAINT universities_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -935,10 +1223,32 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY videos
+    ADD CONSTRAINT videos_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: idx_qc_on_name_only_unlocked; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX idx_qc_on_name_only_unlocked ON queue_classic_jobs USING btree (q_name, id) WHERE (locked_at IS NULL);
+
+
+--
+-- Name: index_resources_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_resources_on_material_type_and_material_id ON resources USING btree (material_type, material_id);
+
+
+--
+-- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_resources_on_tutorial_id ON resources USING btree (tutorial_id);
 
 
 --
@@ -1063,7 +1373,19 @@ INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307003117');
 
+INSERT INTO schema_migrations (version) VALUES ('20160412215148');
+
 INSERT INTO schema_migrations (version) VALUES ('20160414013914');
 
 INSERT INTO schema_migrations (version) VALUES ('20160414014155');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415213820');
+
+INSERT INTO schema_migrations (version) VALUES ('20160415213904');
+
+INSERT INTO schema_migrations (version) VALUES ('20160416213957');
+
+INSERT INTO schema_migrations (version) VALUES ('20160416214513');
+
+INSERT INTO schema_migrations (version) VALUES ('20160416214633');
 
