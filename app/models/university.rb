@@ -8,4 +8,5 @@ class University < ActiveRecord::Base
 	validates :type, :presence => true
 
 	mount_uploader :logo, UserUploader
+	self.inheritance_column = :_type_disabled
 end
