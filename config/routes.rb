@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
 
-  resources :courses  
+  resources :courses
   resources :tutorials
-  resources :resources 
-  
+  resources :resources
+
   root 'home#index'
 
   post 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
@@ -32,9 +32,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # USERS
-
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations', sessions: 'sessions' }
-
 
   # LIVE CLASSES
   get '/live_classes' => 'live_classes#index'
