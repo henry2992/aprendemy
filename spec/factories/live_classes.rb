@@ -6,5 +6,6 @@ FactoryGirl.define do
     online_now Faker::Number.between(0, 1)
     time Faker::Time.between(DateTime.now - 1, DateTime.now)
     explanation Faker::Lorem.paragraph(3)
+    association :course, :factory => :course
   end
 end

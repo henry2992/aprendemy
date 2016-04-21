@@ -35,4 +35,9 @@ describe LiveClass do
 		expect(@liveclass).to be_invalid
 	end
 
+	it 'should not be valid without a course' do
+		@liveclass.course_id = nil
+		expect(@liveclass).to be_invalid
+	end
+
 end

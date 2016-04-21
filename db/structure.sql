@@ -355,7 +355,8 @@ CREATE TABLE live_classes (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     "time" timestamp without time zone,
-    explanation text
+    explanation text,
+    course_id integer
 );
 
 
@@ -1242,6 +1243,13 @@ CREATE INDEX idx_qc_on_name_only_unlocked ON queue_classic_jobs USING btree (q_n
 
 
 --
+-- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_live_classes_on_course_id ON live_classes USING btree (course_id);
+
+
+--
 -- Name: index_resources_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1295,6 +1303,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 --
 
 CREATE TRIGGER queue_classic_notify AFTER INSERT ON queue_classic_jobs FOR EACH ROW EXECUTE PROCEDURE queue_classic_notify();
+
+
+--
+-- Name: fk_rails_97ebb10078; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY live_classes
+    ADD CONSTRAINT fk_rails_97ebb10078 FOREIGN KEY (course_id) REFERENCES courses(id);
 
 
 --
@@ -1392,4 +1408,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160416213957');
 INSERT INTO schema_migrations (version) VALUES ('20160416214513');
 
 INSERT INTO schema_migrations (version) VALUES ('20160416214633');
+
+INSERT INTO schema_migrations (version) VALUES ('20160421185759');
 
