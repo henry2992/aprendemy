@@ -170,6 +170,44 @@ ALTER SEQUENCE answered_questions_id_seq OWNED BY answered_questions.id;
 
 
 --
+-- Name: careers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE careers (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    image character varying,
+    website character varying,
+    type integer,
+    faculty character varying,
+    school_id integer,
+    university_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: careers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE careers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: careers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE careers_id_seq OWNED BY careers.id;
+
+
+--
 -- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -506,6 +544,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: schools; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE schools (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    image character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: schools_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE schools_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: schools_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE schools_id_seq OWNED BY schools.id;
+
+
+--
 -- Name: simulated_categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -713,6 +784,42 @@ ALTER SEQUENCE tutorials_id_seq OWNED BY tutorials.id;
 
 
 --
+-- Name: universities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE universities (
+    id integer NOT NULL,
+    name character varying,
+    province character varying,
+    city character varying,
+    website character varying,
+    type integer,
+    logo character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: universities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE universities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: universities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE universities_id_seq OWNED BY universities.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -804,6 +911,13 @@ ALTER TABLE ONLY answered_questions ALTER COLUMN id SET DEFAULT nextval('answere
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY careers ALTER COLUMN id SET DEFAULT nextval('careers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
@@ -874,6 +988,13 @@ ALTER TABLE ONLY resources ALTER COLUMN id SET DEFAULT nextval('resources_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY schools ALTER COLUMN id SET DEFAULT nextval('schools_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY simulated_categories ALTER COLUMN id SET DEFAULT nextval('simulated_categories_id_seq'::regclass);
 
 
@@ -916,6 +1037,13 @@ ALTER TABLE ONLY tutorials ALTER COLUMN id SET DEFAULT nextval('tutorials_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY universities ALTER COLUMN id SET DEFAULT nextval('universities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -932,6 +1060,14 @@ ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::reg
 
 ALTER TABLE ONLY answered_questions
     ADD CONSTRAINT answered_questions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: careers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY careers
+    ADD CONSTRAINT careers_pkey PRIMARY KEY (id);
 
 
 --
@@ -1015,6 +1151,14 @@ ALTER TABLE ONLY resources
 
 
 --
+-- Name: schools_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY schools
+    ADD CONSTRAINT schools_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: simulated_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1060,6 +1204,14 @@ ALTER TABLE ONLY sub_categories
 
 ALTER TABLE ONLY tutorials
     ADD CONSTRAINT tutorials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: universities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY universities
+    ADD CONSTRAINT universities_pkey PRIMARY KEY (id);
 
 
 --
@@ -1230,4 +1382,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160414014155');
 INSERT INTO schema_migrations (version) VALUES ('20160415213820');
 
 INSERT INTO schema_migrations (version) VALUES ('20160415213904');
+
+INSERT INTO schema_migrations (version) VALUES ('20160416213957');
+
+INSERT INTO schema_migrations (version) VALUES ('20160416214513');
+
+INSERT INTO schema_migrations (version) VALUES ('20160416214633');
 

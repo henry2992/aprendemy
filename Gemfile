@@ -59,7 +59,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'railroady'
-  gem 'faker'
+  gem 'faker', '~> 1.6', '>= 1.6.3'
   gem 'rubocop', '~> 0.39.0', require: false
 end
 
