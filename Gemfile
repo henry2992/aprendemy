@@ -41,7 +41,6 @@ gem 'haml'
 gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
-gem "figaro"
 
 
 # Add this if you're using rbenv
@@ -73,6 +72,5 @@ group :development do
 end
 
 group :production do
-  gem 'puma', '~> 2.16'
   gem 'rails_12factor'
 end
