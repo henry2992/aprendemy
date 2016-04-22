@@ -31,13 +31,17 @@
     <%= f.label :faculty %><br>
     <%= f.text_field :faculty %>
   </div>
-  <div class="field">
-    <%= f.label :school %><br>
-    <%= f.number_field :school %>
+  <div class="form-group">
+    <%= f.label :School, class: "control-label" %>
+    <%= f.collection_select(:school_id, School.all, :id, :name, {:include_blank => 'Select school...'}, {:class=>'form-control'}) %>
   </div>
   <div class="field">
     <%= f.label :type %><br>
     <%= f.number_field :type %>
+  </div>
+  <div class="form-group">
+    <%= f.label :University, class: "control-label" %>
+    <%= f.collection_select(:university_id, University.all, :id, :name, {:include_blank => 'Select university...'}, {:class=>'form-control'}) %>
   </div>
   <div class="actions">
     <%= f.submit %>
