@@ -1,0 +1,33 @@
+.application-wrapper.container-fluid
+  .row
+    =render 'layouts/user_sidebar'
+    .main-bg
+      %content
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .application-content-header
+                = link_to 'Cursos', courses_path
+                |
+                = link_to 'Mis Cursos', my_courses_path
+              .app-text-holder.row.main-bg
+                %content
+                  %p#notice= notice
+                  %h1 Cursos
+                  %table.table.table-striped
+                    %thead
+                      %tr
+                        %th Nombre
+                        %th Descripcion
+                        %th{:colspan => "3"}
+                    %tbody
+                      - @courses.each do |course|
+                        %tr
+                          %td= course.name
+                          %td= course.description
+                          %td= link_to 'Ver', course, class: 'btn btn-mini btn-success'
+                          - if current_user.courses.include? course
+                            %td
+                              %p= "curso ya tomado"
+                          - else
+                            %td= link_to 'Tomar Curso', course_take_course_path(course), class: 'btn btn-mini btn-danger', method: :put

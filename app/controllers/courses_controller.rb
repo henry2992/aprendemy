@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
@@ -10,6 +11,24 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+  end
+
+  def my_courses
+    @my_courses = current_user.courses
+  end
+
+  def take_course
+    @course = Course.find(params[:course_id])
+    @course.users << current_user
+
+    respond_to do |format|
+      if @course.save
+        format.html { redirect_to courses_path, notice: 'Curso agregado a mis cursos.' }
+      else
+        format.html { redirect_to courses_path, alert: 'Curso no ha sido agregado a mis cursos.' }
+      end
+    end
+
   end
 
   # GET /courses/new

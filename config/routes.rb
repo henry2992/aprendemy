@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :schools
   resources :careers
   resources :universities
-  resources :courses  
+  resources :courses do
+    put :take_course
+  end
+  get '/my_courses'   => 'courses#my_courses', as: :my_courses
+
   resources :tutorials
   resources :resources
 
