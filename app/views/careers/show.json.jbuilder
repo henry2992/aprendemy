@@ -1,1 +1,1 @@
-json.extract! @career, :id, :name, :description, :image, :website, :faculty, :school, :type, :created_at, :updated_at
+json.extract! @career, :id, :name, :description, :image, :faculty, :school, :type, :created_at, :updated_at

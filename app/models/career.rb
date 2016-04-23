@@ -12,7 +12,5 @@ class Career < ActiveRecord::Base
 	validates :school, :presence => true
 	validates :university, :presence => true
 
-	mount_uploader :image, UserUploader
 	self.inheritance_column = :_type_disabled
-
 end

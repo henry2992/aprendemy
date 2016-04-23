@@ -182,7 +182,6 @@ CREATE TABLE careers (
     name character varying,
     description text,
     image character varying,
-    website character varying,
     type integer,
     faculty character varying,
     school_id integer,
@@ -1410,4 +1409,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160416214513');
 INSERT INTO schema_migrations (version) VALUES ('20160416214633');
 
 INSERT INTO schema_migrations (version) VALUES ('20160421185759');
+
+INSERT INTO schema_migrations (version) VALUES ('20160423202928');
 

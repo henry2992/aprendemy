@@ -11,29 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :province %><br>
     <%= f.text_field :province %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :city %><br>
     <%= f.text_field :city %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :website %><br>
     <%= f.text_field :website %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :logo %><br>
-    <%= f.text_field :logo %>
+    <%= f.file_field :logo %>
   </div>
-  <div class="field">
-    <%= f.label :type %><br>
-    <%= f.number_field :type %>
+  <div class="form-group">
+    <%= f.label :type, class: "control-label" %>
+    <% options= [["Universidad",0], ["Instituto",1]] %>
+      <%= f.select :type, options, {}, :disabled => false, class: "form-control" %>
   </div>
   <div class="actions">
     <%= f.submit %>

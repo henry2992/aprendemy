@@ -16,24 +16,24 @@
 </p>
 
 <p>
-  <strong>Website:</strong>
-  <%= @career.website %>
-</p>
-
-<p>
   <strong>Faculty:</strong>
   <%= @career.faculty %>
 </p>
 
 <p>
   <strong>School:</strong>
-  <%= @career.school %>
+  <%= @career.school.name %>
 </p>
+
 
 <p>
   <strong>Type:</strong>
   <%= @career.type %>
 </p>
 
+<p>
+  <strong>School:</strong>
+  <%= @career.university.name %>
+</p>
 <%= link_to 'Edit', edit_career_path(@career) %> |
 <%= link_to 'Back', careers_path %>
