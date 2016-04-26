@@ -37,4 +37,8 @@ Rails.application.routes.draw do
 
   get '/payments'   => 'home#payments', as: :payments
 
+  #Landing pages
+  get '/enes'   => 'landing#descarga', as: 'enes'
+
+
 end

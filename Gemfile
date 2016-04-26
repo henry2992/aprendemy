@@ -36,6 +36,7 @@ gem 'kaminari'
 #Other
 gem 'flipclockjs-rails', '~> 0.7.7'
 gem 'figaro'
+gem 'tzinfo-data'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
