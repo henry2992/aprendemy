@@ -356,6 +356,7 @@ CREATE TABLE live_classes (
     "time" timestamp without time zone,
     explanation text,
     course_id integer
+    "Urlyoutube" character varying
 );
 
 
@@ -1409,6 +1410,7 @@ INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307003117');
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20160412215148');
 
 INSERT INTO schema_migrations (version) VALUES ('20160414013914');
@@ -1440,4 +1442,7 @@ INSERT INTO schema_migrations (version) VALUES ('20160427134003');
 INSERT INTO schema_migrations (version) VALUES ('20160427134130');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427160225');
+=======
+INSERT INTO schema_migrations (version) VALUES ('20160405062817');
+>>>>>>> master
 

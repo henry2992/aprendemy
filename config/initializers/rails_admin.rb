@@ -50,6 +50,7 @@ RailsAdmin.config do |config|
         strftime_format "%Y-%m-%d %H:%M"
       end
       field :explanation
+      field :Urlyoutube
     end
   end
 
