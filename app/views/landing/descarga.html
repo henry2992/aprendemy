@@ -1,0 +1,21 @@
+
+
+<div class="lock mct_shareit_locker" style="margin-top: 60px">
+I Have to Lock this content
+</div>
+
+
+<script type="text/javascript">
+  var options = {
+        title: "Share/Like/Follow to Download", //Heading of Content Locker
+        text: 'Choose Any Social Social Network from below to share our content and Download it.', //Subheading of Content Locker
+        facebook:{
+            url: window.location.href,  //Your Content Page Url
+            pageId: "https://www.facebook.com/aprendemy",  //Your Facebook Page Url
+            appId: 928864270524469 //Your Facebook App ID
+        },
+        buttons:["facebook_share","facebook_like","twitter_tweet","twitter_follow","googleplus","linkedin"]
+    };
+ 
+$(".lock").shareIt(options);
+</script>
