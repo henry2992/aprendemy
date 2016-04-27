@@ -455,14 +455,15 @@ CREATE TABLE questions (
     id integer NOT NULL,
     content character varying,
     choice_id integer,
-    user_id integer,
     sub_category_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     answered_questions_count integer DEFAULT 0,
     explanation character varying,
     picture character varying,
-    url character varying
+    url character varying,
+    video_url character varying,
+    question_id integer
 );
 
 
@@ -1249,6 +1250,13 @@ CREATE INDEX index_live_classes_on_course_id ON live_classes USING btree (course
 
 
 --
+-- Name: index_questions_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_questions_on_question_id ON questions USING btree (question_id);
+
+
+--
 -- Name: index_resources_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1310,6 +1318,14 @@ CREATE TRIGGER queue_classic_notify AFTER INSERT ON queue_classic_jobs FOR EACH 
 
 ALTER TABLE ONLY live_classes
     ADD CONSTRAINT fk_rails_97ebb10078 FOREIGN KEY (course_id) REFERENCES courses(id);
+
+
+--
+-- Name: fk_rails_c685b1dfea; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY questions
+    ADD CONSTRAINT fk_rails_c685b1dfea FOREIGN KEY (question_id) REFERENCES questions(id);
 
 
 --
@@ -1411,4 +1427,14 @@ INSERT INTO schema_migrations (version) VALUES ('20160416214633');
 INSERT INTO schema_migrations (version) VALUES ('20160421185759');
 
 INSERT INTO schema_migrations (version) VALUES ('20160423202928');
+
+INSERT INTO schema_migrations (version) VALUES ('20160425155058');
+
+INSERT INTO schema_migrations (version) VALUES ('20160426193313');
+
+INSERT INTO schema_migrations (version) VALUES ('20160426194020');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427134003');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427134130');
 
