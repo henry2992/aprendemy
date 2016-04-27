@@ -1,7 +1,6 @@
 - question ||= @question
 - answered_question ||= get_answered_question(AnsweredQuestion, question.id)
 - count = 0
-%h1= question.title
 %div{:id => "question-#{question.id}"}
   %p= question.content
   - if question.picture.to_s != ''

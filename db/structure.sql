@@ -463,7 +463,8 @@ CREATE TABLE questions (
     picture character varying,
     url character varying,
     video_url character varying,
-    question_id integer
+    question_id integer,
+    "time" integer
 );
 
 
@@ -1437,4 +1438,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160426194020');
 INSERT INTO schema_migrations (version) VALUES ('20160427134003');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427134130');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427160225');
 
