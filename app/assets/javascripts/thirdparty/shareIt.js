@@ -49,7 +49,9 @@
         // Highlight the collection based on the settings variable.
         this.each(function(){
             var elem = $(this);
-            var con = "<div class='mct_shareit_content'>"+
+            var con = "<div class='mct_shareit_container mct_shareit' id=mct_shareit_container_"+settings.rand+">"+
+                    "<div class='mct_shareit_blur'></div>"+
+                    "<div class='mct_shareit_content'>"+
                     "<h1 class='mct_shareit_title'>"+settings.title+"</h1>"+
                     "<h3 class='mct_shareit_subtitle'>"+settings.text+"</h3>"+
                     "<div class='mct_shareit_buttons' id=mct_shareit_content_"+settings.rand+">"+
