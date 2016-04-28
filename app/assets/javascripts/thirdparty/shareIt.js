@@ -49,18 +49,7 @@
         // Highlight the collection based on the settings variable.
         this.each(function(){
             var elem = $(this);
-            var con = "<div class='mct_shareit_container mct_shareit' id=mct_shareit_container_"+settings.rand+">"+
-                    "<div class='mct_shareit_blur'></div>"+
-                    "<div class='mct_shareit_content'>"+
-                    "<h1 class='mct_shareit_title'>"+settings.title+"</h1>"+
-                    "<h3 class='mct_shareit_subtitle'>"+settings.text+"</h3>"+
-                    "<div class='mct_shareit_buttons' id=mct_shareit_content_"+settings.rand+">"+
-                    "<div class='mct_twitter_tweet mct_margin_top' id=mct_twitter_tweet_"+settings.rand+"><a href='https://twitter.com/intent/tweet?via="+settings.twitter.via+"&text="+encodeURIComponent(settings.twitter.text)+"&url="+encodeURIComponent(settings.twitter.url)+"' class='mct_shareit_button twitter' data-service='twitter-tweets'><span class='mct_shareit_button_title'>Tweet</span><div class=mct_shareit_button_count><i>0</i></div></a></div>"+
-                    "<div class='mct_twitter_follow mct_margin_top' id=mct_twitter_follow_"+settings.rand+"><a href='https://twitter.com/intent/follow?screen_name="+settings.twitter.via+"' class='mct_shareit_button twitter' data-service='twitter-followers'><span class='mct_shareit_button_title'>Follow</span><div class=mct_shareit_button_count><i>"+settings.count.twitter.follower+"</i></div></a></div>"+
-                    "<div class='mct_facebook_share mct_margin_top' id=mct_facebook_share_"+settings.rand+"><a class='mct_shareit_button fb' data-service='facebook_share'><span class='mct_shareit_button_title'>Share</span><div class=mct_shareit_button_count><i>0</i></div></a></div>"+
-                    "<div class='mct_facebook_like mct_margin_top' id=mct_facebook_like_"+settings.rand+"><a href='"+settings.facebook.pageId+"' class='mct_shareit_button fb' data-service='facebook_like'><span class='mct_shareit_button_title'>Like</span><div class=mct_shareit_button_count><i>0</i></div></a></div>"+
-                    "<div class='mct_googleplus mct_margin_top' id=mct_googleplus_"+settings.rand+"><a href='javascript:void(0);' class='mct_shareit_button google-plus' data-service='googleplus'><span class='mct_shareit_button_title'>Follow</span><div class=mct_shareit_button_count><i>0</i></div></a></div>"+
-                    "<div class='mct_linkedin mct_margin_top' id=mct_linkedin_"+settings.rand+"><a href='javascript:void(0);' class='mct_shareit_button linkedin' data-service='linkedin'><span class='mct_shareit_button_title'>Share</span><div class=mct_shareit_button_count><i>0</i></div></a></div>"+
+            var con = "<div class='mct_facebook_share mct_margin_top' id=mct_facebook_share_"+settings.rand+"><a class='mct_shareit_button fb' data-service='facebook_share'><span class='mct_shareit_button_title'>Share</span><div class=mct_shareit_button_count><i>0</i></div></a></div>"+
                     "</div><div id=\"mct_shareit_msg_"+settings.rand+"\" class='mct_shareit_msg'></div></div></div>";
             HTMLtoHide = elem.html();
             elem.html(con);
