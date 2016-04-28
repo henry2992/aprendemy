@@ -3,10 +3,9 @@ Rails.application.routes.draw do
   resources :schools
   resources :careers
   resources :universities
-  resources :courses do
-    put :take_course
+  namespace :student do
+    resources :courses
   end
-  get '/my_courses'   => 'courses#my_courses', as: :my_courses
 
   resources :tutorials
   resources :resources

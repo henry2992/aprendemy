@@ -279,8 +279,8 @@ ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
 
 CREATE TABLE course_users (
     id integer NOT NULL,
-    user_id integer,
     course_id integer,
+    user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1437,4 +1437,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160416214513');
 INSERT INTO schema_migrations (version) VALUES ('20160416214633');
 
 INSERT INTO schema_migrations (version) VALUES ('20160422021811');
+
+INSERT INTO schema_migrations (version) VALUES ('20160428023020');
 
