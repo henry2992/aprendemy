@@ -40,5 +40,7 @@ Rails.application.routes.draw do
   #Landing pages
   get '/enes'   => 'landing#descarga', as: 'enes'
 
+  get "landing/pdf"
+
 
 end

@@ -1,0 +1,51 @@
+
+
+<style type="text/css">
+    .mobile-img-banner{
+        width: 500px;
+    }
+</style>
+
+
+<div class="container-fluid" id="home-banner">
+        <div class="row lg-screen-container">
+            <div class="col-sm-5 col-md-4">
+                <div class="home-banner-img-container">
+                    <%= image_tag ("enes.png") , class: "mobile-img-banner" %>
+                </div>
+            </div>
+            <div class="col-sm-7 col-md-offset-1 col-md-7">
+                <div class="home-banner-main-container">
+                    <h1 class="home-banner-content-heading">
+                        Resolución del Simulador del ENES de la SENESCYT
+                    </h1>
+                    <div class="center-list">
+                        <p>Transmisión: Miércoles 13 y Jueves 14 de abril a las 19:00hrs (horario Ciudad de México)</p>
+                        <p>Resolveremos en VIVO el examen simulador de Misión Admisión (EXANI II) que tenemos disponible para ti completamente gratis desde nuestra página.</p>
+                    </div>
+                </div>
+                <div class="home-banner-buttons">
+                    <div class="lock mct_shareit_locker" style="margin-top: 60px">
+                        I Have to Lock this content
+                        <p><%= link_to 'Pdf', landing_pdf_path %><p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<script type="text/javascript">
+  var options = {
+        title: "Share/Like/Follow to Download", //Heading of Content Locker
+        text: 'Choose Any Social Social Network from below to share our content and Download it.', //Subheading of Content Locker
+        facebook:{
+            url: window.location.href,  //Your Content Page Url
+            pageId: "https://www.facebook.com/aprendemy",  //Your Facebook Page Url
+            appId: 928864270524469 //Your Facebook App ID
+        },
+        buttons:["facebook_share"]
+    };
+ 
+$(".lock").shareIt(options);
+</script>
