@@ -1,71 +1,126 @@
 
-<div class="container-fluid" id="home-banner">
-    <div class="row lg-screen-container">
-            <div class="col-sm-5 col-md-4">
-                <div class="home-banner-img-container">
-                    <%= image_tag ("enes.png") , class: "mobile-img-banner" %>
-                </div>
-            </div>
-            <div class="col-sm-7 col-md-offset-1 col-md-7">
-                <div class="home-banner-main-container">
-                    <h1 class="home-banner-content-heading">
-                        Resolución del Simulador del ENES de la SENESCYT
-                    </h1>
-                    <div class="center-list">
-                        <p>Transmisión: Miércoles 13 y Jueves 14 de abril a las 19:00hrs (horario Ciudad de México)</p>
-                        <p>Resolveremos en VIVO el examen simulador de Misión Admisión (EXANI II) que tenemos disponible para ti completamente gratis desde nuestra página.</p>
-                    </div>
-                </div>
-                <div class="home-banner-buttons">
-                    <div class="lock mct_shareit_locker" style="margin-top: 60px">
-                        I Have to Lock this content
-                        <p><%= link_to 'Pdf', landing_pdf_path %><p>
-                    </div>
-                </div>
-            </div>
-    </div>
-    <div class="home-banner-buttons">
-        <div class="lock mct_shareit_locker" style="margin-top: 60px">
-            I Have to Lock this content
-            <p><%= link_to 'Pdf', landing_pdf_path %></p>
-        </div>
-    </div>
-</div>
 
-
-
-<div class="container-fluid" id="home-banner">
+<!-- Home Banner Start -->
+    <div class="container-fluid" id="landing-banner">
         <div class="row lg-screen-container">
             <div class="col-sm-5 col-md-4">
-                <div class="home-banner-img-container">
-                    <%= image_tag ("enes.png") , class: "mobile-img-banner" %>
+                <div class="landing-img-container">
+                    <%= image_tag("enes.png", class: "mobile-img-banner", alt: "Apredemy ENES") %>
                 </div>
             </div>
             <div class="col-sm-7 col-md-offset-1 col-md-7">
-                <div class="home-banner-main-container">
-                    <h1 class="home-banner-content-heading">
+                <div class="">
+                    <h1 class="landing-heading">
                         Resolución del Simulador del ENES de la SENESCYT
                     </h1>
-                    <div class="center-list">
+                    <div class="landing-p">
                         <p>Transmisión: Miércoles 13 y Jueves 14 de abril a las 19:00hrs (horario Ciudad de México)</p>
                         <p>Resolveremos en VIVO el examen simulador de Misión Admisión (EXANI II) que tenemos disponible para ti completamente gratis desde nuestra página.</p>
                     </div>
                 </div>
-                <div class="home-banner-buttons">
-                    <div class="lock mct_shareit_locker" style="margin-top: 60px">
-                        I Have to Lock this content
-                        <p><%= link_to 'Pdf', landing_pdf_path %><p>
+                <div class="btn-download">
+                    <div class="lock mct_shareit_locker">
+                        <h3>Que recibes</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed tempus augue. Vestibulum imperdiet laoreet arcu, non mollis mauris venenatis at. Nullam quis dui lectus. Nam mattis odio lorem, id eleifend velit rutrum id.</p>
+                        <button class=" btn btn-success"><%= link_to 'Click aquī paradescragar tu examen tu examen', landing_pdf_path %>
+                        </button>
+                        
                     </div>
                 </div>
             </div>
         </div>
-</div>
+    </div>
+    <!-- Que haremos -->
+    <div class="what-we-do">
+        <div class="container what-we-do-container">
+            <div class="what-we-do-title">
+                <%= image_tag("enes3.png", alt: "Apredemy ENES") %>
+                <h1>¿Qué Haremos En Esta Transmisión?</h1>
+            </div>
+
+            <div class="row what-we-do-explanation">
+                <div class="col-md-4">
+                    <%= image_tag("enes2.png", alt: "Apredemy ENES") %>
+                    <h3>Resolver el examen</h3>
+                    <p>Resolveremos paso a paso cada uno de los 50 reactivos del simulador gratuito.</p>
+                </div>
+                <div class="col-md-4">
+                    <%= image_tag("enes1.png",  alt: "Apredemy ENES") %>
+                    <h3>Resolver el examen</h3>
+                    <p>Resolveremos paso a paso cada uno de los 50 reactivos del simulador gratuito.</p>
+                </div>
+                <div class="col-md-4">
+                    <%= image_tag("enes4.png", alt: "Apredemy ENES") %>
+                    <h3>Resolver el examen</h3>
+                    <p>Resolveremos paso a paso cada uno de los 50 reactivos del simulador gratuito.</p>
+                </div>
+            </div>
+            <!-- Participa en Vivo -->
+            <div class="participate">
+                <h1>¡Participa En Vivo!</h1>
+                <p>
+                Haz preguntas vía WhatsApp, para unirte a la conversación agréganos al (55)4586 5401
+                <br>
+                Miércoles 13 de abril - 19:00 a 21:00 hrs (horario Ciudad de México)
+                <br>
+                Pensamiento matemático y Pensamiento Analítico
+                <br>
+                Profesor: MC. Daniel Cauich
+                <br>
+                Jueves 14 de abril - 19:00 a 21:00 hrs (horario Ciudad de México)
+                <br>
+                Estructura de la Lengua y Comprensión Lectora
+                <br>
+                Profesora: LE. Angely Mena
+                <br>
+                Nota importante
+                <br>
+                Es recomendable que hagas el simulador antes de la transmisión, al registrarte puedes acceder a la opción que dice "Exámenes"
+                <br>
+                Es GRATIS
+                <br>
+                Son 50 preguntas
+                <br>
+                Está diseñado por profesores Certificados por el CENEVAL
+                </p>
+                <div>
+                    <button class="btn btn-success">Quiero Registrarme en Aprendemy</button>
+                </div>
+
+            </div>
+
+            
+
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="copyright">
+            Copyright © 2016. Aprendemy.
+        </p>
+        <div class="footer-img">
+            <%= image_tag("isotipo.png", class: "aprendemy-img", alt: "Apredemy Logo") %>
+        </div>
+
+        <div class='community-icons-footer'>
+            <a href="https://www.facebook.com/aprendemy" target="_blank"><i id="social-fb-footer" class="fa fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/aprendemy" target="_blank"><i id="social-tw-footer" class="fa fa-twitter-square fa-3x social"></i></a>
+            <a href="https://www.youtube.com/channel/UCc6N8LIO-yPIsDqM50ypxjQ" target="_blank"><i id="social-yt-footer" class="fa fa-youtube-square fa-3x social"></i></a>
+            <a href="https://www.instagram.com/aprendemy/" target="_blank"><i id="social-in-footer" class="fa fa-instagram fa-3x social"></i></a>
+            <a href="mailto:hola@aprendemy.com" target="_blank"><i id="social-em-footer" class="fa fa-envelope-square fa-3x social"></i></a>
+        </div>
+    </div>
+
+
+
+
 
 
 <script type="text/javascript">
   var options = {
-        title: "Share/Like/Follow to Download", //Heading of Content Locker
-        text: 'Choose Any Social Social Network from below to share our content and Download it.', //Subheading of Content Locker
+        title: "Descarga tu Pdf para la clase en vivo", //Heading of Content Locker
+        text: 'Podrás descargar tu pdf de y resolverlo junto a los profesores de aprendemy. Los usuarios premium recibiran 10pdfs y dos clases extras de resolucion.', //Subheading of Content Locker
         facebook:{
             url: window.location.href,  //Your Content Page Url
             pageId: "https://www.facebook.com/aprendemy",  //Your Facebook Page Url
