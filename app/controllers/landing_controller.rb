@@ -14,14 +14,17 @@ class LandingController < ApplicationController
 
 	  def devise_mapping
 	    @devise_mapping ||= Devise.mappings[:user]
-	  end
+	 end
 	
 
 	def descarga
-		
 	end
 
 	def pdf
 	    send_file Rails.root.join('app/assets/images', 'enes.pdf'), :type=>"application/pdf", :x_sendfile=>true
 	end
+
+	def pagos
+	end
+
 end

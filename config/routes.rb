@@ -42,5 +42,7 @@ Rails.application.routes.draw do
 
   get "landing/pdf"
 
+  get '/pagos'   => 'landing#pagos', as: 'pagos'
+
 
 end

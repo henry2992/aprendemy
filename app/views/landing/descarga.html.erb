@@ -11,18 +11,21 @@
             <div class="col-sm-7 col-md-offset-1 col-md-7">
                 <div class="">
                     <h1 class="landing-heading">
-                        Resolución del Simulador del ENES de la SENESCYT
+                        Resolución en VIVO del examen ENES-SENESCYT
                     </h1>
                     <div class="landing-p">
-                        <p>Transmisión: Miércoles 13 y Jueves 14 de abril a las 19:00hrs (horario Ciudad de México)</p>
-                        <p>Resolveremos en VIVO el examen simulador de Misión Admisión (EXANI II) que tenemos disponible para ti completamente gratis desde nuestra página.</p>
+                        <p>Transmisión: Sábado 9 de Mayo a las 19h00.</p>
                     </div>
                 </div>
                 <div class="btn-download">
                     <div class="lock mct_shareit_locker">
-                        <h3>Que recibes</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed tempus augue. Vestibulum imperdiet laoreet arcu, non mollis mauris venenatis at. Nullam quis dui lectus. Nam mattis odio lorem, id eleifend velit rutrum id.</p>
-                        <button class=" btn btn-success"><%= link_to 'Click aquī paradescragar tu examen tu examen', landing_pdf_path %>
+                        <h3>Resolveremos en VIVO el examen ENES-SENESCYT completamente gratis!</h3>
+                        <ul>Que recibes si eres usuarios PREMIUM
+                            <li>5 exámenes extras en tu correo para practicar</li>
+                            <li>Un folleto con las preguntas del ENES 2015 (60% de las preguntas pueden repetirse en el examen de este año)</li>
+                            <li>Clases extras mostrándote la resolución de 2 exámenes más</li>
+                        </ul>
+                        <button class="enes-btn btn btn-success"><%= link_to 'Click aquí para Descargar tu examen', landing_pdf_path %>
                         </button>
                         
                     </div>
@@ -42,49 +45,45 @@
                 <div class="col-md-4">
                     <%= image_tag("enes2.png", alt: "Apredemy ENES") %>
                     <h3>Resolver el examen</h3>
-                    <p>Resolveremos paso a paso cada uno de los 50 reactivos del simulador gratuito.</p>
+                    <p>Resolveremos paso a paso cada una de las 120 preguntas del simulador gratuito.</p>
                 </div>
                 <div class="col-md-4">
                     <%= image_tag("enes1.png",  alt: "Apredemy ENES") %>
-                    <h3>Resolver el examen</h3>
-                    <p>Resolveremos paso a paso cada uno de los 50 reactivos del simulador gratuito.</p>
+                    <h3>Despegar tus duda</h3>
+                    <p>Trae todas las dudas que te haya surgido al resolver el examen y nuestros profesores te ayudaran a despejarlas.</p>
                 </div>
                 <div class="col-md-4">
                     <%= image_tag("enes4.png", alt: "Apredemy ENES") %>
-                    <h3>Resolver el examen</h3>
-                    <p>Resolveremos paso a paso cada uno de los 50 reactivos del simulador gratuito.</p>
+                    <h3>Espacio de preguntas</h3>
+                    <p>Habrá un espacio donde los profesores resolverán todas las preguntas relacionadas al ENES.</p>
                 </div>
             </div>
             <!-- Participa en Vivo -->
             <div class="participate">
                 <h1>¡Participa En Vivo!</h1>
-                <p>
-                Haz preguntas vía WhatsApp, para unirte a la conversación agréganos al (55)4586 5401
+                <p>Haz preguntas vía WhatsApp, para unirte a la conversación agréganos al número 0983805516
                 <br>
-                Miércoles 13 de abril - 19:00 a 21:00 hrs (horario Ciudad de México)
                 <br>
-                Pensamiento matemático y Pensamiento Analítico
+                Transmisión en Vivo: Lunes 9 de Mayo a las 19h00
                 <br>
-                Profesor: MC. Daniel Cauich
+                Profesores: Ing. Fausto Hidrobo e Ing. Diego Mayorga
                 <br>
-                Jueves 14 de abril - 19:00 a 21:00 hrs (horario Ciudad de México)
                 <br>
-                Estructura de la Lengua y Comprensión Lectora
+                Notas Importante
+                <ul>
+                    <li>Es recomendable que resuelvas el examen antes de la transmisión</li>
+                    <li>Los usuarios PREMIUM recibirán 5 exámenes extras para practicar</li>
+                    <li>Los usuario PREMIUM recibirán un folleto con las preguntas del ENES 2015 (Recuerda que alrededor de 60% de las preguntas pueden repetirse)</li>
+                    <li>Los usuarios Premium tendrán 2 clases extras de resolución de exámenes</li>
+                </ul>
                 <br>
-                Profesora: LE. Angely Mena
-                <br>
-                Nota importante
-                <br>
-                Es recomendable que hagas el simulador antes de la transmisión, al registrarte puedes acceder a la opción que dice "Exámenes"
-                <br>
-                Es GRATIS
-                <br>
-                Son 50 preguntas
-                <br>
-                Está diseñado por profesores Certificados por el CENEVAL
+                <strong>Puedes comprar tu licencia PREMIUM por tan solo $29.99. Para hacerlo llámanos al 0983805516 o envíanos un email a hola@aprendemy.com. Puedes encontrar las instrucciones de pago <%= link_to "aquí", "/pagos" %>.</strong>
                 </p>
                 <div>
-                    <button class="btn btn-success">Quiero Registrarme en Aprendemy</button>
+                    <button class=" enes-btn btn btn-success">
+                        
+                        <%= link_to 'Quiero registrarme en Aprendemy', 'users/sign_in' %>
+                    </button>
                 </div>
 
             </div>
@@ -119,8 +118,9 @@
 
 <script type="text/javascript">
   var options = {
-        title: "Descarga tu Pdf para la clase en vivo", //Heading of Content Locker
-        text: 'Podrás descargar tu pdf de y resolverlo junto a los profesores de aprendemy. Los usuarios premium recibiran 10pdfs y dos clases extras de resolucion.', //Subheading of Content Locker
+        title: "Descarga tu PDF para la clase en vivo", //Heading of Content Locker
+        text: 'Resolveremos en VIVO el examen de ENES-SENESCYT que Aprendemy tiene disponible para ti. Haz click en compartir para descargar el examen.', 
+        //Subheading of Content Locker
         facebook:{
             url: window.location.href,  //Your Content Page Url
             pageId: "https://www.facebook.com/aprendemy",  //Your Facebook Page Url
