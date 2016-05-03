@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
 
-  #Helper Methods to allow device resources to be used in home page
+  # Helper Methods to allow device resources to be used in home page
   helper_method :resource_name, :resource, :devise_mapping
-
 
   def resource_name
 	    :user
@@ -22,8 +21,5 @@ class HomeController < ApplicationController
 
   def payments
   end
-
-
-
 
 end

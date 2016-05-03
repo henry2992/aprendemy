@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, UserUploader
 
-
   has_many :categories, counter_cache: true
   has_many :sub_categories
   has_many :questions
@@ -30,13 +29,13 @@ class User < ActiveRecord::Base
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       gender = auth.extra.raw_info.gender
-      if gender == 'male'
-        user.gender = false
-      else
-        user.gender = true
-      end
+      user.gender = if gender == 'male'
+                      false
+                    else
+                      true
+                    end
       user.remote_image_url = auth.info.image.gsub('http://','https://')
-	  end
+    end
 	end
 
   def points

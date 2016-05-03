@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, except: [ :index, :show ]
+  before_filter :user_is_admin?, except: [:index, :show]
 
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all

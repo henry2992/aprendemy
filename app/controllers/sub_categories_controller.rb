@@ -1,6 +1,6 @@
 class SubCategoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, only: [ :edit, :delete]
+  before_filter :user_is_admin?, only: [:edit, :delete]
 
   def index
     get_category && @sub_categories = SubCategory.includes(:questions).sub_categories.all
@@ -55,12 +55,12 @@ class SubCategoriesController < ApplicationController
 
   private
 
-  def sub_category_params
-    params.require(:sub_category).permit(:name)
-  end
+    def sub_category_params
+      params.require(:sub_category).permit(:name)
+    end
 
-  def get_category
-    @category = Category.find_by_id(params[:category_id])
-  end
+    def get_category
+      @category = Category.find_by_id(params[:category_id])
+    end
 
 end

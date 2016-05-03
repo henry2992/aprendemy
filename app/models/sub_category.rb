@@ -15,7 +15,7 @@ class SubCategory < ActiveRecord::Base
   end
 
   {questions_list: answered, correctly: correct, incorrectly: incorrect, not: unanswered}.each do |action, value|
-    define_method("answered_#{action}") do |user_id|
+    define_method("answered_#{action}") do #|user_id|
       eval value
     end
   end

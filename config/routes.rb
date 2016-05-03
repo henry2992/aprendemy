@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :schools
   resources :careers
   resources :universities
-  resources :courses  
+  resources :courses
   resources :tutorials
   resources :resources
 
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   post 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
 
-  #QUESTIONS
+  # QUESTIONS
   resources :categories do
     resources :sub_categories do
       get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
@@ -39,6 +39,6 @@ Rails.application.routes.draw do
   # LIVE CLASSES
   get '/live_classes' => 'live_classes#index'
 
-  get '/payments'   => 'home#payments', as: :payments
+  get '/payments' => 'home#payments', as: :payments
 
 end

@@ -2,8 +2,8 @@
 
 class PictureUploader < CarrierWave::Uploader::Base
 
- include Cloudinary::CarrierWave
-  
+  include Cloudinary::CarrierWave
+
   # process :tags => ["photo_album_sample"]
   # process :convert => "jpg"
 
@@ -13,12 +13,10 @@ class PictureUploader < CarrierWave::Uploader::Base
   #   storage :file
   # end
 
-  storage :file unless Rails.env == "production"
+  # storage :file unless Rails.env == "production"
 
   def public_id
-    return "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}" 
-  end 
- 
-
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  end
 
 end

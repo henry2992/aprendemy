@@ -1,6 +1,6 @@
 class SimulatorAnsweredQuestionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, only: [ :delete ]
+  before_filter :user_is_admin?, only: [:delete]
 
   def index
     get_simulator_and_question
@@ -13,11 +13,15 @@ class SimulatorAnsweredQuestionsController < ApplicationController
   def create
     get_simulator_and_question
     @answered_question = SimulatorAnsweredQuestion.find_or_create_by(simulator_id: @simulator.id, question_id: @question.id, user_id: current_user.id)
-    if @answered_question
-      @answered_question.update(answered_question_params)
-      get_clue_class
-      render :show
-    end
+    # if @answered_question
+    #   @answered_question.update(answered_question_params)
+    #   get_clue_class
+    #   render :show
+    # end
+    return if !@answered_question
+    @answered_question.update(answered_question_params)
+    get_clue_class
+    render :show
   end
 
   def edit
@@ -46,10 +50,14 @@ class SimulatorAnsweredQuestionsController < ApplicationController
   private
 
   def answered_question_params
-    params.require(:simulator_answered_question).permit(:choice_id, :marked_status).merge({
+    # params.require(:simulator_answered_question).permit(:choice_id, :marked_status).merge({
+    #   status: answer_status,
+    #   user_id: current_user.id
+    # })
+    params.require(:simulator_answered_question).permit(:choice_id, :marked_status).merge(
       status: answer_status,
       user_id: current_user.id
-    })
+    )
   end
 
   def get_simulator_and_question
@@ -64,7 +72,7 @@ class SimulatorAnsweredQuestionsController < ApplicationController
 
   def answer_status
     user_choice = params[:simulator_answered_question][:choice_id]
-    (@question.choice_id == user_choice.to_i  ? 'correct' : 'wrong' if user_choice) || 'unanswered'
+    (@question.choice_id == user_choice.to_i ? 'correct' : 'wrong' if user_choice) || 'unanswered'
   end
 
   def get_clue_class

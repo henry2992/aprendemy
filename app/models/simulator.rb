@@ -34,8 +34,9 @@ class Simulator < ActiveRecord::Base
   end
 
   def process_filters args
-    model_instance = nil; condition = ""
-    unless args.empty? ||  args[0].nil?
+    model_instance = nil
+    condition = ""
+    unless args.empty? || args[0].nil?
       model = get_model args[0][:model]
       if model
         model_instance = model.find_by_id(args[0][:id])
@@ -46,11 +47,11 @@ class Simulator < ActiveRecord::Base
   end
 
   def get_model model_string
-    begin
+    # begin
       model_string.camelize.constantize
-    rescue
-      false
-    end
+    # rescue
+      # false
+    # end
   end
 
 end

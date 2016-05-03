@@ -11,7 +11,6 @@ role :db,  %w{deploy@104.131.36.116}
 set :branch, 'staging'
 set :rails_env, 'production'
 
-
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server
