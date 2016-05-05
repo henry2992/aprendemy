@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5.1
+-- Dumped by pg_dump version 9.5.1
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -30,7 +34,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: queue_classic_jobs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: queue_classic_jobs; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE queue_classic_jobs (
@@ -136,7 +140,7 @@ end $$;
 
 
 --
--- Name: answered_questions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: answered_questions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE answered_questions (
@@ -170,7 +174,39 @@ ALTER SEQUENCE answered_questions_id_seq OWNED BY answered_questions.id;
 
 
 --
--- Name: careers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: blogs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE blogs (
+    id integer NOT NULL,
+    title character varying,
+    content text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: blogs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE blogs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: blogs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE blogs_id_seq OWNED BY blogs.id;
+
+
+--
+-- Name: careers; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE careers (
@@ -208,7 +244,7 @@ ALTER SEQUENCE careers_id_seq OWNED BY careers.id;
 
 
 --
--- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: categories; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE categories (
@@ -242,7 +278,7 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 
 
 --
--- Name: choices; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: choices; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE choices (
@@ -274,7 +310,7 @@ ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
 
 
 --
--- Name: courses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: courses; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE courses (
@@ -306,7 +342,7 @@ ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
 
 
 --
--- Name: licenses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: licenses; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE licenses (
@@ -339,7 +375,7 @@ ALTER SEQUENCE licenses_id_seq OWNED BY licenses.id;
 
 
 --
--- Name: live_classes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: live_classes; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE live_classes (
@@ -375,7 +411,7 @@ ALTER SEQUENCE live_classes_id_seq OWNED BY live_classes.id;
 
 
 --
--- Name: point_actions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: point_actions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE point_actions (
@@ -408,7 +444,7 @@ ALTER SEQUENCE point_actions_id_seq OWNED BY point_actions.id;
 
 
 --
--- Name: points; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: points; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE points (
@@ -444,7 +480,7 @@ ALTER SEQUENCE points_id_seq OWNED BY points.id;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: questions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE questions (
@@ -458,7 +494,8 @@ CREATE TABLE questions (
     answered_questions_count integer DEFAULT 0,
     explanation character varying,
     picture character varying,
-    url character varying
+    url character varying,
+    task_id integer
 );
 
 
@@ -501,7 +538,7 @@ ALTER SEQUENCE queue_classic_jobs_id_seq OWNED BY queue_classic_jobs.id;
 
 
 --
--- Name: resources; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: resources; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE resources (
@@ -535,7 +572,7 @@ ALTER SEQUENCE resources_id_seq OWNED BY resources.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE schema_migrations (
@@ -544,7 +581,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: schools; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schools; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE schools (
@@ -577,7 +614,39 @@ ALTER SEQUENCE schools_id_seq OWNED BY schools.id;
 
 
 --
--- Name: simulated_categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: sections; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sections (
+    id integer NOT NULL,
+    name character varying,
+    course_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sections_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sections_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sections_id_seq OWNED BY sections.id;
+
+
+--
+-- Name: simulated_categories; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE simulated_categories (
@@ -608,7 +677,7 @@ ALTER SEQUENCE simulated_categories_id_seq OWNED BY simulated_categories.id;
 
 
 --
--- Name: simulator_answered_questions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: simulator_answered_questions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE simulator_answered_questions (
@@ -644,7 +713,7 @@ ALTER SEQUENCE simulator_answered_questions_id_seq OWNED BY simulator_answered_q
 
 
 --
--- Name: simulator_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: simulator_types; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE simulator_types (
@@ -680,14 +749,14 @@ ALTER SEQUENCE simulator_types_id_seq OWNED BY simulator_types.id;
 
 
 --
--- Name: simulators; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: simulators; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-04-20 01:02:14.819623'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-05-04 23:44:36.990684'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -717,7 +786,7 @@ ALTER SEQUENCE simulators_id_seq OWNED BY simulators.id;
 
 
 --
--- Name: sub_categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: sub_categories; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE sub_categories (
@@ -752,7 +821,39 @@ ALTER SEQUENCE sub_categories_id_seq OWNED BY sub_categories.id;
 
 
 --
--- Name: tutorials; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: tasks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tasks (
+    id integer NOT NULL,
+    title character varying,
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tasks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tasks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tasks_id_seq OWNED BY tasks.id;
+
+
+--
+-- Name: tutorials; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE tutorials (
@@ -784,7 +885,7 @@ ALTER SEQUENCE tutorials_id_seq OWNED BY tutorials.id;
 
 
 --
--- Name: universities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: universities; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE universities (
@@ -820,7 +921,7 @@ ALTER SEQUENCE universities_id_seq OWNED BY universities.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE users (
@@ -868,7 +969,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: videos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: videos; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE videos (
@@ -905,6 +1006,13 @@ ALTER SEQUENCE videos_id_seq OWNED BY videos.id;
 --
 
 ALTER TABLE ONLY answered_questions ALTER COLUMN id SET DEFAULT nextval('answered_questions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY blogs ALTER COLUMN id SET DEFAULT nextval('blogs_id_seq'::regclass);
 
 
 --
@@ -995,6 +1103,13 @@ ALTER TABLE ONLY schools ALTER COLUMN id SET DEFAULT nextval('schools_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sections ALTER COLUMN id SET DEFAULT nextval('sections_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY simulated_categories ALTER COLUMN id SET DEFAULT nextval('simulated_categories_id_seq'::regclass);
 
 
@@ -1030,6 +1145,13 @@ ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categor
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY tasks ALTER COLUMN id SET DEFAULT nextval('tasks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY tutorials ALTER COLUMN id SET DEFAULT nextval('tutorials_id_seq'::regclass);
 
 
@@ -1055,7 +1177,7 @@ ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::reg
 
 
 --
--- Name: answered_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: answered_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answered_questions
@@ -1063,7 +1185,15 @@ ALTER TABLE ONLY answered_questions
 
 
 --
--- Name: careers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: blogs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY blogs
+    ADD CONSTRAINT blogs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: careers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY careers
@@ -1071,7 +1201,7 @@ ALTER TABLE ONLY careers
 
 
 --
--- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY categories
@@ -1079,7 +1209,7 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: choices_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: choices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY choices
@@ -1087,7 +1217,7 @@ ALTER TABLE ONLY choices
 
 
 --
--- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY courses
@@ -1095,7 +1225,7 @@ ALTER TABLE ONLY courses
 
 
 --
--- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY licenses
@@ -1103,7 +1233,7 @@ ALTER TABLE ONLY licenses
 
 
 --
--- Name: live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY live_classes
@@ -1111,7 +1241,7 @@ ALTER TABLE ONLY live_classes
 
 
 --
--- Name: point_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: point_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY point_actions
@@ -1119,7 +1249,7 @@ ALTER TABLE ONLY point_actions
 
 
 --
--- Name: points_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: points_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY points
@@ -1127,7 +1257,7 @@ ALTER TABLE ONLY points
 
 
 --
--- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
@@ -1135,7 +1265,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: queue_classic_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: queue_classic_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY queue_classic_jobs
@@ -1143,7 +1273,7 @@ ALTER TABLE ONLY queue_classic_jobs
 
 
 --
--- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY resources
@@ -1151,7 +1281,7 @@ ALTER TABLE ONLY resources
 
 
 --
--- Name: schools_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: schools_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY schools
@@ -1159,7 +1289,15 @@ ALTER TABLE ONLY schools
 
 
 --
--- Name: simulated_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sections
+    ADD CONSTRAINT sections_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: simulated_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY simulated_categories
@@ -1167,7 +1305,7 @@ ALTER TABLE ONLY simulated_categories
 
 
 --
--- Name: simulator_answered_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: simulator_answered_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY simulator_answered_questions
@@ -1175,7 +1313,7 @@ ALTER TABLE ONLY simulator_answered_questions
 
 
 --
--- Name: simulator_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: simulator_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY simulator_types
@@ -1183,7 +1321,7 @@ ALTER TABLE ONLY simulator_types
 
 
 --
--- Name: simulators_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: simulators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY simulators
@@ -1191,7 +1329,7 @@ ALTER TABLE ONLY simulators
 
 
 --
--- Name: sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sub_categories
@@ -1199,7 +1337,15 @@ ALTER TABLE ONLY sub_categories
 
 
 --
--- Name: tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tasks
+    ADD CONSTRAINT tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tutorials
@@ -1207,7 +1353,7 @@ ALTER TABLE ONLY tutorials
 
 
 --
--- Name: universities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: universities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY universities
@@ -1215,7 +1361,7 @@ ALTER TABLE ONLY universities
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -1223,7 +1369,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY videos
@@ -1231,56 +1377,70 @@ ALTER TABLE ONLY videos
 
 
 --
--- Name: idx_qc_on_name_only_unlocked; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: idx_qc_on_name_only_unlocked; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_qc_on_name_only_unlocked ON queue_classic_jobs USING btree (q_name, id) WHERE (locked_at IS NULL);
 
 
 --
--- Name: index_resources_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_questions_on_task_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_questions_on_task_id ON questions USING btree (task_id);
+
+
+--
+-- Name: index_resources_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_resources_on_material_type_and_material_id ON resources USING btree (material_type, material_id);
 
 
 --
--- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_resources_on_tutorial_id ON resources USING btree (tutorial_id);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_sections_on_course_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sections_on_course_id ON sections USING btree (course_id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_provider; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_provider; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_provider ON users USING btree (provider);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: index_users_on_uid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_uid; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_uid ON users USING btree (uid);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -1294,10 +1454,26 @@ CREATE TRIGGER queue_classic_notify AFTER INSERT ON queue_classic_jobs FOR EACH 
 
 
 --
+-- Name: fk_rails_20b1e5de46; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sections
+    ADD CONSTRAINT fk_rails_20b1e5de46 FOREIGN KEY (course_id) REFERENCES courses(id);
+
+
+--
+-- Name: fk_rails_7f60f06ac4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY questions
+    ADD CONSTRAINT fk_rails_7f60f06ac4 FOREIGN KEY (task_id) REFERENCES tasks(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160109172826');
 
@@ -1388,4 +1564,12 @@ INSERT INTO schema_migrations (version) VALUES ('20160416213957');
 INSERT INTO schema_migrations (version) VALUES ('20160416214513');
 
 INSERT INTO schema_migrations (version) VALUES ('20160416214633');
+
+INSERT INTO schema_migrations (version) VALUES ('20160504232743');
+
+INSERT INTO schema_migrations (version) VALUES ('20160504232814');
+
+INSERT INTO schema_migrations (version) VALUES ('20160504232843');
+
+INSERT INTO schema_migrations (version) VALUES ('20160504233032');
 
