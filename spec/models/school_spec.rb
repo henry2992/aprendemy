@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe School do
+RSpec.describe School do
 	before :each do
 		@school = FactoryGirl.build(:school)
 	end

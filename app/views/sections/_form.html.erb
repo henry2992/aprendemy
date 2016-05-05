@@ -15,9 +15,9 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :course_id %><br>
-    <%= f.text_field :course_id %>
+  <div class="form-group">
+    <%= f.label :Course, class: "control-label" %>
+    <%= f.collection_select(:course_id, Course.all, :id, :name, {:include_blank => 'Select a course...'}, {:class=>'form-control'}) %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Career do
+RSpec.describe Career do
 	before :each do
 		@career = FactoryGirl.build(:career)
 	end
