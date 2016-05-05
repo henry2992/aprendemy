@@ -1,10 +1,11 @@
-class CoursesController < ApplicationController
+class Student::CoursesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = current_user.courses.all
   end
 
   # GET /courses/1
@@ -71,4 +72,5 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:name, :description)
     end
+
 end

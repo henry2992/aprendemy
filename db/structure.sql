@@ -274,6 +274,38 @@ ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
 
 
 --
+-- Name: course_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE course_users (
+    id integer NOT NULL,
+    course_id integer,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: course_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE course_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: course_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE course_users_id_seq OWNED BY course_users.id;
+
+
+--
 -- Name: courses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -932,6 +964,13 @@ ALTER TABLE ONLY choices ALTER COLUMN id SET DEFAULT nextval('choices_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY course_users ALTER COLUMN id SET DEFAULT nextval('course_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
 
 
@@ -1084,6 +1123,14 @@ ALTER TABLE ONLY categories
 
 ALTER TABLE ONLY choices
     ADD CONSTRAINT choices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: course_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY course_users
+    ADD CONSTRAINT course_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -1388,4 +1435,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160416213957');
 INSERT INTO schema_migrations (version) VALUES ('20160416214513');
 
 INSERT INTO schema_migrations (version) VALUES ('20160416214633');
+
+INSERT INTO schema_migrations (version) VALUES ('20160422021811');
+
+INSERT INTO schema_migrations (version) VALUES ('20160428023020');
 

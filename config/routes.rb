@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :schools
   resources :careers
   resources :universities
-  resources :courses  
+  namespace :student do
+    resources :courses
+  end
+
   resources :tutorials
   resources :resources
 

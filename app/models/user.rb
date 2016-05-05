@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   has_many :simulators
   has_many :answered_questions
   has_many :simulator_answered_questions
+
+  has_many :course_users, :dependent => :destroy
+  has_many :courses, :through => :course_users
+
   has_one :license
 
   def self.from_omniauth(auth)
