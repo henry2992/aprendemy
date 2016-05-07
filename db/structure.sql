@@ -580,7 +580,8 @@ CREATE TABLE resources (
     material_id integer,
     material_type character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    section_id integer
 );
 
 
@@ -1445,6 +1446,13 @@ CREATE INDEX index_resources_on_material_type_and_material_id ON resources USING
 
 
 --
+-- Name: index_resources_on_section_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resources_on_section_id ON resources USING btree (section_id);
+
+
+--
 -- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1506,6 +1514,14 @@ CREATE TRIGGER queue_classic_notify AFTER INSERT ON queue_classic_jobs FOR EACH 
 
 ALTER TABLE ONLY sections
     ADD CONSTRAINT fk_rails_20b1e5de46 FOREIGN KEY (course_id) REFERENCES courses(id);
+
+
+--
+-- Name: fk_rails_6d1984789f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY resources
+    ADD CONSTRAINT fk_rails_6d1984789f FOREIGN KEY (section_id) REFERENCES sections(id);
 
 
 --
@@ -1621,4 +1637,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160504232814');
 INSERT INTO schema_migrations (version) VALUES ('20160504232843');
 
 INSERT INTO schema_migrations (version) VALUES ('20160504233032');
+
+INSERT INTO schema_migrations (version) VALUES ('20160507182837');
 
