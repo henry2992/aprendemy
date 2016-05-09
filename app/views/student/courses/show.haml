@@ -8,8 +8,51 @@
             .content-margin.row
               .app-text-holder.row.main-bg
                 %content
-                  %h1= @course.name
+                  -if @course
+                    %h1= @course.name
+                  -else
+                    %h1 El curso especificado no se encuentra registrado
                   %br
-                  .col-md-6
+                .col-md-6
+                  %h3= @course.description if @course
 
-                  .col-md-6
+                .col-md-6
+                  -if @course
+                    -@course.categories.each do |c|
+                      %h5= c.name
+      -if @course
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .app-text-holder.row.main-bg
+                %content
+                  .panel-group#accordion{:role=>"tablist", :"aria-multiselectable"=>"true"}
+                    -if @course.sections
+                      -@course.sections.each do |s|
+                        .panel.panel-default
+                          .panel-heading#headingOne{:role=>"tab"}
+                            %h4.panel-title
+                              %a.collapsed{:role=>"button", :"data-toggle"=>"collapse", :"data-parent"=>"#accordion", :href=>"#collapseOne", :"aria-expanded"=>"true", :"aria-controls"=>"collapseOne"}
+                                =s.name
+
+                          #collapseOne.panel-collapse.collapse{:role=>"tabpanel", :"aria-labelledby"=>"headingOne", :"aria-expanded"=>"true", :style=>"height: 0px;"}
+                            .panel-body
+                              %ol
+                                -if s.resources
+                                  -s.resources.each do |r|
+                                    -case r.material_type
+                                      -when "Video"
+                                        %li
+                                          =r.generic_name + " " + r.material.url
+                                      -when "Blog"
+                                        %li
+                                          =r.title + " " + r.content
+                                      -when "Task"
+                                        %li
+                                          =r.title + " " + r.description
+                                -else
+                                  %h4 No hay recursos definidos para esta sección
+                    -else
+                      %h4 No hay secciones definidas para este curso
+:javascript
+  $('.collapse').collapse('show')
