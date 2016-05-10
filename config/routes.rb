@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :universities
   namespace :student do
     resources :courses
+    resources :resources
   end
 
   resources :tutorials

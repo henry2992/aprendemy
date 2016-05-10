@@ -43,7 +43,7 @@
                                     -case r.material_type
                                       -when "Video"
                                         %li
-                                          =r.generic_name + " " + r.material.url
+                                          = link_to r.material.url, student_resource_path(r)
                                       -when "Blog"
                                         %li
                                           =r.title + " " + r.content
