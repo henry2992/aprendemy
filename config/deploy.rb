@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.4.0'
+lock '3.4.1'
 
 set :application, 'aprendemy'
 set :repo_url, 'git@github.com:henry2992/aprendemy.git'
@@ -26,7 +26,7 @@ set :deploy_to, '/home/deploy/aprendemy'
 set :linked_files, %w{config/database.yml config/application.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

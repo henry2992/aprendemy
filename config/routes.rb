@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
 
+  resources :sections
+  resources :tasks
+  resources :blogs
   resources :schools
   resources :careers
   resources :universities
-  resources :courses
+  namespace :student do
+    resources :courses
+    resources :resources
+  end
+
   resources :tutorials
   resources :resources
 

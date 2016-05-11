@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe University do
+RSpec.describe University do
 	before :each do
 		@university = FactoryGirl.build(:university)
 	end

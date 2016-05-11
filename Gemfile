@@ -50,6 +50,8 @@ gem 'capistrano-rbenv', github: "capistrano/rbenv"
 # Add this if you're using rvm
 # gem 'capistrano-rvm', github: "capistrano/rvm"
 
+gem "breadcrumbs_on_rails"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-nav'
@@ -70,9 +72,5 @@ group :development do
   gem "better_errors"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-end
-
-group :production do
-  gem 'puma' #, '~> 2.16'
-  gem 'rails_12factor'
+  gem 'puma'
 end

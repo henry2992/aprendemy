@@ -1,5 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Tutorial, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before :each do
+    @tutorial = FactoryGirl.build(:tutorial)
+  end
+
+  it 'should not be valid without a title' do
+    @tutorial.title = nil
+    expect(@tutorial).to be_invalid
+  end
+
+  it 'should not be valid without a description' do
+    @tutorial.description = nil
+    expect(@tutorial).to be_invalid
+  end
 end

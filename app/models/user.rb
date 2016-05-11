@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:facebook]
   after_create :create_license
+  after_create :create_courses_by_default
 
   enum role: [:free, :paid, :admin]
 
@@ -20,6 +21,10 @@ class User < ActiveRecord::Base
   has_many :simulators
   has_many :answered_questions
   has_many :simulator_answered_questions
+
+  has_many :course_users, :dependent => :destroy
+  has_many :courses, :through => :course_users
+
   has_one :license
 
   def self.from_omniauth(auth)
@@ -44,5 +49,9 @@ class User < ActiveRecord::Base
 
   def create_license
     License.create(user: self) unless self.admin?
+  end
+
+  def create_courses_by_default
+    Course.all.each{|c| CourseUser.create course_id: c.id, user_id: self.id}
   end
 end
