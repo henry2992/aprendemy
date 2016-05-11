@@ -210,7 +210,6 @@ CREATE TABLE careers (
     name character varying,
     description text,
     image character varying,
-    website character varying,
     type integer,
     faculty character varying,
     school_id integer,
@@ -415,7 +414,9 @@ CREATE TABLE live_classes (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     "time" timestamp without time zone,
-    explanation text
+    explanation text,
+    "Urlyoutube" character varying,
+    course_id integer
 );
 
 
@@ -515,7 +516,6 @@ CREATE TABLE questions (
     id integer NOT NULL,
     content character varying,
     choice_id integer,
-    user_id integer,
     sub_category_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -523,6 +523,9 @@ CREATE TABLE questions (
     explanation character varying,
     picture character varying,
     url character varying,
+    video_url character varying,
+    question_id integer,
+    "time" integer,
     task_id integer
 );
 
@@ -819,7 +822,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-05-11 01:21:21.840468'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-05-11 14:51:18.306626'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1477,6 +1480,20 @@ CREATE INDEX idx_qc_on_name_only_unlocked ON queue_classic_jobs USING btree (q_n
 
 
 --
+-- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_live_classes_on_course_id ON live_classes USING btree (course_id);
+
+
+--
+-- Name: index_questions_on_question_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_questions_on_question_id ON questions USING btree (question_id);
+
+
+--
 -- Name: index_questions_on_task_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1578,6 +1595,22 @@ ALTER TABLE ONLY questions
 
 
 --
+-- Name: fk_rails_97ebb10078; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY live_classes
+    ADD CONSTRAINT fk_rails_97ebb10078 FOREIGN KEY (course_id) REFERENCES courses(id);
+
+
+--
+-- Name: fk_rails_c685b1dfea; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY questions
+    ADD CONSTRAINT fk_rails_c685b1dfea FOREIGN KEY (question_id) REFERENCES questions(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -1657,6 +1690,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160305213132');
 
 INSERT INTO schema_migrations (version) VALUES ('20160307003117');
 
+INSERT INTO schema_migrations (version) VALUES ('20160405062817');
+
 INSERT INTO schema_migrations (version) VALUES ('20160412215148');
 
 INSERT INTO schema_migrations (version) VALUES ('20160414013914');
@@ -1672,6 +1707,22 @@ INSERT INTO schema_migrations (version) VALUES ('20160416213957');
 INSERT INTO schema_migrations (version) VALUES ('20160416214513');
 
 INSERT INTO schema_migrations (version) VALUES ('20160416214633');
+
+INSERT INTO schema_migrations (version) VALUES ('20160421185759');
+
+INSERT INTO schema_migrations (version) VALUES ('20160423202928');
+
+INSERT INTO schema_migrations (version) VALUES ('20160425155058');
+
+INSERT INTO schema_migrations (version) VALUES ('20160426193313');
+
+INSERT INTO schema_migrations (version) VALUES ('20160426194020');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427134003');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427134130');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427160225');
 
 INSERT INTO schema_migrations (version) VALUES ('20160428023020');
 
