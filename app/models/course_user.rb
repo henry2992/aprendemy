@@ -5,8 +5,10 @@ class CourseUser < ActiveRecord::Base
   validates :user, :course, presence: true
 
   def progress_percent
-    total = 0
-    course.sections.each{|s| total+= s.resources.count }
-    (resource_progresses.where(completed: true).count*100)/total
+    (resource_progresses.where(completed: true).count*100)/total_resources
+  end
+
+  def total_resources
+    Resource.where(section_id: course.sections.map(&:id)).count
   end
 end
