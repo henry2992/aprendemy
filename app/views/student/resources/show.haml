@@ -42,9 +42,21 @@
                                 = q.explanation
                             - if q.url
                               = link_to q.url, q.url
+                            - if q.questions
+                              - q.questions.each do |qs|
+                                %hr{:style=>"width:80%"}
+                                %h3= qr.content
+                                - if qr.picture.present?
+                                  = image_tag(qr.picture, class: "img-responsive", alt: qr.content)
+                                - if qr.explanation
+                                  %p.lead
+                                    = qr.explanation
+                                - if qr.url
+                                  = link_to qr.url, qr.url
                             - if q.choices
                               - q.choices.each do |c|
                                 %p
                                   = radio_button_tag "question[#{q.id}]", c.id
                                   = c.content
+                            %hr
                           = button_tag 'Terminar Tarea' , class: 'btn btn-primary' , type: :submit

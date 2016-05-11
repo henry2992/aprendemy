@@ -56,10 +56,10 @@
                                           = link_to r.material.url, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
                                       - when "Blog"
                                         %li
-                                          = link_to r.generic_name, student_resource_path(r, s, @course_user)
+                                          = link_to r.generic_name, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
                                       - when "Task"
                                         %li
-                                          = link_to r.generic_name, student_resource_path(r, s, @course_user)
+                                          = link_to r.generic_name, student_resource_path(r)
                                 - else
                                   %h4 No hay recursos definidos para esta sección
                         - section_number += 1

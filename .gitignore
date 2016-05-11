@@ -24,3 +24,6 @@
 /config/database.yml
 
 .DS_Store
+
+/sftp-config.json
+/db/structure.sql

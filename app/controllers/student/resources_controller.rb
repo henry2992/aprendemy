@@ -14,16 +14,16 @@ class Student::ResourcesController < ApplicationController
   def create
   end
 
-  def create_resource_progress
-    course_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
-    if course_progress == nil
-      ResourceProgress.create!(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id], completed: true)
-    else
-      #verificar el progreso para cambiar completed a true
-    end
-  end
-
   private
+    
+    def create_resource_progress
+      course_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
+      if course_progress == nil
+        ResourceProgress.create!(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id], completed: true)
+      else
+        #verificar el progreso para cambiar completed a true
+      end
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_resource
