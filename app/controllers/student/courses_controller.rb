@@ -11,6 +11,8 @@ class Student::CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
+    @progress = @course_user.progress_percent
   end
 
   # GET /courses/new
@@ -72,5 +74,4 @@ class Student::CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:name, :description)
     end
-
 end

@@ -27,8 +27,8 @@
                   %br
                   .progress
                     / Se debe imprimir el porcentaje en los valores de :aria-valuenow y en :style
-                    .progress-bar.progress-bar-success{:role=>"progressbar", :"aria-valuenow"=>"70", :"aria-valuemin"=>"0", :"aria-valuemax"=>"100", :style=>"width:70%"}
-                      70%
+                    .progress-bar.progress-bar-success{:role=>"progressbar", :"aria-valuenow"=>"#{@progress}", :"aria-valuemin"=>"0", :"aria-valuemax"=>"100", :style=>"width:#{@progress}%"}
+                      = "#{@progress}%"
       -if @course
         .content-wrapper.col-sm-9.col-md-10
           .application-content
@@ -53,13 +53,13 @@
                                     - case r.material_type
                                       - when "Video"
                                         %li
-                                          = link_to r.material.url, student_resource_path(r)
+                                          = link_to r.material.url, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
                                       - when "Blog"
                                         %li
-                                          = link_to r.generic_name, student_resource_path(r)
+                                          = link_to r.generic_name, student_resource_path(r, s, @course_user)
                                       - when "Task"
                                         %li
-                                          = link_to r.generic_name, student_resource_path(r)
+                                          = link_to r.generic_name, student_resource_path(r, s, @course_user)
                                 - else
                                   %h4 No hay recursos definidos para esta sección
                         - section_number += 1
