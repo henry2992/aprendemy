@@ -6,7 +6,7 @@ class CourseUser < ActiveRecord::Base
 
   def progress_percent
     total = 0
-    course.sections.each{|s| total = total + s.resources.count }
-    (resource_progresses.count*100)/total
+    course.sections.each{|s| total+= s.resources.count }
+    (resource_progresses.where(completed: true).count*100)/total
   end
 end
