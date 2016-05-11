@@ -6,6 +6,11 @@ class Student::ResourcesController < ApplicationController
   end
 
   def show
+    add_breadcrumb "Inicio", :root_path
+    add_breadcrumb "#{@resource.section.course.name}", student_course_path(@resource.section.course_id)
+  end
+  
+  def create
   end
 
   private

@@ -20,6 +20,15 @@
                   -if @course
                     -@course.categories.each do |c|
                       %h5= c.name
+                .col-md-12
+                  %br
+                  %br
+                  %h4 Su progreso en este curso
+                  %br
+                  .progress
+                    / Se debe imprimir el porcentaje en los valores de :aria-valuenow y en :style
+                    .progress-bar.progress-bar-success{:role=>"progressbar", :"aria-valuenow"=>"70", :"aria-valuemin"=>"0", :"aria-valuemax"=>"100", :style=>"width:70%"}
+                      70%
       -if @course
         .content-wrapper.col-sm-9.col-md-10
           .application-content
@@ -27,32 +36,34 @@
               .app-text-holder.row.main-bg
                 %content
                   .panel-group#accordion{:role=>"tablist", :"aria-multiselectable"=>"true"}
-                    -if @course.sections
-                      -@course.sections.each do |s|
+                    - if @course.sections
+                      - section_number = 1
+                      - @course.sections.each do |s|
                         .panel.panel-default
-                          .panel-heading#headingOne{:role=>"tab"}
+                          .panel-heading{:id=>"heading+#{section_number}",:role=>"tab"}
                             %h4.panel-title
-                              %a.collapsed{:role=>"button", :"data-toggle"=>"collapse", :"data-parent"=>"#accordion", :href=>"#collapseOne", :"aria-expanded"=>"true", :"aria-controls"=>"collapseOne"}
-                                =s.name
+                              %a.collapsed{:role=>"button", :"data-toggle"=>"collapse", :"data-parent"=>"#accordion", :href=>"#collapse#{section_number}", :"aria-expanded"=>"true", :"aria-controls"=>"collapse#{section_number}"}
+                                = s.name
 
-                          #collapseOne.panel-collapse.collapse{:role=>"tabpanel", :"aria-labelledby"=>"headingOne", :"aria-expanded"=>"true", :style=>"height: 0px;"}
+                          .panel-collapse.collapse{:id=>"collapse#{section_number}",:role=>"tabpanel", :"aria-labelledby"=>"heading#{section_number}", :"aria-expanded"=>"true", :style=>"height: 0px;"}
                             .panel-body
                               %ol
-                                -if s.resources
-                                  -s.resources.each do |r|
-                                    -case r.material_type
-                                      -when "Video"
+                                - if s.resources
+                                  - s.resources.each do |r|
+                                    - case r.material_type
+                                      - when "Video"
                                         %li
                                           = link_to r.material.url, student_resource_path(r)
-                                      -when "Blog"
+                                      - when "Blog"
                                         %li
-                                          =r.title + " " + r.content
-                                      -when "Task"
+                                          = link_to r.generic_name, student_resource_path(r)
+                                      - when "Task"
                                         %li
-                                          =r.title + " " + r.description
-                                -else
+                                          = link_to r.generic_name, student_resource_path(r)
+                                - else
                                   %h4 No hay recursos definidos para esta sección
-                    -else
+                        - section_number += 1
+                    - else
                       %h4 No hay secciones definidas para este curso
 :javascript
   $('.collapse').collapse('show')

@@ -3,4 +3,48 @@
     =render 'layouts/user_sidebar'
     .main-bg
       %content
-        = @resource.generic_name
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              %ol.breadcrumb{:style=>"background-color:#fff"}
+                = render_breadcrumbs :tag => :li, :separator => ""
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .app-text-holder.row.main-bg
+                %content
+                  %h1= @resource.generic_name
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .app-text-holder.row.main-bg
+                %content
+                  - case @resource.material_type
+                    - when "Video"
+                      %h2.lead= @resource.material.description
+                      %br
+                      %iframe{:width=>"560", :height=>"315", :src=>"#{@resource.material.url}", :frameborder=>"0", :allowfullscreen=>""}
+                    - when "Blog"
+                      %p.lead= @resource.material.title
+                      = @resource.material.content.html_safe
+                    - when "Task"
+                      %p.lead= @resource.material.title
+                      %p= @resource.material.description
+                      - if @resource.material.questions
+                        / TODO: Definir la ruta que va a procesar el formulario
+                        = form_tag(root_path) do
+                          - @resource.material.questions.each do |q|
+                            %h3= q.content
+                            - if q.picture.present?
+                              = image_tag(q.picture, class: "img-responsive", alt: q.content)
+                            - if q.explanation
+                              %p.lead
+                                = q.explanation
+                            - if q.url
+                              = link_to q.url, q.url
+                            - if q.choices
+                              - q.choices.each do |c|
+                                %p
+                                  = radio_button_tag "question[#{q.id}]", c.id
+                                  = c.content
+                          = button_tag 'Terminar Tarea' , class: 'btn btn-primary' , type: :submit
