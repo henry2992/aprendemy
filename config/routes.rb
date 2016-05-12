@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :universities
   namespace :student do
     resources :courses
-    resources :resources
+    # resources :resources
+    get '/student/resource/:id(/:section_id/:course_user_id)' => 'resources#show', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/, :section_id => /[0-9]+(\%7C[0-9]+)*/, :course_user_id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'create_resource_progress'
   end
 
   resources :tutorials
@@ -47,5 +48,7 @@ Rails.application.routes.draw do
   get '/live_classes' => 'live_classes#index'
 
   get '/payments' => 'home#payments', as: :payments
+
+  match '*unmatched_route', :to => 'application#raise_not_found!', via: :all
 
 end
