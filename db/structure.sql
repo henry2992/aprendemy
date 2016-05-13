@@ -822,7 +822,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-05-12 14:06:57.428581'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-05-13 02:51:56.609312'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,

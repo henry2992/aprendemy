@@ -59,7 +59,7 @@
                                           = link_to r.generic_name, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
                                       - when "Task"
                                         %li
-                                          = link_to r.generic_name, student_resource_path(r)
+                                          = link_to r.generic_name, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
                                 - else
                                   %h4 No hay recursos definidos para esta sección
                         - section_number += 1
