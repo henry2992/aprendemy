@@ -28,12 +28,14 @@
                     - when "Blog"
                       %p.lead= @resource.material.title
                       = @resource.material.content.html_safe
+                      %hr
+                      = link_to "Terminar Tarea", student_resource_path(@resource, resource_progress_id: @resource_progress.id), :method=> :put, class: 'btn btn-primary' unless @resource_progress.completed
                     - when "Task"
                       %p.lead= @resource.material.title
                       %p= @resource.material.description
                       - if @resource.material.questions
                         / TODO: Definir la ruta que va a procesar el formulario
-                        = form_tag(root_path) do
+                        = form_tag student_resource_path(@resource, resource_progress_id: @resource_progress.id), :method => :put do
                           - @resource.material.questions.each do |q|
                             %h3= q.content
                             - if q.picture.present?
