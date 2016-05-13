@@ -1,7 +1,7 @@
 class Student::ResourcesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
-  before_action :create_resource_progress
+  before_action :create_resource_progress, only: [:show]
 
   def index
   end
@@ -14,17 +14,37 @@ class Student::ResourcesController < ApplicationController
   def create
   end
 
+  def update
+    @resource_progress = ResourceProgress.find(params[:resource_progress_id])
+    if completed?
+      redirect_to student_course_path(@resource_progress.course_user.course), notice: 'recurso marcado completado!'
+    else
+      redirect_to student_course_path(@resource_progress.course_user.course), alert: 'recurso no fue completado correctamente!'
+    end
+  end
+
   private
-    
     def create_resource_progress
-      course_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
-      if course_progress == nil
-        ResourceProgress.create!(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id], completed: true)
+      resource_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
+      if resource_progress == nil
+        @resource_progress = ResourceProgress.create!(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id])
       else
-        #verificar el progreso para cambiar completed a true
+        @resource_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
       end
     end
 
+    def completed?
+      case @resource.material_type
+        when "Video"
+          #obtener el evento cuando termina un video y marcarlo completado
+          false
+        when "Blog"
+          @resource_progress.update_attributes(completed: true)
+        when "Task"
+          #validar que el formulario esta respondido correctamente y marcarlo completado
+          false
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_resource
       @resource = Resource.find(params[:id])
