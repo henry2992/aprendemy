@@ -627,7 +627,6 @@ courses.each do |c|
 		rnumber = Random.rand(4..10)
 		rnumber.times do |i|
 			question = Question.find_by_id(Random.rand(1...1000))
-			puts question.id
 			question.update_attribute(:task, task)
 		end
 

@@ -52,14 +52,13 @@
                                   - s.resources.each do |r|
                                     - case r.material_type
                                       - when "Video"
-                                        %li
-                                          = link_to r.material.url, student_create_resource_progress_path(r)
+                                        - link_label = r.material.url
                                       - when "Blog"
-                                        %li
-                                          = link_to r.generic_name, student_create_resource_progress_path(r, s.id, @course_user.id)
+                                        - link_label = r.generic_name
                                       - when "Task"
-                                        %li
-                                          = link_to r.generic_name, student_create_resource_progress_path(r)
+                                        - link_label = r.generic_name
+                                    %li
+                                      = link_to link_label, student_show_resource_path(r)
                                 - else
                                   %h4 No hay recursos definidos para esta sección
                         - section_number += 1

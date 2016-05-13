@@ -29,13 +29,13 @@
                       %p.lead= @resource.material.title
                       = @resource.material.content.html_safe
                       %hr
-                      = link_to "Terminar Tarea", student_resource_path(@resource, resource_progress_id: @resource_progress.id), :method=> :put, class: 'btn btn-primary' unless @resource_progress.completed
+                      = (link_to "Terminar Tarea", student_complete_resource_path(:id => @resource.id), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
                     - when "Task"
                       %p.lead= @resource.material.title
                       %p= @resource.material.description
                       - if @resource.material.questions
                         / TODO: Definir la ruta que va a procesar el formulario
-                        = form_tag student_resource_path(@resource, resource_progress_id: @resource_progress.id), :method => :put do
+                        = form_tag student_complete_resource_path(@resource), :method => :put do
                           - @resource.material.questions.each do |q|
                             %h3= q.content
                             - if q.picture.present?
@@ -87,7 +87,16 @@
     function finished(event)
     {
       if (event.data == 0){
-        alert("finished");
+        /* Mostrar ventana modal con enlace o retornar atrás */
+        $.ajax({
+           url: '#{student_complete_resource_path}',
+           type: 'PUT',
+           dataType: 'json',
+           data: { id: #{(@resource.id)} },
+           success: function(response) {
+            console.log( data );
+           }
+        });
       }
     }
 
