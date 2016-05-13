@@ -53,13 +53,13 @@
                                     - case r.material_type
                                       - when "Video"
                                         %li
-                                          = link_to r.material.url, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
+                                          = link_to r.material.url, student_create_resource_progress_path(r)
                                       - when "Blog"
                                         %li
-                                          = link_to r.generic_name, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
+                                          = link_to r.generic_name, student_create_resource_progress_path(r, s.id, @course_user.id)
                                       - when "Task"
                                         %li
-                                          = link_to r.generic_name, student_resource_path(r, section_id: s.id, course_user_id: @course_user.id)
+                                          = link_to r.generic_name, student_create_resource_progress_path(r)
                                 - else
                                   %h4 No hay recursos definidos para esta sección
                         - section_number += 1
