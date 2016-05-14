@@ -44,16 +44,12 @@ class Student::ResourcesController < ApplicationController
           return false if (@resource_progress.completed? || !@resource_progress.update_attributes(completed: true))
           return true
         when "Task"
-          task_completed = false
           params['question_ids'].each do |i, v|
             q = Question.find(i)
             return false if q.choice_id != v.to_i
-            task_completed = true
           end
-          if task_completed
-            return true if @resource_progress.update_attributes(completed: true)
-            return false
-          end
+          return true if @resource_progress.update_attributes(completed: true)
+          return false
       end
       return false
     end
