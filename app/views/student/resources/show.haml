@@ -1,3 +1,7 @@
+.alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
+  .button.close{ :"data-dismiss"=>"alert"}
+    ×
+  .show-flash
 .application-wrapper.container-fluid
   .row
     =render 'layouts/user_sidebar'
@@ -35,7 +39,8 @@
                       %p= @resource.material.description
                       - if @resource.material.questions
                         / TODO: Definir la ruta que va a procesar el formulario
-                        = form_tag student_complete_resource_path(@resource), :method => :put do
+                        = form_tag student_complete_resource_path, :method => :put do
+                          = hidden_field_tag :id, @resource.id
                           - @resource.material.questions.each do |q|
                             %h3= q.content
                             - if q.picture.present?
@@ -59,7 +64,7 @@
                             - if q.choices
                               - q.choices.each do |c|
                                 %p
-                                  = radio_button_tag "question[#{q.id}]", c.id
+                                  = radio_button_tag "question_ids[#{q.id}]", c.id
                                   = c.content
                             %hr
                           = button_tag 'Terminar Tarea' , class: 'btn btn-primary' , type: :submit
@@ -87,16 +92,21 @@
     function finished(event)
     {
       if (event.data == 0){
-        /* Mostrar ventana modal con enlace o retornar atrás */
         $.ajax({
            url: '#{student_complete_resource_path}',
            type: 'PUT',
            dataType: 'json',
            data: { id: #{(@resource.id)} },
-           success: function(response) {
-            console.log( data );
-           }
+           success: function(data) {
+            if (data[0].success)
+            {
+              $(".show-flash").html(data[0].message);
+              $(".alert")
+                .addClass("alert-success")
+                .show();
+              }
+            }
         });
       }
     }
-
+    

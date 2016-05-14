@@ -12,12 +12,12 @@ class Student::ResourcesController < ApplicationController
     if completed?
       respond_to do |format|
         format.html { redirect_to student_course_path(@resource_progress.course_user.course), notice: 'recurso marcado completado!' }
-        format.json { render json: [:message => "recurso marcado completado!" ], status: :ok }
+        format.json { render json: [:message => "recurso marcado completado!", :success => true ], status: :ok }
       end
     else
       respond_to do |format|
         format.html { redirect_to student_course_path(@resource_progress.course_user.course), alert: 'recurso no fue completado correctamente!' }
-        format.json { render json: [:message => "recurso no fue completado correctamente!" ], status: :ok }
+        format.json { render json: [ :success => false ], status: :ok }
       end
     end
   end
@@ -40,28 +40,30 @@ class Student::ResourcesController < ApplicationController
 
     def completed?
       case @resource.material_type
-        when "Video"
-          @resource_progress.update_attributes(completed: true)
-        when "Blog"
-          @resource_progress.update_attributes(completed: true)
+        when "Video", "Blog"
+          return false if (@resource_progress.completed? || !@resource_progress.update_attributes(completed: true))
+          return true
         when "Task"
-          #validar que el formulario esta respondido correctamente y marcarlo completado
           task_completed = false
-          raise resource_params.to_yaml
-          if task_completed?
-            @resource_progress.update_attributes(completed: true)
+          params['question_ids'].each do |i, v|
+            q = Question.find(i)
+            return false if q.choice_id != v.to_i
+            task_completed = true
           end
-          false
+          if task_completed
+            return true if @resource_progress.update_attributes(completed: true)
+            return false
+          end
       end
+      return false
     end
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_resource
       @resource = Resource.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:id)
+      params.permit(:id)
     end
 
 end
