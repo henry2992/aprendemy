@@ -72,7 +72,6 @@
                           = button_tag 'Terminar Tarea' , class: 'btn btn-primary submit' , type: :submit
 - if @resource.material_type == "Task"
   :javascript
-    /*
     $(document).ready(function(){
       console.log( #{qs} );
       $('.submit').click(function(){
@@ -83,7 +82,6 @@
       });
       return false;
     });
-    */
 - if @resource.material_type == "Video"
   %script{:src=>"http://www.youtube.com/iframe_api"}
   :javascript
