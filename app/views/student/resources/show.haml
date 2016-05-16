@@ -35,6 +35,7 @@
                       %hr
                       = (link_to "Terminar Tarea", student_complete_resource_path(:id => @resource.id), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
                     - when "Task"
+                      -qs = 0
                       %p.lead= @resource.material.title
                       %p= @resource.material.description
                       - if @resource.material.questions
@@ -66,12 +67,26 @@
                                 %p
                                   = radio_button_tag "question_ids[#{q.id}]", c.id
                                   = c.content
+                            -qs+=1
                             %hr
-                          = button_tag 'Terminar Tarea' , class: 'btn btn-primary' , type: :submit
+                          = button_tag 'Terminar Tarea' , class: 'btn btn-primary submit' , type: :submit
+- if @resource.material_type == "Task"
+  :javascript
+    /*
+    $(document).ready(function(){
+      console.log( #{qs} );
+      $('.submit').click(function(){
+        if( $('input[name^="question_ids"]:checked').size() != #{qs} ){
+          alert("Debe seleccionar una opción");
+          return false;
+        }
+      });
+      return false;
+    });
+    */
 - if @resource.material_type == "Video"
   %script{:src=>"http://www.youtube.com/iframe_api"}
   :javascript
-    console.log("#{@resource.material_type}");
     var player,
       time_update_interval = 0;
 
