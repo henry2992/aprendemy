@@ -11,12 +11,12 @@ class Student::ResourcesController < ApplicationController
   def update
     if completed?
       respond_to do |format|
-        format.html { redirect_to student_course_path(@resource_progress.course_user.course), notice: 'recurso marcado completado!' }
+        format.html { redirect_to student_course_path(@resource_progress.course_user.course), notice: 'Recurso marcado completado!' }
         format.json { render json: [:message => "recurso marcado completado!", :success => true ], status: :ok }
       end
     else
       respond_to do |format|
-        format.html { redirect_to student_course_path(@resource_progress.course_user.course), alert: 'recurso no fue completado correctamente!' }
+        format.html { redirect_to student_course_path(@resource_progress.course_user.course), alert: 'Recurso no fue completado correctamente!' }
         format.json { render json: [ :success => false ], status: :ok }
       end
     end
@@ -45,6 +45,7 @@ class Student::ResourcesController < ApplicationController
           return true
         when "Task"
           return false if !params['question_ids']
+          return false if params['question_ids'].count != @resource.material.questions.count
           params['question_ids'].each do |i, v|
             q = Question.find(i)
             return false if q.choice_id != v.to_i
