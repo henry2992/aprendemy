@@ -1,7 +1,7 @@
 class Student::ResourcesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_resource, only: [:show, :update]
-  before_action :create_resource_progress, only: [:show]
+  before_action :create_resource_progress, only: [:show, :update]
 
   def show
     add_breadcrumb "Inicio", :root_path
@@ -9,44 +9,59 @@ class Student::ResourcesController < ApplicationController
   end
 
   def update
-    @resource_progress = ResourceProgress.find(params[:resource_progress_id])
     if completed?
-      redirect_to student_course_path(@resource_progress.course_user.course), notice: 'recurso marcado completado!'
+      respond_to do |format|
+        format.html { redirect_to student_course_path(@resource_progress.course_user.course), notice: 'Recurso marcado completado!' }
+        format.json { render json: [:message => "recurso marcado completado!", :success => true ], status: :ok }
+      end
     else
-      redirect_to student_course_path(@resource_progress.course_user.course), alert: 'recurso no fue completado correctamente!'
+      respond_to do |format|
+        format.html { redirect_to student_course_path(@resource_progress.course_user.course), alert: 'Recurso no fue completado correctamente!' }
+        format.json { render json: [ :success => false ], status: :ok }
+      end
     end
   end
 
   private
+  
     def create_resource_progress
-      resource_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
-      if resource_progress == nil
-        @resource_progress = ResourceProgress.create!(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id])
+      resource_data = {
+        course_user: @resource.section.course.course_users.where(course: @resource.section.course).first,
+        section: @resource.section,
+        resource: @resource
+      }
+      resource_progress = ResourceProgress.where(resource_data).first
+      if !resource_progress.present?
+        @resource_progress = ResourceProgress.create!(resource_data)
       else
-        @resource_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
+        @resource_progress = ResourceProgress.where(resource_data).first
       end
     end
 
     def completed?
       case @resource.material_type
-        when "Video"
-          #obtener el evento cuando termina un video y marcarlo completado
-          false
-        when "Blog"
-          @resource_progress.update_attributes(completed: true)
+        when "Video", "Blog"
+          return false if (@resource_progress.completed? || !@resource_progress.update_attributes(completed: true))
+          return true
         when "Task"
-          #validar que el formulario esta respondido correctamente y marcarlo completado
-          false
+          return false if !params['question_ids']
+          return false if params['question_ids'].count != @resource.material.questions.count
+          params['question_ids'].each do |i, v|
+            q = Question.find(i)
+            return false if q.choice_id != v.to_i
+          end
+          return true if @resource_progress.update_attributes(completed: true)
+          return false
       end
+      return false
     end
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_resource
       @resource = Resource.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name)
+      params.permit(:id)
     end
 
 end

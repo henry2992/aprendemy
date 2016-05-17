@@ -1,3 +1,7 @@
+.alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
+  .button.close{ :"data-dismiss"=>"alert"}
+    ×
+  .show-flash
 .application-wrapper.container-fluid
   .row
     =render 'layouts/user_sidebar'
@@ -29,13 +33,15 @@
                       %p.lead= @resource.material.title
                       = @resource.material.content.html_safe
                       %hr
-                      = link_to "Terminar Tarea", student_resource_path(@resource, resource_progress_id: @resource_progress.id), :method=> :put, class: 'btn btn-primary' unless @resource_progress.completed
+                      = (link_to "Terminar Tarea", student_complete_resource_path(:id => @resource.id), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
                     - when "Task"
+                      -qs = 0
                       %p.lead= @resource.material.title
                       %p= @resource.material.description
                       - if @resource.material.questions
                         / TODO: Definir la ruta que va a procesar el formulario
-                        = form_tag student_resource_path(@resource, resource_progress_id: @resource_progress.id), :method => :put do
+                        = form_tag student_complete_resource_path, :method => :put do
+                          = hidden_field_tag :id, @resource.id
                           - @resource.material.questions.each do |q|
                             %h3= q.content
                             - if q.picture.present?
@@ -59,14 +65,26 @@
                             - if q.choices
                               - q.choices.each do |c|
                                 %p
-                                  = radio_button_tag "question[#{q.id}]", c.id
+                                  = radio_button_tag "question_ids[#{q.id}]", c.id
                                   = c.content
+                            -qs+=1
                             %hr
-                          = button_tag 'Terminar Tarea' , class: 'btn btn-primary' , type: :submit
+                          = button_tag 'Terminar Tarea' , class: 'btn btn-primary submit' , type: :submit
+- if @resource.material_type == "Task"
+  :javascript
+    $(document).ready(function(){
+      console.log( #{qs} );
+      $('.submit').click(function(){
+        if( $('input[name^="question_ids"]:checked').size() != #{qs} ){
+          alert("Debe seleccionar una opción");
+          return false;
+        }
+      });
+      return false;
+    });
 - if @resource.material_type == "Video"
   %script{:src=>"http://www.youtube.com/iframe_api"}
   :javascript
-    console.log("#{@resource.material_type}");
     var player,
       time_update_interval = 0;
 
@@ -87,7 +105,21 @@
     function finished(event)
     {
       if (event.data == 0){
-        alert("finished");
+        $.ajax({
+           url: '#{student_complete_resource_path}',
+           type: 'PUT',
+           dataType: 'json',
+           data: { id: #{(@resource.id)} },
+           success: function(data) {
+            if (data[0].success)
+            {
+              $(".show-flash").html(data[0].message);
+              $(".alert")
+                .addClass("alert-success")
+                .show();
+              }
+            }
+        });
       }
     }
-
+    
