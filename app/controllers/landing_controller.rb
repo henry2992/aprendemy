@@ -21,7 +21,7 @@ class LandingController < ApplicationController
 	end
 
 	def pdf
-	    send_file Rails.root.join('app/assets/images', 'enes.pdf'), :type=>"application/pdf", :x_sendfile=>true
+	    send_file Rails.root.join('app/assets/images', 'enes002.pdf'), :type=>"application/pdf", :x_sendfile=>true
 	end
 
 	def pagos
