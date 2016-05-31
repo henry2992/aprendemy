@@ -2,8 +2,8 @@
 
 class UserUploader < CarrierWave::Uploader::Base
 
- include Cloudinary::CarrierWave
-  
+  include Cloudinary::CarrierWave
+
   # process :tags => ["photo_album_sample"]
   # process :convert => "jpg"
 
@@ -14,5 +14,5 @@ class UserUploader < CarrierWave::Uploader::Base
   # end
 
   # storage :file unless Rails.env == "production"
- 
+
 end

@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, except: [ :index, :show ]
+  before_filter :user_is_admin?, except: [:index, :show]
 
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all
@@ -13,7 +13,7 @@ class QuestionsController < ApplicationController
 
   def create
     get_category_and_sub
-    @question = @sub_category.questions.create(question_params.merge(user_id: current_user))
+    @question = @sub_category.questions.create(question_params)
     if @question
       flash[:success] = "New question has been created successfully"
     else

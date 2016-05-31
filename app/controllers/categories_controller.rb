@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, except: [ :index, :show ]
+  before_filter :user_is_admin?, except: [:index, :show]
 
   # Helper Methods for Devise Start
   helper_method :resource_name, :resource, :devise_mapping

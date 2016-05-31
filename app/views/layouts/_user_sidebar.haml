@@ -1,0 +1,52 @@
+.application-navbar.col-sm-3.col-md-2
+  = render 'home/navbar_image'
+  .navbar-links.section
+    %h1.link-heading Herramientas
+    .link-list-group-container
+      %ul.link-list-group-options.nav-pills.nav-stacked
+        %li.list
+          = link_to root_path  do
+            %i.fa.fa-home.list-icon>
+            Inicio
+        %li{:class => "list #{'active' if params[:controller] == 'categories'}"}
+          = link_to categories_path  do
+            %i.fa.fa-book.list-icon>
+            Ejercicios
+        / SUB Menus
+        - @categories.each do |category|
+          %li.dropdown-exercises.list-submenu
+            %i.fa.fa-pencil.icon-category
+            %span.category-name= category.name
+            - if category.sub_categories
+              %ul.nested-submenu
+                - category.sub_categories.each do |sub_category|
+                  - unless sub_category.questions.count == 0
+                    %li
+                      = link_to sub_category.name, category_sub_category_path(category, sub_category), remote: true
+        - end if @categories
+        / Submenu Final
+        %li{:class => "list #{'active' if params[:controller] == 'simulators'} "}
+          = link_to simulators_path do
+            %i.fa.fa-desktop.list-icon>
+            Simuladores
+        %li{:class => "list #{'active' if params[:controller] == 'live_classes'} "}
+          = link_to live_classes_path do
+            %i.fa.fa-youtube-play.list-icon
+            Clases en Vivo
+        %li{:class => "list #{'active' if params[:controller] == 'tutorials'} "}
+          = link_to tutorials_path do
+            %i.fa.fa-youtube-play.list-icon
+            Tutoriales
+        %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
+          - if @course
+            = link_to student_course_path(@course) do
+              %i.fa.fa-graduation-cap.list-icon
+              Progreso
+  .navbar-links.section
+    %h1.link-heading Comunidad
+    .link-list-group-container
+      %ul.link-list-group-options.nav-pills.nav-stacked
+        %li.list
+          %a{:href => "mailto:hola@aprendemy.com"}
+            %i.fa.fa-users.list-icon>
+            Soporte

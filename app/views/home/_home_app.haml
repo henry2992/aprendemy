@@ -1,0 +1,50 @@
+.application-wrapper.container-fluid
+  .row
+    = render "layouts/user_sidebar"
+    .main-bg
+      %content
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content.row
+            - if current_user.free?
+              = render 'banner'
+            .content-margin.row
+              .application-content-header
+                %h3 Herramientas
+              .app-text-holder.row
+                .col-md-4
+                  .tools-panel{:onclick => "location.href='/categories'"}
+                    .exercises-text
+                      %h4
+                        %i.fa.fa-book.list-icon>
+                        Ejercicios
+                      %p
+                        Practica cientos de ejercicios. Podrás observar tu progreso con estadísticas personalizadas.
+                .col-md-4
+                  .tools-panel{:onclick => "location.href='/simulators'"}
+                    .exercises-text
+                      %h4
+                        %i.fa.fa-desktop.list-icon
+                        Simuladores
+                      %p
+                        Practica más gracias a los simuladores de pruebas que Aprendemy tiene preparado para ti.
+                .col-md-4
+                  .tools-panel{:onclick => "location.href='/live_classes'"}
+                    .exercises-text
+                      %h4
+                        %i.fa.fa-youtube-play.list-icon>
+                        Clases en vivo
+                      %p
+                        Recibe clases online, en vivo, con profesores expertos en el ENES que solucionarán tus dudas.
+            .content-margin.row
+              .application-content-header
+                %h3 Noticias Importantes
+              .app-text-holder.news-holder
+                = image_tag("isotipo.png", class: "news-img", alt: "Apredemy-logo")
+                %p.news-content-text
+                  Esta herramienta ha sido creada por profesores expertos que te ayudarán a mejorar tus notas en los exámenes de la Senescyt. Puedes utilizar todas nuestras herramientas de forma ilimitada por 10 días. Si te gustaron podrás adquirir una licencia para tener acceso permanente.
+                  %br
+                    %br
+                      Feliz Aprendizaje :)
+                      %br
+                        %br
+                          Tu Equipo de Aprendemy.

@@ -2,8 +2,8 @@ class SimulatorAnsweredQuestion < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
   belongs_to :simulator
-  enum status: [:unanswered, :correct, :wrong]
-  enum marked_status: [:unmarked, :marked]
+  enum status: [:unanswered, :correct, :wrong] unless defined? SimulatorAnsweredQuestion
+  enum marked_status: [:unmarked, :marked] unless defined? SimulatorAnsweredQuestion
 
   def self.create_simulation_questions question_ids, user_id, simulator_id
     question_ids.each do |question_id|

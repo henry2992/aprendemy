@@ -1,0 +1,25 @@
+.simulator-holder.col-sm-6
+  .simulator-panel.index
+    .simulator-title
+      %h3.simulator-heading
+        = simulator_type.name
+    .simulator-text
+      %p
+        = simulator_type.description
+      .simulator-list
+        %div
+          %i.fa.fa-pencil
+          %p.simulator-icon-text
+            = simulator_type.total_questions
+            Ejercicios de práctica.
+        %div
+          %i.fa.fa-clock-o
+          %p.simulator-icon-text
+            = (simulator_type.time_duration.seconds_since_midnight / 60).floor
+            minutos de duración.
+        %div
+          %i.fa.fa-line-chart
+          %p.simulator-icon-text
+            = simulator_type.points
+            puntos para tu ranking.
+      = button_to "Empezar Examen", simulators_path, method: 'post', params: { simulator_type_id: simulator_type.id}, class:"btn btn-info simulator-start"

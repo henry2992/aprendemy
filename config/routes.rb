@@ -1,11 +1,26 @@
 Rails.application.routes.draw do
 
+  resources :sections
+  resources :tasks
+  resources :blogs
+  resources :schools
+  resources :careers
+  resources :universities
+  namespace :student do
+    resources :courses
+    get '/res/:id' => 'resources#index', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'index_resource'
+    get '/resource/:id' => 'resources#show', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'show_resource'
+    match '/resource/complete' => 'resources#update', :as => 'complete_resource', via: [:put, :patch]
+  end
+
+  resources :tutorials
+  resources :resources
 
   root 'home#index'
 
   post 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
 
-  #QUESTIONS
+  # QUESTIONS
   resources :categories do
     resources :sub_categories do
       get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
@@ -28,21 +43,13 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # USERS
-
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations', sessions: 'sessions' }
-
 
   # LIVE CLASSES
   get '/live_classes' => 'live_classes#index'
 
-  get '/payments'   => 'home#payments', as: :payments
+  get '/payments' => 'home#payments', as: :payments
 
-  #Landing pages
-  get '/enes'   => 'landing#descarga', as: 'enes'
-
-  get "landing/pdf"
-
-  get '/pagos'   => 'landing#pagos', as: 'pagos'
-
+  match '*unmatched_route', :to => 'application#raise_not_found!', via: :all
 
 end

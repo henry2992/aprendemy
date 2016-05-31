@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
 
-  #Helper Methods to allow device resources to be used in home page
+  # Helper Methods to allow device resources to be used in home page
   helper_method :resource_name, :resource, :devise_mapping
-
 
   def resource_name
 	    :user
@@ -17,13 +16,13 @@ class HomeController < ApplicationController
   end
 
   def index
+    if user_signed_in?
+      redirect_to student_courses_path
+    end
     @simulator_types = SimulatorType.all
   end
 
   def payments
   end
-
-
-
 
 end

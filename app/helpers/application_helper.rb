@@ -18,10 +18,13 @@ module ApplicationHelper
   end
 
   def user_is_admin?
-    unless admin?
-      flash[:danger] = "You do not have access to the Admin page"
-      redirect_to root_path
-    end
+    # unless admin?
+    #   flash[:danger] = "You do not have access to the Admin page"
+    #   redirect_to root_path
+    # end
+    return unless !admin?
+    flash[:danger] = "You do not have access to the Admin page"
+    redirect_to root_path
   end
 
 end

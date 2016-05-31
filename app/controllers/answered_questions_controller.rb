@@ -1,6 +1,6 @@
 class AnsweredQuestionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, only: [ :delete ]
+  before_filter :user_is_admin?, only: [:delete]
 
   def index
     get_category_and_sub && @questions = @sub_category.questions.includes(:choices).all
@@ -13,9 +13,7 @@ class AnsweredQuestionsController < ApplicationController
   def create
     get_category_and_sub
     @answered_question = @question.answered_questions.create(answered_question_params)
-    if @answered_question
-      render :show
-    end
+    render :show if @answered_question
   end
 
   def edit
@@ -42,21 +40,24 @@ class AnsweredQuestionsController < ApplicationController
 
   private
 
-  def answered_question_params
-    params.require(:answered_question).permit(:choice_id).merge({
-      correct: answer_is_correct,
-      user_id: current_user.id
-    })
-  end
+    def answered_question_params
+      # params.require(:answered_question).permit(:choice_id).merge({
+      #   correct: answer_is_correct,
+      #   user_id: current_user.id
+      # })
+      params.require(:answered_question).permit(:choice_id).merge(
+        correct: answer_is_correct,
+        user_id: current_user.id
+      )
+    end
 
-  def get_category_and_sub
-    @category = Category.find_by_id(params[:category_id])
-    @sub_category = SubCategory.find_by_id(params[:sub_category_id])
-    @question = Question.find_by_id(params[:question_id])
-  end
+    def get_category_and_sub
+      @category = Category.find_by_id(params[:category_id])
+      @sub_category = SubCategory.find_by_id(params[:sub_category_id])
+      @question = Question.find_by_id(params[:question_id])
+    end
 
-
-  def answer_is_correct
-    @question.choice_id == params[:answered_question][:choice_id].to_i
-  end
+    def answer_is_correct
+      @question.choice_id == params[:answered_question][:choice_id].to_i
+    end
 end

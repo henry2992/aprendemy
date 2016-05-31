@@ -36,7 +36,19 @@ gem 'kaminari'
 #Other
 gem 'flipclockjs-rails', '~> 0.7.7'
 gem 'figaro'
-gem 'tzinfo-data'
+gem 'haml'
+
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+
+# Add this if you're using rbenv
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
+
+# Add this if you're using rvm
+# gem 'capistrano-rvm', github: "capistrano/rvm"
+
+gem "breadcrumbs_on_rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -44,6 +56,12 @@ group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
   gem 'foreman'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'database_cleaner'
+  gem 'railroady'
+  gem 'faker', '~> 1.6', '>= 1.6.3'
+  gem 'rubocop', '~> 0.39.0', require: false
 end
 
 group :development do
@@ -52,9 +70,5 @@ group :development do
   gem "better_errors"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-end
-
-group :production do
-  gem 'puma', '~> 2.16'
-  gem 'rails_12factor'
+  gem 'puma'
 end

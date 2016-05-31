@@ -1,6 +1,6 @@
 class SimulatorsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_is_admin?, only: [ :delete ]
+  before_filter :user_is_admin?, only: [:delete]
   include SimulatorsHelper
 
   def index

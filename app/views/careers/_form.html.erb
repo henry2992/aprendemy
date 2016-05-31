@@ -1,0 +1,45 @@
+<%= form_for(@career) do |f| %>
+  <% if @career.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@career.errors.count, "error") %> prohibited this career from being saved:</h2>
+
+      <ul>
+      <% @career.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :faculty %><br>
+    <%= f.text_field :faculty %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="form-group">
+    <%= f.label :type, class: "control-label" %>
+    <% options= [["Tercer Nivel",0], ["Tecnología",1]] %>
+      <%= f.select :type, options, {}, :disabled => false, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :School, class: "control-label" %>
+    <%= f.collection_select(:school_id, School.all, :id, :name, {:include_blank => 'Select school...'}, {:class=>'form-control'}) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :University, class: "control-label" %>
+    <%= f.collection_select(:university_id, University.all, :id, :name, {:include_blank => 'Select university...'}, {:class=>'form-control'}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
