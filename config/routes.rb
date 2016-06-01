@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :universities
   namespace :student do
     resources :courses
+
+    # resources :tests
+    
+    get '/tests/:id' => 'tests#index', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'tests'
     get '/res/:id' => 'resources#index', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'index_resource'
     get '/resource/:id' => 'resources#show', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'show_resource'
     match '/resource/complete' => 'resources#update', :as => 'complete_resource', via: [:put, :patch]

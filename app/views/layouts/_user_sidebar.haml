@@ -42,6 +42,11 @@
             = link_to student_course_path(@course) do
               %i.fa.fa-graduation-cap.list-icon
               Progreso
+        %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
+          - if @course
+            = link_to student_tests_path(@course) do
+              %i.fa.fa-file-text.list-icon
+              Exámenes
   .navbar-links.section
     %h1.link-heading Comunidad
     .link-list-group-container
