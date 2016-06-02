@@ -17,7 +17,7 @@
             .content-margin.row
               .app-text-holder.row.main-bg
                 %content
-                  %h2= "Curso" + @course.name
+                  %h3= "Exámenes para el Curso " + @course.name
                   = link_to "Nuevo Examen", student_new_test_path(), class: 'btn btn-primary'
         .content-wrapper.col-sm-9.col-md-10
           .application-content

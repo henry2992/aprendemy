@@ -624,10 +624,10 @@ courses.each do |c|
 		video = Video.create! name: "Video explicativo #{s}", description: 'test', url: "https://www.youtube.com/embed/jdYJf_ybyVo"
 		task = Task.create! title: "Tarea #{s}", description: 'Descripción de la tarea'
 		
-		rnumber = Random.rand(4..10)
+		rnumber = Random.rand(5..10)
 		rnumber.times do |i|
 			question = Question.find_by_id(Random.rand(1...1000))
-			question.update_attribute(:task, task)
+			question.update_attribute(:parent, task)
 		end
 
 		resource = Resource.new generic_name: "Recurso de video #{s}" , section_id: section.id
