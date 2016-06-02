@@ -2,6 +2,9 @@ class CourseUser < ActiveRecord::Base
   belongs_to :user
   belongs_to :course
   has_many :resource_progresses
+
+  has_many :tests
+  
   validates :user, :course, presence: true
 
   def progress_percent
