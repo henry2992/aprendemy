@@ -17,5 +17,35 @@
             .content-margin.row
               .app-text-holder.row.main-bg
                 %content
-                  %h1= "Curso " + @course.name
+                  %h2= "Curso" + @course.name
+                  = link_to "Nuevo Examen", student_new_test_path(), class: 'btn btn-primary'
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .app-text-holder.row.main-bg
+                %content
+                  %h3= "Tabla de Exámenes"
+                  %table.table
+                    %thead
+                      %tr
+                        %th
+                          Examen
+                        %th
+                          Estado
+                        %th
+                          Preguntas Totales
+                        %th
+                          Fecha
+                        %th
+                          Preguntas Contestadas
+                        %th
+                          Preguntas Correctas
+                        %th
+                          Preguntas Incorrectas
+                        %th
+                          Acciones
+                    / %tbody
+                    /   - @tests.each do |t|
+
+
         

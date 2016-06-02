@@ -21,7 +21,9 @@ class Student::TestsController < ApplicationController
 
   # GET /tests/new
   def new
-    # @course = Course.new
+    add_breadcrumb "Inicio", :root_path
+    # add_breadcrumb "#{@course.name}", student_course_path(@course)
+    @test = Test.new
   end
 
   # GET /tests/1/edit
