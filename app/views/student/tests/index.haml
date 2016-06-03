@@ -5,6 +5,7 @@
 .application-wrapper.container-fluid
   .row
     =render 'layouts/user_sidebar'
+    - show_explanation = !@answers.nil?
     .main-bg
       %content
         .content-wrapper.col-sm-9.col-md-10
@@ -17,7 +18,7 @@
             .content-margin.row
               .app-text-holder.row.main-bg
                 %content
-                  %h3= "Exámenes para el Curso " + @test.course_user.course.name
+                  %h3= "Exámenes para el Curso " + @course.name
                   = link_to "Nuevo Examen", student_new_test_path(), class: 'btn btn-primary'
         .content-wrapper.col-sm-9.col-md-10
           .application-content
@@ -45,8 +46,21 @@
                         %th
                           Acciones
                     %tbody
-                      / renderear las questions del test
                       - @tests.each do |t|
-                        
-
-        
+                        %tr
+                          %td
+                            = t.title
+                          %td
+                            = if t.completed then 'Completado' else 'No Completado'
+                          %td
+                            = t.questions.count
+                          %td
+                            = t.created_at
+                          %td
+                            / Preguntas Contestadas
+                          %td
+                            / Preguntas Correctas
+                          %td
+                            / Preguntas Incorrectas
+                          %td
+                            / Acciones
