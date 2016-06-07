@@ -51,7 +51,7 @@
                           %td
                             = t.title
                           %td
-                            = if t.completed then 'Completado' else 'No Completado'
+                            = t.completed ? 'Completado' : 'No Completado'
                           %td
                             = t.questions.count
                           %td

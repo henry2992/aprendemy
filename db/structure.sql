@@ -558,9 +558,10 @@ CREATE TABLE questions (
     video_url character varying,
     question_id integer,
     "time" integer,
-    task_id integer,
     total_answered_count integer DEFAULT 0 NOT NULL,
-    wrong_answered_count integer DEFAULT 0 NOT NULL
+    wrong_answered_count integer DEFAULT 0 NOT NULL,
+    parent_id integer,
+    parent_type character varying
 );
 
 
@@ -856,7 +857,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-05-21 00:32:53.192606'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-06-07 01:07:21.603959'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -950,6 +951,40 @@ CREATE SEQUENCE tasks_id_seq
 --
 
 ALTER SEQUENCE tasks_id_seq OWNED BY tasks.id;
+
+
+--
+-- Name: tests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tests (
+    id integer NOT NULL,
+    title character varying,
+    description text,
+    time_limit integer,
+    total_questions integer,
+    course_user_id integer,
+    completed boolean DEFAULT false
+);
+
+
+--
+-- Name: tests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tests_id_seq OWNED BY tests.id;
 
 
 --
@@ -1273,6 +1308,13 @@ ALTER TABLE ONLY tasks ALTER COLUMN id SET DEFAULT nextval('tasks_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY tests ALTER COLUMN id SET DEFAULT nextval('tests_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY tutorials ALTER COLUMN id SET DEFAULT nextval('tutorials_id_seq'::regclass);
 
 
@@ -1490,6 +1532,14 @@ ALTER TABLE ONLY tasks
 
 
 --
+-- Name: tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tests
+    ADD CONSTRAINT tests_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1564,17 +1614,17 @@ CREATE INDEX index_live_classes_on_course_id ON live_classes USING btree (course
 
 
 --
+-- Name: index_questions_on_parent_type_and_parent_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_questions_on_parent_type_and_parent_id ON questions USING btree (parent_type, parent_id);
+
+
+--
 -- Name: index_questions_on_question_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_questions_on_question_id ON questions USING btree (question_id);
-
-
---
--- Name: index_questions_on_task_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_questions_on_task_id ON questions USING btree (task_id);
 
 
 --
@@ -1603,6 +1653,13 @@ CREATE INDEX index_resources_on_tutorial_id ON resources USING btree (tutorial_i
 --
 
 CREATE INDEX index_sections_on_course_id ON sections USING btree (course_id);
+
+
+--
+-- Name: index_tests_on_course_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_tests_on_course_user_id ON tests USING btree (course_user_id);
 
 
 --
@@ -1688,11 +1745,11 @@ ALTER TABLE ONLY resources
 
 
 --
--- Name: fk_rails_7f60f06ac4; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_84332ff6ce; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY questions
-    ADD CONSTRAINT fk_rails_7f60f06ac4 FOREIGN KEY (task_id) REFERENCES tasks(id);
+ALTER TABLE ONLY tests
+    ADD CONSTRAINT fk_rails_84332ff6ce FOREIGN KEY (course_user_id) REFERENCES course_users(id);
 
 
 --
@@ -1842,4 +1899,12 @@ INSERT INTO schema_migrations (version) VALUES ('20160511010803');
 INSERT INTO schema_migrations (version) VALUES ('20160518174722');
 
 INSERT INTO schema_migrations (version) VALUES ('20160518174952');
+
+INSERT INTO schema_migrations (version) VALUES ('20160523141824');
+
+INSERT INTO schema_migrations (version) VALUES ('20160523191705');
+
+INSERT INTO schema_migrations (version) VALUES ('20160602193801');
+
+INSERT INTO schema_migrations (version) VALUES ('20160602202339');
 

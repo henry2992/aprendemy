@@ -23,3 +23,7 @@
 /config/application.yml
 
 sftp-config.json
+
+# RubyMine project files
+.idea
+

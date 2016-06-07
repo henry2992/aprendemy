@@ -7,15 +7,16 @@ class Student::TestsController < ApplicationController
   def index
     add_breadcrumb "Inicio", :root_path
     add_breadcrumb "#{@course.name}", student_course_path(@course)
-    # @course = @resource.section.course
-    # @courses = current_user.courses.all
+    #@course = @resource.section.course
+    #@courses = current_user.courses.all
+    @tests = Test.all
   end
 
   # GET /tests/1
   # GET /tests/1.json
   def show
     add_breadcrumb "Inicio", :root_path
-    # @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
+    #@course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
     # @progress = @course_user.progress_percent
   end
 
