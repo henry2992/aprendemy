@@ -17,7 +17,8 @@ class Student::TestsController < ApplicationController
   def show
     add_breadcrumb "Inicio", :root_path
     #@course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
-    # @progress = @course_user.progress_percent
+    #@progress = @course_user.progress_percent
+    @test = Test.first
   end
 
   # GET /tests/new
