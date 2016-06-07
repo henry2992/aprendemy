@@ -5,6 +5,8 @@ class CreateTest < ActiveRecord::Migration
       t.text :description
       t.integer :time_limit
       t.integer :total_questions
+
+      t.timestamps null: false
     end
   end
 end
