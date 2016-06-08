@@ -63,14 +63,14 @@
                         %th
                           Acciones
                     %tbody
-                      - @tests.each do |t|
+                      - @user_tests.each do |t|
                         %tr
                           %td
-                            = link_to t.title, "#"
+                            = link_to t.title, "#" # path to continue test
                           %td
                             = t.completed ? 'Completado' : 'No Completado'
                           %td
-                            = t.questions.count
+                            = t.test.questions.count
                           %td
                           %td
                             / Preguntas Contestadas

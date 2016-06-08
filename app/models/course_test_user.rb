@@ -1,4 +1,4 @@
-class TestCourseUser < ActiveRecord::Base
+class CourseTestUser < ActiveRecord::Base
 
   belongs_to :test
   belongs_to :course_user

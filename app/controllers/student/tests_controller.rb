@@ -6,8 +6,9 @@ class Student::TestsController < ApplicationController
   # GET /tests.json
   def index
     @course = Course.find(params[:course_id])
-    @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
-    @tests = Test.where(course_id: @course.id)
+    @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first if @course
+    @tests = Test.where(course_id: @course_user.course_id) if @course_user
+    @user_tests = CourseTestUser.where(course_user: @course_user ) if @course_user
   end
 
   # GET /tests/1
