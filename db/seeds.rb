@@ -644,7 +644,7 @@ courses.each do |c|
   end
 end
 
-test = Test.create! title: 'first test', description: 'description test', time_limit: 60,  total_questions: 10
+test = Test.create! title: 'first test', description: 'description test', time_limit: 60,  total_questions: 10, course_id: enes.id
 puts test.title
 (1..10).each do |n|
   q = Question.create( content: 'Pregunta de examen' + n.to_s, sub_category_id: 29, explanation: "Explicacion" )

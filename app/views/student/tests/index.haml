@@ -12,14 +12,31 @@
           .application-content
             .content-margin.row
               %ol.breadcrumb{:style=>"background-color:#fff"}
-                = render_breadcrumbs :tag => :li, :separator => ""
-        .content-wrapper.col-sm-9.col-md-10
+                -#= render_breadcrumbs :tag => :li, :separator => ""
+                .content-wrapper.col-sm-9.col-md-10
           .application-content
             .content-margin.row
               .app-text-holder.row.main-bg
                 %content
-                  %h3= "Exámenes para el Curso " + @course.name
-                  = link_to "Nuevo Examen", student_new_test_path(), class: 'btn btn-primary'
+                  %h3= "Exámenes Del Curso"
+                  %table.table
+                    %thead
+                      %tr
+                        %th
+                          Examen
+                        %th
+                          Descripcion
+                        %th
+                          Acciones
+                    %tbody
+                      - @tests.each do |t|
+                        %tr
+                          %td= link_to t.title, "#"
+                          %td= t.description
+                          %td
+                            = link_to 'Tomar Examen', "#", class: 'btn btn-success'
+        / Acciones
+
         .content-wrapper.col-sm-9.col-md-10
           .application-content
             .content-margin.row

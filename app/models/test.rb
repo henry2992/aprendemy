@@ -2,7 +2,7 @@ class Test < ActiveRecord::Base
   has_many :questions, :as => :parent
 
   has_many :test_course_users
-  # has_many :users, :through => :test_users
+  belongs_to :course
 
   validates :title, :presence => true, :length => { :minimum => 2 }
   validates :time_limit, :presence => true, 

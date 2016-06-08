@@ -1,15 +1,13 @@
 class Student::TestsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_course, only: [:index]
+  before_action :set_test, only: [:show, :edit, :update, :destroy]
 
   # GET /tests
   # GET /tests.json
   def index
-    add_breadcrumb "Inicio", :root_path
-    add_breadcrumb "#{@course.name}", student_course_path(@course)
-    #@course = @resource.section.course
-    #@courses = current_user.courses.all
-    @tests = Test.all
+    @course = Course.find(params[:course_id])
+    @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
+    @tests = Test.where(course_id: @course.id)
   end
 
   # GET /tests/1
@@ -75,13 +73,13 @@ class Student::TestsController < ApplicationController
   private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      # @test = Test.find(params[:id])
-      @course = Course.find(params[:id])
+    def set_test
+      @test = Test.find(params[:id])
+      #@course = Course.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def course_params
-      # params.require(:course).permit(:name, :description)
+    def test_params
+      params.require(:test).permit(:name, :description)
     end
 end

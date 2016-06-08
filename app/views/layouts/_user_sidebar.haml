@@ -44,7 +44,7 @@
               Progreso
         %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
           - if @course
-            = link_to student_tests_path(@course) do
+            = link_to student_tests_path(course_id: @course.id) do
               %i.fa.fa-file-text.list-icon
               Exámenes
   .navbar-links.section
