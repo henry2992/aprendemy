@@ -27,3 +27,5 @@ sftp-config.json
 # RubyMine project files
 .idea
 
+/.DS_Store
+
