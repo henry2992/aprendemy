@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Course user:</strong>
+  <%= @student_course_user_test.course_user_id %>
+</p>
+
+<p>
+  <strong>Test:</strong>
+  <%= @student_course_user_test.test_id %>
+</p>
+
+<%= link_to 'Edit', edit_student_course_user_test_path(@student_course_user_test) %> |
+<%= link_to 'Back', student_course_user_tests_path %>

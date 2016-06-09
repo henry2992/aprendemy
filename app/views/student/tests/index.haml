@@ -31,7 +31,7 @@
                     %tbody
                       - @tests.each do |t|
                         %tr
-                          %td= link_to t.title, "#"
+                          %td= link_to t.title, student_course_user_tests_path
                           %td= t.description
                           %td
                             = link_to 'Tomar Examen', "#", class: 'btn btn-success'
@@ -66,7 +66,7 @@
                       - @user_tests.each do |t|
                         %tr
                           %td
-                            = link_to t.title, "#" # path to continue test
+                            = link_to t.title, student_course_test_users_path
                           %td
                             = t.completed ? 'Completado' : 'No Completado'
                           %td

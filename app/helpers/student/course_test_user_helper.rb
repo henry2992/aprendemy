@@ -1,0 +1,2 @@
+module Student::CourseTestUserHelper
+end

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :student do
+    resources :course_user_tests
+  end
   resources :sections
   resources :tasks
   resources :blogs
@@ -8,11 +11,9 @@ Rails.application.routes.draw do
   resources :universities
   namespace :student do
     resources :courses
-
+    resources :course_test_users
     resources :tests
-    
-    #get '/tests/new' => 'tests#new', :as => 'new_test'
-    # get '/tests/:id' => 'tests#new', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'test'
+
     get '/res/:id' => 'resources#index', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'index_resource'
     get '/resource/:id' => 'resources#show', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'show_resource'
     match '/resource/complete' => 'resources#update', :as => 'complete_resource', via: [:put, :patch]
