@@ -31,10 +31,10 @@
                     %tbody
                       - @tests.each do |t|
                         %tr
-                          %td= link_to t.title, student_course_user_tests_path
+                          %td= t.title
                           %td= t.description
                           %td
-                            = link_to 'Tomar Examen', "#", class: 'btn btn-success'
+                            = link_to 'Tomar Examen', student_new_test_path(@course, t), class: 'btn btn-success'
         / Acciones
 
         .content-wrapper.col-sm-9.col-md-10
@@ -66,7 +66,7 @@
                       - @user_tests.each do |t|
                         %tr
                           %td
-                            = link_to t.title, student_course_test_users_path
+                            = t.title
                           %td
                             = t.completed ? 'Completado' : 'No Completado'
                           %td

@@ -1,5 +1,5 @@
 class Test < ActiveRecord::Base
-  has_many :questions, :as => :parent
+  has_many :questions, -> { order('id') }, :as => :parent
 
   has_many :course_test_users
   belongs_to :course
