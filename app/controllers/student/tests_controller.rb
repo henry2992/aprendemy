@@ -1,15 +1,17 @@
 class Student::TestsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_test, only: [:show, :edit, :update, :destroy]
+  before_action :load_course
 
   # GET /tests
   # GET /tests.json
   def index
-    @course = Course.find(params[:course_id])
-    @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first if @course
-    @tests = Test.where(course_id: @course_user.course_id) if @course_user
-    @user_tests = CourseTestUser.where(course_user: @course_user ) if @course_user
-    @tests = Test.where(course_id: @course_user.course_id).where.not(:id => CourseTestUser.all.map(&:test_id)) if @course_user
+
+    # @course = Course.find(params[:course_id])
+    # @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first if @course
+    # @tests = Test.where(course_id: @course_user.course_id) if @course_user
+    # @user_tests = CourseTestUser.where(course_user: @course_user ) if @course_user
+    # @tests = Test.where(course_id: @course_user.course_id).where.not(:id => CourseTestUser.all.map(&:test_id)) if @course_user
   end
 
   # GET /tests/1
@@ -74,10 +76,13 @@ class Student::TestsController < ApplicationController
 
   private
 
+    def load_course
+      @course = Course.find(params[:course_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_test
       @test = Test.find(params[:id])
-      #@course = Course.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
