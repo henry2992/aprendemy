@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :student do
-    resources :course_user_tests
-  end
   resources :sections
   resources :tasks
   resources :blogs
@@ -10,7 +7,11 @@ Rails.application.routes.draw do
   resources :careers
   resources :universities
   namespace :student do
-    resources :courses
+    resources :courses do
+      resources :tests do
+        resources :course_user_tests
+      end
+    end
     resources :tests
 
     get '/course/:id/test/:test_id/new' => 'course_test_user#new', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/, :test_id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'new_test'

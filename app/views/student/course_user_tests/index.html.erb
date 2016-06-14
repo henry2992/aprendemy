@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Student Course User Tests</h1>
+<h1>Listing Course User Tests</h1>
 
 <table>
   <thead>
@@ -12,13 +12,13 @@
   </thead>
 
   <tbody>
-    <% @student_course_user_tests.each do |student_course_user_test| %>
+    <% @course_user_tests.each do |course_user_test| %>
       <tr>
-        <td><%= student_course_user_test.course_user_id %></td>
-        <td><%= student_course_user_test.test_id %></td>
-        <td><%= link_to 'Show', student_course_user_test %></td>
-        <td><%= link_to 'Edit', edit_student_course_user_test_path(student_course_user_test) %></td>
-        <td><%= link_to 'Destroy', student_course_user_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= course_user_test.course_user_id %></td>
+        <td><%= course_user_test.test_id %></td>
+        <td><%= link_to 'Show', course_user_test %></td>
+        <td><%= link_to 'Edit', edit_course_user_test_path(course_user_test) %></td>
+        <td><%= link_to 'Destroy', course_user_test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Course user test', new_student_course_user_test_path %>
+<%= link_to 'New Course user test', new_course_user_test_path %>
