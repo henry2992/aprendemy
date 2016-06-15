@@ -29,7 +29,7 @@
 <div class="explanation">
     <p><%= question.explanation if answered_question.id %></p>
 
-    <% if answered_question.id  %>
+    <% if answered_question.id && question.url  %>
       <button type="button" data-toggle="modal" data-target="#squarespaceModal_<%= question.id %>" class="btn btn-info sub-category-btn"><i class="fa fa-play-circle-o" aria-hidden="true"></i>Ver Video Explicativo</button>
     <% end %>
 </div>
