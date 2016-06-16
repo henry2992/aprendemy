@@ -41,10 +41,10 @@
                         .panel.panel-default
                           .panel-heading{:id=>"heading+#{section_number}",:role=>"tab"}
                             %h4.panel-title
-                              %a.collapsed{:role=>"button", :"data-toggle"=>"collapse", :"data-parent"=>"#accordion", :href=>"#collapse#{section_number}", :"aria-expanded"=>"true", :"aria-controls"=>"collapse#{section_number}"}
+                              %a.collapsed{:role=>"button", :"data-toggle"=>"collapse", :"data-parent"=>"#accordion", :href=>"#collapse#{section_number}", :"aria-expanded"=>"false", :"aria-controls"=>"collapse#{section_number}"}
                                 = s.name
 
-                          .panel-collapse.collapse{:id=>"collapse#{section_number}",:role=>"tabpanel", :"aria-labelledby"=>"heading#{section_number}", :"aria-expanded"=>"true", :style=>"height: 0px;"}
+                          .panel-collapse.collapse{:id=>"collapse#{section_number}",:role=>"tabpanel", :"aria-labelledby"=>"heading#{section_number}", :style=>"height: 0px;"}
                             .panel-body
                               %ol
                                 - if s.resources
@@ -64,4 +64,4 @@
                     - else
                       %h4 No hay secciones definidas para este curso
 :javascript
-  $('.collapse').collapse('show')
+  / $('.collapse').collapse('show')
