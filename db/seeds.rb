@@ -659,3 +659,20 @@ puts test.title
   test.questions << question
   test.save
 end
+
+test1 = Test.create! title: 'second test', description: 'description test', time_limit: 60,  total_questions: 10, course_id: enes.id
+puts test1.title
+(1..10).each do |n|
+  q = Question.create( content: 'Pregunta de examen' + n.to_s, sub_category_id: 29, explanation: "Explicacion" )
+  choices = []
+  (1..4).each do |z|
+    c = Choice.create content: 'Opcion' + z.to_s, question_id: q.id
+    choices << c
+  end
+  question = Question.find_by_id(q.id)
+  question.choice_id = choices.map(&:id).sample
+  question.save!
+  test1.questions << question
+  test1.save
+end
+
