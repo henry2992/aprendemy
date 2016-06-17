@@ -5,6 +5,7 @@ class Student::CourseUserTestsController < ApplicationController
   # GET /course_user_tests
   # GET /course_user_tests.json
   def index
+    add_breadcrumb "Inicio", :root_path
     @course_user_tests = CourseUserTest.all
   end
 
@@ -15,6 +16,7 @@ class Student::CourseUserTestsController < ApplicationController
 
   # GET /course_user_tests/new
   def new
+    add_breadcrumb "Inicio", :root_path
     @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
   end
 

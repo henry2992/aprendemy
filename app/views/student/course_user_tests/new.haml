@@ -28,7 +28,7 @@
                   - target = ""
                   - met = ""
                   - met = :post
-                  - target = "student_complete_resource_path unless @resource_progress.completed"
+                  - target = student_course_test_course_user_tests_path unless @course_user_test.completed
                   = form_tag target, :method => met do
                     - @course_user_test.test.questions.each do |q|
                       %h3= q.content

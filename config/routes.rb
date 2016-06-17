@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :universities
 
   namespace :backend do
-
+    # resources :tests
     resources :blogs
     get '/dashboard' => 'dashboard#index', :as => 'dashboard'
   end
@@ -18,10 +18,9 @@ Rails.application.routes.draw do
         resources :course_user_tests
       end
     end
-    resources :tests
 
-    get '/course/:id/test/:test_id/new' => 'course_test_user#new', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/, :test_id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'new_test'
-    get '/test/:id/edit' => 'course_test_user#edit', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/}, :as => 'edit_test'
+    # get '/course/:id/test/:test_id/new' => 'course_test_user#new', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/, :test_id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'new_test'
+    # get '/test/:id/edit' => 'course_test_user#edit', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/}, :as => 'edit_test'
     
     get '/res/:id' => 'resources#index', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'index_resource'
     get '/resource/:id' => 'resources#show', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'show_resource'

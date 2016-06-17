@@ -3,7 +3,7 @@ class CourseUser < ActiveRecord::Base
   belongs_to :course
   has_many :resource_progresses
 
-  has_many :course_test_users
+  has_many :course_user_tests
   
   validates :user, :course, presence: true
 
