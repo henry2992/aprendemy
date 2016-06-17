@@ -1,0 +1,30 @@
+- path = @blog.id ? backend_blog_path : backend_blogs_path
+= form_for @blog, url: path do |f|
+  - if @blog.errors.any?
+    %div#error_explanation
+      %h2= pluralize(@blog.errors.count, "error") + "prohibited this blog from being saved:"
+      %ul
+      - @blog.errors.full_messages.each do |message|
+        %li= message
+  %div.form-group
+    %div.field
+      = f.label :title
+      = f.text_field :title, class: "col-sm-12"
+  %div.form-group
+    %div.field
+      = f.label :content
+      = f.text_area :content, class: :wysiwyg
+  %div.form-group
+    = f.submit
+:javascript
+  $(document).ready(function(){
+  
+    $('.wysiwyg').each(function(i, elem) {
+      $(elem).froalaEditor({
+        height: 700
+      })
+    });
+    
+  })
+
+

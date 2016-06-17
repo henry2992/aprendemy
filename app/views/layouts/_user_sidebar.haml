@@ -1,13 +1,15 @@
 .application-navbar.col-sm-3.col-md-2
   = render 'home/navbar_image'
+  = render 'layouts/backend_sidebar' if current_user.admin?
   .navbar-links.section
     %h1.link-heading Herramientas
     .link-list-group-container
       %ul.link-list-group-options.nav-pills.nav-stacked
-        %li.list
-          = link_to root_path  do
-            %i.fa.fa-home.list-icon>
-            Inicio
+        - if !current_user.admin?
+          %li.list
+            = link_to root_path  do
+              %i.fa.fa-home.list-icon>
+              Inicio
         %li{:class => "list #{'active' if params[:controller] == 'categories'}"}
           = link_to categories_path  do
             %i.fa.fa-book.list-icon>
@@ -37,16 +39,22 @@
           = link_to tutorials_path do
             %i.fa.fa-youtube-play.list-icon
             Tutoriales
-        %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
-          - if @course
+        - if @course
+          %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
             = link_to student_course_path(@course) do
               %i.fa.fa-graduation-cap.list-icon
               Progreso
-        %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
-          - if @course
+        - if @course
+          %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
             = link_to student_course_tests_path(@course) do
               %i.fa.fa-file-text.list-icon
               Exámenes
+        - if !@course
+          %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
+            = link_to student_courses_path do
+              %i.fa.fa-file-text.list-icon
+              Cursos
+
   .navbar-links.section
     %h1.link-heading Comunidad
     .link-list-group-container

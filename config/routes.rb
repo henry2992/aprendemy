@@ -2,10 +2,16 @@ Rails.application.routes.draw do
 
   resources :sections
   resources :tasks
-  resources :blogs
   resources :schools
   resources :careers
   resources :universities
+
+  namespace :backend do
+
+    resources :blogs
+    get '/dashboard' => 'dashboard#index', :as => 'dashboard'
+  end
+
   namespace :student do
     resources :courses do
       resources :tests do
