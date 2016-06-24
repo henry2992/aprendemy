@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :backend do
 
-    resources :blogs
+  resources :blogs
     get '/dashboard' => 'dashboard#index', :as => 'dashboard'
   end
 
