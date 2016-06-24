@@ -41,8 +41,11 @@ gem 'haml'
 gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
+<<<<<<< HEAD
 gem "figaro"
 
+=======
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
 
 # Add this if you're using rbenv
 gem 'capistrano-rbenv', github: "capistrano/rbenv"

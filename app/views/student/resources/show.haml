@@ -5,6 +5,10 @@
 .application-wrapper.container-fluid
   .row
     =render 'layouts/user_sidebar'
+<<<<<<< HEAD
+=======
+    - show_explanation = !@answers.nil?
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
     .main-bg
       %content
         .content-wrapper.col-sm-9.col-md-10
@@ -33,11 +37,17 @@
                       %p.lead= @resource.material.title
                       = @resource.material.content.html_safe
                       %hr
+<<<<<<< HEAD
                       = (link_to "Terminar Tarea", student_complete_resource_path(:id => @resource.id), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
+=======
+                      / = #(link_to "Terminar Tarea", student_complete_resource_path(@resource, section_id: @resource_progress.section_id, course_user_id: @resource_progress.course_user.course.id), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
+                      = (link_to "Terminar Tarea", student_complete_resource_path(:id => @resource), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
                     - when "Task"
                       -qs = 0
                       %p.lead= @resource.material.title
                       %p= @resource.material.description
+<<<<<<< HEAD
                       - if @resource.material.questions
                         / TODO: Definir la ruta que va a procesar el formulario
                         = form_tag student_complete_resource_path, :method => :put do
@@ -48,6 +58,23 @@
                               = image_tag(q.picture, class: "img-responsive", alt: q.content)
                             - if q.explanation
                               %p.lead
+=======
+                      - target = ""
+                      - met = ""
+                      - if @resource.material.questions
+                        - met = :put unless @resource_progress.completed
+                        - target = student_complete_resource_path unless @resource_progress.completed
+                        = form_tag target, :method => met do
+                          = hidden_field_tag :id, @resource.id
+                          - @resource.material.questions.each do |q|
+                            %h3= q.content
+                            - if @answers
+                              - wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
+                            - if q.picture.present?
+                              = image_tag(q.picture, class: "img-responsive", alt: q.content)
+                            - if q.explanation && show_explanation
+                              %p.lead.explanation
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
                                 = q.explanation
                             - if q.url
                               = link_to q.url, q.url
@@ -57,19 +84,51 @@
                                 %h3= qr.content
                                 - if qr.picture.present?
                                   = image_tag(qr.picture, class: "img-responsive", alt: qr.content)
+<<<<<<< HEAD
                                 - if qr.explanation
+=======
+                                - if @answers
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
                                   %p.lead
                                     = qr.explanation
                                 - if qr.url
                                   = link_to qr.url, qr.url
                             - if q.choices
                               - q.choices.each do |c|
+<<<<<<< HEAD
                                 %p
                                   = radio_button_tag "question_ids[#{q.id}]", c.id
                                   = c.content
                             -qs+=1
                             %hr
                           = button_tag 'Terminar Tarea' , class: 'btn btn-primary submit' , type: :submit
+=======
+                                - cl = ""
+                                - st = ""
+                                - ch = false
+                                - if @answers
+                                  - if @answers.where(question_id: q.id).first.choice_id == c.id
+                                    - ch = true
+                                    - if wrong
+                                      - cl = "has-error"
+                                      - st = "border: thin solid red"
+                                    - else
+                                      - cl = "has-success"
+                                      - st = "border: thin solid green"
+                                %div{:class=>cl, :style=>st}
+                                  .radio
+                                    %label
+                                      = radio_button_tag "question_ids[#{q.id}]", c.id, ch
+                                      = c.content
+                                      - if @answers
+                                        - if @answers.where(question_id: q.id).first.choice_id == c.id
+                                          - if wrong
+                                            %span.text-danger
+                                              * Error
+                            -qs+=1
+                            %hr
+                          = button_tag 'Terminar Tarea' , class: 'btn btn-primary submit' , type: :submit unless @resource_progress.completed
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
 - if @resource.material_type == "Task"
   :javascript
     $(document).ready(function(){
@@ -101,7 +160,11 @@
             }
         });
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
     function finished(event)
     {
       if (event.data == 0){
@@ -122,4 +185,7 @@
         });
       }
     }
+<<<<<<< HEAD
     
+=======
+>>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334

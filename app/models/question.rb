@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
+  has_many :answers
   has_many :choices
   has_many :answered_questions
   has_many :simulator_answered_questions

@@ -2,7 +2,8 @@ class LiveClass < ActiveRecord::Base
 
 	belongs_to :course
 
-	enum online_now: [:yes, :no]
+
+	enum online_now: [:yes, :no] unless defined? LiveClass
 
 	validates :subject, :presence => true, :length => { :minimum => 2 }
 	validates :professor, :presence => true, :length => { :minimum => 2 }

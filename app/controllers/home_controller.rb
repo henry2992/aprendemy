@@ -16,6 +16,9 @@ class HomeController < ApplicationController
   end
 
   def index
+    if user_signed_in?
+      redirect_to student_courses_path
+    end
     @simulator_types = SimulatorType.all
   end
 

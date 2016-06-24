@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   after_create :create_license
   after_create :create_courses_by_default
 
-  enum role: [:free, :paid, :admin]
+
+  enum role: [:free, :paid, :admin] unless defined? User
 
   mount_uploader :image, UserUploader
 
@@ -25,6 +26,8 @@ class User < ActiveRecord::Base
   has_many :course_users, :dependent => :destroy
   has_many :courses, :through => :course_users
 
+
+  has_many :answers
   has_one :license
 
   def self.from_omniauth(auth)

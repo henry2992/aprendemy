@@ -38,9 +38,10 @@
             %i.fa.fa-youtube-play.list-icon
             Tutoriales
         %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
-          = link_to student_courses_path do
-            %i.fa.fa-graduation-cap.list-icon
-            Mis Cursos
+          - if @course
+            = link_to student_course_path(@course) do
+              %i.fa.fa-graduation-cap.list-icon
+              Progreso
   .navbar-links.section
     %h1.link-heading Comunidad
     .link-list-group-container

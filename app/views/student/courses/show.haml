@@ -26,7 +26,6 @@
                   %h4 Su progreso en este curso
                   %br
                   .progress
-                    / Se debe imprimir el porcentaje en los valores de :aria-valuenow y en :style
                     .progress-bar.progress-bar-success{:role=>"progressbar", :"aria-valuenow"=>"#{@progress}", :"aria-valuemin"=>"0", :"aria-valuemax"=>"100", :style=>"width:#{@progress}%"}
                       = "#{@progress}%"
       -if @course
@@ -58,7 +57,7 @@
                                       - when "Task"
                                         - link_label = r.generic_name
                                     %li
-                                      = link_to link_label, student_show_resource_path(r)
+                                      = link_to link_label, student_index_resource_path(r)
                                 - else
                                   %h4 No hay recursos definidos para esta sección
                         - section_number += 1

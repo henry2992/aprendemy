@@ -1,6 +1,7 @@
 class University < ActiveRecord::Base
 	has_many :careers
-	enum type: ["Universidad","Instituto"]
+
+	enum type: ["Universidad","Instituto"] unless defined? University
 
 	validates :name, :presence => true, :length => { :minimum => 2 }
 	validates :province, :presence => true, :length => { :minimum => 2 }
