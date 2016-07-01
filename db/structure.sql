@@ -447,7 +447,9 @@ CREATE TABLE courses (
     name character varying,
     description character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    author character varying,
+    picture character varying
 );
 
 
@@ -2075,4 +2077,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160608034434');
 INSERT INTO schema_migrations (version) VALUES ('20160609021634');
 
 INSERT INTO schema_migrations (version) VALUES ('20160614025321');
+
+INSERT INTO schema_migrations (version) VALUES ('20160627132044');
 

@@ -1,6 +1,9 @@
 class Student::CoursesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_filter :show_navbar
+
+  
 
   # GET /courses
   # GET /courses.json
@@ -63,6 +66,13 @@ class Student::CoursesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  protected
+    def show_navbar
+      @show_navbar = true
+    end
+  
 
   private
 
