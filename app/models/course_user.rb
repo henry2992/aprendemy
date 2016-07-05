@@ -4,6 +4,9 @@ class CourseUser < ActiveRecord::Base
   has_many :resource_progresses
 
   has_many :course_user_tests
+
+  has_one :course_user_plan, :dependent => :destroy
+  has_one :plan, :through => :course_user_plan
   
   validates :user, :course, presence: true
 

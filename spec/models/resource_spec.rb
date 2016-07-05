@@ -16,18 +16,18 @@ RSpec.describe Resource, type: :model do
     expect(@resource).to be_invalid
   end
 
-  it 'should not be valid without a section and tutorial' do
-    blog = Blog.create(
-                  title: Faker::Lorem.sentence(2, true, 2), 
-                  content: Faker::Lorem.paragraph(2, true)
-                )
-    @resource.generic_name = Faker::Lorem.sentence(2, true, 2)
-    @resource.tutorial_id = nil
-    @resource.section_id = nil
-    @resource.material = blog
+  # it 'should not be valid without a section and tutorial' do
+  #   blog = Blog.create(
+  #                 title: Faker::Lorem.sentence(2, true, 2), 
+  #                 content: Faker::Lorem.paragraph(2, true)
+  #               )
+  #   @resource.generic_name = Faker::Lorem.sentence(2, true, 2)
+  #   @resource.tutorial_id = nil
+  #   @resource.section_id = nil
+  #   @resource.material = blog
 
-    expect(@resource).to be_invalid
-  end
+  #   expect(@resource).to be_invalid
+  # end
 
   it 'must be valid with an associated blog' do
     blog = Blog.create(
