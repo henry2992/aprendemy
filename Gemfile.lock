@@ -150,11 +150,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
-<<<<<<< HEAD
-    minitest (5.8.4)
-=======
     minitest (5.9.0)
->>>>>>> 18a40471668b3eb589d7f03b8cf573e379e96334
     multi_json (1.11.3)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
