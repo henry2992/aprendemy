@@ -1,0 +1,81 @@
+<div id="sideNavContainer" ng-controller="sideNavController as ctrl"  flex>
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div >
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a class="navbar-brand" href="#">
+                      <%= image_tag("logo.png", id:"logo",  alt: "Apredemy-logo") %>
+                      <%= image_tag("isotipo.png", id:"isotipo",  alt: "Apredemy-logo") %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Item 1 -->
+            <li class="nav-calendar-wrapper">
+              <a class="nav-calendar" href="#">
+                <%= image_tag("calendar.png", class:"notification-calendar",  alt: "Apredemy-Calendario") %>
+              </a>
+            </li>
+            <!-- Item 2 -->
+            <li class="dropdown nav-profile-wrapper" >
+                <a href="#" class="dropdown-toggle nav-profile-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <% if (current_user.image.present?) %>
+                      <%= image_tag(current_user.image.url, class: "nav-profile-img", alt: "Apredemy-avatar") %>
+                  <% else %>
+                      <% if (current_user.gender == false) %>
+
+                          <%= image_tag("avatar-guy.png", class: "nav-profile-img", alt: "Apredemy-avatar") %>
+                      <% else %>
+                          <%= image_tag("avatar-girl", class: "nav-profile-img", alt: "Apredemy-avatar") %>
+                      <%end %>
+                  <%end%>   
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu profile-dropdown">
+                    <li>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <% if (current_user.image.present?) %>
+                                      <%= image_tag(current_user.image.url, class: "img-responsive", alt: "Apredemy-avatar") %>
+                                  <% else %>
+                                      <% if (current_user.gender == false) %>
+                                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "Apredemy-avatar") %>
+                                      <% else %>
+                                          <%= image_tag("avatar-girl", class: "img-responsive", alt: "Apredemy-avatar") %>
+                                      <%end %>
+                                <%end%>
+                                <p class="text-center small"><a href="#">Cambiar Foto</a></p>
+                            </div>
+                            <div class="col-sm-7">
+                                <span>Henry Sebastian Remache Carrillo</span>
+                                <p class="text-muted small">henry2992@gmail.com</p>
+                                <div class="divider">
+                                </div>
+                                <a href="#" class="btn btn-primary btn-sm active">Ver Perfil</a>
+                            </div>
+                        </div>
+                      <div class="navbar-footer">
+                          <div class="navbar-footer-content">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                       <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session'  %>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </li>
+                </ul>
+            </li>
+              <!-- Item 2 -->
+            <li class="dropdown mobile-menu-icon" ng-click="openRightMenu()">
+              <a class="nav-mobile-btn " >
+                <%= image_tag("menu-icon.png", class:"nav-menu-btn",  alt: "Apredemy") %>
+              </a>
+            </li>
+        </ul>
+    </div>
+  </div>
+</div>
+

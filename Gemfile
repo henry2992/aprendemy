@@ -49,6 +49,12 @@ gem 'capistrano-rbenv', github: "capistrano/rbenv"
 # gem 'capistrano-rvm', github: "capistrano/rvm"
 
 gem "breadcrumbs_on_rails"
+gem "wysiwyg-rails"
+
+#Angular
+gem 'angularjs-rails'
+gem 'rails-angular-material'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

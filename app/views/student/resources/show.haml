@@ -61,14 +61,14 @@
                             - if q.questions
                               - q.questions.each do |qs|
                                 %hr{:style=>"width:80%"}
-                                %h3= qr.content
-                                - if qr.picture.present?
-                                  = image_tag(qr.picture, class: "img-responsive", alt: qr.content)
+                                %h3= qs.content
+                                - if qs.picture.present?
+                                  = image_tag(qs.picture, class: "img-responsive", alt: qs.content)
                                 - if @answers
                                   %p.lead
-                                    = qr.explanation
-                                - if qr.url
-                                  = link_to qr.url, qr.url
+                                    = qs.explanation
+                                - if qs.url
+                                  = link_to qs.url, qs.url
                             - if q.choices
                               - q.choices.each do |c|
                                 - cl = ""

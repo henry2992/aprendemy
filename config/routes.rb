@@ -2,14 +2,30 @@ Rails.application.routes.draw do
 
   resources :sections
   resources :tasks
-  resources :blogs
   resources :schools
   resources :careers
   resources :universities
+
+  namespace :backend do
+
+  resources :blogs
+    get '/dashboard' => 'dashboard#index', :as => 'dashboard'
+  end
+
   namespace :student do
-    resources :courses
+    resources :courses do
+      resources :tests do
+        resources :course_user_tests
+      end
+    end
+    resources :tests
+
+    get '/course/:id/test/:test_id/new' => 'course_test_user#new', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/, :test_id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'new_test'
+    get '/test/:id/edit' => 'course_test_user#edit', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/}, :as => 'edit_test'
+    
     get '/res/:id' => 'resources#index', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'index_resource'
     get '/resource/:id' => 'resources#show', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'show_resource'
+    
     match '/resource/complete' => 'resources#update', :as => 'complete_resource', via: [:put, :patch]
   end
 

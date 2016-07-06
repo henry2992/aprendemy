@@ -21,3 +21,11 @@
 
 # Ignore application configuration
 /config/application.yml
+
+sftp-config.json
+
+# RubyMine project files
+.idea
+
+/.DS_Store
+
