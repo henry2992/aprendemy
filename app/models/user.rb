@@ -11,14 +11,12 @@ class User < ActiveRecord::Base
   after_create :create_license
   after_create :create_courses_by_default
 
-
-  enum role: [:free, :paid, :admin] unless defined? User
+  enum role: [:free, :paid, :admin]
 
   mount_uploader :image, UserUploader
 
   has_many :categories, counter_cache: true
   has_many :sub_categories
-  has_many :questions
   has_many :simulators
   has_many :answered_questions
   has_many :simulator_answered_questions
@@ -26,13 +24,13 @@ class User < ActiveRecord::Base
   has_many :course_users, :dependent => :destroy
   has_many :courses, :through => :course_users
 
-
   has_many :answers
+
   has_one :license
 
   def self.from_omniauth(auth)
-		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-		  user.email = auth.info.email
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
@@ -44,7 +42,7 @@ class User < ActiveRecord::Base
                     end
       user.remote_image_url = auth.info.image.gsub('http://','https://')
     end
-	end
+  end
 
   def points
     Point.where(recipient_id: self.id, recipient_type: 'User').sum(:points)

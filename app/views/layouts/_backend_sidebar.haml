@@ -1,0 +1,13 @@
+.navbar-links.section
+  %h1.link-heading Administración
+  .link-list-group-container
+    %ul.link-list-group-options.nav-pills.nav-stacked
+      %li.list
+        = link_to root_path  do
+          %i.fa.fa-home.list-icon>
+          Inicio
+      %li{:class => "list #{'active' if params[:controller] == 'blogs'}"}
+        = link_to backend_blogs_path  do
+          %i.fa.fa-rss.list-icon>
+          Blogs
+        

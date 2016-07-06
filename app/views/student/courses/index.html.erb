@@ -1,0 +1,106 @@
+<!-- Info Landing Section -->
+<div class="info-landing-bg">
+	<div class="container">
+		<div class="col-md-4 info-landing-container">
+			<div class="info-landing">
+				<h1>Educación a tu medida</h1>
+				<p>En Aprendemy tu proceso de aprendizaje está garantizado. Estudia lo que quieras en el lugar y en el momento que prefieras.</p>
+				<button type="button" data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary btn-lg gradient btn-modal"><i class="fa fa-play-circle-o" aria-hidden="true"></i>Como funciona</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Courses Section-->
+<div id="courses">
+	<div class="container">
+		<div class="courses-title">
+			<h1>Cursos de Aprendemy</h1>
+			<p>Premium courses are instructor-led and not included in a standard One Month membership.</p>
+		</div>
+		<!-- Courses -->
+		<div class="row ">
+
+			<% @courses.each do |course| %>
+				<a href="/student/courses/<%= course.id %>">
+					<div class="course col-sm-4">	
+							<div class="course-card " style="background-image:  url('<%= course.picture %>') " >
+								<div class="course-card-wrapper ">
+									<h2 class="course-card-title"><%= course.name %></h2>
+									<h3 class="course-card-author"><%= course.author %></h3>
+									<ul class="course-card-information">
+							          <li><i class="nc-icon-mini ui-1_eye-19"></i>3000 Ejercicios</li>
+							          <li><i class="nc-icon-mini ui-2_time-clock"></i>120 Tutoriales</li>
+							          <li><i class="nc-icon-mini ui-2_time-clock"></i>20 Simuladores</li>
+							          <li><i class="nc-icon-mini ui-2_time-clock"></i>Clases en vivo</li>
+							        </ul>
+								</div>
+							</div>
+					</div>
+				</a>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<!-- Benefits -->
+<div id="benefits">
+	<div class="container">
+		<h3>Todos los cursos incluyen:</h3>
+		<div class="row">
+			<div class="col-sm-4 benefits-card">
+				<%= image_tag("icon1.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+				<h3 class="benefits-title">Acceso las 24 horas</h3>
+				<p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>
+			</div>
+			<div class=" col-sm-4 benefits-card" >
+				<%= image_tag("icon2.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+				<h3 class="benefits-title">Acceso en todo dispositivo</h3>
+				<p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>	
+			</div>
+			<div class="col-sm-4 benefits-card">
+				<%= image_tag("icon3.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+				<h3 class="benefits-title">Contenido Digital</h3>
+				<p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>	
+			</div>	    			
+		</div>
+		<div class="row">
+			<div class="col-sm-4 benefits-card">
+				<%= image_tag("icon4.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+				<h3 class="benefits-title">Avance Programado</h3>
+				<p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>
+			</div>
+			<div class="col-sm-4 benefits-card">
+				<%= image_tag("icon5.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+				<h3 class="benefits-title">Estadisticas</h3>
+				<p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>
+			</div>
+			<div class="col-sm-4 benefits-card">
+				<%= image_tag("icon6.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+				<h3 class="benefits-title"> Clases en Vivo</h3>
+				<p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+  		<div class="modal-content">
+  			<div class="modal-header">
+  				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only"></span>
+  				</button>
+  			</div>
+  			<div class="modal-body modal-video">
+  				<div class="embed-responsive embed-responsive-16by9">
+            		<iframe src="https://player.vimeo.com/video/169960701" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          		</div>	          		
+  			</div>
+  		</div>
+	</div>
+</div>
+
+
+

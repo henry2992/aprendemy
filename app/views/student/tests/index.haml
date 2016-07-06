@@ -1,0 +1,83 @@
+= @course.name
+-#.alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
+-#  .button.close{ :"data-dismiss"=>"alert"}
+-#    ×
+-#  .show-flash
+-#.application-wrapper.container-fluid
+-#  .row
+-#    =render 'layouts/user_sidebar'
+-#    - show_explanation = !@answers.nil?
+-#    .main-bg
+-#      %content
+-#        .content-wrapper.col-sm-9.col-md-10
+-#          .application-content
+-#            .content-margin.row
+-#              %ol.breadcrumb{:style=>"background-color:#fff"}
+-#                -#= render_breadcrumbs :tag => :li, :separator => ""
+-#                .content-wrapper.col-sm-9.col-md-10
+-#          .application-content
+-#            .content-margin.row
+-#              .app-text-holder.row.main-bg
+-#                %content
+-#                  %h3= "Exámenes Del Curso"
+-#                  %table.table
+-#                    %thead
+-#                      %tr
+-#                        %th
+-#                          Examen
+-#                        %th
+-#                          Descripcion
+-#                        %th
+-#                          Acciones
+-#                    %tbody
+-#                      - @tests.each do |t|
+-#                        %tr
+-#                          %td= t.title
+-#                          %td= t.description
+-#                          %td
+-#                            = link_to 'Tomar Examen', student_new_test_path(@course, t), class: 'btn btn-success'
+-#        / Acciones
+-#
+-#        .content-wrapper.col-sm-9.col-md-10
+-#          .application-content
+-#            .content-margin.row
+-#              .app-text-holder.row.main-bg
+-#                %content
+-#                  %h3= "Tabla de Exámenes"
+-#                  %table.table
+-#                    %thead
+-#                      %tr
+-#                        %th
+-#                          Examen
+-#                        %th
+-#                          Estado
+-#                        %th
+-#                          Preguntas Totales
+-#                        %th
+-#                          Fecha
+-#                        %th
+-#                          Preguntas Contestadas
+-#                        %th
+-#                          Preguntas Correctas
+-#                        %th
+-#                          Preguntas Incorrectas
+-#                        %th
+-#                          Acciones
+-#                    %tbody
+-#                      - @user_tests.each do |t|
+-#                        %tr
+-#                          %td
+-#                            = t.title
+-#                          %td
+-#                            = t.completed ? 'Completado' : 'No Completado'
+-#                          %td
+-#                            = t.test.questions.count
+-#                          %td
+-#                          %td
+-#                            / Preguntas Contestadas
+-#                          %td
+-#                            / Preguntas Correctas
+-#                          %td
+-#                            / Preguntas Incorrectas
+-#                          %td
+-#                            / Acciones

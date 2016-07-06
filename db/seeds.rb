@@ -624,10 +624,10 @@ courses.each do |c|
 		video = Video.create! name: "Video explicativo #{s}", description: 'test', url: "https://www.youtube.com/embed/jdYJf_ybyVo"
 		task = Task.create! title: "Tarea #{s}", description: 'Descripción de la tarea'
 		
-		rnumber = Random.rand(4..10)
+		rnumber = Random.rand(5..10)
 		rnumber.times do |i|
 			question = Question.find_by_id(Random.rand(1...1000))
-			question.update_attribute(:task, task)
+			question.update_attribute(:parent, task)
 		end
 
 		resource = Resource.new generic_name: "Recurso de video #{s}" , section_id: section.id
@@ -641,5 +641,21 @@ courses.each do |c|
 		resource = Resource.new generic_name: "Recurso de Tarea #{s}" , section_id: section.id
 		resource.material = task
 		resource.save
-	end
+  end
+end
+
+test = Test.create! title: 'first test', description: 'description test', time_limit: 60,  total_questions: 10, course_id: enes.id
+puts test.title
+(1..10).each do |n|
+  q = Question.create( content: 'Pregunta de examen' + n.to_s, sub_category_id: 29, explanation: "Explicacion" )
+  choices = []
+  (1..4).each do |z|
+    c = Choice.create content: 'Opcion' + z.to_s, question_id: q.id
+    choices << c
+  end
+  question = Question.find_by_id(q.id)
+  question.choice_id = choices.map(&:id).sample
+  question.save!
+  test.questions << question
+  test.save
 end

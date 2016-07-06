@@ -21,9 +21,12 @@
 
 # Ignore application configuration
 /config/application.yml
-/config/database.yml
 
-.DS_Store
 
-/sftp-config.json
-/db/structure.sql
+sftp-config.json
+
+# RubyMine project files
+.idea
+
+/.DS_Store
+

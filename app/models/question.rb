@@ -3,10 +3,11 @@ class Question < ActiveRecord::Base
   has_many :choices
   has_many :answered_questions
   has_many :simulator_answered_questions
-  # has_many :resources, :as => :material
-  belongs_to :user
-  belongs_to :task
+
   belongs_to :sub_category, counter_cache: true
+
+  # now one question must belongs to Task, Simulator or Test
+  belongs_to :parent, :polymorphic => true
 
   # Self relation
   # Add capability to have multiple questions - https://app.asana.com/0/107597944834039/116471366670689
