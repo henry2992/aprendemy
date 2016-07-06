@@ -3,6 +3,7 @@ class Student::ResourcesController < Student::StudentController
   before_action :create_resource_progress, only: [:show, :update]
   before_action :destroy_answers, only: [:index]
 
+  before_filter :check_plan
   before_filter :redirect_if_premium_plan
   
   def index

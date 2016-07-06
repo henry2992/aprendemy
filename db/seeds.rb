@@ -679,6 +679,3 @@ end
 Plan.create! name:"Free", description: "Lorem ipsum dolor sit amet", expiration_days: 10, licence_type: 0, price: 0
 Plan.create! name:"Premium", description: "Lorem ipsum dolor sit amet", expiration_days: 30, licence_type: 1, price: 20
 Plan.create! name:"Pro", description: "Lorem ipsum dolor sit amet", expiration_days: 30, licence_type: 1, price: 35
-
-
-
