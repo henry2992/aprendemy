@@ -1,9 +1,11 @@
-class CourseUserTestsController < ApplicationController
+class Student::CourseUserTestsController < ApplicationController
   before_action :set_course_user_test, only: [:show, :edit, :update, :destroy]
+  before_action :load_course_user_test, only: [:new]
 
   # GET /course_user_tests
   # GET /course_user_tests.json
   def index
+    add_breadcrumb "Inicio", :root_path
     @course_user_tests = CourseUserTest.all
   end
 
@@ -14,7 +16,8 @@ class CourseUserTestsController < ApplicationController
 
   # GET /course_user_tests/new
   def new
-    @course_user_test = CourseUserTest.new
+    add_breadcrumb "Inicio", :root_path
+    @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
   end
 
   # GET /course_user_tests/1/edit
@@ -62,7 +65,13 @@ class CourseUserTestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def load_course_user_test
+      @course = Course.find(params[:course_id])
+      @test = Test.find(params[:test_id])
+      @course_user = CourseUser.where(course: @course, user: current_user).first if @course && @test
+    end
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_course_user_test
       @course_user_test = CourseUserTest.find(params[:id])
     end

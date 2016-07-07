@@ -35,7 +35,7 @@
                       = @resource.material.content.html_safe
                       %hr
                       / = #(link_to "Terminar Tarea", student_complete_resource_path(@resource, section_id: @resource_progress.section_id, course_user_id: @resource_progress.course_user.course.id), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
-                      = (link_to "Terminar Tarea", student_complete_resource_path(:id => @resource), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
+                      = (link_to "Terminar Tarea", student_course_progress_resource_path(@course,1,@resource), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed
                     - when "Task"
                       -qs = 0
                       %p.lead= @resource.material.title
@@ -44,7 +44,7 @@
                       - met = ""
                       - if @resource.material.questions
                         - met = :put unless @resource_progress.completed
-                        - target = student_complete_resource_path unless @resource_progress.completed
+                        - target = student_course_progress_resource_path(@course,1,@resource) unless @resource_progress.completed
                         = form_tag target, :method => met do
                           = hidden_field_tag :id, @resource.id
                           - @resource.material.questions.each do |q|
@@ -134,10 +134,10 @@
     {
       if (event.data == 0){
         $.ajax({
-           url: '#{student_complete_resource_path}',
+           url: '#{student_course_progress_resource_path}',
            type: 'PUT',
            dataType: 'json',
-           data: { id: #{(@resource.id)} },
+           data: {course_id:#{@course.id},resource_id: 1, id: #{(@resource.id)} },
            success: function(data) {
             if (data[0].success)
             {

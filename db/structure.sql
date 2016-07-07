@@ -342,46 +342,14 @@ ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
 
 
 --
--- Name: course_test_users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE course_test_users (
-    id integer NOT NULL,
-    test_id integer,
-    course_user_id integer,
-    completed boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: course_test_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE course_test_users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: course_test_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE course_test_users_id_seq OWNED BY course_test_users.id;
-
-
---
--- Name: course_user_tests; Type: TABLE; Schema: public; Owner: -
+-- Name: course_user_tests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE course_user_tests (
     id integer NOT NULL,
     course_user_id integer,
     test_id integer,
+    completed boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -928,7 +896,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-06-16 02:14:40.264583'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-06-16 02:26:57.53227'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -958,39 +926,7 @@ ALTER SEQUENCE simulators_id_seq OWNED BY simulators.id;
 
 
 --
--- Name: student_course_user_tests; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE student_course_user_tests (
-    id integer NOT NULL,
-    course_user_id integer,
-    test_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: student_course_user_tests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE student_course_user_tests_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: student_course_user_tests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE student_course_user_tests_id_seq OWNED BY student_course_user_tests.id;
-
-
---
--- Name: sub_categories; Type: TABLE; Schema: public; Owner: -
+-- Name: sub_categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sub_categories (
@@ -1068,6 +1004,7 @@ CREATE TABLE tests (
     total_questions integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    course_user_id integer,
     course_id integer
 );
 
@@ -1448,13 +1385,6 @@ ALTER TABLE ONLY choices ALTER COLUMN id SET DEFAULT nextval('choices_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY course_test_users ALTER COLUMN id SET DEFAULT nextval('course_test_users_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY course_user_tests ALTER COLUMN id SET DEFAULT nextval('course_user_tests_id_seq'::regclass);
 
 
@@ -1574,13 +1504,6 @@ ALTER TABLE ONLY simulators ALTER COLUMN id SET DEFAULT nextval('simulators_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY student_course_user_tests ALTER COLUMN id SET DEFAULT nextval('student_course_user_tests_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categories_id_seq'::regclass);
 
 
@@ -1675,15 +1598,7 @@ ALTER TABLE ONLY choices
 
 
 --
--- Name: course_test_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY course_test_users
-    ADD CONSTRAINT course_test_users_pkey PRIMARY KEY (id);
-
-
---
--- Name: course_user_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: course_user_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY course_user_tests
@@ -1819,15 +1734,7 @@ ALTER TABLE ONLY simulators
 
 
 --
--- Name: student_course_user_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY student_course_user_tests
-    ADD CONSTRAINT student_course_user_tests_pkey PRIMARY KEY (id);
-
-
---
--- Name: sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sub_categories
@@ -1918,21 +1825,7 @@ CREATE INDEX index_answers_on_user_id ON answers USING btree (user_id);
 
 
 --
--- Name: index_course_test_users_on_course_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_course_test_users_on_course_user_id ON course_test_users USING btree (course_user_id);
-
-
---
--- Name: index_course_test_users_on_test_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_course_test_users_on_test_id ON course_test_users USING btree (test_id);
-
-
---
--- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_live_classes_on_course_id ON live_classes USING btree (course_id);
@@ -1981,7 +1874,14 @@ CREATE INDEX index_sections_on_course_id ON sections USING btree (course_id);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+-- Name: index_tests_on_course_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_tests_on_course_user_id ON tests USING btree (course_user_id);
+
+
+--
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
@@ -2063,11 +1963,11 @@ ALTER TABLE ONLY resources
 
 
 --
--- Name: fk_rails_7fc91ea449; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_84332ff6ce; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY course_test_users
-    ADD CONSTRAINT fk_rails_7fc91ea449 FOREIGN KEY (test_id) REFERENCES tests(id);
+ALTER TABLE ONLY tests
+    ADD CONSTRAINT fk_rails_84332ff6ce FOREIGN KEY (course_user_id) REFERENCES course_users(id);
 
 
 --
@@ -2084,14 +1984,6 @@ ALTER TABLE ONLY live_classes
 
 ALTER TABLE ONLY questions
     ADD CONSTRAINT fk_rails_c685b1dfea FOREIGN KEY (question_id) REFERENCES questions(id);
-
-
---
--- Name: fk_rails_e87490437f; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY course_test_users
-    ADD CONSTRAINT fk_rails_e87490437f FOREIGN KEY (course_user_id) REFERENCES course_users(id);
 
 
 --
@@ -2233,11 +2125,7 @@ INSERT INTO schema_migrations (version) VALUES ('20160523191705');
 
 INSERT INTO schema_migrations (version) VALUES ('20160602193801');
 
-INSERT INTO schema_migrations (version) VALUES ('20160607164343');
-
 INSERT INTO schema_migrations (version) VALUES ('20160608034434');
-
-INSERT INTO schema_migrations (version) VALUES ('20160609021634');
 
 INSERT INTO schema_migrations (version) VALUES ('20160614025321');
 

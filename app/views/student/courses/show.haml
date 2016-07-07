@@ -1,0 +1,29 @@
+.application-wrapper.container-fluid
+  .row
+    =render 'layouts/user_sidebar'
+    .main-bg
+      %content
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              %ol.breadcrumb{:style=>"background-color:#fff"}
+                = render_breadcrumbs :tag => :li, :separator => ""
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .app-text-holder.row.main-bg
+                %content
+                  -if @course
+                    %h1= @course.name
+                  -else
+                    %h1 El curso especificado no se encuentra registrado
+                  %br
+                .col-md-6
+                  %h3= @course.description if @course
+
+                .col-md-6
+                  -if @course
+                    -@course.categories.each do |c|
+                      %h5= c.name
+:javascript
+
