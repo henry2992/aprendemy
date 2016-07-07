@@ -42,7 +42,7 @@
           / Free, Premium y Pro
           - if @course_user.plan.name == "Free" || @course_user.plan.name == "Premium" || @course_user.plan == "Pro"
             %li{:class => "list #{'active' if params[:controller] == 'live_classes'} "}
-              = link_to live_classes_path do
+              = link_to student_course_live_classes_path(@course) do
                 %i.fa.fa-youtube-play.list-icon
                 Clases en Vivo
           / Free y Pro
@@ -53,7 +53,7 @@
                 Tutoriales
             - if @course
               %li{:class => "list #{'active' if params[:controller] == 'courses'} "}
-                = link_to student_course_path(@course) do
+                = link_to student_course_progress_index_path(@course) do
                   %i.fa.fa-graduation-cap.list-icon
                   Progreso
           / Free, Premium y Pro

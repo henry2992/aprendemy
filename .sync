@@ -1,0 +1,26 @@
+#!/bin/sh
+if [ "upload" == "$1" ];then
+expect <<END_EXPECT
+set timeout -1
+spawn sftp root@aprendemy.dev
+expect "password:"
+send "1234\r"
+expect "sftp>"
+send "put $(dirname $0)/$2/$3 /srv/http/aprendemy/$2/$3 \r"
+expect "100%"
+send "quit\r"
+expect eof
+END_EXPECT
+elif [ 'download' == "$1" ];then
+expect <<END_EXPECT
+set timeout -1
+spawn sftp root@aprendemy.dev
+expect "password:"
+send "1234\r"
+expect "sftp>"
+send "get /srv/http/aprendemy/$2/$3 $(dirname $0)/$2/$3 \r"
+expect "100%"
+send "quit\r"
+expect eof
+END_EXPECT
+fi

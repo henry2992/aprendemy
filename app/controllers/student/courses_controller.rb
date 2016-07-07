@@ -8,13 +8,15 @@ class Student::CoursesController < Student::StudentController
   # GET /courses
   # GET /courses.json
   def index
+    add_breadcrumb "Inicio", :root_path
     @courses = Course.all
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @progress = @course_user.progress_percent
+    add_breadcrumb "Inicio", :root_path
+    add_breadcrumb "Cursos ", student_courses_path
   end
 
   private

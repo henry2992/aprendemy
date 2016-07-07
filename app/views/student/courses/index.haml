@@ -6,6 +6,11 @@
         .content-wrapper.col-sm-9.col-md-10
           .application-content
             .content-margin.row
+              %ol.breadcrumb{:style=>"background-color:#fff"}
+                = render_breadcrumbs :tag => :li, :separator => ""
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
               .app-text-holder.row.main-bg
                 %content
                   %h1 Aprendemy tiene dos cursos para ti

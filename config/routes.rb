@@ -14,19 +14,21 @@ Rails.application.routes.draw do
 
   namespace :student do
     resources :courses, only: [:index, :show] do
+      # TESTS
       resources :tests do
         resources :course_user_tests
       end
+      # PROGRESS
+      resources :progress, only: [:index] do
+        # RESOURCES
+        resources :resources, only: [:show, :update]
+      end
+      # LIVE CLASSES
+      get '/live_classes' => 'live_classes#index'
     end
-
-    get '/res/:id' => 'resources#index', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'index_resource'
-    get '/resource/:id' => 'resources#show', :constraints => { :id => /[0-9]+(\%7C[0-9]+)*/ }, :as => 'show_resource'
-    
-    match '/resource/complete' => 'resources#update', :as => 'complete_resource', via: [:put, :patch]
   end
 
   resources :tutorials
-  resources :resources
 
   root 'home#index'
 
@@ -56,9 +58,6 @@ Rails.application.routes.draw do
 
   # USERS
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations', sessions: 'sessions' }
-
-  # LIVE CLASSES
-  get '/live_classes' => 'live_classes#index'
 
   get '/payments' => 'home#payments', as: :payments
 
