@@ -6,10 +6,10 @@ class Student::TestsController < ApplicationController
   # GET /tests
   # GET /tests.json
   def index
-    # @course = Course.find(params[:course_id])
-    # @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first if @course
-    # @tests = Test.where(course_id: @course_user.course_id) if @course_user
-    # @user_tests = CourseTestUser.where(course_user: @course_user ) if @course_user
+    @course = Course.find(params[:course_id])
+    @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first if @course
+    @tests = Test.where(course_id: @course_user.course_id) if @course_user
+    @user_tests = CourseTestUser.where(course_user: @course_user ) if @course_user
     @tests = @course.tests
   end
 
@@ -17,8 +17,8 @@ class Student::TestsController < ApplicationController
   # GET /tests/1.json
   def show
     add_breadcrumb "Inicio", :root_path
-    #@course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
-    #@progress = @course_user.progress_percent
+    @course_user = CourseUser.where(course_id: @course.id, user_id: current_user.id).first
+    @progress = @course_user.progress_percent
     @test = Test.first
   end
 
@@ -36,41 +36,41 @@ class Student::TestsController < ApplicationController
   # POST /tests
   # POST /tests.json
   def create
-    # @course = Course.new(course_params)
+    @course = Course.new(course_params)
 
-    # respond_to do |format|
-    #   if @course.save
-    #     format.html { redirect_to @course, notice: 'Course was successfully created.' }
-    #     format.json { render :show, status: :created, location: @course }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @course.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @course.save
+        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.json { render :show, status: :created, location: @course }
+      else
+        format.html { render :new }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /tests/1
   # PATCH/PUT /tests/1.json
   def update
-    # respond_to do |format|
-    #   if @course.update(course_params)
-    #     format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @course }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @course.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @course.update(course_params)
+        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.json { render :show, status: :ok, location: @course }
+      else
+        format.html { render :edit }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /tests/1
   # DELETE /tests/1.json
   def destroy
-    # @course.destroy
-    # respond_to do |format|
-    #   format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
+    @course.destroy
+    respond_to do |format|
+      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

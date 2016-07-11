@@ -36,7 +36,7 @@
 <md-content>
     <!-- Navbar -->
     <% if user_signed_in? %>
-        <% if current_page?(controller: 'courses', action: 'index') %>
+        <% if controller.controller_name == 'courses' && controller.action_name == 'index' %>
           <%= render 'student/courses/index_navbar' %> 
         <% else %> 
           <%= render 'student/courses/courses_navbar' %>
@@ -51,7 +51,7 @@
 
 
 <% if user_signed_in? %>
-    <% if current_page?(controller: 'courses', action: 'index') %>
+    <% if controller.controller_name == 'courses' && controller.action_name == 'index' %>
           <%= render 'layouts/navigation/index_navbar' %>
         <% else %> 
           <%= render 'layouts/navigation/courses_navbar' %>
