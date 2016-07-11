@@ -28,14 +28,21 @@ class Student::CourseUserTestsController < ApplicationController
   # POST /course_user_tests.json
   def create
     @course_user_test = CourseUserTest.new(course_user_test_params)
-
+    total_questions = @course_user_test.test.questions.count
+    answered_questions = params["course_user_test"]["question_ids"].count
+    percent_to_go = total_questions * 75/100
     respond_to do |format|
-      if @course_user_test.save
-        format.html { redirect_to @course_user_test, notice: 'Course user test was successfully created.' }
-        format.json { render :show, status: :created, location: @course_user_test }
+      if answered_questions >= percent_to_go
+        if @course_user_test.save
+          format.html { redirect_to student_course_tests_path, notice: 'Course user test was successfully created.' }
+          format.json { render :show, status: :created, location: student_course_tests_path }
+        else
+          format.html { render :new }
+          format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
+        format.html { redirect_to student_course_tests_path, notice: 'You must answer at least 75% of total questions.' }
+        format.json { render :show, status: :created, location: student_course_tests_path }
       end
     end
   end
@@ -43,25 +50,25 @@ class Student::CourseUserTestsController < ApplicationController
   # PATCH/PUT /course_user_tests/1
   # PATCH/PUT /course_user_tests/1.json
   def update
-    respond_to do |format|
-      if @course_user_test.update(course_user_test_params)
-        format.html { redirect_to @course_user_test, notice: 'Course user test was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course_user_test }
-      else
-        format.html { render :edit }
-        format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @course_user_test.update(course_user_test_params)
+    #     format.html { redirect_to @course_user_test, notice: 'Course user test was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @course_user_test }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /course_user_tests/1
   # DELETE /course_user_tests/1.json
   def destroy
-    @course_user_test.destroy
-    respond_to do |format|
-      format.html { redirect_to course_user_tests_url, notice: 'Course user test was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @course_user_test.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to course_user_tests_url, notice: 'Course user test was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
@@ -78,6 +85,7 @@ class Student::CourseUserTestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_user_test_params
-      params.require(:course_user_test).permit(:course_user_id, :test_id)
+      # params["course_user_test"]["question_ids"] ||= []
+      params.require(:course_user_test).permit(:course_user_id, :test_id, question_ids: [])
     end
 end

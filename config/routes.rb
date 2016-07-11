@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   namespace :student do
     resources :courses, only: [:index, :show] do
       # TESTS
-      resources :tests do
-        resources :course_user_tests
+      resources :tests, only: [:index] do
+        resources :course_user_tests, :path => "test" 
       end
       # PROGRESS
       resources :progress, only: [:index] do
