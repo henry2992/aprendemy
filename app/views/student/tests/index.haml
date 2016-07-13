@@ -29,7 +29,7 @@
                         %th
                           Acciones
                     %tbody
-                      - @course.tests.each do |t|
+                      - @tests.each do |t|
                         %tr
                           %td= t.title
                           %td= t.description
@@ -61,16 +61,13 @@
                         %th
                           Acciones
                     %tbody
-                      - @course_user_tests.each do |cu|
+                      - @course_user_tests.each do |cut|
                         %tr
-                          %td= cu.test.title
-                          %td= cu.completed ? 'Completado' : 'No Completado'
-                          %td= cu.test.questions.count
-                          %td= cu.created_at
-                          %td
-                            / = Preguntas Contestadas
-                          %td
-                            / Preguntas Correctas
-                          %td
-                            / Preguntas Incorrectas
-                          %td= link_to 'Completar', root_path, class: 'btn btn-success' if !cu.completed
+                          %td= cut.test.title
+                          %td= cut.completed ? 'Completado' : 'Pausado'
+                          %td= cut.test.questions.count
+                          %td= cut.created_at
+                          %td= cut.answers.count
+                          %td= cut.correct_answers
+                          %td= cut.incorrect_answers
+                          %td= link_to 'Completar', root_path, class: 'btn btn-success' if !cut.completed

@@ -17,7 +17,19 @@ class Student::CourseUserTestsController < ApplicationController
   # GET /course_user_tests/new
   def new
     add_breadcrumb "Inicio", :root_path
-    @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
+    course_user_test = CourseUserTest.where(course_user: @course_user, test: @test).first
+    if !course_user_test
+      @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
+      if @course_user_test.save
+        @course_user_test.test.questions.each do |q|
+          @course_user_test.answers.create!(user: current_user, question: q, choice_id: 1)
+        end
+      else
+        redirect_to student_course_tests_path(@course), notice: 'Ha ocurrido un error al guardar'
+      end
+    else
+      redirect_to student_course_tests_path(@course), notice: 'Ha ocurrido un error al guardar, verifique que ya no haya seleccionado este test'
+    end
   end
 
   # GET /course_user_tests/1/edit
@@ -27,6 +39,25 @@ class Student::CourseUserTestsController < ApplicationController
   # POST /course_user_tests
   # POST /course_user_tests.json
   def create
+
+    # Este seria el ejemplo
+    # tengo un test de 15 preguntas con 15 minutos de resolucion
+    # entro y contesto 2 preguntas en 3 minutos
+    # al siguiente dia entro y contesto 3 mas en 2 minutos
+    # al siguiente dia ingreso y ya tengo contestadas 5 y me sobran 10 minutos
+    # en ese momento digo me canse voy a calificarme y intento “terminar"
+    # pero no me deja calificar mi test porque no cumpli con el 75% de avance
+    # entonces decido completar
+    # y doy calificar al completarlo
+    # y obviamente solo ahi
+    # me calcula las estaudticas y me muestra las respuesta
+    # Lo registros nunca se borran
+    # supongamos que un alumno tiene 10 preguntas y logro contestar tan solo 3
+    # y se le agoto el tiempo
+    # la calificacion seria en tal caso 3 correctas (si contesto las 3 bien ) y 7 incorrectas
+    # entonces se califica de dos formas: la primera si el estudiante lo desea (solo al 75% de avance) y cuando el tiempo se agota
+    # y ahi no importa el avance
+    
     @course_user_test = CourseUserTest.new(course_user_test_params)
     total_questions = @course_user_test.test.questions.count
     answered_questions = params["course_user_test"]["question_ids"].count
@@ -34,10 +65,13 @@ class Student::CourseUserTestsController < ApplicationController
     respond_to do |format|
       if answered_questions >= percent_to_go
         if @course_user_test.save
+          params["course_user_test"]["question_ids"].each do |q|
+            @course_user_test.answers.where(user: current_user, question_id: q[0]).update_attribute(:choice_id, q[1])
+          end
           format.html { redirect_to student_course_tests_path, notice: 'Course user test was successfully created.' }
           format.json { render :show, status: :created, location: student_course_tests_path }
         else
-          format.html { render :new }
+          format.html { redirect_to new_student_course_test_course_user_test_path(@course,@test), notice: 'Ha ocurrido un error al guardar, verifique que ya no haya seleccionado este test' }
           format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
         end
       else

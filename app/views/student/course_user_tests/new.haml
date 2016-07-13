@@ -78,7 +78,8 @@
                                         * Error
                       -qs+=1
                       %hr
-                    = button_tag 'Terminar Test' , class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    = button_tag 'Pausar' , class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    = button_tag 'Calificar' , class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
                     %input{:type=>"hidden", :value=>"#{@course_user.id}", :name=>"course_user_test[course_user_id]"}
                     %input{:type=>"hidden", :value=>"#{@test.id}", :name=>"course_user_test[test_id]"}
 
