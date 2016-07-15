@@ -2,7 +2,6 @@ class CreateResources < ActiveRecord::Migration
   def change
     create_table :resources do |t|
       t.string :generic_name
-      t.belongs_to :tutorial, index:true
       t.references :material, polymorphic: true, index: true
       t.timestamps null: false
     end

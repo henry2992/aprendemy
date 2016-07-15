@@ -181,9 +181,9 @@ CREATE TABLE answers (
     id integer NOT NULL,
     user_id integer NOT NULL,
     question_id integer NOT NULL,
-    choice_id integer NOT NULL,
     item_id integer NOT NULL,
-    item_type character varying NOT NULL
+    item_type character varying NOT NULL,
+    choice_id integer
 );
 
 
@@ -342,7 +342,41 @@ ALTER SEQUENCE choices_id_seq OWNED BY choices.id;
 
 
 --
--- Name: course_user_tests; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: course_user_plans; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE course_user_plans (
+    id integer NOT NULL,
+    course_user_id integer,
+    plan_id integer,
+    expiration_date date,
+    status integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: course_user_plans_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE course_user_plans_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: course_user_plans_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE course_user_plans_id_seq OWNED BY course_user_plans.id;
+
+
+--
+-- Name: course_user_tests; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE course_user_tests (
@@ -351,7 +385,11 @@ CREATE TABLE course_user_tests (
     test_id integer,
     completed boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    time_left time without time zone DEFAULT '00:00:00'::time without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-14 20:18:07.214065'::timestamp without time zone,
+    last_paused timestamp without time zone,
+    time_completed timestamp without time zone
 );
 
 
@@ -509,6 +547,41 @@ CREATE SEQUENCE live_classes_id_seq
 --
 
 ALTER SEQUENCE live_classes_id_seq OWNED BY live_classes.id;
+
+
+--
+-- Name: plans; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE plans (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    expiration_days integer,
+    licence_type integer,
+    price numeric(2,0),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: plans_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE plans_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: plans_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE plans_id_seq OWNED BY plans.id;
 
 
 --
@@ -682,8 +755,7 @@ ALTER SEQUENCE resource_progresses_id_seq OWNED BY resource_progresses.id;
 
 CREATE TABLE resources (
     id integer NOT NULL,
-    generic_name character varying,
-    tutorial_id integer,
+    name character varying,
     material_id integer,
     material_type character varying,
     created_at timestamp without time zone NOT NULL,
@@ -896,7 +968,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-06-16 02:26:57.53227'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-14 20:18:05.98068'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -926,7 +998,7 @@ ALTER SEQUENCE simulators_id_seq OWNED BY simulators.id;
 
 
 --
--- Name: sub_categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: sub_categories; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE sub_categories (
@@ -1001,10 +1073,8 @@ CREATE TABLE tests (
     title character varying,
     description text,
     time_limit integer,
-    total_questions integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    course_user_id integer,
     course_id integer
 );
 
@@ -1209,168 +1279,6 @@ ALTER TABLE ONLY careers ALTER COLUMN id SET DEFAULT nextval('careers_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE tutorials_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: tutorials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE tutorials_id_seq OWNED BY tutorials.id;
-
-
---
--- Name: universities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-
-ALTER TABLE ONLY course_users ALTER COLUMN id SET DEFAULT nextval('course_users_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq'::regclass);
-
-
---
--- Name: universities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE universities_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: universities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE universities_id_seq OWNED BY universities.id;
-
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE users (
-    id integer NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying,
-    reset_password_sent_at timestamp without time zone,
-    remember_created_at timestamp without time zone,
-    sign_in_count integer DEFAULT 0 NOT NULL,
-    current_sign_in_at timestamp without time zone,
-    last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying,
-    last_sign_in_ip character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    provider character varying,
-    uid character varying,
-    first_name character varying,
-    last_name character varying,
-    questions_count integer DEFAULT 0,
-    image character varying,
-    gender boolean,
-    role integer DEFAULT 0
-);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
-
-
---
--- Name: videos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE videos (
-    id integer NOT NULL,
-    name character varying,
-    description text,
-    url character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: videos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE videos_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: videos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE videos_id_seq OWNED BY videos.id;
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY answered_questions ALTER COLUMN id SET DEFAULT nextval('answered_questions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY blogs ALTER COLUMN id SET DEFAULT nextval('blogs_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY careers ALTER COLUMN id SET DEFAULT nextval('careers_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
@@ -1379,6 +1287,13 @@ ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_s
 --
 
 ALTER TABLE ONLY choices ALTER COLUMN id SET DEFAULT nextval('choices_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY course_user_plans ALTER COLUMN id SET DEFAULT nextval('course_user_plans_id_seq'::regclass);
 
 
 --
@@ -1414,6 +1329,13 @@ ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq':
 --
 
 ALTER TABLE ONLY live_classes ALTER COLUMN id SET DEFAULT nextval('live_classes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY plans ALTER COLUMN id SET DEFAULT nextval('plans_id_seq'::regclass);
 
 
 --
@@ -1598,7 +1520,15 @@ ALTER TABLE ONLY choices
 
 
 --
--- Name: course_user_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: course_user_plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY course_user_plans
+    ADD CONSTRAINT course_user_plans_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: course_user_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_user_tests
@@ -1635,6 +1565,14 @@ ALTER TABLE ONLY licenses
 
 ALTER TABLE ONLY live_classes
     ADD CONSTRAINT live_classes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY plans
+    ADD CONSTRAINT plans_pkey PRIMARY KEY (id);
 
 
 --
@@ -1734,7 +1672,7 @@ ALTER TABLE ONLY simulators
 
 
 --
--- Name: sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sub_categories
@@ -1825,7 +1763,21 @@ CREATE INDEX index_answers_on_user_id ON answers USING btree (user_id);
 
 
 --
--- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_course_user_plans_on_course_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_course_user_plans_on_course_user_id ON course_user_plans USING btree (course_user_id);
+
+
+--
+-- Name: index_course_user_plans_on_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_course_user_plans_on_plan_id ON course_user_plans USING btree (plan_id);
+
+
+--
+-- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_live_classes_on_course_id ON live_classes USING btree (course_id);
@@ -1860,13 +1812,6 @@ CREATE INDEX index_resources_on_section_id ON resources USING btree (section_id)
 
 
 --
--- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_resources_on_tutorial_id ON resources USING btree (tutorial_id);
-
-
---
 -- Name: index_sections_on_course_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1874,14 +1819,7 @@ CREATE INDEX index_sections_on_course_id ON sections USING btree (course_id);
 
 
 --
--- Name: index_tests_on_course_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_tests_on_course_user_id ON tests USING btree (course_user_id);
-
-
---
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
@@ -1923,6 +1861,14 @@ CREATE TRIGGER queue_classic_notify AFTER INSERT ON queue_classic_jobs FOR EACH 
 
 
 --
+-- Name: fk_rails_035e5e1f83; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY course_user_plans
+    ADD CONSTRAINT fk_rails_035e5e1f83 FOREIGN KEY (plan_id) REFERENCES plans(id);
+
+
+--
 -- Name: fk_rails_20b1e5de46; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1936,6 +1882,14 @@ ALTER TABLE ONLY sections
 
 ALTER TABLE ONLY answers
     ADD CONSTRAINT fk_rails_3d5ed4418f FOREIGN KEY (question_id) REFERENCES questions(id);
+
+
+--
+-- Name: fk_rails_4268765eb3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY course_user_plans
+    ADD CONSTRAINT fk_rails_4268765eb3 FOREIGN KEY (course_user_id) REFERENCES course_users(id);
 
 
 --
@@ -1960,14 +1914,6 @@ ALTER TABLE ONLY answers
 
 ALTER TABLE ONLY resources
     ADD CONSTRAINT fk_rails_6d1984789f FOREIGN KEY (section_id) REFERENCES sections(id);
-
-
---
--- Name: fk_rails_84332ff6ce; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY tests
-    ADD CONSTRAINT fk_rails_84332ff6ce FOREIGN KEY (course_user_id) REFERENCES course_users(id);
 
 
 --
@@ -2114,7 +2060,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160507182837');
 
 INSERT INTO schema_migrations (version) VALUES ('20160511010803');
 
-
 INSERT INTO schema_migrations (version) VALUES ('20160518174722');
 
 INSERT INTO schema_migrations (version) VALUES ('20160518174952');
@@ -2130,4 +2075,18 @@ INSERT INTO schema_migrations (version) VALUES ('20160608034434');
 INSERT INTO schema_migrations (version) VALUES ('20160614025321');
 
 INSERT INTO schema_migrations (version) VALUES ('20160627132044');
+
+INSERT INTO schema_migrations (version) VALUES ('20160704164427');
+
+INSERT INTO schema_migrations (version) VALUES ('20160704165705');
+
+INSERT INTO schema_migrations (version) VALUES ('20160712051220');
+
+INSERT INTO schema_migrations (version) VALUES ('20160712085620');
+
+INSERT INTO schema_migrations (version) VALUES ('20160712101309');
+
+INSERT INTO schema_migrations (version) VALUES ('20160712171851');
+
+INSERT INTO schema_migrations (version) VALUES ('20160714202100');
 
