@@ -2,6 +2,7 @@ class Student::StudentController < ApplicationController
   before_filter :authenticate_user!
 
   def check_plan
+    # There must be a plan free first
     CourseUserPlan.create! course_user: course_user, plan: Plan.where(name: "Free").first if !course_user.course_user_plan.present?
     # Redirigir a pagos si ha expirado el plan contratado del curso
     if Date.today > course_user.course_user_plan.expiration_date
