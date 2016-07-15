@@ -19,6 +19,7 @@
               .app-text-holder.row.main-bg
                 %content
                   %h1= @course_user_test.test.title
+                  %h3= "Tiempo restante: <span id=\"hour\">#{@course_user_test.hour_left}</span>:<span id=\"min\">#{@course_user_test.min_left}</span>:<span id=\"sec\">#{@course_user_test.sec_left}</span>".html_safe
         .content-wrapper.col-sm-9.col-md-10
           .application-content
             .content-margin.row
@@ -27,8 +28,8 @@
                   - qs = 0
                   - target = ""
                   - met = ""
-                  - met = :post
-                  - target = "student_complete_resource_path unless @resource_progress.completed"
+                  - met = :put
+                  - target = student_course_test_course_user_test_path unless @course_user_test.completed
                   = form_tag target, :method => met do
                     - @course_user_test.test.questions.each do |q|
                       %h3= q.content
@@ -56,7 +57,7 @@
                         - q.choices.each do |c|
                           - cl = ""
                           - st = ""
-                          - ch = false
+                          - ch = @course_user_test.answers.find_by(question: q, choice: c) ? true : false
                           - if @answers
                             - if @answers.where(question_id: q.id).first.choice_id == c.id
                               - ch = true
@@ -69,7 +70,7 @@
                           %div{:class=>cl, :style=>st}
                             .radio
                               %label
-                                = radio_button_tag "question_ids[#{q.id}]", c.id, ch
+                                = radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch
                                 = c.content
                                 - if @answers
                                   - if @answers.where(question_id: q.id).first.choice_id == c.id
@@ -78,5 +79,37 @@
                                         * Error
                       -qs+=1
                       %hr
-                    = button_tag 'Terminar Test' , class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    = button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    = button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    %input{:type=>"hidden", :value=>"#{@course_user.id}", :name=>"course_user_test[course_user_id]"}
+                    %input{:type=>"hidden", :value=>"#{@test.id}", :name=>"course_user_test[test_id]"}
+:javascript
+  var hour = "#{@course_user_test.hour_left}";
+  var min = "#{@course_user_test.min_left}";
+  var sec = "#{@course_user_test.sec_left}";
+  var interval = setInterval(function() {
+      sec--;
+      if (sec == 0) {
+        sec = 59;
+        min--;
+        if (min == 0)
+        {
+          hour--;
+        }
+      }
+      if (String(hour).length == 1)
+        $("#hour").html("0"+hour);
+      else
+        $("#hour").html(hour);
 
+      if (String(min).length == 1)
+        $("#min").html("0"+min);
+      else
+        $("#min").html(min);
+
+      if (String(sec).length == 1)
+        $("#sec").html("0"+sec);
+      else
+        $("#sec").html(sec);
+
+  }, 1000);

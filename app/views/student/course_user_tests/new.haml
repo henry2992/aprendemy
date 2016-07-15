@@ -27,8 +27,8 @@
                   - qs = 0
                   - target = ""
                   - met = ""
-                  - met = :post
-                  - target = student_course_test_course_user_tests_path unless @course_user_test.completed
+                  - met = :put
+                  - target = student_course_test_course_user_test_path(@course,@test,@course_user_test) unless @course_user_test.completed
                   = form_tag target, :method => met do
                     - @course_user_test.test.questions.each do |q|
                       %h3= q.content
@@ -78,8 +78,8 @@
                                         * Error
                       -qs+=1
                       %hr
-                    = button_tag 'Pausar' , class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
-                    = button_tag 'Calificar' , class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    = button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    = button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
                     %input{:type=>"hidden", :value=>"#{@course_user.id}", :name=>"course_user_test[course_user_id]"}
                     %input{:type=>"hidden", :value=>"#{@test.id}", :name=>"course_user_test[test_id]"}
 

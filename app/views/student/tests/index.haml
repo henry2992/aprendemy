@@ -34,7 +34,7 @@
                           %td= t.title
                           %td= t.description
                           -#%td= link_to 'Tomar Examen', student_new_test_path(@course, t), class: 'btn btn-success'
-                          %td= link_to 'Tomar Examen', new_student_course_test_course_user_test_path(@course, t), class: 'btn btn-success'
+                          %td= link_to 'Tomar Examen', new_student_course_test_course_user_test_path(@course, t), class: 'btn btn-success' if !CourseUserTest.where(course_user: @course_user, completed: false).present?
         .content-wrapper.col-sm-9.col-md-10
           .application-content
             .content-margin.row
@@ -51,7 +51,7 @@
                         %th
                           Preguntas Totales
                         %th
-                          Fecha
+                          Tiempo restante
                         %th
                           Preguntas Contestadas
                         %th
@@ -66,8 +66,8 @@
                           %td= cut.test.title
                           %td= cut.completed ? 'Completado' : 'Pausado'
                           %td= cut.test.questions.count
-                          %td= cut.created_at
-                          %td= cut.answers.count
-                          %td= cut.correct_answers
-                          %td= cut.incorrect_answers
-                          %td= link_to 'Completar', root_path, class: 'btn btn-success' if !cut.completed
+                          %td= "#{cut.hour_left}:#{cut.min_left}:#{cut.sec_left}" if !cut.completed
+                          %td= cut.total_answers
+                          %td= cut.correct_answers if cut.completed
+                          %td= cut.incorrect_answers if cut.completed
+                          %td= link_to 'Completar', edit_student_course_test_course_user_test_path(@course,cut.test,cut.id), class: 'btn btn-success' if !cut.completed
