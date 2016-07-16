@@ -12,8 +12,7 @@ class Student::CourseUserTestsController < ApplicationController
   def new
     add_breadcrumb "Inicio", :root_path
     course_user_test = CourseUserTest.where(course_user: @course_user, test: @test).first
-    if !course_user_test && !CourseUserTest.where(course_user: @course_user, completed: false).present?
-      
+    if !course_user_test && !CourseUserTest.where(course_user: @course_user, status: :paused).present?
       @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
       @course_user_test.last_started = DateTime.now
       @course_user_test.time_left = @test.time_limit * 60
@@ -31,10 +30,15 @@ class Student::CourseUserTestsController < ApplicationController
   end
 
   def edit
-    @course_user_test.last_started = DateTime.now
-    # raise DateTime.now.to_yaml
-    @course_user_test.save
-    # raise @course_user_test.last_started.to_yaml
+    if !@course_user_test.completed?
+      if @course_user_test.paused?
+        @course_user_test.last_started = Time.at(Time.now)
+      end
+      @course_user_test.time_left -= (Time.now.to_i - @course_user_test.last_started.to_i)
+      @course_user_test.status = 0
+      @course_user_test.last_started = Time.at(Time.now)
+      @course_user_test.save
+    end
   end
 
   def update
@@ -47,14 +51,14 @@ class Student::CourseUserTestsController < ApplicationController
           if ( @course_user_test.time_left - (Time.now.to_i - @course_user_test.last_started.to_i) ) > 0
             set_answers params["course_user_test"]["question_ids"]
           else
-            @course_user_test.completed = true
+            @course_user_test.status = 2 # :completed
             @course_user_test.time_completed = DateTime.now
             @course_user_test.save
             format.html { redirect_to student_course_tests_path(@course), notice: 'Sorry, time is over!, your answers have not been stored' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           end
           if answered_questions >= percent_to_go
-            @course_user_test.completed = true
+            @course_user_test.status = 2 # :completed
             @course_user_test.time_completed = DateTime.now
             @course_user_test.save
             format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' }
@@ -69,8 +73,7 @@ class Student::CourseUserTestsController < ApplicationController
         end
       end
       if params["course_user_test"]['action_form'] == "pause"
-        set_answers params["course_user_test"]["question_ids"]
-        @course_user_test.last_started = DateTime.now
+        set_answers params["course_user_test"]["question_ids"] if params["course_user_test"]["question_ids"]
         if @course_user_test.save
           format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully paused.' }
           format.json { render :show, status: :created, location: student_course_tests_path(@course) }
@@ -94,7 +97,7 @@ class Student::CourseUserTestsController < ApplicationController
     end
 
     def set_course_user_test
-      @course_user_test = CourseUserTest.where(course_user: @course_user, test: @test, completed: false).first
+      @course_user_test = CourseUserTest.where(course_user: @course_user, test: @test, status: [0, 1]).first # :opened or :paused
     end
 
     def course_user_test_params

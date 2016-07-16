@@ -29,7 +29,7 @@
                   - target = ""
                   - met = ""
                   - met = :put
-                  - target = student_course_test_course_user_test_path unless @course_user_test.completed
+                  - target = student_course_test_course_user_test_path unless @course_user_test.completed? # :completed
                   = form_tag target, :method => met do
                     - @course_user_test.test.questions.each do |q|
                       %h3= q.content
@@ -79,8 +79,8 @@
                                         * Error
                       -qs+=1
                       %hr
-                    = button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
-                    = button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed
+                    = button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? # :completed
+                    = button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? # :completed
                     %input{:type=>"hidden", :value=>"#{@course_user.id}", :name=>"course_user_test[course_user_id]"}
                     %input{:type=>"hidden", :value=>"#{@test.id}", :name=>"course_user_test[test_id]"}
 :javascript
@@ -89,11 +89,12 @@
   var sec = "#{@course_user_test.sec_left}";
   var interval = setInterval(function() {
       sec--;
-      if (sec == 0) {
+      if (sec <= 0) {
         sec = 59;
         min--;
-        if (min == 0)
+        if (min <= 0)
         {
+          min = 59;
           hour--;
         }
       }
@@ -113,3 +114,8 @@
         $("#sec").html(sec);
 
   }, 1000);
+  / window.addEventListener("beforeunload", function (e) {
+
+  /   (e || window.event).returnValue = true; //Gecko + IE
+  /   return true;                            //Webkit, Safari, Chrome
+  / });

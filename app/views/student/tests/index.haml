@@ -34,7 +34,7 @@
                           %td= t.title
                           %td= t.description
                           -#%td= link_to 'Tomar Examen', student_new_test_path(@course, t), class: 'btn btn-success'
-                          %td= link_to 'Tomar Examen', new_student_course_test_course_user_test_path(@course, t), class: 'btn btn-success' if !CourseUserTest.where(course_user: @course_user, completed: false).present?
+                          %td= link_to 'Tomar Examen', new_student_course_test_course_user_test_path(@course, t), class: 'btn btn-success' if !CourseUserTest.where(course_user: @course_user, status: [0,1]).present? # :opened, :paused
         .content-wrapper.col-sm-9.col-md-10
           .application-content
             .content-margin.row
@@ -64,10 +64,10 @@
                       - @course_user_tests.each do |cut|
                         %tr
                           %td= cut.test.title
-                          %td= cut.completed ? 'Completado' : 'Pausado'
+                          %td= cut.completed? ? 'Completado' : 'Pausado' # :completed
                           %td= cut.test.questions.count
-                          %td= "#{cut.hour_left}:#{cut.min_left}:#{cut.sec_left}" if !cut.completed
+                          %td= "#{cut.hour_left}:#{cut.min_left}:#{cut.sec_left}" if !cut.completed? # :paused
                           %td= cut.total_answers
-                          %td= cut.correct_answers if cut.completed
-                          %td= cut.incorrect_answers if cut.completed
-                          %td= link_to 'Completar', edit_student_course_test_course_user_test_path(@course,cut.test,cut.id), class: 'btn btn-success' if !cut.completed
+                          %td= cut.correct_answers if cut.completed? # :completed
+                          %td= cut.incorrect_answers if cut.completed? # :completed
+                          %td= link_to 'Completar', edit_student_course_test_course_user_test_path(@course,cut.test,cut.id), class: 'btn btn-success' if !cut.completed? # :completed

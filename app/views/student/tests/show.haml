@@ -27,12 +27,9 @@
                     - qs = 0
                     - target = ""
                     - met = ""
-                    / - met = :put unless @test.completed
-                    / - target = "" #student_complete_test_path unless @test.completed
                     = form_tag target, :method => met do
                       - @test.questions.each do |q|
                         = hidden_field_tag :id, @test.id
-                        / - @resource.material.questions.each do |q|
                         %h3= q.content
                         - if @answers
                           - wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
@@ -80,5 +77,5 @@
                                           * Error
                         -qs+=1
                         %hr
-                      = button_tag 'Terminar Examen' , class: 'btn btn-primary submit' , type: :submit unless @test.completed
+                      = button_tag 'Terminar Examen' , class: 'btn btn-primary submit' , type: :submit unless @test.status == :completed
                   
