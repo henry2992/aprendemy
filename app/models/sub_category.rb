@@ -3,6 +3,7 @@ class SubCategory < ActiveRecord::Base
   has_many :questions
   has_many :choices, through: :questions
   has_many :answered_questions, through: :questions
+  has_many :tutorials
 
   answered = "self.questions.where(id: self.answered_questions.where(user_id: user_id).pluck(:question_id))"
   correct = "self.questions.where(id: self.answered_questions.where(user_id: user_id, correct: true).pluck(:question_id))"

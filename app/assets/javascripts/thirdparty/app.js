@@ -1,28 +1,21 @@
- // Angular App
- angular.module('app', ['ngMaterial'])
-    .controller('sideNavController', sideNavController);
-
-    function sideNavController ($scope, $mdSidenav, $window) {
-	
-		$scope.openLeftMenu = function() {
-           $mdSidenav('left').toggle();
-           $mdSidenav('right').close();
-         };
-
-
-   		$scope.openRightMenu = function() {
-           $mdSidenav('right').toggle();
-           $mdSidenav('left').close();
-         };
-
-     //    $scope.showtab = function (){
-     //      	navwidth = (window.innerWidth);
-     //      	if (navwidth < 768) {
-  			//     return true;
-  			// } else {
-  			//     return false;
-  			// }
-     //      };
+function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("mySidenavRight").style.width = "0";
   }
 
+  function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.body.style.backgroundColor = "white";
+  }
 
+  function openNavRight() {
+      document.getElementById("mySidenavRight").style.width = "250px";
+      document.getElementById("mySidenav").style.width = "0";
+  }
+
+  function closeNavRight() {
+      document.getElementById("mySidenavRight").style.width = "0";
+      document.body.style.backgroundColor = "white";
+  }
+
+  

@@ -24,25 +24,30 @@ Rails.application.routes.draw do
       end
       # LIVE CLASSES
       get '/live_classes' => 'live_classes#index'
+
+      # QUESTIONS
+      resources :categories do
+        resources :sub_categories do
+          get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
+          resources :questions do
+            resources :answered_questions
+            resources :choices
+          end
+        end
+      end
+
+      # TUTORIALS
+      resources :tutorials
     end
   end
 
-  resources :tutorials
+  
 
   root 'home#index'
 
   post 'simulators/filter_chart', to: 'simulators#filter_chart', as: :simulators_filter_chart
 
-  # QUESTIONS
-  resources :categories do
-    resources :sub_categories do
-      get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
-      resources :questions do
-        resources :answered_questions
-        resources :choices
-      end
-    end
-  end
+  
 
   resources :simulators do
     get 'show_simulator_answered_questions', to: 'simulators#show_answered_questions', as: :show_answered_questions

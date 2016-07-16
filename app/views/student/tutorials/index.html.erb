@@ -1,0 +1,17 @@
+<div id="container">
+
+	<%= render 'student/navigation/vertical_navbar' %>
+
+	<div class="main-navigation">
+		<% @tutorials.each do |tutorial| %>
+			<p><%= tutorial.name %></p>
+
+			<% tutorial.sub_categories.each do |x|%>
+				<p><%= x.name %></p>
+				<% x.tutorials.each do |t|%>
+					<h1><%= t.title %></h1>
+				<% end%>	
+			<% end%>
+		<% end %>
+	</div>
+</div>

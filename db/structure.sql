@@ -383,13 +383,13 @@ CREATE TABLE course_user_tests (
     id integer NOT NULL,
     course_user_id integer,
     test_id integer,
-    completed boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     last_started timestamp without time zone DEFAULT '2016-07-15 19:57:56.241806'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
-    time_left bigint
+    time_left bigint,
+    status integer
 );
 
 
@@ -1107,7 +1107,10 @@ CREATE TABLE tutorials (
     title character varying,
     description text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    course_id integer,
+    category_id integer,
+    sub_category_id integer
 );
 
 
@@ -2091,4 +2094,12 @@ INSERT INTO schema_migrations (version) VALUES ('20160712171851');
 INSERT INTO schema_migrations (version) VALUES ('20160714181425');
 
 INSERT INTO schema_migrations (version) VALUES ('20160714202100');
+
+INSERT INTO schema_migrations (version) VALUES ('20160715201134');
+
+INSERT INTO schema_migrations (version) VALUES ('20160716053312');
+
+INSERT INTO schema_migrations (version) VALUES ('20160716054856');
+
+INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 

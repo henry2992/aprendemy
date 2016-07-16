@@ -189,6 +189,84 @@
 
 
 
+/*************************************************/
+/***************** TEST INNER *******************/
+/***********************************************/
+
+
+.test-inner-wrapper{ margin: 20px; display: inline-block; }
+.test-question{ background: #fff; padding: 5px; border-radius: 0px 0px 10px 10px; }
+.test-question p { border-bottom: 1px solid rgb(224, 224, 224); padding-bottom: 10px !important; border-top: 1px solid rgb(224, 224, 224); padding-top: 10px !important; }
+
+
+/**** Cool box ******/
+label.coolbox { background: #fff; width: 100%; padding: 10px; font-weight: bold; }
+label.coolbox:hover { background: rgb(232,243,251); cursor: pointer; }
+label.coolbox input { display:none; }
+label.coolbox .box-number { color: rgb(214, 218, 222); float: left; border: solid rgb(214, 218, 222) 3px; padding: 10px 15px }
+label.coolbox .box-number:hover { color: #06476b; border: solid #06476b 3px; }
+label.coolbox input:checked + span { color: #06476b; border: solid #06476b 3px; background-color: rgb(232,243,251);}
+.box-info { margin-top: 10px; margin-left: 20px; display: inline-block; }
+.remind-later{ float: right; font-size: 12px; }
+/**** Clues ********/
+.test-time-wrapper-mobile{ margin: 20px; display: block; }
+.test-time-wrapper{ margin: 20px; display: none; }
+.test-clue-content-wrapper{ background: #fff; padding: 30px; border-radius: 0px 0px 10px 10px; }
+.test-clock{ text-align: center; }
+.simulator-btn{ display: block !important; width: 75%; margin: 15px auto !important;}
+
+.simulator-clue{
+    border: black 1px solid;
+    display: inline-block;
+    width: 15%;
+    margin-left: 3%;
+    margin-top: 10px;
+    height: 30px;
+    font-size: 13px;
+    padding: 5px 0px 0 0px;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.visual-colored-clues{
+    text-align: justify;
+    margin-top: 30px;
+}
+
+.visual-colored-clues ul {
+    padding: 0 !important;
+    margin: 0px 0px 0px 25px !important;
+}
+
+.visual-clue{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;   
+    display: inline-block;
+}
+
+.list-simulator-clue{
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.answered {
+    background-color: rgb(55, 171, 93);
+    border: 1px solid rgb(55, 171, 93); 
+}
+
+.later {
+    border: 1px solid #46b8da;
+    background-color: #46b8da;
+}
+
+.no-answer {
+    border: 1px solid black;
+    background-color: white;
+}
+
 
 
 
@@ -205,92 +283,52 @@
 
 /* Card fixes */
 @media only screen and (min-width : 450px) {
-	.subcategory-card{
-    	min-width: 100%;
-    	height: 200px;
-    }
-
-    .cat-grid{
-    	width: 50% !important;
-    	display: inline-block;
-    }	
-
-    .info-card button {
-		width: 100%;
-	}
+	.subcategory-card{ min-width: 100%; height: 200px; }
+    .cat-grid{ width: 50% !important; display: inline-block;}	
+    .info-card button { width: 100%;}
 }
 
 /* Card fixes */
 @media only screen and (min-width : 550px) {
-	.subcategory-card{
-    	height: 215px;
-    }
+	.subcategory-card{ height: 215px; }
 }
 
 /* Card fixes */
 @media only screen and (min-width : 650px) {
-	.subcategory-card{
-    	height: 300px;
-    }
+	.subcategory-card{ height: 300px; }
 }
 
 
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) {
-	.subcategory-card{
-    	height: 225px;
-    }
-    .cat-grid{
-    	width: 33% !important;
-    }	
-	
+	.subcategory-card{ height: 225px; }
+    .cat-grid{ width: 33% !important; }	
+	/*** Test Inner **/
+    .test-time-wrapper-mobile{ display: none; }
+    .test-inner-wrapper{ width: 65%; display: inline-block; margin: 20px 0 0 20px;  }
+    .test-time-wrapper{ width: 28%; float: right; display: inline-block; margin: 20px 20px 0 0; }
 }
 
 @media only screen and (min-width : 850px) {
-	.subcategory-card{
-    	/*min-width: 215px;*/
-    	height: 250px;
-    }
-    .cat-grid{
-    	width: 33% !important;
-    }	
-	
+	.subcategory-card{ height: 250px; }
+    .cat-grid{ width: 33% !important; }		
 }
 
 
 /* Desktops and laptops ----------- */
 @media only screen  and (min-width : 992px) {
-	.subcategory-card {
-    	/*min-width: 185px;*/
-    	height: 250px;
-    }
-    .cat-grid{
-    	width: 24.9% !important;
-    }	
-    
-
+	.subcategory-card { height: 250px; }
+    .cat-grid{ width: 24.9% !important; }	
 }
-
-
 /* Card fixes */
 @media only screen and (min-width : 1200px) {
-	.subcategory-card{
-    	/*min-width: 250px;*/
-    	height: 275px;
-    }
-	
+	.subcategory-card{ height: 275px;}
 }
-
 /* Large screens ----------- */
 @media only screen  and (min-width : 1450px) {
-	.subcategory-card{
-    	height: 375px;
-    }
-    .card {
-    	width: 300px;
-    }
+	.subcategory-card{ height: 375px; }
+    .card { width: 300px; }
 }
-
 /* Large screens ----------- */
 @media only screen  and (min-width : 1824px) {
 /* Styles */

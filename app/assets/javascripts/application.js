@@ -13,10 +13,6 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require angular
-//= require angular-animate
-//= require angular-aria
-//= require angular-material
 //= require bootstrap
 //= require thirdparty/require_all
 //= require turbolinks

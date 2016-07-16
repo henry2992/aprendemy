@@ -31,9 +31,9 @@
   <%= csrf_meta_tag %>
 
 </head>
-<body ng-app="app" >
+<body >
 
-<md-content>
+  <div id="main">
     <!-- Navbar -->
     <% if user_signed_in? %>
         <% if controller.controller_name == 'courses' && controller.action_name == 'index' %>
@@ -47,18 +47,7 @@
     <!-- End Navbar -->
     <%= render "layouts/flash"  %>
     <%= yield %>
-</md-content>
-
-
-<% if user_signed_in? %>
-    <% if controller.controller_name == 'courses' && controller.action_name == 'index' %>
-          <%= render 'layouts/navigation/index_navbar' %>
-        <% else %> 
-          <%= render 'layouts/navigation/courses_navbar' %>
-    <% end %>
-<% end %>
-
-
+  </div>
 </body>
 
 </html>
