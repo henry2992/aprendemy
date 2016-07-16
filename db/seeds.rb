@@ -630,21 +630,21 @@ courses.each do |c|
 			question.update_attribute(:parent, task)
 		end
 
-		resource = Resource.new generic_name: "Recurso de video #{s}" , section_id: section.id
+		resource = Resource.new name: "Recurso de video #{s}" , section_id: section.id
 		resource.material = video
 		resource.save
 
-		resource = Resource.new generic_name: "Recurso de blog #{s}" , section_id: section.id
+		resource = Resource.new name: "Recurso de blog #{s}" , section_id: section.id
 		resource.material = blog
 		resource.save
 
-		resource = Resource.new generic_name: "Recurso de Tarea #{s}" , section_id: section.id
+		resource = Resource.new name: "Recurso de Tarea #{s}" , section_id: section.id
 		resource.material = task
 		resource.save
   end
 end
 
-test = Test.create! title: 'first test', description: 'description test', time_limit: 60,  total_questions: 10, course_id: enes.id
+test = Test.create! title: 'first test', description: 'description test', time_limit: 60, course_id: enes.id
 puts test.title
 (1..10).each do |n|
   q = Question.create( content: 'Pregunta de examen' + n.to_s, sub_category_id: 29, explanation: "Explicacion" )
@@ -660,7 +660,7 @@ puts test.title
   test.save
 end
 
-test1 = Test.create! title: 'second test', description: 'description test', time_limit: 60,  total_questions: 10, course_id: enes.id
+test1 = Test.create! title: 'second test', description: 'description test', time_limit: 60, course_id: enes.id
 puts test1.title
 (1..10).each do |n|
   q = Question.create( content: 'Pregunta de examen' + n.to_s, sub_category_id: 29, explanation: "Explicacion" )
