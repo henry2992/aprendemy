@@ -1,0 +1,298 @@
+/******************************/
+/******** Test Index *********/
+/****************************/
+
+.test-wrapper{
+	margin: 20px;
+}
+
+.test-title-wrapper{
+	background-color: #06476b;
+	padding: 20px !important;
+	position: relative;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.test-title-wrapper  h1 {
+	color: rgba(255, 255, 255, 0.87);
+	font-size: 1.25em;
+	display: inline-block;
+}
+
+
+.test-content-wrapper{
+	background: #fff;
+	padding: 30px;
+	border-radius: 0px 0px 10px 10px;
+}
+
+/******* Info Card *********/
+.card {
+	margin: 10px auto 0px;
+	display: inline-block !important;
+	border: 1px solid #ced7df;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.info-card { margin: 0 auto; padding: 10px; text-align: center; }
+.info-card p { text-align: left; font-size: 0.9em; font-weight: 300; color: #555; line-height: 1.5; }
+
+/********** Global Wrappers *********/
+
+.book-card-edit .subcategory-info-wrapper{
+	-webkit-animation: cardTitle .3s ease forwards;
+    animation: cardTitle .3s ease forwards
+}
+
+.book-card-edit .subcategory-information{
+	-webkit-animation: cardInfo .3s ease forwards;
+    animation: cardInfo .3s ease forwards;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    display: block;
+    position: relative;
+    opacity: 0;
+    margin-bottom: 0.3rem
+}
+
+.subcategory-card:hover{
+	color: rgba(255, 255, 255, 0.9)
+}
+
+.subcategory-card:hover:before{
+	 opacity: 1
+}
+
+.subcategory-card:hover .subcategory-info-wrapper{
+	-webkit-animation: cardTitle .3s ease forwards;
+    animation: cardTitle .3s ease forwards
+}
+
+.subcategory-card:hover .subcategory-information{
+	-webkit-animation: cardInfo .3s ease forwards;
+    animation: cardInfo .3s ease forwards;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    display: block;
+    position: relative;
+    opacity: 0;
+    margin-top: 7px
+}
+
+@keyframes cardInfo {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes cardTitle {
+    from {
+        bottom: -1rem
+    }
+    to {
+        bottom: 0rem
+    }
+}
+
+.subcategory-title{
+	 font-weight: 300;
+    text-align: right;
+    font-size: 1.5em;
+    color: white;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.64);
+    margin-bottom: 9px;
+}
+
+
+.subcategory-title a {
+	color: white;
+}
+
+.subcategory-title a:hover {
+	text-decoration: none;
+}
+
+.subcategory-information {
+	margin: 0;
+    padding: 0;
+    text-align: right;
+    opacity: 0;
+    margin-bottom: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease
+}
+
+.subcategory-information li{
+	list-style: none;
+    display: block;
+    color: white;
+    font-size: 0.75em;
+    font-weight: 400
+}
+
+.subcategory-information li i {
+	vertical-align: middle;
+    margin-right: 0.1rem;
+    color: #20A2D6
+}
+
+.subcategory-info-wrapper{
+	position: absolute;
+    bottom: -4rem;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.subcategory-card{
+	background-position: center;
+    height: 250px;
+    /*max-width: 200px;*/
+    background-size: auto 100%;
+    border-bottom: 1px solid #ced7df;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+
+.subcategory-card:before{
+	border-radius: 0px;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: -webkit-linear-gradient(top, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+    background-image: linear-gradient(to bottom, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+    opacity: 0.8;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease
+}
+
+.book-card-edit:before {
+    opacity: 1
+}
+
+
+
+
+
+
+
+
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+/* Card fixes */
+@media only screen and (min-width : 450px) {
+	.subcategory-card{
+    	min-width: 100%;
+    	height: 200px;
+    }
+
+    .cat-grid{
+    	width: 50% !important;
+    	display: inline-block;
+    }	
+
+    .info-card button {
+		width: 100%;
+	}
+}
+
+/* Card fixes */
+@media only screen and (min-width : 550px) {
+	.subcategory-card{
+    	height: 215px;
+    }
+}
+
+/* Card fixes */
+@media only screen and (min-width : 650px) {
+	.subcategory-card{
+    	height: 300px;
+    }
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+	.subcategory-card{
+    	height: 225px;
+    }
+    .cat-grid{
+    	width: 33% !important;
+    }	
+	
+}
+
+@media only screen and (min-width : 850px) {
+	.subcategory-card{
+    	/*min-width: 215px;*/
+    	height: 250px;
+    }
+    .cat-grid{
+    	width: 33% !important;
+    }	
+	
+}
+
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+	.subcategory-card {
+    	/*min-width: 185px;*/
+    	height: 250px;
+    }
+    .cat-grid{
+    	width: 24.9% !important;
+    }	
+    
+
+}
+
+
+/* Card fixes */
+@media only screen and (min-width : 1200px) {
+	.subcategory-card{
+    	/*min-width: 250px;*/
+    	height: 275px;
+    }
+	
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1450px) {
+	.subcategory-card{
+    	height: 375px;
+    }
+    .card {
+    	width: 300px;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+
+}
