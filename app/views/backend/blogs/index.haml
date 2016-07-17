@@ -25,7 +25,7 @@
                         %tr
                           %td= blog.title
                           %td= blog.content.truncate(60) + "..."
-                          %td= blog.resource.generic_name if blog.resource
+                          %td= blog.resource.name if blog.resource
                           %td= link_to 'Show', backend_blog_path(blog)
                           %td= link_to 'Edit', edit_backend_blog_path(blog)
                           %td= link_to 'Destroy', backend_blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' }

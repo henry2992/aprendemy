@@ -1,0 +1,25 @@
+<div class="main-title-wrapper">
+	<h1> <%= @resource.material.title %> </h1>
+</div>
+<div class="main-content-wrapper fr-view row rox-fix" >
+	<%= @resource.material.content.html_safe %>
+
+
+	<div class="progress-controllers">
+	  	<div class="progress-backward">
+	  		<div class="progress-backward-arrow">
+	  			<i class="fa fa-chevron-left" aria-hidden="true"></i>
+	  		</div>
+	  	</div>
+
+	  	<div class="progress-forward">
+	  		<div class="progress-forward-content">
+		  		<p>Sigue Con:</p>
+		  		<p>Siguiente Clase</p>
+	  		</div>
+	  		<div class="progress-forward-arrow">
+	  			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+	  		</div>
+	  	</div>
+  	</div>
+</div>
