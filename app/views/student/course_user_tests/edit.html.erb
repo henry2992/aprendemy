@@ -1,8 +1,17 @@
 <div id="application"> 
   <!-- Vertical Nav -->
   <%= render 'student/navigation/vertical_navbar' %>
+  <% show_explanation = !@answers.nil? %>
   <!-- Content -->
   <div id="container">
+    <% 
+      qs = 0
+      target = ""
+      met = ""
+      met = :put
+      target = student_course_test_course_user_test_path unless @course_user_test.completed?
+    %>
+    <%= form_tag target, :method => met do %>
     <!-- Clues Mobile-->
     <div class="test-time-wrapper-mobile">
       <div class="test-title-wrapper">
@@ -11,9 +20,10 @@
       <div class="test-clue-content-wrapper">
         <!-- Time -->
         <div class="test-clock">
-          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id="">01:09:05</span> 
+          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour_mobile"><%= @course_user_test.hour_left %></span>:<span id="min_mobile"><%= @course_user_test.min_left %></span>:<span id="sec_mobile"><%= @course_user_test.sec_left %></span></span> 
         </div>
         <div>
+          <button class="btn btn-warning simulator-btn" onclick=""><span class="fa fa-pause"></span> Pausar</button>
           <button class="btn btn-success simulator-btn" onclick=""><span class="fa fa-check-square-o"></span> Calificar</button>
           <button class="btn btn-info simulator-btn" onclick=""><span class="fa fa-home"></span>Menú</button>
         </div>
@@ -52,115 +62,102 @@
     <!-- Content Homework Progress-->
     <div class="test-inner-wrapper">
       <div class="test-title-wrapper">
-        <h1> Simulador 1 </h1>
+        <h1> <%= @course_user_test.test.title %> </h1>
       </div>
         
       <div class="test-content-wrapper">
         <div class=" row rox-fix">
-          <!-- Question -->
-          <div class="test-question">
-            <div class="remind-later">
-                  <label>
-                    <input name="simulator_answered_question[marked_status]" type="hidden" value="unmarked"><input class="simulator-ajax-submittable" data-form="simulator-42-question-2008" type="checkbox" value="marked" name="simulator_answered_question[marked_status]" id="simulator_answered_question_marked_status"> Responder luego
-                  </label>
+          <!-- Question --> 
+          <% @course_user_test.test.questions.each do |q| %>
+            <div class="test-question">
+              <div class="remind-later"> 
+                <label> 
+                  <input name="simulator_answered_question[marked_status]" type="hidden" value="unmarked">
+                  <input class="simulator-ajax-submittable" data-form="simulator-42-question-2008" type="checkbox" value="marked" name="simulator_answered_question[marked_status]" id="simulator_answered_question_marked_status"> Responder luego
+                </label>
               </div>
-            <p> 1 ) ¿Cuál de los siguientes números es entero?</p>
-
-            <form class="test-check">
-              <label class="coolbox">
-                    <input type="radio" name="P" value="P"/>
-                    <span class="box-number"> A </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> B </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> C </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> D </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> E </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-            </form>
-
-            
-          </div>  
-          <!-- Question -->
-          <div class="test-question">
-            <p> 1 ) ¿Cuál de los siguientes números es entero?</p>
-
-            <form class="test-check">
-              <label class="coolbox">
-                    <input type="radio" name="P" value="P"/>
-                    <span class="box-number"> A </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> B </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> C </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> D </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> E </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-            </form>
-          </div>  
-          <!-- Question -->
-          <div class="test-question">
-            <p> 1 ) ¿Cuál de los siguientes números es entero?</p>
-
-            <form class="test-check">
-              <label class="coolbox">
-                    <input type="radio" name="P" value="P"/>
-                    <span class="box-number"> A </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> B </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> C </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> D </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-                <label class="coolbox">
-                    <input type="radio"  name="P" value="P"/>
-                    <span class="box-number"> E </span>
-                    <span class="box-info"> Pregunta </span>
-                </label>
-            </form>
-          </div>  
-            
+              <p><%= q.content %></p>
+              <% if @answers
+                  wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
+                end %>
+              <% if q.picture.present? %>
+                <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
+              <% end %>
+              <% if q.explanation && show_explanation %>
+                <p class="lead explanation">
+                  <%= q.explanation %>
+                </p>
+              <% end %>
+              <% if q.url %>
+                <%= link_to q.url, q.url %>
+              <% end %>
+              <% if q.questions %>
+                <% q.questions.each do |qs| %>
+                  <!-- <hr style="width:80%"> -->
+                  <div class="test-question">
+                    <p><%= q.content %></p>
+                    <% if qs.picture.present? %>
+                      <%= image_tag(qs.picture, class: "img-responsive", alt: qs.content) %>
+                    <% end %>
+                    <% if @answers %>
+                      <p class="lead">
+                        <%= qs.explanation %>
+                      </p>
+                    <% end %>
+                    <% if qs.url %>
+                      <%= link_to qs.url, qs.url %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if q.choices %>
+                <% 
+                letters = ("A".."Z").to_a
+                lpos = 0
+                %>
+                <% q.choices.each do |c| %>
+                  <%
+                  cl = ""
+                  st = ""
+                  ch = @course_user_test.answers.find_by(question: q, choice: c) ? true : false
+                  %>
+                  <% if @answers %>
+                    <% if @answers.where(question_id: q.id).first.choice_id == c.id %>
+                      <% ch = true %>
+                      <% if wrong %>
+                        <% cl = "has-error"
+                           st = "border: thin solid red" %>
+                      <% else %>
+                        <% cl = "has-success"
+                           st = "border: thin solid green" %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <label class="coolbox <%= cl %>">
+                      <%= radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch %>
+                      <span class="box-number"> <%= letters[lpos] %> </span>
+                      <span class="box-info"> <%= c.content %> </span>
+                      <% if @answers %>
+                        <% if @answers.where(question_id: q.id).first.choice_id == c.id %>
+                          <% if wrong %>
+                            <span class="text-danger">
+                              * Error
+                            </span>
+                          <% end %>
+                        <% end %>
+                      <% #end %>
+                    <% end %>
+                  </label>
+                  <% lpos += 1 %>
+                <% end %>
+              <% end %>
+              <% -qs+=1 %>
+            </div>
+          <% end %>
+          <%# button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? %>
+          <%# button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? %>
+          <input type="hidden" value="<%= @course_user.id %>" name="course_user_test[course_user_id]">
+          <input type="hidden" value="<%= @test.id %>" name="course_user_test[test_id]">
         </div>  
       </div>
     </div>
@@ -173,11 +170,18 @@
 
         <!-- Time -->
         <div class="test-clock">
-          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id="">01:09:05</span> 
+          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour"><%= @course_user_test.hour_left %></span>:<span id="min"><%= @course_user_test.min_left %></span>:<span id="sec"><%= @course_user_test.sec_left %></span></span> 
         </div>
         <div>
-          <button class="btn btn-success simulator-btn" onclick=""><span class="fa fa-check-square-o"></span> Calificar</button>
-          <button class="btn btn-info simulator-btn" onclick=""><span class="fa fa-home"></span>Menú</button>
+          <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "course_user_test[action_form]") do
+                content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')
+              end  unless @course_user_test.completed?
+          %>
+          <%= button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "course_user_test[action_form]") do
+                content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Calificar')
+              end  unless @course_user_test.completed?
+          %>
+          <button class="btn btn-info simulator-btn" onclick=""><span class="fa fa-home"></span> Menú</button>
         </div>
         <!-- CLues -->
         <div class="row">
@@ -211,128 +215,57 @@
 
       </div>
     </div>
+    <% end %>
   </div>
 </div>
-
-
-<!-- .alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
-  .button.close{ :"data-dismiss"=>"alert"}
-    ×
-  .show-flash
-.application-wrapper.container-fluid
-  .row
-    =render 'layouts/user_sidebar'
-    - show_explanation = !@answers.nil?
-    .main-bg
-      %content
-        .content-wrapper.col-sm-9.col-md-10
-          .application-content
-            .content-margin.row
-              %ol.breadcrumb{:style=>"background-color:#fff"}
-                = render_breadcrumbs :tag => :li, :separator => ""
-        .content-wrapper.col-sm-9.col-md-10
-          .application-content
-            .content-margin.row
-              .app-text-holder.row.main-bg
-                %content
-                  %h1= @course_user_test.test.title
-                  %h3= "Tiempo restante: <span id=\"hour\">#{@course_user_test.hour_left}</span>:<span id=\"min\">#{@course_user_test.min_left}</span>:<span id=\"sec\">#{@course_user_test.sec_left}</span>".html_safe
-        .content-wrapper.col-sm-9.col-md-10
-          .application-content
-            .content-margin.row
-              .app-text-holder.row.main-bg
-                %content
-                  - qs = 0
-                  - target = ""
-                  - met = ""
-                  - met = :put
-                  - target = student_course_test_course_user_test_path unless @course_user_test.completed? # :completed
-                  = form_tag target, :method => met do
-                    - @course_user_test.test.questions.each do |q|
-                      %h3= q.content
-                      - if @answers
-                        - wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
-                      - if q.picture.present?
-                        = image_tag(q.picture, class: "img-responsive", alt: q.content)
-                      - if q.explanation && show_explanation
-                        %p.lead.explanation
-                          = q.explanation
-                      - if q.url
-                        = link_to q.url, q.url
-                      - if q.questions
-                        - q.questions.each do |qs|
-                          %hr{:style=>"width:80%"}
-                          %h3= qs.content
-                          - if qs.picture.present?
-                            = image_tag(qs.picture, class: "img-responsive", alt: qs.content)
-                          - if @answers
-                            %p.lead
-                              = qs.explanation
-                          - if qs.url
-                            = link_to qs.url, qs.url
-                      - if q.choices
-                        - q.choices.each do |c|
-                          - cl = ""
-                          - st = ""
-                          - ch = @course_user_test.answers.find_by(question: q, choice: c) ? true : false
-                          - if @answers
-                            - if @answers.where(question_id: q.id).first.choice_id == c.id
-                              - ch = true
-                              - if wrong
-                                - cl = "has-error"
-                                - st = "border: thin solid red"
-                              - else
-                                - cl = "has-success"
-                                - st = "border: thin solid green"
-                          %div{:class=>cl, :style=>st}
-                            .radio
-                              %label
-                                = radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch
-                                = c.content
-                                - if @answers
-                                  - if @answers.where(question_id: q.id).first.choice_id == c.id
-                                    - if wrong
-                                      %span.text-danger
-                                        * Error
-                      -qs+=1
-                      %hr
-                    = button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? # :completed
-                    = button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? # :completed
-                    %input{:type=>"hidden", :value=>"#{@course_user.id}", :name=>"course_user_test[course_user_id]"}
-                    %input{:type=>"hidden", :value=>"#{@test.id}", :name=>"course_user_test[test_id]"}
-:javascript
-  var hour = "#{@course_user_test.hour_left}";
-  var min = "#{@course_user_test.min_left}";
-  var sec = "#{@course_user_test.sec_left}";
+<script>
+  var hour = parseInt("<%= @course_user_test.hour_left %>");
+  var min = parseInt("<%= @course_user_test.min_left %>");
+  var sec = parseInt("<%= @course_user_test.sec_left %>");
   var interval = setInterval(function() {
       sec--;
-      if (sec <= 0) {
+      if (sec == 0 && min > 0) {
         sec = 59;
         min--;
-        if (min <= 0)
+        if (min == 0 && hour > 0)
         {
           min = 59;
+
           hour--;
         }
       }
+      if (hour==0 && min==0 && sec==0)
+      {
+        stopInterval();
+        window.location = "<%= student_course_tests_path(@course) %>";
+      }
+
+    
       if (String(hour).length == 1)
-        $("#hour").html("0"+hour);
+        $("#hour, #hour_mobile").html("0"+hour);
       else
-        $("#hour").html(hour);
+        $("#hour, #hour_mobile").html(hour);
 
       if (String(min).length == 1)
-        $("#min").html("0"+min);
+        $("#min, #min_mobile").html("0"+min);
       else
-        $("#min").html(min);
+        $("#min, #min_mobile").html(min);
 
       if (String(sec).length == 1)
-        $("#sec").html("0"+sec);
+        $("#sec, #sec_mobile").html("0"+sec);
       else
-        $("#sec").html(sec);
+        $("#sec, #sec_mobile").html(sec);
 
   }, 1000);
-  / window.addEventListener("beforeunload", function (e) {
 
-  /   (e || window.event).returnValue = true; //Gecko + IE
-  /   return true;                            //Webkit, Safari, Chrome
-  / }); -->
+  function stopInterval() 
+  {
+    clearInterval(interval);
+    interval = null;
+  }
+  // window.addEventListener("beforeunload", function (e) {
+
+  //   (e || window.event).returnValue = true; //Gecko + IE
+  //   return true;                            //Webkit, Safari, Chrome
+  // });
+</script>

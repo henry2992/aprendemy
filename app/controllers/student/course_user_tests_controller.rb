@@ -17,7 +17,6 @@ class Student::CourseUserTestsController < ApplicationController
       @course_user_test.last_started = DateTime.now
       @course_user_test.time_left = @test.time_limit * 60
       if @course_user_test.save
-      # raise @course_user_test.to_yaml
         @course_user_test.test.questions.each do |q|
           @course_user_test.answers.create!(user: current_user, question: q)
         end
@@ -35,9 +34,12 @@ class Student::CourseUserTestsController < ApplicationController
         @course_user_test.last_started = Time.at(Time.now)
       end
       @course_user_test.time_left -= (Time.now.to_i - @course_user_test.last_started.to_i)
-      @course_user_test.status = 0
+      @course_user_test.time_left = 0 if @course_user_test.time_left < 0
+      @course_user_test.time_completed = Time.at(Time.now) if @course_user_test.time_left == 0
+      @course_user_test.status = @course_user_test.time_left <= 0 ? "completed" : "opened"
       @course_user_test.last_started = Time.at(Time.now)
       @course_user_test.save
+      return redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' if @course_user_test.time_left == 0
     end
   end
 
@@ -51,14 +53,14 @@ class Student::CourseUserTestsController < ApplicationController
           if ( @course_user_test.time_left - (Time.now.to_i - @course_user_test.last_started.to_i) ) > 0
             set_answers params["course_user_test"]["question_ids"]
           else
-            @course_user_test.status = 2 # :completed
+            @course_user_test.status = "completed" # :completed
             @course_user_test.time_completed = DateTime.now
             @course_user_test.save
             format.html { redirect_to student_course_tests_path(@course), notice: 'Sorry, time is over!, your answers have not been stored' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           end
           if answered_questions >= percent_to_go
-            @course_user_test.status = 2 # :completed
+            @course_user_test.status = "completed" # :completed
             @course_user_test.time_completed = DateTime.now
             @course_user_test.save
             format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' }
