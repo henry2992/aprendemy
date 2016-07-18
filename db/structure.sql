@@ -1109,8 +1109,7 @@ CREATE TABLE tutorials (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     course_id integer,
-    category_id integer,
-    sub_category_id integer
+    category_id integer
 );
 
 
@@ -2100,6 +2099,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160715201134');
 INSERT INTO schema_migrations (version) VALUES ('20160716053312');
 
 INSERT INTO schema_migrations (version) VALUES ('20160716054856');
-
-INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 
