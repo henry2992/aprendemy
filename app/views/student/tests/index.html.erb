@@ -7,12 +7,36 @@
       <div class="test-wrapper">
         
         <div class="test-title-wrapper">
-          <h1> Simuladores </h1>
+          <h1> Simuladores</h1>
         </div>
           
         <div class="test-content-wrapper">
           <div class=" row rox-fix">
-            
+            <% @course_user_tests.each do |cut| %>
+            <% test = cut.test %>
+            <% #raise test.to_yaml %>
+              <!-- test -->
+              <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
+                <div class="card">
+                    <div class="subcategory-card" style="background-image: url('https://codeplaceimages.s3.amazonaws.com/project-management-tool_thumbnail_1463755547');">
+                      <div class="subcategory-info-wrapper">
+                        <h2 class="subcategory-title">
+                          <p><%= test.title %></p>
+                        </h2>
+                        <ul class="subcategory-information">
+                          <li> 3870 ejercicios </li>
+                          <li> 75 puntos </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <p><%= test.description %></p>
+                      <%= link_to 'Completar', edit_student_course_test_course_user_test_path(@course,test,test.id), class: 'btn btn-success' if !cut.completed?  %>
+                      <%= link_to 'Resultados', edit_student_course_test_course_user_test_path(@course,test,test.id), class: 'btn btn-warning' if cut.completed?  %>
+                    </div>
+                </div>
+              </div>
+            <% end %>
             <% @tests.each do |test| %>
               <!-- test -->
               <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
@@ -35,36 +59,8 @@
                 </div>
               </div>
             <% end %>
-
-            <% @course_user_tests.each do |test| %>
-              <!-- test -->
-              <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
-                <div class="card">
-                    <div class="subcategory-card" style="background-image: url('https://codeplaceimages.s3.amazonaws.com/project-management-tool_thumbnail_1463755547');">
-                      <div class="subcategory-info-wrapper">
-                        <h2 class="subcategory-title">
-                          <p><%= test.test.title %></p>
-                        </h2>
-                        <ul class="subcategory-information">
-                          <li> 3870 ejercicios </li>
-                          <li> 75 puntos </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="info-card">
-                      <p><%= test.test.description %></p>
-                      <%= link_to 'Completar', edit_student_course_test_course_user_test_path(@course,test.test,test.id), class: 'btn btn-success' if !test.completed?  %>
-                    </div>
-                </div>
-              </div>
-            <% end %>
-
-              
           </div>  
         </div>
-
-      
-        
       </div>
     </div>
 </div>

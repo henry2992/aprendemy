@@ -17,7 +17,6 @@ class Student::CourseUserTestsController < ApplicationController
       @course_user_test.last_started = DateTime.now
       @course_user_test.time_left = @test.time_limit * 60
       if @course_user_test.save
-      # raise @course_user_test.to_yaml
         @course_user_test.test.questions.each do |q|
           @course_user_test.answers.create!(user: current_user, question: q)
         end
@@ -35,9 +34,12 @@ class Student::CourseUserTestsController < ApplicationController
         @course_user_test.last_started = Time.at(Time.now)
       end
       @course_user_test.time_left -= (Time.now.to_i - @course_user_test.last_started.to_i)
-      @course_user_test.status = 0
+      @course_user_test.time_left = 0 if @course_user_test.time_left < 0
+      @course_user_test.time_completed = Time.at(Time.now) if @course_user_test.time_left == 0
+      @course_user_test.status = @course_user_test.time_left <= 0 ? "completed" : "opened"
       @course_user_test.last_started = Time.at(Time.now)
       @course_user_test.save
+      return redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' if @course_user_test.time_left == 0
     end
   end
 
@@ -45,20 +47,21 @@ class Student::CourseUserTestsController < ApplicationController
     respond_to do |format|
       if params["course_user_test"]['action_form'] == "end"
         total_questions = @course_user_test.test.questions.count
-        answered_questions = params["course_user_test"]["question_ids"].count
+        answered_questions = 0
+        answered_questions = params["course_user_test"]["question_ids"].count if params["course_user_test"]["question_ids"]
         percent_to_go = total_questions * 75/100
         if @course_user_test.save
           if ( @course_user_test.time_left - (Time.now.to_i - @course_user_test.last_started.to_i) ) > 0
-            set_answers params["course_user_test"]["question_ids"]
+            set_answers params["course_user_test"]["question_ids"] if params["course_user_test"]["question_ids"]
           else
-            @course_user_test.status = 2 # :completed
+            @course_user_test.status = "completed" # :completed
             @course_user_test.time_completed = DateTime.now
             @course_user_test.save
             format.html { redirect_to student_course_tests_path(@course), notice: 'Sorry, time is over!, your answers have not been stored' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           end
           if answered_questions >= percent_to_go
-            @course_user_test.status = 2 # :completed
+            @course_user_test.status = "completed" # :completed
             @course_user_test.time_completed = DateTime.now
             @course_user_test.save
             format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' }
@@ -97,7 +100,7 @@ class Student::CourseUserTestsController < ApplicationController
     end
 
     def set_course_user_test
-      @course_user_test = CourseUserTest.where(course_user: @course_user, test: @test, status: [0, 1]).first # :opened or :paused
+      @course_user_test = CourseUserTest.where(course_user: @course_user, test: @test).first # :opened or :paused
     end
 
     def course_user_test_params
