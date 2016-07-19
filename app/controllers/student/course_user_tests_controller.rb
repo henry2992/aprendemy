@@ -47,11 +47,12 @@ class Student::CourseUserTestsController < ApplicationController
     respond_to do |format|
       if params["course_user_test"]['action_form'] == "end"
         total_questions = @course_user_test.test.questions.count
-        answered_questions = params["course_user_test"]["question_ids"].count
+        answered_questions = 0
+        answered_questions = params["course_user_test"]["question_ids"].count if params["course_user_test"]["question_ids"]
         percent_to_go = total_questions * 75/100
         if @course_user_test.save
           if ( @course_user_test.time_left - (Time.now.to_i - @course_user_test.last_started.to_i) ) > 0
-            set_answers params["course_user_test"]["question_ids"]
+            set_answers params["course_user_test"]["question_ids"] if params["course_user_test"]["question_ids"]
           else
             @course_user_test.status = "completed" # :completed
             @course_user_test.time_completed = DateTime.now
@@ -99,7 +100,7 @@ class Student::CourseUserTestsController < ApplicationController
     end
 
     def set_course_user_test
-      @course_user_test = CourseUserTest.where(course_user: @course_user, test: @test, status: [0, 1]).first # :opened or :paused
+      @course_user_test = CourseUserTest.where(course_user: @course_user, test: @test).first # :opened or :paused
     end
 
     def course_user_test_params

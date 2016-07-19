@@ -18,9 +18,20 @@
         <h1> Tiempo Restante </h1>
       </div>  
       <div class="test-clue-content-wrapper">
+        <% if @course_user_test.completed? %>
+        <div class="test-clock">
+          <p>Resultados:</p>
+          <ul>
+            <li>Preguntas Totales: <%= @course_user_test.test.questions.count %></li>
+            <li>Preguntas Contestadas: <%= @course_user_test.total_answers %></li>
+            <li>Preguntas Correctas: <%= @course_user_test.correct_answers if @course_user_test.completed? %></li>
+            <li>Preguntas Incorrectas: <%= @course_user_test.incorrect_answers if @course_user_test.completed? %></li>
+          </ul>
+        </div>
+        <% end %>
         <!-- Time -->
         <div class="test-clock">
-          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour_mobile"><%= @course_user_test.hour_left %></span>:<span id="min_mobile"><%= @course_user_test.min_left %></span>:<span id="sec_mobile"><%= @course_user_test.sec_left %></span></span> 
+          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour_mobile">00</span>:<span id="min_mobile">00</span>:<span id="sec_mobile">00</span></span> 
         </div>
         <div>
           <button class="btn btn-warning simulator-btn" onclick=""><span class="fa fa-pause"></span> Pausar</button>
@@ -154,8 +165,6 @@
               <% -qs+=1 %>
             </div>
           <% end %>
-          <%# button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? %>
-          <%# button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.completed? %>
           <input type="hidden" value="<%= @course_user.id %>" name="course_user_test[course_user_id]">
           <input type="hidden" value="<%= @test.id %>" name="course_user_test[test_id]">
         </div>  
@@ -167,10 +176,20 @@
         <h1> Tiempo Restante </h1>
       </div>  
       <div class="test-clue-content-wrapper">
-
+        <% if @course_user_test.completed? %>
+        <div class="test-clock">
+          <p>Resultados:</p>
+          <ul>
+            <li>Preguntas Totales: <%= @course_user_test.test.questions.count %></li>
+            <li>Preguntas Contestadas: <%= @course_user_test.total_answers %></li>
+            <li>Preguntas Correctas: <%= @course_user_test.correct_answers if @course_user_test.completed? %></li>
+            <li>Preguntas Incorrectas: <%= @course_user_test.incorrect_answers if @course_user_test.completed? %></li>
+          </ul>
+        </div>
+        <% end %>
         <!-- Time -->
         <div class="test-clock">
-          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour"><%= @course_user_test.hour_left %></span>:<span id="min"><%= @course_user_test.min_left %></span>:<span id="sec"><%= @course_user_test.sec_left %></span></span> 
+          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour">00</span>:<span id="min">00</span>:<span id="sec">00</span></span> 
         </div>
         <div>
           <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "course_user_test[action_form]") do
@@ -181,7 +200,9 @@
                 content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Calificar')
               end  unless @course_user_test.completed?
           %>
-          <button class="btn btn-info simulator-btn" onclick=""><span class="fa fa-home"></span> Menú</button>
+          <%= link_to student_course_tests_path(@course), :class => "btn btn-info simulator-btn" do 
+                content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Menú')
+          end %>
         </div>
         <!-- CLues -->
         <div class="row">
@@ -218,12 +239,14 @@
     <% end %>
   </div>
 </div>
+<% if !@course_user_test.completed? %>
 <script>
+  clearInterval(interval);
+
   var hour = parseInt("<%= @course_user_test.hour_left %>");
   var min = parseInt("<%= @course_user_test.min_left %>");
   var sec = parseInt("<%= @course_user_test.sec_left %>");
   var interval = setInterval(function() {
-      sec--;
       if (sec == 0 && min > 0) {
         sec = 59;
         min--;
@@ -239,7 +262,10 @@
         stopInterval();
         window.location = "<%= student_course_tests_path(@course) %>";
       }
-
+      else
+      {
+        sec--;
+      }
     
       if (String(hour).length == 1)
         $("#hour, #hour_mobile").html("0"+hour);
@@ -269,3 +295,4 @@
   //   return true;                            //Webkit, Safari, Chrome
   // });
 </script>
+<% end %>

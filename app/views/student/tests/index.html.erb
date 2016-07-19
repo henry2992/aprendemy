@@ -32,6 +32,7 @@
                     <div class="info-card">
                       <p><%= test.description %></p>
                       <%= link_to 'Completar', edit_student_course_test_course_user_test_path(@course,test,test.id), class: 'btn btn-success' if !cut.completed?  %>
+                      <%= link_to 'Resultados', edit_student_course_test_course_user_test_path(@course,test,test.id), class: 'btn btn-warning' if cut.completed?  %>
                     </div>
                 </div>
               </div>
