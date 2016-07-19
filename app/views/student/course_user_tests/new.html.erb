@@ -11,7 +11,7 @@
       met = :put
       target = student_course_test_course_user_test_path(@course,@test,@course_user_test) unless @course_user_test.completed?
     %>
-    <%= form_tag target, :method => met do %>
+    <%= form_tag target, :method => met, :id => "form" do %>
     <!-- Clues Mobile-->
     <div class="test-time-wrapper-mobile">
       <div class="test-title-wrapper">
@@ -156,6 +156,7 @@
           <% end %>
           <input type="hidden" value="<%= @course_user.id %>" name="course_user_test[course_user_id]">
           <input type="hidden" value="<%= @test.id %>" name="course_user_test[test_id]">
+          <input type="hidden" value="" name="course_user_test[action_form]" id="action_form">
         </div>  
       </div>
     </div>
@@ -171,19 +172,17 @@
           <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour">00</span>:<span id="min">00</span>:<span id="sec">00</span></span> 
         </div>
         <div>
-          <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "course_user_test[action_form]") do
+          <%= button_tag(type: 'submit', id: 'pause', class: 'btn btn-warning simulator-btn') do
                 content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')
-              end  unless @course_user_test.completed?
-          %>
-          <%= button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "course_user_test[action_form]") do
+              end unless @course_user_test.completed? %>
+          <%= button_tag(type: 'submit', id: 'qualify', class: 'btn btn-success simulator-btn') do
                 content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Calificar')
-              end  unless @course_user_test.completed?
-          %>
-          <%= link_to student_course_tests_path(@course), :class => "btn btn-info simulator-btn" do 
+              end unless @course_user_test.completed? %>
+          <%= link_to student_course_tests_path(@course), :id => "exit", :class => "btn btn-info simulator-btn" do 
                 content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Menú')
-          end %>
+              end %>
         </div>
-        <!-- CLues -->
+        <!-- Clues -->
         <div class="row">
           <div class=" simulator-clue">1</div>
           <div class=" simulator-clue">2</div>
@@ -217,7 +216,80 @@
     </div>
     <% end %>
   </div>
+
+  <div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="background-color:white;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" style="color:black;" id="ModalTitle"></h4>
+        </div>
+        <div class="modal-body">
+          <p id="ModalBody"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="accept">Sí, adelante</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<script>
+  var action = "";
+  $('#pause').on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Pausar Examen');
+    $('#ModalBody').html('¿Está seguro de querer pausar el examen?');
+    action = "pause";
+    showModal();
+  });
+
+  $('#qualify').on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Calificar Examen');
+    $('#ModalBody').html('¿Está seguro de querer calificar el examen? <br>Una vez procesado todas las preguntas sin respuesta serán marcadas como incorrectas.');
+    action = "qualify";
+    showModal();
+  });
+  
+  $('#exit').on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Ir a menú');
+    $('#ModalBody').html('¿Está seguro de querer salir del examen? <br>Este será pausado y usted podrá continuar luego.');
+    action = "pause";
+    showModal();
+  });
+
+  $('#accept').on('click', function(event) {
+    event.preventDefault();
+    
+    if (action == "pause")
+      $('#action_form').val('pause');
+    if (action == "qualify")
+      $('#action_form').val('end');
+
+    /* Act on the event */
+    $('#message').modal('hide');
+    $('#form').submit();
+  });
+
+  $('#closeModal').on('click', function(event) {
+    /* Act on the event */
+    action = "";
+  });
+
+
+  function showModal() {
+    $('#message').modal({
+      keyboard: false,
+      backdrop: 'static'
+    });
+  }
+</script>
 <% if !@course_user_test.completed? %>
 <script>
   clearInterval(interval);
@@ -226,12 +298,10 @@
   var sec = parseInt("<%= @course_user_test.sec_left %>");
   var interval = setInterval(function() {
       if (sec == 0 && min > 0) {
-        // console.log("sec == 0 && min > 0");
         sec = 59;
         min--;
         if (min == 0 && hour > 0)
         {
-          // console.log("min == 0 && hour > 0");
           min = 59;
 
           hour--;
@@ -256,7 +326,6 @@
         sec--;
       }
 
-
       if (String(hour).length == 1)
         $("#hour, #hour_mobile").html("0"+hour);
       else
@@ -279,130 +348,6 @@
     clearInterval(interval);
     interval = null;
   }
-  // window.addEventListener("beforeunload", function (e) {
 
-  //   (e || window.event).returnValue = true; //Gecko + IE
-  //   return true;                            //Webkit, Safari, Chrome
-  // });
 </script>
 <% end %>
-
-
-<!-- .alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
-  .button.close{ :"data-dismiss"=>"alert"}
-    ×
-  .show-flash
-.application-wrapper.container-fluid
-  .row
-    =render 'layouts/user_sidebar'
-    - show_explanation = !@answers.nil?
-    .main-bg
-      %content
-        .content-wrapper.col-sm-9.col-md-10
-          .application-content
-            .content-margin.row
-              %ol.breadcrumb{:style=>"background-color:#fff"}
-                = render_breadcrumbs :tag => :li, :separator => ""
-        .content-wrapper.col-sm-9.col-md-10
-          .application-content
-            .content-margin.row
-              .app-text-holder.row.main-bg
-                %content
-                  %h1= @course_user_test.test.title
-                  %h3= "Tiempo restante: <span id=\"hour\">#{@course_user_test.hour_left}</span>:<span id=\"min\">#{@course_user_test.min_left}</span>:<span id=\"sec\">#{@course_user_test.sec_left}</span>".html_safe
-        .content-wrapper.col-sm-9.col-md-10
-          .application-content
-            .content-margin.row
-              .app-text-holder.row.main-bg
-                %content
-                  - qs = 0
-                  - target = ""
-                  - met = ""
-                  - met = :put
-                  - target = student_course_test_course_user_test_path(@course,@test,@course_user_test)(@course,@test,@course_user_test) unless @course_user_test.status == 2 # :completed
-                  = form_tag target, :method => met do
-                    - @course_user_test.test.questions.each do |q|
-                      %h3= q.content
-                      - if @answers
-                        - wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
-                      - if q.picture.present?
-                        = image_tag(q.picture, class: "img-responsive", alt: q.content)
-                      - if q.explanation && show_explanation
-                        %p.lead.explanation
-                          = q.explanation
-                      - if q.url
-                        = link_to q.url, q.url
-                      - if q.questions
-                        - q.questions.each do |qs|
-                          %hr{:style=>"width:80%"}
-                          %h3= qs.content
-                          - if qs.picture.present?
-                            = image_tag(qs.picture, class: "img-responsive", alt: qs.content)
-                          - if @answers
-                            %p.lead
-                              = qs.explanation
-                          - if qs.url
-                            = link_to qs.url, qs.url
-                      - if q.choices
-                        - q.choices.each do |c|
-                          - cl = ""
-                          - st = ""
-                          - ch = false
-                          - if @answers
-                            - if @answers.where(question_id: q.id).first.choice_id == c.id
-                              - ch = true
-                              - if wrong
-                                - cl = "has-error"
-                                - st = "border: thin solid red"
-                              - else
-                                - cl = "has-success"
-                                - st = "border: thin solid green"
-                          %div{:class=>cl, :style=>st}
-                            .radio
-                              %label
-                                = radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch
-                                = c.content
-                                - if @answers
-                                  - if @answers.where(question_id: q.id).first.choice_id == c.id
-                                    - if wrong
-                                      %span.text-danger
-                                        * Error
-                      -qs+=1
-                      %hr
-                    = button_tag 'Pausar', name: "course_user_test[action_form]", value: "pause", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.status == 2 # :completed
-                    = button_tag 'Calificar', name: "course_user_test[action_form]", value: "end", class: 'btn btn-primary submit' , type: :submit unless @course_user_test.status == 2 # :completed
-                    %input{:type=>"hidden", :value=>"#{@course_user.id}", :name=>"course_user_test[course_user_id]"}
-                    %input{:type=>"hidden", :value=>"#{@test.id}", :name=>"course_user_test[test_id]"}
-:javascript
-  var hour = "#{@course_user_test.hour_left}";
-  var min = "#{@course_user_test.min_left}";
-  var sec = "#{@course_user_test.sec_left}";
-  var interval = setInterval(function() {
-      sec--;
-      if (sec <= 0) {
-        sec = 59;
-        min--;
-        if (min <= 0)
-        {
-          min = 59;
-          hour--;
-        }
-      }
-      if (String(hour).length == 1)
-        $("#hour").html("0"+hour);
-      else
-        $("#hour").html(hour);
-
-      if (String(min).length == 1)
-        $("#min").html("0"+min);
-      else
-        $("#min").html(min);
-
-      if (String(sec).length == 1)
-        $("#sec").html("0"+sec);
-      else
-        $("#sec").html(sec);
-
-  }, 1000); -->
-
-
