@@ -35,6 +35,7 @@ class CourseUserTest < ActiveRecord::Base
   end
 
   def set_status
+    CourseUserTest.where(status: [0,1], course_user_id: self.course_user_id).destroy_all
     self.status = "opened"
   end
 

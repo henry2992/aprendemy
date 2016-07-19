@@ -229,7 +229,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Cerrar</button>
-          <button type="button" class="btn btn-primary" id="accept">Aceptar</button>
+          <button type="button" class="btn btn-primary" id="accept">Sí, adelante</button>
         </div>
       </div>
     </div>
@@ -240,8 +240,8 @@
   $('#pause').on('click', function(event) {
     event.preventDefault();
     /* Act on the event */
-    $('#ModalTitle').html('Pausar Prueba');
-    $('#ModalBody').html('¿Está seguro de querer pausar la prueba?');
+    $('#ModalTitle').html('Pausar Examen');
+    $('#ModalBody').html('¿Está seguro de querer pausar el examen?');
     action = "pause";
     showModal();
   });
@@ -249,8 +249,8 @@
   $('#qualify').on('click', function(event) {
     event.preventDefault();
     /* Act on the event */
-    $('#ModalTitle').html('Calificar Prueba');
-    $('#ModalBody').html('¿Está seguro de querer calificar la prueba? <br>Una vez procesado todas las preguntas sin respuesta serán marcadas como incorrectas.');
+    $('#ModalTitle').html('Calificar Examen');
+    $('#ModalBody').html('¿Está seguro de querer calificar el examen? <br>Una vez procesado todas las preguntas sin respuesta serán marcadas como incorrectas.');
     action = "qualify";
     showModal();
   });
@@ -259,7 +259,7 @@
     event.preventDefault();
     /* Act on the event */
     $('#ModalTitle').html('Ir a menú');
-    $('#ModalBody').html('¿Está seguro de querer salir de la prueba? <br>La prueba será pausada y usted podrá continuar luego.');
+    $('#ModalBody').html('¿Está seguro de querer salir del examen? <br>Este será pausado y usted podrá continuar luego.');
     action = "pause";
     showModal();
   });

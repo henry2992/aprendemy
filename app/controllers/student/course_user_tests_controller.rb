@@ -11,20 +11,15 @@ class Student::CourseUserTestsController < ApplicationController
 
   def new
     add_breadcrumb "Inicio", :root_path
-    course_user_test = CourseUserTest.where(course_user: @course_user, test: @test).first
-    if !course_user_test && !CourseUserTest.where(course_user: @course_user, status: :paused).present?
-      @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
-      @course_user_test.last_started = DateTime.now
-      @course_user_test.time_left = @test.time_limit * 60
-      if @course_user_test.save
-        @course_user_test.test.questions.each do |q|
-          @course_user_test.answers.create!(user: current_user, question: q)
-        end
-      else
-        redirect_to student_course_tests_path(@course), notice: 'Ha ocurrido un error al guardar'
+    @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
+    @course_user_test.last_started = DateTime.now
+    @course_user_test.time_left = @test.time_limit * 60
+    if @course_user_test.save
+      @course_user_test.test.questions.each do |q|
+        @course_user_test.answers.create!(user: current_user, question: q)
       end
     else
-      redirect_to student_course_tests_path(@course), notice: 'Ha ocurrido un error al guardar, verifique que ya no haya seleccionado este test o tenga tests por completar'
+      redirect_to student_course_tests_path(@course), notice: 'Ha ocurrido un error al guardar'
     end
   end
 
