@@ -479,6 +479,38 @@ ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
 
 
 --
+-- Name: events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE events (
+    id integer NOT NULL,
+    name character varying,
+    start_time timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE events_id_seq OWNED BY events.id;
+
+
+--
 -- Name: licenses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1109,7 +1141,8 @@ CREATE TABLE tutorials (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     course_id integer,
-    category_id integer
+    category_id integer,
+    sub_category_id integer
 );
 
 
@@ -1317,6 +1350,13 @@ ALTER TABLE ONLY course_users ALTER COLUMN id SET DEFAULT nextval('course_users_
 --
 
 ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
 --
@@ -1551,6 +1591,14 @@ ALTER TABLE ONLY course_users
 
 ALTER TABLE ONLY courses
     ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
 
 --
@@ -2099,4 +2147,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160715201134');
 INSERT INTO schema_migrations (version) VALUES ('20160716053312');
 
 INSERT INTO schema_migrations (version) VALUES ('20160716054856');
+
+INSERT INTO schema_migrations (version) VALUES ('20160716055112');
+
+INSERT INTO schema_migrations (version) VALUES ('20160718003747');
 

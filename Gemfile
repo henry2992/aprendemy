@@ -35,7 +35,6 @@ gem 'kaminari'
 
 #Other
 gem 'flipclockjs-rails', '~> 0.7.7'
-gem 'figaro'
 gem 'haml'
 
 gem 'capistrano', '~> 3.4.0'
@@ -52,8 +51,7 @@ gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 gem "breadcrumbs_on_rails"
 gem "wysiwyg-rails"
-
-
+gem "simple_calendar", "~> 2.0"
 
 
 group :development, :test do
