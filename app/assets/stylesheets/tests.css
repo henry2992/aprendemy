@@ -1,0 +1,658 @@
+.test-wrapper{
+  margin: 20px;
+}
+
+.test-title-wrapper{
+  background-color: #06476b;
+  padding: 20px !important;
+  position: relative;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.test-title-wrapper  h1 {
+  color: rgba(255, 255, 255, 0.87);
+  font-size: 1.25em;
+  display: inline-block;
+}
+
+
+.test-content-wrapper{
+  background: #fff;
+  padding: 30px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+
+
+/******* Info Card *********/
+
+
+
+.card {
+  margin: 10px auto 0px;
+  display: inline-block !important;
+  border: 1px solid #ced7df;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.info-card {
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+
+.info-card p {
+  text-align: left;
+  font-size: 0.9em;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.5;
+}
+
+.info-card button {
+  /*max-width: 200px;*/
+}
+
+/********** Global Wrappers *********/
+
+
+
+.book-card-edit .subcategory-info-wrapper{
+  -webkit-animation: cardTitle .3s ease forwards;
+    animation: cardTitle .3s ease forwards
+}
+
+.book-card-edit .subcategory-information{
+  -webkit-animation: cardInfo .3s ease forwards;
+    animation: cardInfo .3s ease forwards;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    display: block;
+    position: relative;
+    opacity: 0;
+    margin-bottom: 0.3rem
+}
+
+.subcategory-card:hover{
+  color: rgba(255, 255, 255, 0.9)
+}
+
+.subcategory-card:hover:before{
+   opacity: 1
+}
+
+
+.subcategory-card:hover .subcategory-info-wrapper{
+  -webkit-animation: cardTitle .3s ease forwards;
+    animation: cardTitle .3s ease forwards
+}
+
+.subcategory-card:hover .subcategory-information{
+  -webkit-animation: cardInfo .3s ease forwards;
+    animation: cardInfo .3s ease forwards;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    display: block;
+    position: relative;
+    opacity: 0;
+    margin-top: 7px
+}
+
+
+@keyframes cardInfo {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes cardTitle {
+    from {
+        bottom: -1rem
+    }
+
+    to {
+        bottom: 0rem
+    }
+}
+
+
+.subcategory-title{
+   font-weight: 300;
+    text-align: right;
+    font-size: 1.5em;
+    color: white;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.64);
+    margin-bottom: 9px;
+}
+
+
+.subcategory-title a {
+  color: white;
+}
+
+.subcategory-title a:hover {
+  text-decoration: none;
+}
+
+.subcategory-information {
+  margin: 0;
+    padding: 0;
+    text-align: right;
+    opacity: 0;
+    margin-bottom: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease
+}
+
+.subcategory-information li{
+  list-style: none;
+    display: block;
+    color: white;
+    font-size: 0.75em;
+    font-weight: 400
+}
+
+.subcategory-information li i {
+  vertical-align: middle;
+    margin-right: 0.1rem;
+    color: #20A2D6
+}
+
+.subcategory-info-wrapper{
+  position: absolute;
+    bottom: -4rem;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.subcategory-card{
+  background-position: center;
+    height: 250px;
+    /*max-width: 200px;*/
+    background-size: auto 100%;
+    border-bottom: 1px solid #ced7df;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+
+.subcategory-card:before{
+  border-radius: 0px;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: -webkit-linear-gradient(top, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+    background-image: linear-gradient(to bottom, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+    opacity: 0.8;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease
+}
+
+.book-card-edit:before {
+    opacity: 1
+}
+
+
+
+
+
+
+
+
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+/* Card fixes */
+@media only screen and (min-width : 450px) {
+  .subcategory-card{
+      min-width: 100%;
+      height: 200px;
+    }
+
+    .cat-grid{
+      width: 50%;
+      display: inline-block;
+    } 
+
+    .info-card button {
+    width: 100%;
+  }
+}
+
+/* Card fixes */
+@media only screen and (min-width : 550px) {
+  .subcategory-card{
+      /*min-width: 175px;*/
+      height: 215px;
+    }
+}
+
+/* Card fixes */
+@media only screen and (min-width : 650px) {
+  .subcategory-card{
+      /*min-width: 250px;*/
+      height: 300px;
+    }
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+  .subcategory-card{
+      /*min-width: 175px;*/
+      height: 225px;
+    }
+    .cat-grid{
+      width: 33%;
+    } 
+  
+}
+
+@media only screen and (min-width : 850px) {
+  .subcategory-card{
+      /*min-width: 215px;*/
+      height: 250px;
+    }
+    .cat-grid{
+      width: 33%;
+    } 
+  
+}
+
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+  .subcategory-card {
+      /*min-width: 185px;*/
+      height: 250px;
+    }
+    .cat-grid{
+      width: 24.9%;
+    } 
+    
+
+}
+
+
+/* Card fixes */
+@media only screen and (min-width : 1200px) {
+  .subcategory-card{
+      /*min-width: 250px;*/
+      height: 275px;
+    }
+  
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1450px) {
+  .subcategory-card{
+      /*min-width: 300px;*/
+      height: 375px;
+    }
+
+    .card {
+      width: 300px;
+    }
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+
+}
+
+
+/***********************************/
+/*********** TEST INNER ***********/
+/*********************************/
+
+
+.test-inner-wrapper{
+  margin: 20px;
+    display: inline-block;
+}
+
+
+
+.test-question-wrapper{
+    background: #fff;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.test-question {
+    /*border-bottom: 1px solid rgb(224, 224, 224);*/
+    padding-bottom: 10px !important;
+    /*border-top: 1px solid rgb(224, 224, 224);*/
+    padding-top: 10px !important;
+}
+
+
+/**** Cool box ******/
+
+label.coolbox {
+    background: #fff;
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+}
+
+label.coolbox:hover {
+    background: rgb(232,243,251);
+    cursor: pointer;
+}
+
+
+label.coolbox input {
+    display:none;
+}
+
+label.coolbox .box-number {
+    color: rgb(214, 218, 222);
+    float: left;
+    border: solid rgb(214, 218, 222) 3px;
+    padding: 10px 15px
+}
+
+label.coolbox .box-number:hover {
+    color: #06476b;
+    border: solid #06476b 3px;
+}
+
+
+label.coolbox input:checked + span {
+    color: #06476b;
+    border: solid #06476b 3px;
+    background-color: rgb(232,243,251);
+}
+
+label.coolbox .wrong {
+    color: #fff !important;
+    float: left !important;
+    border: solid rgb(222,30,26) 3px !important;
+    background-color: rgba(222,30,26,0.3)  !important;
+    padding: 10px 15px !important;
+}
+
+label.coolbox .right {
+    color: #fff !important;
+    float: left !important;
+    border: solid rgb(100,206,131) 3px !important;
+    background-color: rgba(100,206,131,0.3)  !important;
+    padding: 10px 15px !important;
+}
+
+
+.box-info {
+    margin-top: 10px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+
+.remind-later{
+    float: right;
+    font-size: 12px;
+}
+
+/* Clues */
+
+
+.test-time-wrapper-mobile{
+    margin: 20px;
+    display: block;
+}
+
+.test-time-wrapper{
+    margin: 20px;
+    display: none;
+}
+
+.test-clue-content-wrapper{
+    background: #fff;
+    padding: 30px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.test-clock{
+    text-align: center;
+}
+
+.simulator-btn{
+    display: block;
+    width: 75%;
+    margin: 15px auto;
+}
+
+.simulator-clue{
+    border: black 1px solid;
+    display: inline-block;
+    width: 15%;
+    margin-left: 3%;
+    margin-top: 10px;
+    height: 30px;
+    font-size: 13px;
+    padding: 5px 0px 0 0px;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+}
+
+
+.visual-colored-clues{
+    text-align: justify;
+    margin-top: 30px;
+}
+
+.visual-colored-clues ul {
+    padding: 0 !important;
+    margin: 0px 0px 0px 25px !important;
+}
+
+.visual-clue{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;   
+    display: inline-block;
+}
+
+.list-simulator-clue{
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.answered {
+    background-color: rgb(55, 171, 93);
+    border: 1px solid rgb(55, 171, 93); 
+}
+
+.later {
+    border: 1px solid #46b8da;
+    background-color: #46b8da;
+}
+
+.no-answer {
+    border: 1px solid black;
+    background-color: white;
+}
+
+
+/******************************/
+/********* Answers ***********/
+/****************************/
+
+
+.answer{
+    background-color: rgba(230,230,230, 0.6);
+    padding: 20px 0px !important;
+    margin-bottom: 20px !important;
+    position: relative;
+}
+.answer p {
+    margin: 0  0 0 10px;
+    color: rgb(97,110,118);
+    padding: 0 !important;
+    border: none;
+}
+
+.wrong-color {
+    color : rgb(222,30,26);
+}
+
+.show-video {
+    display: block;
+    cursor: pointer;
+    margin: 10px auto;
+    width: 175px;
+}
+
+.show-video p {
+    border: 2px solid rgb(97,110,118);
+    display: inline-block;
+    padding: 10px !important;
+}
+
+.right-color {
+    color: rgb(100,206,131);
+}
+
+/****************************/
+/******** Results **********/
+/**************************/
+
+
+.test-results{
+    list-style: none;
+    text-align: left;
+}
+
+.final-results {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.final-results-text{
+    font-size: 10px;
+    position: absolute;
+    margin-left: -8px
+}
+
+.right-results{
+    display: inline-block;
+    width: 48%;
+    background-color: rgb(100,206,131);
+    color: #fff;
+    vertical-align: center;
+    font-size: 3em;
+    position: relative;
+}
+.wrong-results {
+    display: inline-block;
+    background-color: rgb(235,91,93);
+    width: 48%;
+    color: #fff;
+    vertical-align: center;
+    font-size: 3em;
+    position: relative;
+}
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 600px) {
+
+   
+    
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+    .test-time-wrapper-mobile{
+        display: none;
+    }
+    .test-inner-wrapper{
+        width: 65%;
+        display: inline-block;
+        margin: 20px 0 0 20px; 
+    }
+    .test-time-wrapper{
+        width: 28%;
+        float: right;
+        display: inline-block;
+        margin: 20px 20px 0 0;
+    }
+
+}
+ 
+
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+    .test-inner-wrapper{
+        width: 70%;
+    }
+    .test-time-wrapper{
+        width: 25%;
+    }
+     .show-video {
+        float: right;
+        margin-top: -36px;
+        margin-right: 5px;
+    }
+}
+
+
+/* Large Screens */
+@media only screen and (min-width : 1200px) {
+   
+    
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1450px) {
+  
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+
+}

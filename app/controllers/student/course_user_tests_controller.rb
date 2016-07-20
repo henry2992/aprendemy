@@ -51,18 +51,20 @@ class Student::CourseUserTestsController < ApplicationController
           else
             @course_user_test.status = "completed" # :completed
             @course_user_test.time_completed = DateTime.now
+            @course_user_test.time_left = 0
             @course_user_test.save
-            format.html { redirect_to student_course_tests_path(@course), notice: 'Sorry, time is over!, your answers have not been stored' }
+            format.html { redirect_to student_course_tests_path(@course), notice: 'Sorry, time is over!, your answers have not been stored, now this test is completed' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           end
           if answered_questions >= percent_to_go
             @course_user_test.status = "completed" # :completed
             @course_user_test.time_completed = DateTime.now
+            @course_user_test.time_left = 0
             @course_user_test.save
             format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           else
-            format.html { redirect_to student_course_tests_path(@course), notice: 'Your answers have been stored, but to end this test you must answer at least 75% of total questions.' }
+            format.html { redirect_to student_course_tests_path(@course), notice: 'Your answers have been stored, but to complete this test you must answer at least 75% of total questions.' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           end
         else
