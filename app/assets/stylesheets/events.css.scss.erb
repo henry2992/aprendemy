@@ -1,0 +1,180 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.events-holder{
+	margin-top: 70px;	
+}
+
+.events-heading{
+	position: relative;
+
+}
+
+.events-title{
+	font-size: 2.3em;
+	position: relative;
+	padding-bottom: 15px !important;
+	margin-bottom: 10px !important;
+}
+
+.events-title:after{
+	content: "";
+	height: 5px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: -webkit-linear-gradient(left, #06476b, #1CAEF6 35%);
+	background: linear-gradient(90deg, #06476b 0, #1CAEF6 35%)
+}
+
+.legend {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: box;
+	display: flex;
+	list-style: none;
+	padding: 1em 0;
+	margin-top: 25px !important;
+	margin-bottom: 25px !important;
+}
+
+.legend li {
+	padding-left: 25px;
+	margin-right: 1em;
+	position: relative;
+}
+
+.legend .blue:before{
+	background: rgba(7, 145, 230, .25)
+}
+
+.legend .green:before{
+	background: rgba(127, 199, 25, .25)
+}
+
+.legend .red:before{
+	background: rgba(255, 72, 66, .25)
+}
+
+.legend .orange:before{
+	background: rgba(255, 127, 56, .25)
+}
+
+.legend li:before{
+	content: "";
+	width: 16px;
+	height: 16px;
+	background: #daf0bc;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: 1px
+}
+
+/* Calendar Table */
+
+.simple-calendar{
+	display: none;
+}
+
+.calendar-heading{
+	padding: .5em 0;
+	color: #1CAEF6;
+	letter-spacing: 8px;
+	font-weight: 700;
+	font-size: 13px;
+	text-transform: uppercase;
+	border: 2px solid #fff;
+	text-align: center;
+	background: #06476b;
+}
+
+.w-day{
+	text-transform: uppercase;
+	font-size: 13px;
+	font-weight: 400;
+	text-align: center;
+	border-bottom: none !important;
+}
+
+.day {
+	border: 2px solid #fff;
+	border-bottom: 1px solid #dbdbe2;
+	border-top: 1px solid #dbdbe2;
+	border-left: 1px solid #fff;
+	background: rgba(243, 243, 246, .7);
+	height: 60px;
+	font-size: .8em;
+	width: 15.5% !important;
+	text-align: center;
+}
+
+.prev-month{
+	background: rgb(200,200,200) !important;
+	color: rgb(200,200,200) !important;
+}
+
+
+
+
+/* Sessions */
+
+.sessions-dates {
+	padding: 15px 10px !important;
+}
+
+.sessions-dates:nth-of-type(odd) {
+	background: rgba(243, 243, 246, .7)
+}
+
+.tag {
+	background: #bee0f6;
+	color: #1c3643;
+	font-size: 11px;
+	/*line-height: 1;*/
+	padding: 3px 10px;
+	border-radius: 5px;
+}
+
+
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+	.simple-calendar{
+		display: inline-block;
+	}
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+    
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+
+
+
+
+
+

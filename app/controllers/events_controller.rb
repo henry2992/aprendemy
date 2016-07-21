@@ -1,10 +1,12 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_filter :user_is_admin?, except: [:index, :show]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
+    @events_types = EventType.all
   end
 
   # GET /events/1

@@ -385,7 +385,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-15 19:57:56.241806'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-21 13:42:09.89391'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -479,6 +479,38 @@ ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
 
 
 --
+-- Name: event_types; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE event_types (
+    id integer NOT NULL,
+    name character varying,
+    color character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: event_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE event_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: event_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE event_types_id_seq OWNED BY event_types.id;
+
+
+--
 -- Name: events; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -487,7 +519,8 @@ CREATE TABLE events (
     name character varying,
     start_time timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    event_type_id integer
 );
 
 
@@ -1000,7 +1033,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-15 19:57:54.832005'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-21 13:42:08.443987'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1140,8 +1173,6 @@ CREATE TABLE tutorials (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    course_id integer,
-    category_id integer,
     sub_category_id integer
 );
 
@@ -1350,6 +1381,13 @@ ALTER TABLE ONLY course_users ALTER COLUMN id SET DEFAULT nextval('course_users_
 --
 
 ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY event_types ALTER COLUMN id SET DEFAULT nextval('event_types_id_seq'::regclass);
 
 
 --
@@ -1594,6 +1632,14 @@ ALTER TABLE ONLY courses
 
 
 --
+-- Name: event_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY event_types
+    ADD CONSTRAINT event_types_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1827,6 +1873,13 @@ CREATE INDEX index_course_user_plans_on_plan_id ON course_user_plans USING btree
 
 
 --
+-- Name: index_events_on_event_type_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_events_on_event_type_id ON events USING btree (event_type_id);
+
+
+--
 -- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1964,6 +2017,14 @@ ALTER TABLE ONLY answers
 
 ALTER TABLE ONLY resources
     ADD CONSTRAINT fk_rails_6d1984789f FOREIGN KEY (section_id) REFERENCES sections(id);
+
+
+--
+-- Name: fk_rails_75f14fef31; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT fk_rails_75f14fef31 FOREIGN KEY (event_type_id) REFERENCES event_types(id);
 
 
 --
@@ -2144,11 +2205,11 @@ INSERT INTO schema_migrations (version) VALUES ('20160714202100');
 
 INSERT INTO schema_migrations (version) VALUES ('20160715201134');
 
-INSERT INTO schema_migrations (version) VALUES ('20160716053312');
-
-INSERT INTO schema_migrations (version) VALUES ('20160716054856');
-
 INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 
 INSERT INTO schema_migrations (version) VALUES ('20160718003747');
+
+INSERT INTO schema_migrations (version) VALUES ('20160721175000');
+
+INSERT INTO schema_migrations (version) VALUES ('20160721183605');
 
