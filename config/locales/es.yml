@@ -38,13 +38,13 @@ es:
   #Date
   date:
     abbr_day_names:
-    - dom
-    - lun
-    - mar
-    - mié
-    - jue
-    - vie
-    - sáb
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
     abbr_month_names:
     -
     - ene
