@@ -41,9 +41,10 @@ class Student::CourseUserTestsController < ApplicationController
   def update
     respond_to do |format|
       if params["course_user_test"]['action_form'] == "end"
+        final_questions = params["course_user_test"]["question_ids"].reject {|key,value| value == "marked" } if params["course_user_test"]["question_ids"]
         total_questions = @course_user_test.test.questions.count
         answered_questions = 0
-        answered_questions = params["course_user_test"]["question_ids"].count if params["course_user_test"]["question_ids"]
+        answered_questions = final_questions.count if final_questions
         percent_to_go = total_questions * 75/100
         if @course_user_test.save
           if ( @course_user_test.time_left - (Time.now.to_i - @course_user_test.last_started.to_i) ) > 0
@@ -86,7 +87,12 @@ class Student::CourseUserTestsController < ApplicationController
 
     def set_answers answers
       answers.each do |q|
-        @course_user_test.answers.where(user: current_user, question_id: q[0]).update_all(choice_id: q[1])
+        marked = q[1] == "marked" ? 1 : 0
+        if marked == 1
+          @course_user_test.answers.where(user: current_user, question_id: q[0]).update_all(marked: 1)
+        else
+          @course_user_test.answers.where(user: current_user, question_id: q[0]).update_all(choice_id: q[1],marked: 0)
+        end
       end
     end
 

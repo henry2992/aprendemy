@@ -59,12 +59,25 @@
           <% clues = [] 
              clue_index = 0 %>
           <% @course_user_test.test.questions.each do |q| %>
-            <% clues[clue_index] = @course_user_test.answers.where(question_id: q.id).first.choice_id != nil ? "answered" : "no-answer" %>
+            <% 
+              clues[clue_index] = if @course_user_test.answers.where(question_id: q.id).first.marked == 1
+                                    "later"
+                                  elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id != nil
+                                    "answered"
+                                  elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id == nil
+                                    "no-answer"
+                                  end
+            %>
             <div class="test-question">
               <div class="remind-later"> 
                 <label> 
                   <input name="simulator_answered_question[marked_status]" type="hidden" value="unmarked">
-                  <input class="simulator-ajax-submittable answer-later" data-form="simulator-42-question-2008" type="checkbox" value="marked" name="simulator_answered_question[marked_status]" data-clue="clue_<%= clue_index %>" data-question-id="<%= q.id %>"> Responder luego
+                  <input class="simulator-ajax-submittable answer-later" 
+                                           type="checkbox" 
+                                           value="marked" 
+                                           name="course_user_test[question_ids[<%= q.id %>]]" 
+                                           data-clue="clue_<%= clue_index %>" 
+                                           data-question-id="<%= q.id %>"> Responder luego
                 </label>
               </div>
               <p><%= q.content %></p>
@@ -73,11 +86,6 @@
                 end %>
               <% if q.picture.present? %>
                 <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
-              <% end %>
-              <% if q.explanation && show_explanation %>
-                <p class="lead explanation">
-                  <%= q.explanation %>
-                </p>
               <% end %>
               <% if q.url %>
                 <%= link_to q.url, q.url %>
@@ -89,11 +97,6 @@
                     <p><%= q.content %></p>
                     <% if qs.picture.present? %>
                       <%= image_tag(qs.picture, class: "img-responsive", alt: qs.content) %>
-                    <% end %>
-                    <% if @answers %>
-                      <p class="lead">
-                        <%= qs.explanation %>
-                      </p>
                     <% end %>
                     <% if qs.url %>
                       <%= link_to qs.url, qs.url %>

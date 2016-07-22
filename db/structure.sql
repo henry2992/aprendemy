@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.0
--- Dumped by pg_dump version 9.5.0
+-- Dumped from database version 9.5.2
+-- Dumped by pg_dump version 9.5.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -385,7 +385,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-15 19:57:56.241806'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-12 09:01:41.163552'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -756,6 +756,7 @@ ALTER SEQUENCE resource_progresses_id_seq OWNED BY resource_progresses.id;
 CREATE TABLE resources (
     id integer NOT NULL,
     name character varying,
+    tutorial_id integer,
     material_id integer,
     material_type character varying,
     created_at timestamp without time zone NOT NULL,
@@ -968,7 +969,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-15 19:57:54.832005'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-06-17 20:26:01.311427'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1108,8 +1109,6 @@ CREATE TABLE tutorials (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    course_id integer,
-    category_id integer,
     sub_category_id integer
 );
 
@@ -1815,6 +1814,13 @@ CREATE INDEX index_resources_on_section_id ON resources USING btree (section_id)
 
 
 --
+-- Name: index_resources_on_tutorial_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_resources_on_tutorial_id ON resources USING btree (tutorial_id);
+
+
+--
 -- Name: index_sections_on_course_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2096,10 +2102,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160714181425');
 INSERT INTO schema_migrations (version) VALUES ('20160714202100');
 
 INSERT INTO schema_migrations (version) VALUES ('20160715201134');
-
-INSERT INTO schema_migrations (version) VALUES ('20160716053312');
-
-INSERT INTO schema_migrations (version) VALUES ('20160716054856');
 
 INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 
