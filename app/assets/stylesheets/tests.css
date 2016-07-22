@@ -491,12 +491,14 @@ label.coolbox .right {
 
 .answered {
     background-color: rgb(55, 171, 93);
-    border: 1px solid rgb(55, 171, 93); 
+    border: 1px solid rgb(55, 171, 93);
+    color: white;
 }
 
 .later {
     border: 1px solid #46b8da;
     background-color: #46b8da;
+    color: white;
 }
 
 .no-answer {
