@@ -61,6 +61,15 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'event' do
+    edit do
+      field :name
+    end
+  end
+
+
+
+
   config.label_methods.unshift(:rails_admin_displayed_label)
   config.model Point do
     edit do

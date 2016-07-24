@@ -385,7 +385,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-21 13:42:09.89391'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-21 14:45:08.858094'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -519,8 +519,7 @@ CREATE TABLE events (
     name character varying,
     start_time timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    event_type_id integer
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1033,7 +1032,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-21 13:42:08.443987'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-21 14:45:07.55523'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1873,13 +1872,6 @@ CREATE INDEX index_course_user_plans_on_plan_id ON course_user_plans USING btree
 
 
 --
--- Name: index_events_on_event_type_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_events_on_event_type_id ON events USING btree (event_type_id);
-
-
---
 -- Name: index_live_classes_on_course_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2017,14 +2009,6 @@ ALTER TABLE ONLY answers
 
 ALTER TABLE ONLY resources
     ADD CONSTRAINT fk_rails_6d1984789f FOREIGN KEY (section_id) REFERENCES sections(id);
-
-
---
--- Name: fk_rails_75f14fef31; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY events
-    ADD CONSTRAINT fk_rails_75f14fef31 FOREIGN KEY (event_type_id) REFERENCES event_types(id);
 
 
 --
@@ -2210,6 +2194,4 @@ INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 INSERT INTO schema_migrations (version) VALUES ('20160718003747');
 
 INSERT INTO schema_migrations (version) VALUES ('20160721175000');
-
-INSERT INTO schema_migrations (version) VALUES ('20160721183605');
 
