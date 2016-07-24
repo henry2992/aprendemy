@@ -183,7 +183,8 @@ CREATE TABLE answers (
     question_id integer NOT NULL,
     item_id integer NOT NULL,
     item_type character varying NOT NULL,
-    choice_id integer
+    choice_id integer,
+    marked integer DEFAULT 0
 );
 
 
@@ -385,7 +386,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-15 19:57:56.241806'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-21 14:45:08.858094'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -476,6 +477,70 @@ CREATE SEQUENCE courses_id_seq
 --
 
 ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
+
+
+--
+-- Name: event_types; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE event_types (
+    id integer NOT NULL,
+    name character varying,
+    color character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: event_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE event_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: event_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE event_types_id_seq OWNED BY event_types.id;
+
+
+--
+-- Name: events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE events (
+    id integer NOT NULL,
+    name character varying,
+    start_time timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
@@ -968,7 +1033,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-15 19:57:54.832005'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-21 14:45:07.55523'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1108,8 +1173,7 @@ CREATE TABLE tutorials (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    course_id integer,
-    category_id integer
+    sub_category_id integer
 );
 
 
@@ -1317,6 +1381,20 @@ ALTER TABLE ONLY course_users ALTER COLUMN id SET DEFAULT nextval('course_users_
 --
 
 ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY event_types ALTER COLUMN id SET DEFAULT nextval('event_types_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
 --
@@ -1551,6 +1629,22 @@ ALTER TABLE ONLY course_users
 
 ALTER TABLE ONLY courses
     ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: event_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY event_types
+    ADD CONSTRAINT event_types_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
 
 --
@@ -2096,7 +2190,11 @@ INSERT INTO schema_migrations (version) VALUES ('20160714202100');
 
 INSERT INTO schema_migrations (version) VALUES ('20160715201134');
 
-INSERT INTO schema_migrations (version) VALUES ('20160716053312');
+INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 
-INSERT INTO schema_migrations (version) VALUES ('20160716054856');
+INSERT INTO schema_migrations (version) VALUES ('20160718003747');
+
+INSERT INTO schema_migrations (version) VALUES ('20160721110348');
+
+INSERT INTO schema_migrations (version) VALUES ('20160721175000');
 

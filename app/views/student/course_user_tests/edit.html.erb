@@ -1,7 +1,7 @@
 <div id="application"> 
   <!-- Vertical Nav -->
   <%= render 'student/navigation/vertical_navbar' %>
-  <% show_explanation = !@answers.nil? %>
+  <% show_explanation = !@course_user_test.answers.nil? && @course_user_test.completed? %>
   <!-- Content -->
   <div id="container">
     <% 
@@ -11,7 +11,7 @@
       met = :put
       target = student_course_test_course_user_test_path unless @course_user_test.completed?
     %>
-    <%= form_tag target, :method => met do %>
+    <%= form_tag target, :method => met, id: "form" do %>
     <!-- Clues Mobile-->
     <div class="test-time-wrapper-mobile">
       <div class="test-title-wrapper">
@@ -21,12 +21,14 @@
         <% if @course_user_test.completed? %>
         <div class="test-clock">
           <p>Resultados:</p>
-          <ul>
+          <ul class="test-results">
             <li>Preguntas Totales: <%= @course_user_test.test.questions.count %></li>
             <li>Preguntas Contestadas: <%= @course_user_test.total_answers %></li>
-            <li>Preguntas Correctas: <%= @course_user_test.correct_answers if @course_user_test.completed? %></li>
-            <li>Preguntas Incorrectas: <%= @course_user_test.incorrect_answers if @course_user_test.completed? %></li>
           </ul>
+          <div class="final-results">
+            <div class="right-results"><span class="final-results-text">Correctas</span> <%= @course_user_test.correct_answers if @course_user_test.completed? %></div>
+            <div class="wrong-results"><span class="final-results-text">Incorrectas</span> <%= @course_user_test.incorrect_answers if @course_user_test.completed? %> </div>
+          </div>
         </div>
         <% end %>
         <!-- Time -->
@@ -39,20 +41,8 @@
           <button class="btn btn-info simulator-btn" onclick=""><span class="fa fa-home"></span>Menú</button>
         </div>
         <!-- CLues -->
-        <div class="row">
-          <div class=" simulator-clue">1</div>
-          <div class=" simulator-clue">2</div>
-          <div class=" simulator-clue">3</div>
-          <div class=" simulator-clue">4</div>
-          <div class=" simulator-clue">5</div>
-        </div>
-        <div class="row">
-          <div class=" simulator-clue">6</div>
-          <div class=" simulator-clue">7</div>
-          <div class=" simulator-clue">8</div>
-          <div class=" simulator-clue">9</div>
-          <div class=" simulator-clue">10</div>
-        </div>
+        <span class="clues-mobile"></span>
+        
         <div class="visual-colored-clues row">
           <ul>
             <div>
@@ -79,41 +69,47 @@
       <div class="test-content-wrapper">
         <div class=" row rox-fix">
           <!-- Question --> 
+          <% clues = [] 
+             clue_index = 0 %>
           <% @course_user_test.test.questions.each do |q| %>
+            <% 
+              clues[clue_index] = if @course_user_test.answers.where(question_id: q.id).first.marked == 1
+                                    "later"
+                                  elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id != nil
+                                    "answered"
+                                  elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id == nil
+                                    "no-answer"
+                                  end
+            %>
             <div class="test-question">
               <div class="remind-later"> 
                 <label> 
                   <input name="simulator_answered_question[marked_status]" type="hidden" value="unmarked">
-                  <input class="simulator-ajax-submittable" data-form="simulator-42-question-2008" type="checkbox" value="marked" name="simulator_answered_question[marked_status]" id="simulator_answered_question_marked_status"> Responder luego
+                  <input class="simulator-ajax-submittable answer-later" 
+                         type="checkbox" 
+                         value="marked" 
+                         name="course_user_test[question_ids[<%= q.id %>]]" 
+                         data-clue="clue_<%= clue_index %>" 
+                         data-question-id="<%= q.id %>"
+                         <%= "checked='checked'" if @course_user_test.answers.where(question_id: q.id).first.marked == 1 %>> Responder luego
                 </label>
               </div>
               <p><%= q.content %></p>
-              <% if @answers
-                  wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
+              <% if @course_user_test.answers
+                  wrong = true if @course_user_test.answers.where(question_id: q.id).first.choice_id != q.choice_id
                 end %>
               <% if q.picture.present? %>
                 <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
-              <% end %>
-              <% if q.explanation && show_explanation %>
-                <p class="lead explanation">
-                  <%= q.explanation %>
-                </p>
               <% end %>
               <% if q.url %>
                 <%= link_to q.url, q.url %>
               <% end %>
               <% if q.questions %>
                 <% q.questions.each do |qs| %>
-                  <!-- <hr style="width:80%"> -->
                   <div class="test-question">
                     <p><%= q.content %></p>
                     <% if qs.picture.present? %>
                       <%= image_tag(qs.picture, class: "img-responsive", alt: qs.content) %>
-                    <% end %>
-                    <% if @answers %>
-                      <p class="lead">
-                        <%= qs.explanation %>
-                      </p>
                     <% end %>
                     <% if qs.url %>
                       <%= link_to qs.url, qs.url %>
@@ -125,48 +121,68 @@
                 <% 
                 letters = ("A".."Z").to_a
                 lpos = 0
+                
+                answer_class = ""
+                answer_title = ""
+                answer_text = ""
+                
                 %>
+                <% answer_class = "wrong-color"
+                   answer_title = "Ops!"
+                   answer_text = "Esa respuesta es incorrecta :(" %>
                 <% q.choices.each do |c| %>
                   <%
                   cl = ""
                   st = ""
                   ch = @course_user_test.answers.find_by(question: q, choice: c) ? true : false
                   %>
-                  <% if @answers %>
-                    <% if @answers.where(question_id: q.id).first.choice_id == c.id %>
+                  <% if @course_user_test.answers && @course_user_test.completed? %>
+                    <% if @course_user_test.answers.where(question_id: q.id).first.choice_id == c.id %>
                       <% ch = true %>
                       <% if wrong %>
-                        <% cl = "has-error"
-                           st = "border: thin solid red" %>
+                        <% cl = "wrong" %>
                       <% else %>
-                        <% cl = "has-success"
-                           st = "border: thin solid green" %>
+                        <% cl = "right" %>
                       <% end %>
                     <% end %>
                   <% end %>
-                  <label class="coolbox <%= cl %>">
-                      <%= radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch %>
-                      <span class="box-number"> <%= letters[lpos] %> </span>
-                      <span class="box-info"> <%= c.content %> </span>
-                      <% if @answers %>
-                        <% if @answers.where(question_id: q.id).first.choice_id == c.id %>
-                          <% if wrong %>
-                            <span class="text-danger">
-                              * Error
-                            </span>
-                          <% end %>
+                  <label class="coolbox label_clue_<%= clue_index %>" data-clue="clue_<%= clue_index %>">
+                    <%= radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch %>
+                    <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
+                    <span class="box-info"> <%= c.content %> </span>
+                    <% if @course_user_test.answers && @course_user_test.completed?%>
+                      <% if @course_user_test.answers.where(question_id: q.id).first.choice_id == c.id %>
+                        <% if wrong %>
+                          <% answer_class = "wrong-color"
+                             answer_title = "Ops!"
+                             answer_text = "Esa respuesta es incorrecta :(" %>
+                        <% else %>
+                          <% answer_class = "right-color"
+                             answer_title = "Bien hecho!"
+                             answer_text = "La respuesta es correcta :)" %>
                         <% end %>
-                      <% #end %>
+                      <% end %>
                     <% end %>
                   </label>
                   <% lpos += 1 %>
                 <% end %>
+                <% if q.explanation && show_explanation %>
+                  <div class="answer">
+                    <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
+                    <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+                    <div class="show-video">
+                      <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+                    </div>
+                  </div>
+                <% end %>
               <% end %>
               <% -qs+=1 %>
             </div>
+            <% clue_index += 1 %>
           <% end %>
           <input type="hidden" value="<%= @course_user.id %>" name="course_user_test[course_user_id]">
           <input type="hidden" value="<%= @test.id %>" name="course_user_test[test_id]">
+          <input type="hidden" value="" name="course_user_test[action_form]" id="action_form">
         </div>  
       </div>
     </div>
@@ -179,46 +195,49 @@
         <% if @course_user_test.completed? %>
         <div class="test-clock">
           <p>Resultados:</p>
-          <ul>
+          <ul class="test-results">
             <li>Preguntas Totales: <%= @course_user_test.test.questions.count %></li>
             <li>Preguntas Contestadas: <%= @course_user_test.total_answers %></li>
-            <li>Preguntas Correctas: <%= @course_user_test.correct_answers if @course_user_test.completed? %></li>
-            <li>Preguntas Incorrectas: <%= @course_user_test.incorrect_answers if @course_user_test.completed? %></li>
           </ul>
+          <div class="final-results">
+            <div class="right-results"><span class="final-results-text">Correctas</span> <%= @course_user_test.correct_answers if @course_user_test.completed? %></div>
+            <div class="wrong-results"><span class="final-results-text">Incorrectas</span> <%= @course_user_test.incorrect_answers if @course_user_test.completed? %> </div>
+          </div>
         </div>
+        <% else %>
+          <div class="test-clock">
+            <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour">00</span>:<span id="min">00</span>:<span id="sec">00</span></span> 
+          </div>
         <% end %>
         <!-- Time -->
-        <div class="test-clock">
-          <b><span class="fa fa-clock-o"></span> Tiempo:</b> <span id=""><span id="hour">00</span>:<span id="min">00</span>:<span id="sec">00</span></span> 
-        </div>
         <div>
-          <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "course_user_test[action_form]") do
+          <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "course_user_test[action_form]", id: "pause") do
                 content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')
               end  unless @course_user_test.completed?
           %>
-          <%= button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "course_user_test[action_form]") do
+          <%= button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "course_user_test[action_form]", id: "qualify") do
                 content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Calificar')
               end  unless @course_user_test.completed?
           %>
-          <%= link_to student_course_tests_path(@course), :class => "btn btn-info simulator-btn" do 
+          <%= link_to student_course_tests_path(@course), :class => "btn btn-info simulator-btn", id: "exit" do 
                 content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Menú')
           end %>
         </div>
         <!-- CLues -->
+        <span class="clues">
+        <% index = 0 %>
         <div class="row">
-          <div class=" simulator-clue">1</div>
-          <div class=" simulator-clue">2</div>
-          <div class=" simulator-clue">3</div>
-          <div class=" simulator-clue">4</div>
-          <div class=" simulator-clue">5</div>
+        <% clues.each do |c| %>
+          <div class=" simulator-clue <%= c %> clue_<%= index %>"><%= index + 1 %></div>
+        <% if (index + 1) % 5 == 0 %>
         </div>
         <div class="row">
-          <div class=" simulator-clue">6</div>
-          <div class=" simulator-clue">7</div>
-          <div class=" simulator-clue">8</div>
-          <div class=" simulator-clue">9</div>
-          <div class=" simulator-clue">10</div>
+        <% end %>
+        <% index += 1 %>
+        <% end %>
         </div>
+        </span>
+          
         <div class="visual-colored-clues row">
           <ul>
             <div>
@@ -238,7 +257,140 @@
     </div>
     <% end %>
   </div>
+  
+  <div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="background-color:white;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" style="color:black;" id="ModalTitle"></h4>
+        </div>
+        <div class="modal-body">
+          <p id="ModalBody"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="accept">Sí, adelante</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<script>
+  var action = "";
+
+  $(".show_explanation").on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Ver explicación');
+    $('#ModalBody').html($(this).attr('data-explanation'));
+    $('#accept').hide();
+    showModal();
+  });
+
+  $('#pause').on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Pausar Examen');
+    $('#ModalBody').html('¿Está seguro de querer pausar el examen?');
+    action = "pause";
+    showModal();
+  });
+
+  $('#qualify').on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Calificar Examen');
+    $('#ModalBody').html('¿Está seguro de querer calificar el examen? <br>Una vez procesado todas las preguntas sin respuesta serán marcadas como incorrectas.');
+    action = "qualify";
+    showModal();
+  });
+  <% if !@course_user_test.completed? %>
+  $('#exit').on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Ir a menú');
+    $('#ModalBody').html('¿Está seguro de querer salir del examen? <br>Este será pausado y usted podrá continuar luego.');
+    action = "pause";
+    showModal();
+  });
+  <% end %>
+
+  $('#accept').on('click', function(event) {
+    event.preventDefault();
+    
+    if (action == "pause")
+      $('#action_form').val('pause');
+    if (action == "qualify")
+      $('#action_form').val('end');
+
+    /* Act on the event */
+    $('#message').modal('hide');
+    $('#form').submit();
+  });
+
+  $('#closeModal').on('click', function(event) {
+    /* Act on the event */
+    $('#accept').show();
+    action = "";
+  });
+
+
+  function showModal() {
+    $('#message').modal({
+      keyboard: false,
+      backdrop: 'static'
+    });
+  }
+  $('.clues-mobile').html($('.clues').html());
+
+  <% if !@course_user_test.completed? %>
+
+  $('.coolbox').click(function(event) {
+    /* Act on the event */
+    var clue = $(this).attr('data-clue');
+    
+    $("."+clue).removeClass('later')
+               .removeClass('no-answer')
+               .addClass('answered');
+    return true;
+  });
+
+  $('.answer-later').click(function(event) {
+    var clue = $(this).attr('data-clue');
+    var question = $(this).attr('data-question-id');
+    $("."+clue).removeClass('answered')
+               .removeClass('no-answer')
+               .removeClass('later');
+    
+    
+    if ($(this).is(":checked"))
+    { 
+      $("."+clue).addClass("later");
+      $("label.label_"+clue).find("input").attr('checked',false);
+      $("label.label_"+clue+" > span:nth-child(2)").removeClass('box-number')
+                                      .removeClass('wrong')
+                                      .removeClass('right')
+                                      .addClass('box-number');
+    }
+    else
+    { 
+      $("."+clue).addClass("no-answer");
+      $("label.label_"+clue+" > span:nth-child(2)").removeClass('box-number')
+                                      .removeClass('wrong')
+                                      .removeClass('right')
+                                      .addClass('box-number');
+    }
+      
+    return true;
+  });
+
+  <% end %>
+
+</script>
+
 <% if !@course_user_test.completed? %>
 <script>
   clearInterval(interval);

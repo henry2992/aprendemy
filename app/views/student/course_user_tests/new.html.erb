@@ -28,20 +28,8 @@
           <button class="btn btn-info simulator-btn" onclick=""><span class="fa fa-home"></span>Menú</button>
         </div>
         <!-- CLues -->
-        <div class="row">
-          <div class=" simulator-clue">1</div>
-          <div class=" simulator-clue">2</div>
-          <div class=" simulator-clue">3</div>
-          <div class=" simulator-clue">4</div>
-          <div class=" simulator-clue">5</div>
-        </div>
-        <div class="row">
-          <div class=" simulator-clue">6</div>
-          <div class=" simulator-clue">7</div>
-          <div class=" simulator-clue">8</div>
-          <div class=" simulator-clue">9</div>
-          <div class=" simulator-clue">10</div>
-        </div>
+        <span class="clues-mobile"></span>
+
         <div class="visual-colored-clues row">
           <ul>
             <div>
@@ -67,13 +55,29 @@
         
       <div class="test-content-wrapper">
         <div class=" row rox-fix">
-          <!-- Question --> 
+          <!-- Question -->
+          <% clues = [] 
+             clue_index = 0 %>
           <% @course_user_test.test.questions.each do |q| %>
+            <% 
+              clues[clue_index] = if @course_user_test.answers.where(question_id: q.id).first.marked == 1
+                                    "later"
+                                  elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id != nil
+                                    "answered"
+                                  elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id == nil
+                                    "no-answer"
+                                  end
+            %>
             <div class="test-question">
               <div class="remind-later"> 
                 <label> 
                   <input name="simulator_answered_question[marked_status]" type="hidden" value="unmarked">
-                  <input class="simulator-ajax-submittable" data-form="simulator-42-question-2008" type="checkbox" value="marked" name="simulator_answered_question[marked_status]" id="simulator_answered_question_marked_status"> Responder luego
+                  <input class="simulator-ajax-submittable answer-later" 
+                                           type="checkbox" 
+                                           value="marked" 
+                                           name="course_user_test[question_ids[<%= q.id %>]]" 
+                                           data-clue="clue_<%= clue_index %>" 
+                                           data-question-id="<%= q.id %>"> Responder luego
                 </label>
               </div>
               <p><%= q.content %></p>
@@ -82,11 +86,6 @@
                 end %>
               <% if q.picture.present? %>
                 <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
-              <% end %>
-              <% if q.explanation && show_explanation %>
-                <p class="lead explanation">
-                  <%= q.explanation %>
-                </p>
               <% end %>
               <% if q.url %>
                 <%= link_to q.url, q.url %>
@@ -98,11 +97,6 @@
                     <p><%= q.content %></p>
                     <% if qs.picture.present? %>
                       <%= image_tag(qs.picture, class: "img-responsive", alt: qs.content) %>
-                    <% end %>
-                    <% if @answers %>
-                      <p class="lead">
-                        <%= qs.explanation %>
-                      </p>
                     <% end %>
                     <% if qs.url %>
                       <%= link_to qs.url, qs.url %>
@@ -133,7 +127,7 @@
                       <% end %>
                     <% end %>
                   <% end %>
-                  <label class="coolbox <%= cl %>">
+                  <label class="coolbox label_clue_<%= clue_index %>" data-clue="clue_<%= clue_index %>">
                       <%= radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch %>
                       <span class="box-number"> <%= letters[lpos] %> </span>
                       <span class="box-info"> <%= c.content %> </span>
@@ -153,6 +147,7 @@
               <% end %>
               <% -qs+=1 %>
             </div>
+            <% clue_index += 1 %>
           <% end %>
           <input type="hidden" value="<%= @course_user.id %>" name="course_user_test[course_user_id]">
           <input type="hidden" value="<%= @test.id %>" name="course_user_test[test_id]">
@@ -182,21 +177,21 @@
                 content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Menú')
               end %>
         </div>
-        <!-- Clues -->
+        
+        <span class="clues">
+        <% index = 0 %>
         <div class="row">
-          <div class=" simulator-clue">1</div>
-          <div class=" simulator-clue">2</div>
-          <div class=" simulator-clue">3</div>
-          <div class=" simulator-clue">4</div>
-          <div class=" simulator-clue">5</div>
+        <% clues.each do |c| %>
+          <div class=" simulator-clue <%= c %> clue_<%= index %>"><%= index + 1 %></div>
+        <% if (index + 1) % 5 == 0 %>
         </div>
         <div class="row">
-          <div class=" simulator-clue">6</div>
-          <div class=" simulator-clue">7</div>
-          <div class=" simulator-clue">8</div>
-          <div class=" simulator-clue">9</div>
-          <div class=" simulator-clue">10</div>
+        <% end %>
+        <% index += 1 %>
+        <% end %>
         </div>
+        </span>
+
         <div class="visual-colored-clues row">
           <ul>
             <div>
@@ -274,6 +269,7 @@
 
     /* Act on the event */
     $('#message').modal('hide');
+
     $('#form').submit();
   });
 
@@ -289,8 +285,48 @@
       backdrop: 'static'
     });
   }
+
+  $('.clues-mobile').html($('.clues').html());
+
+  $('.coolbox').click(function(event) {
+    /* Act on the event */
+    var clue = $(this).attr('data-clue');
+    
+    $("."+clue).removeClass('later')
+               .removeClass('no-answer')
+               .addClass('answered');
+    return true;
+  });
+
+  $('.answer-later').click(function(event) {
+    var clue = $(this).attr('data-clue');
+    var question = $(this).attr('data-question-id');
+    $("."+clue).removeClass('answered')
+               .removeClass('no-answer')
+               .removeClass('later');
+    
+    
+    if ($(this).is(":checked"))
+    { 
+      $("."+clue).addClass("later");
+      $("label.label_"+clue).find("input").attr('checked',false);
+      $("label.label_"+clue+" > span:nth-child(2)").removeClass('box-number')
+                                      .removeClass('wrong')
+                                      .removeClass('right')
+                                      .addClass('box-number');
+    }
+    else
+    { 
+      $("."+clue).addClass("no-answer");
+      $("label.label_"+clue+" > span:nth-child(2)").removeClass('box-number')
+                                      .removeClass('wrong')
+                                      .removeClass('right')
+                                      .addClass('box-number');
+    }
+      
+    return true;
+  });
 </script>
-<% if !@course_user_test.completed? %>
 <script>
   clearInterval(interval);
   var hour = parseInt("<%= @course_user_test.hour_left %>");
@@ -350,4 +386,3 @@
   }
 
 </script>
-<% end %>
