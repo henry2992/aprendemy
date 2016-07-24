@@ -385,7 +385,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-21 14:45:08.858094'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-24 17:23:48.842362'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -518,6 +518,7 @@ CREATE TABLE events (
     id integer NOT NULL,
     name character varying,
     start_time timestamp without time zone,
+    event_type_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -1032,7 +1033,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-21 14:45:07.55523'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-24 17:23:47.457566'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1869,6 +1870,13 @@ CREATE INDEX index_course_user_plans_on_course_user_id ON course_user_plans USIN
 --
 
 CREATE INDEX index_course_user_plans_on_plan_id ON course_user_plans USING btree (plan_id);
+
+
+--
+-- Name: index_events_on_event_type_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_events_on_event_type_id ON events USING btree (event_type_id);
 
 
 --

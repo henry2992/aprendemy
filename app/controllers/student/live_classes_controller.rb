@@ -7,6 +7,8 @@ class Student::LiveClassesController < ApplicationController
     # @time = Time.parse(@enes.time.to_s).utc.to_i*1000 if @enes
     # flash[:notice] = "No hay clases en vivo programadas"  if !@time
     # redirect_to :back if !@time
+    @events = Event.all
+    @events_types = EventType.all
   end
 
   private

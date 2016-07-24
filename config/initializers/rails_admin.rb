@@ -61,12 +61,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'event' do
-    edit do
-      field :name
-    end
-  end
-
 
 
 
