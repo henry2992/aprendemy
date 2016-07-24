@@ -1,4 +1,4 @@
-class Student::CourseUserTestsController < ApplicationController
+class Student::CourseUserTestsController < Student::StudentController
   before_action :load_course_user_test, only: [:new, :update, :edit]
   before_action :set_course_user_test, only: [:update, :set_answers, :show, :edit]
 

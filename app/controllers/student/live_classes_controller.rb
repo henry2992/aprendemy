@@ -1,4 +1,4 @@
-class Student::LiveClassesController < ApplicationController
+class Student::LiveClassesController < Student::StudentController
 
   def index
   	@enes = LiveClass.find_by_id(1) # Revisar para obtener un parámetro o usar otro filtro, verificar cuando se destruyen las clases en vivo
