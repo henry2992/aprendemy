@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
   has_many :questions, through: :sub_categories
 
   has_many :simulated_categories, inverse_of: :category
-  has_many :tutorials
+  # has_many :tutorials
 
   belongs_to :user
   belongs_to :course
