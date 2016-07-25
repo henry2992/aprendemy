@@ -15,15 +15,15 @@ class CourseUserTest < ActiveRecord::Base
   end
   
   def hour_left
-    (Time.at(self.time_left) - 72000).strftime("%H")
+    Time.at(self.time_left).utc.strftime("%H")
   end
 
   def min_left
-    (Time.at(self.time_left) - 72000).strftime("%M")
+    Time.at(self.time_left).utc.strftime("%M")
   end
 
   def sec_left
-    (Time.at(self.time_left) - 72000).strftime("%S")
+    Time.at(self.time_left).utc.strftime("%S")
   end
 
   def incorrect_answers
