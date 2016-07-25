@@ -1,4 +1,4 @@
-class Student::CategoriesController < ApplicationController
+class Student::CategoriesController < Student::StudentController
   before_action :set_data
   before_filter :authenticate_user!
   before_filter :user_is_admin?, except: [:index, :show]

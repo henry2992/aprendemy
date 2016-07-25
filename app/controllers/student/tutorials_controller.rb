@@ -1,4 +1,4 @@
-class Student::TutorialsController < ApplicationController
+class Student::TutorialsController < Student::StudentController
   before_action :set_data
   before_action :set_tutorial, only: [:show, :edit, :update, :destroy]
 

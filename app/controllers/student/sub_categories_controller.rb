@@ -1,4 +1,4 @@
-class SubCategoriesController < ApplicationController
+class Student::SubCategoriesController < Student::StudentController
   before_filter :authenticate_user!
   before_filter :user_is_admin?, only: [:edit, :delete]
 
