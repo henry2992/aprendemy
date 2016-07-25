@@ -333,49 +333,51 @@
   var min = parseInt("<%= @course_user_test.min_left %>");
   var sec = parseInt("<%= @course_user_test.sec_left %>");
   var interval = setInterval(function() {
-      if (sec == 0 && min > 0) {
-        sec = 59;
-        min--;
-        if (min == 0 && hour > 0)
+    if (sec == 0) 
+    {
+      sec = 59;
+      if (min == 0) 
+      {
+        min = 59;
+        if (hour == 0) 
         {
-          min = 59;
 
+        }
+        else
+        {
           hour--;
         }
       }
       else
       {
-        if (hour > 0) {
-          console.log("");
-          hour--;
-          min=59;
-          sec=59;
-        }
+        min--;
       }
-      if (hour==0 && min==0 && sec==0)
-      {
-        stopInterval();
-        window.location = "<%= student_course_tests_path(@course) %>";
-      }
-      else
-      {
-        sec--;
-      }
+    }
+    else
+    {
+      sec--;
+    }
+  
+    if (hour==0 && min==0 && sec==0)
+    {
+      stopInterval();
+      window.location = "<%= student_course_tests_path(@course) %>";
+    }
+    
+    if (String(hour).length == 1)
+      $("#hour, #hour_mobile").html("0"+hour);
+    else
+      $("#hour, #hour_mobile").html(hour);
 
-      if (String(hour).length == 1)
-        $("#hour, #hour_mobile").html("0"+hour);
-      else
-        $("#hour, #hour_mobile").html(hour);
+    if (String(min).length == 1)
+      $("#min, #min_mobile").html("0"+min);
+    else
+      $("#min, #min_mobile").html(min);
 
-      if (String(min).length == 1)
-        $("#min, #min_mobile").html("0"+min);
-      else
-        $("#min, #min_mobile").html(min);
-
-      if (String(sec).length == 1)
-        $("#sec, #sec_mobile").html("0"+sec);
-      else
-        $("#sec, #sec_mobile").html(sec);
+    if (String(sec).length == 1)
+      $("#sec, #sec_mobile").html("0"+sec);
+    else
+      $("#sec, #sec_mobile").html(sec);
 
   }, 1000);
 
