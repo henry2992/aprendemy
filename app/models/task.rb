@@ -1,7 +1,6 @@
 class Task < ActiveRecord::Base
   has_one :resource, :as => :material
 
-
   has_many :answers, :as => :item
   has_many :questions, :as => :parent 
   
