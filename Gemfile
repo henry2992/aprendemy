@@ -35,7 +35,6 @@ gem 'kaminari'
 
 #Other
 gem 'flipclockjs-rails', '~> 0.7.7'
-gem 'figaro'
 gem 'haml'
 
 gem 'capistrano', '~> 3.4.0'

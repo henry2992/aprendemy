@@ -2,13 +2,6 @@ class Student::CourseUserTestsController < Student::StudentController
   before_action :load_course_user_test, only: [:new, :update, :edit]
   before_action :set_course_user_test, only: [:update, :set_answers, :show, :edit]
 
-  # GET /course_user_tests
-  # GET /course_user_tests.json
-  def index
-    add_breadcrumb "Inicio", :root_path
-    @course_user_tests = CourseUserTest.all
-  end
-
   def new
     add_breadcrumb "Inicio", :root_path
     @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)

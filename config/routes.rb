@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :courses, only: [:index, :show] do
       # TESTS
       resources :tests, only: [:index] do
-        resources :course_user_tests, :path => "test", only:[:index, :edit, :new, :update]
+        resources :course_user_tests, :path => "test", only:[:edit, :new, :update]
       end
       # PROGRESS
       resources :progress, only: [:index] do

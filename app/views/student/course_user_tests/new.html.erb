@@ -91,15 +91,15 @@
                 <%= link_to q.url, q.url %>
               <% end %>
               <% if q.questions %>
-                <% q.questions.each do |qs| %>
+                <% q.questions.each do |qss| %>
                   <!-- <hr style="width:80%"> -->
                   <div class="test-question">
-                    <p><%= q.content %></p>
-                    <% if qs.picture.present? %>
-                      <%= image_tag(qs.picture, class: "img-responsive", alt: qs.content) %>
+                    <p><%= qss.content %></p>
+                    <% if qss.picture.present? %>
+                      <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
                     <% end %>
-                    <% if qs.url %>
-                      <%= link_to qs.url, qs.url %>
+                    <% if qss.url %>
+                      <%= link_to qss.url, qss.url %>
                     <% end %>
                   </div>
                 <% end %>
