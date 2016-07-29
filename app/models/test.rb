@@ -2,7 +2,7 @@ class Test < ActiveRecord::Base
   has_many :questions, -> { order('id') }, :as => :parent
   has_many :answers, :as => :item
 
-  has_many :course_user_test
+  has_many :course_user_test, dependent: :destroy
   belongs_to :course
 
   validates :title, :presence => true, :length => { :minimum => 2 }

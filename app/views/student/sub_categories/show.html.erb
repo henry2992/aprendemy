@@ -1,0 +1,192 @@
+<div id="application"> 
+  <!-- Vertical Nav -->
+  <%= render 'student/navigation/vertical_navbar' %>
+  <!-- Content -->
+  <div id="container">
+    <!-- Nav tabs -->
+    <% 
+      qs = 0
+      target = ""
+      met = ""
+      met = :post
+      target = student_course_category_sub_category_answers_path(@course,@sub_category.category,@sub_category)
+    %>
+    
+    <!-- Content Homework Progress-->
+    <div class="test-inner-wrapper">
+      <div class="test-title-wrapper">
+        <h1> Ejercicios de <%= @sub_category.name %> </h1>
+      </div>
+      <div class="test-content-wrapper">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="<%= "active" if params[:paginate] == "q" || !params[:paginate].present? %>"><a href="#no_contestadas" aria-controls="no_contestadas" role="tab" data-toggle="tab">No Contestadas</a></li>
+          <li class="<%= "active" if params[:paginate] == "a" %>"><a href="#contestadas" aria-controls="contestadas" role="tab" data-toggle="tab">Contestadas</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane <%= "active" if params[:paginate] == "q" || !params[:paginate].present? %> test-content-wrapper" id="no_contestadas" style="padding:0">
+            <div class="row rox-fix">
+              <%= will_paginate @questions, renderer: BootstrapPagination::Rails, :params => { :paginate => "q" } %>
+              <!-- Question -->
+              <% @questions.each do |q| %>
+                <%= form_tag target, :method => met, :id => "form" do %>
+                
+                  <div class="test-question">
+                    <p><%= q.content %></p>
+                    <% if q.picture.present? %>
+                      <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
+                    <% end %>
+                    <% if q.url %>
+                      <%= link_to q.url, q.url %>
+                    <% end %>
+                    <% if q.questions %>
+                      <% q.questions.each do |qss| %>
+                        <div class="test-question">
+                          <p><%= qss.content %></p>
+                          <% if qss.picture.present? %>
+                            <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
+                          <% end %>
+                          <% if qss.url %>
+                            <%= link_to qss.url, qss.url %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                    <% if q.choices %>
+                      <% 
+                      letters = ("A".."Z").to_a
+                      lpos = 0
+                      %>
+                      <% q.choices.each do |c| %>
+                        <%
+                        cl = ""
+                        st = ""
+                        ch = false #@course_user_test.answers.find_by(question: q, choice: c) ? true : false
+                        %>
+                        <label class="coolbox">
+                          <%= radio_button_tag "answer[choice_id]", c.id, ch %>
+                          <span class="box-number"> <%= letters[lpos] %> </span>
+                          <span class="box-info"> <%= c.content %> </span>
+                          <input type="hidden" name="answer[question_id]" value="<%= q.id %>">
+                        </label>
+                        <% lpos += 1 %>
+                      <% end %>
+                    <% end %>
+                    <% qs+=1 %>
+                    <button class="btn btn-primary" type="submit">Contestar</button>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>  
+          </div>
+          <div class="tab-pane <%= "active" if params[:paginate] == "a" %> test-content-wrapper" id="contestadas" style="padding:0">
+            <div class="row rox-fix">
+              <%= will_paginate @answered, renderer: BootstrapPagination::Rails, :params => { :paginate => "a" } %>
+              <!-- Question -->
+              <% @answered.each do |q| %>
+                <div class="test-question">
+                  <p><%= q.content %></p>
+                  <% if q.picture.present? %>
+                    <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
+                  <% end %>
+                  <% if q.url %>
+                    <%= link_to q.url, q.url %>
+                  <% end %>
+                  <% if q.questions %>
+                    <% q.questions.each do |qss| %>
+                      <div class="test-question">
+                        <p><%= qss.content %></p>
+                        <% if qss.picture.present? %>
+                          <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
+                        <% end %>
+                        <% if qss.url %>
+                          <%= link_to qss.url, qss.url %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                  <% if q.choices %>
+                    <% 
+                    letters = ("A".."Z").to_a
+                    lpos = 0
+                    answer_class = ""
+                    answer_title = ""
+                    answer_text = ""
+                    %>
+                    <% q.choices.each do |c| %>
+                      <%
+                      cl = ""
+                      st = ""
+                      ch = q.answers.first.choice_id == c.id ? true : false
+                      %>
+                      <% if ch %>
+                        <% if q.choice_id == q.answers.first.choice_id %>
+                          <% cl = "right" 
+                             answer_class = "right-color"
+                             answer_title = "Bien hecho!"
+                             answer_text = "La respuesta es correcta :)" %>
+                        <% else %>
+                          <% cl = "wrong" 
+                             answer_class = "wrong-color"
+                             answer_title = "Ops!"
+                             answer_text = "Esa respuesta es incorrecta :(" %>
+                        <% end %>
+                      <% end %>
+                      <label class="coolbox">
+                        <%= radio_button_tag "answer[choice_id]", c.id, ch %>
+                        <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
+                        <span class="box-info"> <%= c.content %> </span>
+                        <input type="hidden" name="answer[question_id]" value="<%= q.id %>">
+                      </label>
+                      <% lpos += 1 %>
+                    <% end %>
+                    <div class="answer">
+                      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
+                      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+                      <div class="show-video">
+                        <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+                      </div>
+                    </div>
+                  <% end %>
+                  <% qs+=1 %>
+                </div>
+              <% end %>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
+      <div class="modal-dialog" style="background-color:white;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" style="color:black;" id="ModalTitle"></h4>
+          </div>
+          <div class="modal-body">
+            <p id="ModalBody"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(".show_explanation").on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Ver explicación');
+    $('#ModalBody').html($(this).attr('data-explanation'));
+    showModal();
+  });
+  function showModal() {
+    $('#message').modal({
+      keyboard: false,
+      backdrop: 'static'
+    });
+  }
+</script>

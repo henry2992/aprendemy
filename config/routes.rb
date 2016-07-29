@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :courses, only: [:index, :show] do
       # TESTS
       resources :tests, only: [:index] do
-        resources :course_user_tests, :path => "test", only:[:index, :edit, :new, :update]
+        resources :course_user_tests, :path => "test", only:[:edit, :new, :update]
       end
       # PROGRESS
       resources :progress, only: [:index] do
@@ -28,11 +28,12 @@ Rails.application.routes.draw do
       # QUESTIONS
       resources :categories do
         resources :sub_categories do
-          get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
-          resources :questions do
-            resources :answered_questions
-            resources :choices
-          end
+          resources :answers, only:[:create]
+          # get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
+          # resources :questions do
+          #   resources :answered_questions
+          #   resources :choices
+          # end
         end
       end
 
