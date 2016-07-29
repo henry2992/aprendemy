@@ -31,6 +31,7 @@ gem "queue_classic", "~> 3.0.0"
 
 #Pagination
 gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 gem 'kaminari'
 
 #Other

@@ -1,4 +1,5 @@
 class Student::SubCategoriesController < Student::StudentController
+
   before_filter :authenticate_user!
   before_filter :user_is_admin?, only: [:edit, :delete]
 
@@ -90,7 +91,10 @@ class Student::SubCategoriesController < Student::StudentController
 
     def set_data
       @sub_category = SubCategory.find_by_id(params[:id])
-      @questions = @sub_category.questions.where(parent_id:nil)
+      page_questions = params[:page] if params[:paginate] == "q"
+      page_answered = params[:page] if params[:paginate] == "a"
+      @questions = @sub_category.questions.where(parent_id:nil).where.not(id: Answer.where(user: current_user).map(&:question_id)).paginate(:page => page_questions)
+      @answered = @sub_category.questions.where(parent_id:nil).where(id: Answer.where(user: current_user).map(&:question_id)).paginate(:page => page_answered)
     end
 
 end
