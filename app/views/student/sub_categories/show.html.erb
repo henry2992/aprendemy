@@ -61,19 +61,28 @@
                         <%
                         cl = ""
                         st = ""
-                        ch = false #@course_user_test.answers.find_by(question: q, choice: c) ? true : false
+                        ch = false 
                         %>
                         <label class="coolbox">
                           <%= radio_button_tag "answer[choice_id]", c.id, ch %>
-                          <span class="box-number"> <%= letters[lpos] %> </span>
+                          <span class="box-number number_<%= q.id %>_<%= c.id %>"> <%= letters[lpos] %> </span>
                           <span class="box-info"> <%= c.content %> </span>
                           <input type="hidden" name="answer[question_id]" value="<%= q.id %>">
                         </label>
                         <% lpos += 1 %>
                       <% end %>
+                      <div class="answer explanation_<%= q.id %>">
+                        <p>
+                          <i class="fa fa-times-circle-o" aria-hidden="true"></i> 
+                          <span class=""> <span class="answer_title_<%= q.id %>"></span> </span> <span class="answer_text_<%= q.id %>"></span>
+                        </p>
+                        <div class="show-video">
+                          <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+                        </div>
+                      </div>
                     <% end %>
                     <% qs+=1 %>
-                    <button class="btn btn-primary" type="submit">Contestar</button>
+                    <button class="btn btn-primary go_answer" data-question="<%= q.id %>">Contestar</button>
                   </div>
                 <% end %>
               <% end %>
@@ -140,7 +149,7 @@
                       </label>
                       <% lpos += 1 %>
                     <% end %>
-                    <div class="answer">
+                    <div class="answer tab2">
                       <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
                       <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
                       <div class="show-video">
@@ -176,12 +185,59 @@
   </div>
 </div>
 <script>
+  $(".answer").not(".tab2").hide();
   $(".show_explanation").on('click', function(event) {
     event.preventDefault();
-    /* Act on the event */
+
     $('#ModalTitle').html('Ver explicación');
     $('#ModalBody').html($(this).attr('data-explanation'));
     showModal();
+  });
+  $(".go_answer").on('click', function(event) {
+    event.preventDefault();
+    var question = $(this).attr("data-question");
+    var this_button = $(this);
+    var answer = {
+      choice_id : $(this).parent().find(".coolbox input[type='radio']:checked").val(),
+      question_id : $(this).parent().find(".coolbox input[type='hidden']").val()
+    };
+
+    $.ajax({
+      url: '<%= target %>',
+      type: 'POST',
+      dataType: 'json',
+      data: { answer: answer },
+    })
+    .done(function(data) {
+      $(".explanation_"+question).show();
+      this_button.hide();
+      if (!data.already_answered) 
+      {
+        if (data.is_correct) 
+        {
+          $(".number_"+question+"_"+answer.choice_id).addClass("right");
+          $(".explanation_"+question+" p span:first-child").addClass("right-color");
+          $(".explanation_"+question+" p > i").addClass("right-color");
+          $(".answer_title_"+question).html("Bien hecho!");
+          $(".answer_text_"+question).html("La respuesta es correcta :)");
+        }
+        else
+        {
+          $(".number_"+question+"_"+answer.choice_id).addClass("wrong");
+          $(".explanation_"+question+" p span:first-child").addClass("wrong-color");
+          $(".explanation_"+question+" p > i").addClass("wrong-color");
+          $(".answer_title_"+question).html("Ops!");
+          $(".answer_text_"+question).html("Esa respuesta es incorrecta :(");
+        }
+      }
+    })
+    .fail(function(data) {
+      console.log(data);
+    })
+    .always(function() {
+      console.log("completed");
+    });
+    
   });
   function showModal() {
     $('#message').modal({
