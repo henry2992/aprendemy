@@ -181,8 +181,8 @@ CREATE TABLE answers (
     id integer NOT NULL,
     user_id integer NOT NULL,
     question_id integer NOT NULL,
-    item_id integer NOT NULL,
-    item_type character varying NOT NULL,
+    item_id integer,
+    item_type character varying,
     choice_id integer,
     marked integer DEFAULT 0
 );
@@ -386,7 +386,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-24 17:14:15.907272'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:08.669748'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -477,70 +477,6 @@ CREATE SEQUENCE courses_id_seq
 --
 
 ALTER SEQUENCE courses_id_seq OWNED BY courses.id;
-
-
---
--- Name: event_types; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE event_types (
-    id integer NOT NULL,
-    name character varying,
-    color character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: event_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE event_types_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: event_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE event_types_id_seq OWNED BY event_types.id;
-
-
---
--- Name: events; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE events (
-    id integer NOT NULL,
-    name character varying,
-    start_time timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE events_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
@@ -1033,7 +969,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-24 17:14:13.504574'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:07.088937'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1389,20 +1325,6 @@ ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY event_types ALTER COLUMN id SET DEFAULT nextval('event_types_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq'::regclass);
 
 
@@ -1631,22 +1553,6 @@ ALTER TABLE ONLY course_users
 
 ALTER TABLE ONLY courses
     ADD CONSTRAINT courses_pkey PRIMARY KEY (id);
-
-
---
--- Name: event_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY event_types
-    ADD CONSTRAINT event_types_pkey PRIMARY KEY (id);
-
-
---
--- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY events
-    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
 
 
 --
