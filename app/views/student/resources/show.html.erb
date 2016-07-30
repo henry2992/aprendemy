@@ -1,24 +1,33 @@
 <div id="application"> 
-      <!-- Vertical Nav -->
-      <%= render 'student/navigation/vertical_navbar' %>
+  <!-- Vertical Nav -->
+  <%= render 'student/navigation/vertical_navbar' %>
 
-      <div id="container">
-        <div class="main-navigation">
-          <% if @resource.material_type.downcase == 'video' %>
-            <%= render 'student/resources/material/video' %>      
-          <% elsif @resource.material_type.downcase == 'blog' %>
-            <%= render 'student/resources/material/blog'%>
-          <% else %>
-            <%= render 'student/resources/material/task'%>
-          <% end %>
-        </div>
-      </div>
+  <div id="container">
+    <div class="main-navigation">
+      <% if @resource.material_type.downcase == 'video' %>
+        <%= render 'student/resources/material/video' %>      
+      <% elsif @resource.material_type.downcase == 'blog' %>
+        <%= render 'student/resources/material/blog'%>
+      <% else %>
+        <%= render 'student/resources/material/task'%>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-
-
-
-
+<% if @resource.material_type == "Task" %>
+<script>
+  $(document).ready(function(){
+    $('.submit').click(function(){
+      if( $('input[name^="question_ids"]:checked').size() != #{qs} ){
+        alert("Debe seleccionar una opción");
+        return false;
+      }
+    });
+    return false;
+  });
+</script>
+<% end %>
 
 <!-- .alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
   .button.close{ :"data-dismiss"=>"alert"}
