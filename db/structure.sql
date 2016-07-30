@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.2
--- Dumped by pg_dump version 9.5.2
+-- Dumped from database version 9.5.0
+-- Dumped by pg_dump version 9.5.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -181,8 +181,8 @@ CREATE TABLE answers (
     id integer NOT NULL,
     user_id integer NOT NULL,
     question_id integer NOT NULL,
-    item_id integer NOT NULL,
-    item_type character varying NOT NULL,
+    item_id integer,
+    item_type character varying,
     choice_id integer,
     marked integer DEFAULT 0
 );
@@ -386,7 +386,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-24 17:14:15.907272'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:08.669748'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -969,7 +969,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-24 17:14:13.504574'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:07.088937'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,

@@ -51,6 +51,7 @@ RailsAdmin.config do |config|
       end
       field :explanation
       field :Urlyoutube
+      field :course
     end
   end
 
