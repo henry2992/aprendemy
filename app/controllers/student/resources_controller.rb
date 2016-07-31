@@ -30,16 +30,6 @@ class Student::ResourcesController < Student::StudentController
 
   private
 
-
-    # def create_resource_progress
-    #   resource_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
-    #   if resource_progress == nil
-    #     @resource_progress = ResourceProgress.create!(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id])
-    #   else
-    #     @resource_progress = ResourceProgress.where(course_user_id: params[:course_user_id], section_id: params[:section_id], resource_id: params[:id]).first
-    #   end
-    # end
-
     def create_resource_progress
       resource_data = {
         course_user: @resource.section.course.course_users.where(course: @resource.section.course, user: current_user).first,

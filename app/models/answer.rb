@@ -6,6 +6,10 @@ class Answer < ActiveRecord::Base
 
   after_save :add_to_statistics
 
+  def is_correct?
+    self.question.choice_id == self.choice_id ? true : false
+  end
+  
   def add_to_statistics
     add1 = self.question
     add1.total_answered_count += 1

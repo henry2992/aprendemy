@@ -1,4 +1,4 @@
-class Student::LiveClassesController < ApplicationController
+class Student::LiveClassesController < Student::StudentController
 
   before_action :set_data
 

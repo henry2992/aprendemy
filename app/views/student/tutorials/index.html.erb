@@ -10,6 +10,7 @@
 				<p><%= x.name %></p>
 				<% x.tutorials.each do |t|%>
 					<h1><%= t.title %></h1>
+					<%= link_to 'Link', student_course_tutorial_path(@course, t.id) %>
 				<% end%>	
 			<% end%>
 		<% end %>

@@ -1,3 +1,4 @@
+<% qs = 0 %>
 <div class="main-title-wrapper">
 	<h1> Pregunta 1 de 10 </h1>
 	<div class="hw-arrows">
@@ -7,8 +8,8 @@
 
 </div>
 <div class="hw-progress-bar">
-		<div id="myBar" class="hw-progress" style="width:75%"></div>
-	</div>
+	<div id="myBar" class="hw-progress" style="width:75%"></div>
+</div>
 
 <div class="homework-wrapper row rox-fix" >
 	
@@ -49,6 +50,73 @@
 		    </div>
 		</form>
 	</div>	
+	
+	<!-- 
+	
+	*-qs = 0
 
+	%p.lead= @resource.material.title
+	%p= @resource.material.description
+	- target = ""
+	- met = ""
+	- if @resource.material.questions
+	  - met = :put unless @resource_progress.completed
+	  - target = student_course_progress_resource_path(@course,1,@resource) unless @resource_progress.completed
+	  = form_tag target, :method => met do
+	    = hidden_field_tag :id, @resource.id
+	    - @resource.material.questions.each do |q|
+	      %h3= q.content
+	      - if @answers
+	        - wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
+	      - if q.picture.present?
+	        = image_tag(q.picture, class: "img-responsive", alt: q.content)
+	      - if q.explanation && show_explanation
+	        %p.lead.explanation
+	          = q.explanation
+	      - if q.url
+	        = link_to q.url, q.url
+	      - if q.questions
+	        - q.questions.each do |qs|
+	          %hr{:style=>"width:80%"}
+	          %h3= qr.content
+	          - if qr.picture.present?
+	            = image_tag(qr.picture, class: "img-responsive", alt: qr.content)
+	          %h3= qs.content
+	          - if qs.picture.present?
+	            = image_tag(qs.picture, class: "img-responsive", alt: qs.content)
+	          - if @answers
+	            %p.lead
+	              = qs.explanation
+	          - if qs.url
+	            = link_to qs.url, qs.url
+	      - if q.choices
+	        - q.choices.each do |c|
+	          - cl = ""
+	          - st = ""
+	          - ch = false
+	          - if @answers
+	            - if @answers.where(question_id: q.id).first.choice_id == c.id
+	              - ch = true
+	              - if wrong
+	                - cl = "has-error"
+	                - st = "border: thin solid red"
+	              - else
+	                - cl = "has-success"
+	                - st = "border: thin solid green"
+	          %div{:class=>cl, :style=>st}
+	            .radio
+	              %label
+	                = radio_button_tag "question_ids[#{q.id}]", c.id, ch
+	                = c.content
+	                - if @answers
+	                  - if @answers.where(question_id: q.id).first.choice_id == c.id
+	                    - if wrong
+	                      %span.text-danger
+	                        * Error
+	      -qs+=1
+	      %hr
+	    = button_tag 'Terminar Tarea' , class: 'btn btn-primary submit' , type: :submit unless @resource_progress.completed
+
+	 -->
 
 </div>

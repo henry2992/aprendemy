@@ -181,9 +181,10 @@ CREATE TABLE answers (
     id integer NOT NULL,
     user_id integer NOT NULL,
     question_id integer NOT NULL,
-    item_id integer NOT NULL,
-    item_type character varying NOT NULL,
-    choice_id integer
+    item_id integer,
+    item_type character varying,
+    choice_id integer,
+    marked integer DEFAULT 0
 );
 
 
@@ -385,7 +386,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-24 20:00:08.22844'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:08.669748'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -1033,7 +1034,7 @@ CREATE TABLE simulators (
     id integer NOT NULL,
     user_id integer,
     time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-24 20:00:06.892179'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:07.088937'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
@@ -1173,7 +1174,9 @@ CREATE TABLE tutorials (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    sub_category_id integer
+    sub_category_id integer,
+    material_id integer,
+    material_type character varying
 );
 
 
@@ -1922,6 +1925,13 @@ CREATE INDEX index_sections_on_course_id ON sections USING btree (course_id);
 
 
 --
+-- Name: index_tutorials_on_material_type_and_material_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tutorials_on_material_type_and_material_id ON tutorials USING btree (material_type, material_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2199,7 +2209,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160715201134');
 
 INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 
-INSERT INTO schema_migrations (version) VALUES ('20160718003747');
+INSERT INTO schema_migrations (version) VALUES ('20160721110348');
 
-INSERT INTO schema_migrations (version) VALUES ('20160721175000');
+INSERT INTO schema_migrations (version) VALUES ('20160726195054');
+
 

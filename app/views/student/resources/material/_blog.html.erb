@@ -3,7 +3,7 @@
 </div>
 <div class="main-content-wrapper fr-view row rox-fix" >
 	<%= @resource.material.content.html_safe %>
-
+	<%= (link_to "Terminar Tarea", student_course_progress_resource_path(@course,1,@resource), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed %>
 
 	<div class="progress-controllers">
 	  	<div class="progress-backward">

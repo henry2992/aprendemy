@@ -7,12 +7,39 @@
       <div class="test-wrapper">
         
         <div class="test-title-wrapper">
-          <h1> Simuladores </h1>
+          <h1> Simuladores</h1>
         </div>
           
         <div class="test-content-wrapper">
           <div class=" row rox-fix">
-            
+            <% print_modal = false %>
+            <% @course_user_tests.each do |cut| %>
+            <% test = cut.test %>
+              <!-- test -->
+              <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
+                <div class="card">
+                    <div class="subcategory-card" style="background-image: url('https://codeplaceimages.s3.amazonaws.com/project-management-tool_thumbnail_1463755547');">
+                      <div class="subcategory-info-wrapper">
+                        <h2 class="subcategory-title">
+                          <p><%= test.title %></p>
+                        </h2>
+                        <ul class="subcategory-information">
+                          <li> 3870 ejercicios </li>
+                          <li> 75 puntos </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="info-card">
+                      <p><%= test.description %></p>
+                      <%= link_to 'Continuar Examen', edit_student_course_test_course_user_test_path(@course,test,cut), class: 'btn btn-warning' if !cut.completed?  %>
+                      <%= hidden_field_tag 'opened_test', test.id, id: "opened_test" if !cut.completed? %>
+                      <%= hidden_field_tag 'opened_cut', cut.id, id: "opened_test" if !cut.completed? %>
+                      <% print_modal = true if !cut.completed? %>
+                      <%= link_to 'Ver Estadísticas', edit_student_course_test_course_user_test_path(@course,test,test.id), class: 'btn btn-info' if cut.completed?  %>
+                    </div>
+                </div>
+              </div>
+            <% end %>
             <% @tests.each do |test| %>
               <!-- test -->
               <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
@@ -30,41 +57,70 @@
                     </div>
                     <div class="info-card">
                       <p><%= test.description %></p>
-                      <%= link_to 'Tomar Examen', new_student_course_test_course_user_test_path(@course, test), class: 'btn btn-success' if !CourseUserTest.where(course_user: @course_user, status: [0,1]).present?  %>
+                      <%= link_to 'Tomar Examen', new_student_course_test_course_user_test_path(@course, test), class: 'btn btn-success', id: "take_#{test.id}", "data-id": "#{test.id}" %>
                     </div>
                 </div>
               </div>
             <% end %>
-
-            <% @course_user_tests.each do |test| %>
-              <!-- test -->
-              <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
-                <div class="card">
-                    <div class="subcategory-card" style="background-image: url('https://codeplaceimages.s3.amazonaws.com/project-management-tool_thumbnail_1463755547');">
-                      <div class="subcategory-info-wrapper">
-                        <h2 class="subcategory-title">
-                          <p><%= test.test.title %></p>
-                        </h2>
-                        <ul class="subcategory-information">
-                          <li> 3870 ejercicios </li>
-                          <li> 75 puntos </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="info-card">
-                      <p><%= test.test.description %></p>
-                      <%= link_to 'Completar', edit_student_course_test_course_user_test_path(@course,test.test,test.id), class: 'btn btn-success' if !test.completed?  %>
-                    </div>
-                </div>
-              </div>
-            <% end %>
-
-              
           </div>  
         </div>
-
-      
-        
       </div>
     </div>
+  <% if print_modal %>
+    <div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
+      <div class="modal-dialog" style="background-color:white;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" style="color:black;" id="ModalTitle"></h4>
+          </div>
+          <div class="modal-body">
+            <p id="ModalBody"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal">Cerrar</button>
+            <button type="button" class="btn btn-info" id="continue">No, continuar con el examen anterior</button>
+            <button type="button" class="btn btn-primary" id="accept">Sí, tomar este nuevo examen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var test = "";
+      $('a[id^="take_"]').on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        test = $(this).attr('data-id');
+        $('#ModalTitle').html('Tomar Examen');
+        $('#ModalBody').html('¿Está seguro de comenzar este nuevo examen?<br />Si tiene exámenes sin completar todas esas estadísticas serán borradas');
+        showModal();
+      });
+
+      $('#continue').on('click', function(event) {
+        event.preventDefault();
+        
+        /* Act on the event */
+        $('#message').modal('hide');
+        var test = $('#opened_test').val();
+        var cut = $('#opened_cut').val();
+
+        window.location = window.location.origin + "/student/courses/<%= @course.id %>/tests/"+test+"/test/"+cut+"/edit";
+      });
+
+      $('#accept').on('click', function(event) {
+        event.preventDefault();
+        
+        /* Act on the event */
+        $('#message').modal('hide');
+        window.location = window.location.origin + "/student/courses/<%= @course.id %>/tests/"+test+"/test/new";
+      });
+
+      function showModal() {
+        $('#message').modal({
+          keyboard: false,
+          backdrop: 'static'
+        });
+      }
+    </script>
+  <% end %>
 </div>
