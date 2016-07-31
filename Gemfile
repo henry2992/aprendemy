@@ -52,8 +52,7 @@ gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 gem "breadcrumbs_on_rails"
 gem "wysiwyg-rails"
-
-
+gem "simple_calendar", "~> 2.0"
 
 
 group :development, :test do
