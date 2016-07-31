@@ -37,6 +37,8 @@
 
               <h1 class="curriculum-title"> Curriculum </h1>
 
+              <%= render 'no_curriculum' if @course.sections %>
+
               <!-- Curriculum -->
                 <% @course.sections.each do |section| %>
                   <div class="progress-wraper">                

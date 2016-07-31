@@ -11,7 +11,7 @@ class CourseUser < ActiveRecord::Base
   validates :user, :course, presence: true
 
   def progress_percent
-    (resource_progresses.where(completed: true).count*100)/total_resources
+      (resource_progresses.where(completed: true).count*100)/total_resources if total_resources != 0
   end
 
   def total_resources
