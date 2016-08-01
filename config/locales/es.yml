@@ -483,6 +483,6 @@ es:
         one:   "casi 1 año"
         other: "casi %{count} años"
   will_paginate:
-    previous_label: "&#8592;"
-    next_label: "&#8594;"
+    previous_label: <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    next_label: <i class="fa fa-arrow-right" aria-hidden="true"></i>
     page_gap: "&hellip;"
