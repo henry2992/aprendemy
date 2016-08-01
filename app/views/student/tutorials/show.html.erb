@@ -5,7 +5,7 @@
       <div id="container">
         <div class="main-navigation">
           <% if @tutorial.material_type.downcase == 'video' %>
-            <%= render 'student/resources/material/video' %>      
+            <%= render 'video' %>      
           <% else %>
             <%= render 'blog'%>
           <% end %>

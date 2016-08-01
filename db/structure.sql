@@ -1075,7 +1075,8 @@ CREATE TABLE sub_categories (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     questions_count integer DEFAULT 0,
-    description text
+    description text,
+    picture character varying
 );
 
 
@@ -1176,7 +1177,8 @@ CREATE TABLE tutorials (
     updated_at timestamp without time zone NOT NULL,
     sub_category_id integer,
     material_id integer,
-    material_type character varying
+    material_type character varying,
+    picture character varying
 );
 
 
@@ -2209,8 +2211,15 @@ INSERT INTO schema_migrations (version) VALUES ('20160715201134');
 
 INSERT INTO schema_migrations (version) VALUES ('20160716055112');
 
+INSERT INTO schema_migrations (version) VALUES ('20160718003747');
+
 INSERT INTO schema_migrations (version) VALUES ('20160721110348');
+
+INSERT INTO schema_migrations (version) VALUES ('20160721175000');
 
 INSERT INTO schema_migrations (version) VALUES ('20160726195054');
 
+INSERT INTO schema_migrations (version) VALUES ('20160801020817');
+
+INSERT INTO schema_migrations (version) VALUES ('20160801021612');
 

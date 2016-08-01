@@ -6,6 +6,7 @@ class Student::CategoriesController < Student::StudentController
   
   def index
     @categories = @course.categories.all
+
   end
 
   def new

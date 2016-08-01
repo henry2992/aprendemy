@@ -8,8 +8,12 @@
 			<h1> Ejercicios </h1>
 		</div>
 
+
+
 		<div class="main-content-wrapper">
-			
+
+			<%= render 'no_exercises' unless @categories %>
+
 			<% @categories.each do |category| %>
 				<div class="category-wraper">
 					<div class="category-heading">
@@ -18,9 +22,10 @@
 					<div class="subcategories-wraper">
 						<div class=" row">
 							<% category.sub_categories.each do |subcategory| %>
+
 								<!-- Subcategory -->
 								<a href="<%= student_course_category_sub_category_path(@course,category,subcategory) %>" class="col-md-3 col-sm-4 col-xs-12 cat-grid" style="display: inline-block;" >
-								    <div class="subcategory-card" style="background-image: url('https://codeplaceimages.s3.amazonaws.com/project-management-tool_thumbnail_1463755547');">
+								    <div class="subcategory-card" style="background-image: url('<%= subcategory.picture %>');">
 								      
 								      <div class="subcategory-info-wrapper">
 								        
@@ -31,7 +36,7 @@
 								        <ul class="subcategory-information">
 								          <li>
 								            <i class="nc-icon-mini ui-1_eye-19"></i>
-								            3870 ejercicios
+								            <%= subcategory.questions.count %> Ejercicios
 								          </li>
 								        </ul>
 

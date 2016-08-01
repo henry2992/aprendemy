@@ -12,9 +12,13 @@
           
         <div class="test-content-wrapper">
           <div class=" row rox-fix">
+            
+          <%= render 'no_test' if !@tests && !@course_user_tests %>
+
             <% print_modal = false %>
             <% @course_user_tests.each do |cut| %>
             <% test = cut.test %>
+
               <!-- test -->
               <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
                 <div class="card">
@@ -40,6 +44,7 @@
                 </div>
               </div>
             <% end %>
+
             <% @tests.each do |test| %>
               <!-- test -->
               <div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
@@ -62,6 +67,7 @@
                 </div>
               </div>
             <% end %>
+
           </div>  
         </div>
       </div>

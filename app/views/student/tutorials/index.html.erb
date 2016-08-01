@@ -1,18 +1,74 @@
 <div id="container">
-
-	<%= render 'student/navigation/vertical_navbar' %>
-
+	<!-- Vertical Nav -->
+  	<%= render 'student/navigation/vertical_navbar' %>
+	<!-- Course Tools -->
 	<div class="main-navigation">
-		<% @tutorials.each do |tutorial| %>
-			<p><%= tutorial.name %></p>
 
-			<% tutorial.sub_categories.each do |x|%>
-				<p><%= x.name %></p>
-				<% x.tutorials.each do |t|%>
-					<h1><%= t.title %></h1>
-					<%= link_to 'Link', student_course_tutorial_path(@course, t.id) %>
-				<% end%>	
-			<% end%>
-		<% end %>
+		<div class="main-title-wrapper">
+			<h1> Tutoriales </h1>
+		</div>
+
+		<div class="main-content-wrapper">
+
+			<% @categories.each do |category| %>
+				<div class="category-wraper">
+					<div class="category-heading">
+						<h1><%= category.name %></h1>
+					</div>
+					<div class="subcategories-wraper">
+						<div class=" row">
+							<% category.sub_categories.each do |subcategory| %>
+
+
+								<% subcategory.tutorials.each do |tutorial| %>
+
+									<%= render 'no_tutorials' unless tutorial %>
+
+									<%= link_to student_course_tutorial_path(@course, tutorial.id), class: "col-md-3 col-sm-4 col-xs-12 cat-grid",  style: "display: inline-block;" do %>
+
+										    <div class="subcategory-card" style="background-image: url('<%= tutorial.picture %>');">
+										      
+										      <div class="subcategory-info-wrapper">
+										        
+										        <h2 class="subcategory-title">
+										          <p><%= tutorial.title %></p>
+										        </h2>
+										        
+										        <ul class="subcategory-information">
+										          <li> <p><%= tutorial.description %></p>
+										          </li>
+										        </ul>
+
+										      </div>
+										    </div>
+									<% end %>
+
+								<% end %>
+
+								
+
+
+								
+
+
+								
+
+
+							<% end %>
+
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+
+			
+		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(".category-heading").click(function(event) {
+	  $(this).next(".subcategories-wraper").slideToggle(200);
+	});
+</script>

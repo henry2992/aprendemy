@@ -10,14 +10,12 @@
 
     <div class="main-content-wrapper">
 
-      <% if @live_class.online_now == false %>
+      <% unless @live_class %>
         <%= render 'not_online' %>
       <% else %>
-       
-      <% end%>  
+        <%= render @live_class.online_now == false ? 'not_online' : 'online' %>
+      <% end%>
 
-      
-      
     </div>
   </div>
 </div>

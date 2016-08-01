@@ -5,6 +5,9 @@ class SubCategory < ActiveRecord::Base
   has_many :answered_questions, through: :questions
   has_many :tutorials
 
+  # Picture Uploader
+  mount_uploader :picture, PictureUploader
+
   answered = "self.questions.where(id: self.answered_questions.where(user_id: user_id).pluck(:question_id))"
   correct = "self.questions.where(id: self.answered_questions.where(user_id: user_id, correct: true).pluck(:question_id))"
   incorrect = "self.questions.where(id: self.answered_questions.where(user_id: user_id, correct: false).pluck(:question_id))"

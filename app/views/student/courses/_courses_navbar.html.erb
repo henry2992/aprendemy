@@ -21,9 +21,11 @@
 	    		
 		      	<!-- Item 1 -->
 		        <li class="nav-calendar-wrapper">
-	              	<a class="nav-calendar" href="#">
-	                	<%= image_tag("calendar.png", class:"notification-calendar",  alt: "Apredemy-Calendario") %>
-	              	</a>
+
+		       		<%= link_to events_path, class: 'nav-calendar'  do %>
+					    <%= image_tag("calendar.png", class:"notification-calendar",  alt: "Apredemy-Calendario")  %>
+					<% end %>
+	                
 	            </li>
 		        <!-- Item 2 -->
 		        <li class="dropdown nav-profile-wrapper" >

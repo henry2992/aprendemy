@@ -5,7 +5,7 @@ class Student::TutorialsController < Student::StudentController
   # GET /tutorials
   # GET /tutorials.json
   def index
-    @tutorials = @course.categories.all
+    @categories = @course.categories.all
   end
 
   # GET /tutorials/1

@@ -11,14 +11,15 @@
       met = :post
       target = student_course_category_sub_category_answers_path(@course,@sub_category.category,@sub_category)
     %>
-    
+ 
+
     <!-- Content Homework Progress-->
-    <div class="test-inner-wrapper">
-      <div class="test-title-wrapper">
+    <div class="main-navigation">
+      <div class="main-title-wrapper">
         <h1> Ejercicios de <%= @sub_category.name %> </h1>
       </div>
       <div class="test-content-wrapper">
-        <ul class="nav nav-tabs" role="tablist">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
           <li class="<%= "active" if params[:paginate] == "q" || !params[:paginate].present? %>"><a href="#no_contestadas" aria-controls="no_contestadas" role="tab" data-toggle="tab">No Contestadas</a></li>
           <li class="<%= "active" if params[:paginate] == "a" %>"><a href="#contestadas" aria-controls="contestadas" role="tab" data-toggle="tab">Contestadas</a></li>
         </ul>
@@ -88,6 +89,7 @@
               <% end %>
             </div>  
           </div>
+
           <div class="tab-pane <%= "active" if params[:paginate] == "a" %> test-content-wrapper" id="contestadas" style="padding:0">
             <div class="row rox-fix">
               <%= will_paginate @answered, renderer: BootstrapPagination::Rails, :params => { :paginate => "a" } %>
