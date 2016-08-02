@@ -37,7 +37,7 @@
 
               <h1 class="curriculum-title"> Curriculum </h1>
 
-              <%= render 'no_curriculum' if @course.sections %>
+              <%= render 'no_curriculum' if @course.sections.empty? %>
 
               <!-- Curriculum -->
                 <% 

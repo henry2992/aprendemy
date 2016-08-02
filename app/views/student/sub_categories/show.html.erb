@@ -17,6 +17,12 @@
     <div class="main-navigation">
       <div class="main-title-wrapper">
         <h1> Ejercicios de <%= @sub_category.name %> </h1>
+
+        <div class="hw-arrows">
+          <%= will_paginate @questions, :page_links=>false , renderer: BootstrapPagination::Rails %>
+        </div>
+
+        
       </div>
       <div class="test-content-wrapper">
         <ul class="nav nav-tabs nav-justified" role="tablist">
@@ -27,7 +33,7 @@
         <div class="tab-content">
           <div class="tab-pane <%= "active" if params[:paginate] == "q" || !params[:paginate].present? %> test-content-wrapper" id="no_contestadas" style="padding:0">
             <div class="row rox-fix">
-              <%= will_paginate @questions, renderer: BootstrapPagination::Rails, :params => { :paginate => "q" } %>
+              
               <!-- Question -->
               <% @questions.each do |q| %>
                 <%= form_tag target, :method => met, :id => "form" do %>
@@ -35,7 +41,7 @@
                   <div class="test-question">
                     <p><%= q.content %></p>
                     <% if q.picture.present? %>
-                      <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
+                      <%= image_tag(q.picture, class: "img-question", alt: q.content) %>
                     <% end %>
                     <% if q.url %>
                       <%= link_to q.url, q.url %>
