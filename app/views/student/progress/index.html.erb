@@ -40,40 +40,50 @@
               <%= render 'no_curriculum' if @course.sections %>
 
               <!-- Curriculum -->
+                <% 
+                first = true 
+                active = true 
+                %>
                 <% @course.sections.each do |section| %>
                   <div class="progress-wraper">                
                     <div class="progress-card">
-                      <h1><%=  section.name %></h1>
+                      <h1><%= section.name %></h1>
                     </div>
 
                     <div class="curriculum">
                       <ul>
                         <% section.resources.each do |resource| %>
-                          <li>
-                            <%= link_to student_course_progress_resource_path(@course,@course.id,resource)  do %>
-
+                          <% go = active ? student_course_progress_resource_path(@course,@course.id,resource) : "" %>
+                          <% completed = ResourceProgress.find_by(resource: resource, course_user: @course_user).completed? ? true : false if ResourceProgress.find_by(resource: resource, course_user: @course_user) %>
+                          <li <%= "class='disabled'".html_safe if !active %>>
+                            <%= link_to go do %>
                               <% if resource.material_type.downcase == 'video' %>
-                                <div class="curriculum-type" >
+                                <div class="curriculum-type  <%= "disabled".html_safe if !active %>" >
                                   <i class="fa fa-play-circle-o <%=  resource.material_type.downcase %>" aria-hidden="true"></i>
                                 </div>
                               <% elsif resource.material_type.downcase == 'blog' %>
-                                <div class="curriculum-type" >
+                                <div class="curriculum-type <%= "disabled".html_safe if !active %>" >
                                   <i class="fa fa-file-text-o <%= resource.material_type.downcase %>" aria-hidden="true"></i>
                                 </div>
                               <% else %>
-                                <div class="curriculum-type" >
+                                <div class="curriculum-type <%= "disabled".html_safe if !active %>" >
                                   <i class="fa fa-question-circle-o <%=resource.material_type.downcase%>" aria-hidden="true"></i>
                                 </div>
                               <% end %>
 
-                              <div class="curriculum-item">
+                              <div class="curriculum-item <%= "disabled".html_safe if !active %>">
                                 <span><%= resource.name %></span>
                               </div>
-                              <div class="curriculum-check">
-                                <i class="fa fa-check-circle-o progress-check" aria-hidden="true"></i>
+                              <div class="curriculum-check <%= "disabled".html_safe if !active %>">
+                                <i class="fa fa-check-circle-o progress-check" <%= 'style="color: #98ca3f !important"'.html_safe if completed %> aria-hidden="true"></i>
                               </div>   
                             <% end %>
                           </li>
+                          <% if first && !completed
+                              go = active == true ? student_course_progress_resource_path(@course,@course.id,resource) : "" 
+                              active = false 
+                              first = false
+                             end %>
                         <% end %>
                       </ul>
                     </div>

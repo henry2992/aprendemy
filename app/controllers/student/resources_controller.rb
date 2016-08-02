@@ -10,6 +10,22 @@ class Student::ResourcesController < Student::StudentController
   def show
     add_breadcrumb "Inicio", :root_path
     @course = @resource.section.course
+    course_resources = @course.sections.all.map(&:resource_ids).flatten
+    current_resource_index = course_resources.index(@resource.id)
+    @prev = current_resource_index == 0 ? nil :  Resource.find(course_resources[current_resource_index-1])
+    
+    if @prev
+      resource = Resource.find(@prev)
+      resource_data = {
+        course_user: @course_user,
+        section: resource.section,
+        resource: resource
+      }
+      resource_progress = ResourceProgress.find_by(resource_data)
+      return redirect_to student_course_progress_resource_path(@course,@course,@prev), notice: 'Usted debe completar esta tarea para pasar a la siguiente' if !resource_progress.completed?
+    end
+
+    @next = current_resource_index == course_resources.index(course_resources.last) ? nil : Resource.find(course_resources[current_resource_index+1])
     add_breadcrumb "#{@resource.section.course.name} ", student_course_path(@resource.section.course_id)
     add_breadcrumb "Progress", student_course_progress_index_path(@resource.section.course_id)
   end
