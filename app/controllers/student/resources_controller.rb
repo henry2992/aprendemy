@@ -24,7 +24,10 @@ class Student::ResourcesController < Student::StudentController
       resource_progress = ResourceProgress.find_by(resource_data)
       return redirect_to student_course_progress_resource_path(@course,@course,@prev), notice: 'Usted debe completar esta tarea para pasar a la siguiente' if !resource_progress.completed?
     end
-
+    # if 
+    #   @resource.material_type == 
+    # end
+    # raise @resource.material_type.to_yaml
     @next = current_resource_index == course_resources.index(course_resources.last) ? nil : Resource.find(course_resources[current_resource_index+1])
     add_breadcrumb "#{@resource.section.course.name} ", student_course_path(@resource.section.course_id)
     add_breadcrumb "Progress", student_course_progress_index_path(@resource.section.course_id)
