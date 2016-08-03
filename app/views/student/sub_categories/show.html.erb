@@ -11,29 +11,31 @@
       met = :post
       target = student_course_category_sub_category_answers_path(@course,@sub_category.category,@sub_category)
     %>
+
+
  
 
     <!-- Content Homework Progress-->
     <div class="main-navigation">
       <div class="main-title-wrapper">
         <h1> Ejercicios de <%= @sub_category.name %> </h1>
-
-        <div class="hw-arrows">
-          <%= will_paginate @questions, :page_links=>false , renderer: BootstrapPagination::Rails %>
-        </div>
-
-        
       </div>
+      <ul class="nav nav-tabs nav-justified test-navs" role="tablist">
+          <li class="<%= "active" if params[:paginate] == "q" || !params[:paginate].present? %>"><a href="#no_contestadas" aria-controls="no_contestadas" role="tab" data-toggle="tab" class="test-navs-link">No Contestadas</a></li>
+          <li class="<%= "active" if params[:paginate] == "a" %>"><a href="#contestadas" aria-controls="contestadas" role="tab" data-toggle="tab" class="test-navs-links" >Contestadas</a></li>
+      </ul>
+
       <div class="test-content-wrapper">
-        <ul class="nav nav-tabs nav-justified" role="tablist">
-          <li class="<%= "active" if params[:paginate] == "q" || !params[:paginate].present? %>"><a href="#no_contestadas" aria-controls="no_contestadas" role="tab" data-toggle="tab">No Contestadas</a></li>
-          <li class="<%= "active" if params[:paginate] == "a" %>"><a href="#contestadas" aria-controls="contestadas" role="tab" data-toggle="tab">Contestadas</a></li>
-        </ul>
+        
+
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane <%= "active" if params[:paginate] == "q" || !params[:paginate].present? %> test-content-wrapper" id="no_contestadas" style="padding:0">
+            
             <div class="row rox-fix">
-              
+            
+
+
               <!-- Question -->
               <% @questions.each do |q| %>
                 <%= form_tag target, :method => met, :id => "form" do %>
@@ -89,10 +91,17 @@
                       </div>
                     <% end %>
                     <% qs+=1 %>
-                    <button class="btn btn-primary go_answer" data-question="<%= q.id %>">Contestar</button>
+                    <button class="btn btn-info go_answer" data-question="<%= q.id %>">Contestar</button>
                   </div>
                 <% end %>
               <% end %>
+
+
+              <div class="hw-arrows">
+                <%= will_paginate @questions, :page_links=>false , renderer: BootstrapPagination::Rails %>
+              </div>
+
+
             </div>  
           </div>
 

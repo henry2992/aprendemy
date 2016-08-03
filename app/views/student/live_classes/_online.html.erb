@@ -7,6 +7,25 @@
 </style>
 
 <div id="application"> 
+
+
+  <h3 class="live-class-heading">En vivo en este momento:</h3>
+
+  <div class="online-now-info">
+    <h2 class="live-class-heading">Tema: <%= @live_class.subject %></h2>
+    <p> <%= @live_class.explanation %></p>
+    <h2 class="live-class-heading" >Profe: <%= @live_class.professor %></h2>
+    <a href="<%= @live_class.Urlyoutube %>" class="btn btn-info youtube-start"><i class="fa fa-youtube-play"></i>     Ver en Youtube</a>
+  </div>
+  
+  <div class="liveclass-video-holder" >
+    <iframe class="liveclass-video" src="<%= @live_class.url %>?autoplay=1" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  
+
+
+
   <h1 class="events-title">Lo que viene en Aprendemy para ti</h1>
   <ul class="legend">
     <% @events_types.each do |et|  %>
