@@ -1,4 +1,5 @@
 <% qs = 0 %>
+<% show_explanation = !@answers.nil? %>
 <div class="main-title-wrapper">
 	<h1> Pregunta <span class="question_number"></span> de <%= @resource.material_type == "Task" ? @resource.total_questions : "0" %> </h1>
 	<div class="hw-arrows">
@@ -11,142 +12,178 @@
 	<% percent = 100.00 / @resource.material.questions.count %>
 	<div id="myBar" class="hw-progress" style="width:<%= percent %>%"></div>
 </div>
-<% if @resource.material_type == "Task" %>
-<% i = 0 %>
-<% @resource.material.questions.each do |q| %>
-<div class="homework-wrapper row rox-fix question <%= "question_active" if i == 0 %>" data-current="<%= i %>" >
+<% if @resource.material_type == "Task" && @resource.material.questions %>
+	<% 
+	i = 0 
+	target = ""
+	met = ""
+	met = :put unless @resource_progress.completed
+  target = student_course_progress_resource_path(@course,1,@resource) unless @resource_progress.completed
+	%>
+	<%= form_tag target, :method => met do %>
+		<%= hidden_field_tag :id, @resource.id %>
+		<% @resource.material.questions.each do |q| %>
+			<div class="homework-wrapper row rox-fix question <%= "question_active" if i == 0 %>" data-current="<%= i %>" >
+				<div class="hw-question">
+					<% if @answers %>
+						<% wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id %>
+					<% end %>
+					<% if q.picture.present? %>
+					  <%= image_tag(q.picture, class: "img-responsive", alt: q.content, style: "width: 100%, height: auto;") %>
+					<% end %>
+					<% if q.explanation && show_explanation %>
+				    <!-- Explicación = q.explanation -->
+					<% end %>
+					<% if q.url %>
+					  <%= link_to q.url, q.url, class: "btn btn-link" %>
+					<% end %>
+					<p><%= q.content %></p>
 	
-	<div class="hw-question">
-		<p><%= q.content %></p>
-		<% if q.choices %>
-			<%
-			letters = ("A".."Z").to_a
-			lpos = 0
-			%>
+					<% if q.questions %>
+					  <% q.questions.each do |qs| %>
+					  	<hr style="width:80%">
+					  	<div class="hw-question">
+					  		<p><%= qs.content %></p>
+						    <% if qs.picture.present? %>
+						      <%= image_tag(q.picture, class: "img-responsive", alt: qs.content, style: "width: 100%, height: auto;") %>
+						    <% end %>
+						    <% if @answers %>
+						        <!-- Explicaciones = qs.explanation -->
+						    <% end %>
+						    <% if qs.url %>
+						      <%= link_to qs.url, qs.url, class: "btn btn-link" %>
+						    <% end %>
+					    </div>
+						<% end %>
+					<% end %>
+
+					<% if q.choices %>
+					  <% 
+					  letters = ("A".."Z").to_a
+					  lpos = 0
+					  
+					  answer_class = ""
+					  answer_title = ""
+					  answer_text = ""
+					  
+					  %>
+					  <% answer_class = "wrong-color"
+					     answer_title = "Ops!"
+					     answer_text = "Esa respuesta es incorrecta :(" %>
+					  <% q.choices.each do |c| %>
+					    <%
+					    cl = ""
+					    st = ""
+					    ch = @answers.where(question_id: q.id).first.choice_id == c.id ? true : false if @answers
+					    %>
+					    <% if @answers %>
+					      <% if @answers.where(question_id: q.id).first.choice_id == c.id %>
+					        <% ch = true %>
+					        <% if wrong %>
+					          <% cl = "wrong" %>
+					        <% else %>
+					          <% cl = "right" %>
+					        <% end %>
+					      <% end %>
+					    <% end %>
+					    <label class="coolbox">
+					      <%= radio_button_tag "question_ids[#{q.id}]", c.id, ch %>
+					      <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
+					      <span class="box-info"> <%= c.content %> </span>
+					      <% if @answers %>
+					        <% if @answers.where(question_id: q.id).first.choice_id == c.id %>
+					          <% if wrong %>
+					            <% answer_class = "wrong-color"
+					               answer_title = "Ops!"
+					               answer_text = "Esa respuesta es incorrecta :(" %>
+					          <% else %>
+					            <% answer_class = "right-color"
+					               answer_title = "Bien hecho!"
+					               answer_text = "La respuesta es correcta :)" %>
+					          <% end %>
+					        <% end %>
+					      <% end %>
+					    </label>
+					    <% lpos += 1 %>
+					  <% end %>
+					  <div class="answer-question-btn">
+					  	<button class="btn btn-info btn-answer">Siguiente Pregunta</button>
+					  	<input type="submit" value="Completar Tarea" class="btn btn-info btn-answer submit">
+					  </div>
+					  <% if q.explanation && show_explanation %>
+					    <div class="answer">
+					      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
+					      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+					      <div class="show-video">
+					        <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+					      </div>
+					    </div>
+					  <% end %>
+					<% end %>
+
+					
+				</div>
+			</div>
+			<% i += 1 %>
 		<% end %>
-		<div class="hm-check">
-			<% q.choices.each do |c| %>
-			<%
-        # ch = @course_user_test.answers.find_by(question: q, choice: c) ? true : false
-        ch = false
-			%>
-			<label class="coolbox">
-        <%= radio_button_tag "course_user_test[question_ids[#{q.id}]]", c.id, ch %>
-        <span class="box-number"> <%= letters[lpos] %> </span>
-        <span class="box-info"> <%= c.content %> </span>
-	    </label>
-	    <% lpos += 1 %>
-	    <% end %>
-	    <div class="answer-question-btn">
-	    	<button class="btn btn-info btn-answer">Responder</button>
-	    </div>
-		</div>
-	</div>
-</div>
-<% i += 1 %>
-<% end %>
+	<% end %>
 <% end %>
 
 <div class="main-content-wrapper fr-view row rox-fix" >
   <%= render 'progress_controller'%>
 </div>
 <script>
-	$(".question_number").html(1);
-	$(".homework-wrapper").not(".question_active").hide();
-	$(".btn-answer, .next").on('click', function(event) {
-		event.preventDefault();
-		var current = parseInt($(".question.question_active").attr("data-current"));
-		if (current + 1 < <%= @resource.material_type == "Task" ? @resource.total_questions : "0" %>) 
-			goNext(current);
+	$(document).ready(function(){
+		$(".question_number").html(1);
+		$(".homework-wrapper, .submit").not(".question_active").hide();
+		$(".btn-answer, .next").on('click', function(event) {
+			event.preventDefault();
+			var current = parseInt($(".question.question_active").attr("data-current"));
+			if (current + 1 < <%= @resource.material_type == "Task" ? @resource.total_questions : "0" %>) 
+				goNext(current);
+
+		  if( $('input[name^="question_ids"]:checked').size() == <%= @resource.total_questions %> )
+		  {
+				$(".submit").show();
+		  }
+
+		});
+
+		$(".prev").on('click', function(event) {
+			event.preventDefault();
+			var current = parseInt($(".question.question_active").attr("data-current"));
+			if (current > 0) 
+				goPrev(current);
+		});
+
+		function goNext(current) {
+			var next = current + 1;
+			$(".question_number").html(next + 1);
+			$(".hw-progress").css('width', <%= percent %> * (next + 1) + "%");
+			$(".question").removeClass('question_active').hide('fast');
+			$(".question[data-current="+next+"]").addClass('question_active').show('fast');
+		}
+
+		function goPrev(current) {
+			var prev = current - 1;
+			$(".question_number").html(prev + 1);
+			$(".hw-progress").css('width', <%= percent %> * (prev + 1) + "%");
+			$(".question").removeClass('question_active').hide('fast');
+			$(".question[data-current="+prev+"]").addClass('question_active').show('fast');
+		}
+
+	  $('.submit').click(function(){
+	  	// console.log($('input[name^="question_ids"]:checked').size());
+	    if( $('input[name^="question_ids"]:checked').size() == <%= @resource.total_questions %> )
+	    {
+	  		$("form").submit();
+	      return true;
+	    }
+	    else
+	    {
+	    	return false;
+	    }
+	  });
 	});
 
-	$(".prev").on('click', function(event) {
-		event.preventDefault();
-		var current = parseInt($(".question.question_active").attr("data-current"));
-		if (current > 0) 
-			goPrev(current);
-	});
-
-	function goNext(current) {
-		var next = current + 1;
-		$(".question_number").html(next + 1);
-		$(".hw-progress").css('width', <%= percent %> * (next + 1) + "%");
-		$(".question").removeClass('question_active').hide('fast');
-		$(".question[data-current="+next+"]").addClass('question_active').show('fast');
-	}
-
-	function goPrev(current) {
-		var prev = current - 1;
-		$(".question_number").html(prev + 1);
-		$(".hw-progress").css('width', <%= percent %> * (prev + 1) + "%");
-		$(".question").removeClass('question_active').hide('fast');
-		$(".question[data-current="+prev+"]").addClass('question_active').show('fast');
-	}
 </script>
-<!-- 
-
-*-qs = 0
-
-%p.lead= @resource.material.title
-%p= @resource.material.description
-- target = ""
-- met = ""
-- if @resource.material.questions
-  - met = :put unless @resource_progress.completed
-  - target = student_course_progress_resource_path(@course,1,@resource) unless @resource_progress.completed
-  = form_tag target, :method => met do
-    = hidden_field_tag :id, @resource.id
-    - @resource.material.questions.each do |q|
-      %h3= q.content
-      - if @answers
-        - wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
-      - if q.picture.present?
-        = image_tag(q.picture, class: "img-responsive", alt: q.content)
-      - if q.explanation && show_explanation
-        %p.lead.explanation
-          = q.explanation
-      - if q.url
-        = link_to q.url, q.url
-      - if q.questions
-        - q.questions.each do |qs|
-          %hr{:style=>"width:80%"}
-          %h3= qs.content
-          - if qs.picture.present?
-            = image_tag(qs.picture, class: "img-responsive", alt: qs.content)
-          %h3= qs.content
-          - if qs.picture.present?
-            = image_tag(qs.picture, class: "img-responsive", alt: qs.content)
-          - if @answers
-            %p.lead
-              = qs.explanation
-          - if qs.url
-            = link_to qs.url, qs.url
-      - if q.choices
-        - q.choices.each do |c|
-          - cl = ""
-          - st = ""
-          - ch = false
-          - if @answers
-            - if @answers.where(question_id: q.id).first.choice_id == c.id
-              - ch = true
-              - if wrong
-                - cl = "has-error"
-                - st = "border: thin solid red"
-              - else
-                - cl = "has-success"
-                - st = "border: thin solid green"
-          %div{:class=>cl, :style=>st}
-            .radio
-              %label
-                = radio_button_tag "question_ids[#{q.id}]", c.id, ch
-                = c.content
-                - if @answers
-                  - if @answers.where(question_id: q.id).first.choice_id == c.id
-                    - if wrong
-                      %span.text-danger
-                        * Error
-      -qs+=1
-      %hr
-    = button_tag 'Terminar Tarea' , class: 'btn btn-primary submit' , type: :submit unless @resource_progress.completed
-
- -->
