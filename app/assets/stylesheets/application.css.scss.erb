@@ -94,6 +94,54 @@ ul {
     background: linear-gradient(to bottom,  #267c99 50%,#007299 50%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#267c99', endColorstr='#007299',GradientType=0 ); /* IE6-9 */}
 
+/**************************************/
+/*********** Landing NavBar **********/
+/************************************/
+
+.landing-init {
+    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(<%= asset_path('landing-courses.jpg')%>) ;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center center; 
+    color: #fff; 
+    height: 100vh; 
+}
+
+.topbar {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  background: #0d1821;
+  z-index: 5;
+  top: -70px;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.topbar.visible {
+  top: 0px;
+}
+
+.blue-bg{
+   background-color: #2B6E92;  
+}
+
+.white-bg {
+    background-color: #FFF; 
+}
+
+.know-more{
+    height: 450px;
+    
+}
+
+
+.how-works{
+    height: 450px;
+}
+
 /*************************************/
 /************  Index NavBar *********/
 /***********************************/

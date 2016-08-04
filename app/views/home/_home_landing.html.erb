@@ -1,0 +1,98 @@
+<div class="topbar">
+    <%= render 'layouts/navbar_landing' %>
+</div>
+
+<div class="landing-init">
+
+  <div class=" container">
+    
+  </div>
+
+
+</div>
+
+
+<div class="know-more white-bg">
+  <div class="container">
+      <div>
+        <h1>Con nuestras aulas en vivo y contenido digital ¡es posible!</h1>
+        <%= link_to "Regístrate Gratis con Facebook", "users/auth/facebook", class: "aprendemy-btn btn btn-primary" %>  
+      </div>
+  </div>
+</div>
+
+
+<div class="how-works white-bg">
+
+  <div class="container">
+    <h1>¿Cómo Funciona?</h1>
+  </div>
+  
+
+</div>
+
+
+<div class="landing-benefits blue-bg">
+  <div class="container">
+    <h1>Ventajas</h1>
+  </div>
+  
+</div>
+
+
+
+
+<div class="about white-bg">
+  <div class="container">
+    <h1>Todo Lo Que Necesitas Para Tu Examen De Admisión</h1>
+  </div>
+  
+</div>
+
+
+<div class="our-courses blue-bg">
+  <div class="container">
+    <h1>Nuestros Cursos</h1>
+  </div>
+  
+</div>
+
+<div class="testimonies white-bg">
+  <div class="container">
+    <h1>Testimonios</h1>
+  </div>
+  
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(function(){ 
+      $(window).scroll(function() {
+        var scrolltop = $(window).scrollTop();
+        var headerheight = $(".landing-init").height();
+        
+        console.log(headerheight);
+        
+        if (headerheight == 520) {
+          if (scrolltop > 422) {
+            $(".topbar").addClass("visible");
+          }
+          if (scrolltop < 422) {
+            $(".topbar").removeClass("visible");
+          }
+        } else {
+          if (scrolltop > 602) {
+            $(".topbar").addClass("visible");
+          }
+          if (scrolltop < 602) {
+            $(".topbar").removeClass("visible");
+          }
+        }   
+        
+      });
+
+    });
+</script>
+
