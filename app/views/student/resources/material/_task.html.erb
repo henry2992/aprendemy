@@ -107,21 +107,23 @@
 					    <% lpos += 1 %>
 					  <% end %>
 					  <div class="answer-question-btn">
-					  	<button class="btn btn-info btn-answer">Siguiente Pregunta</button>
-					  	<input type="submit" value="Completar Tarea" class="btn btn-info btn-answer submit">
+					  	<% if i + 1 < @resource.total_questions %>
+					  		<button class="btn btn-info btn-answer">Siguiente Pregunta</button>
+					  	<% else %>
+					  		<input type="submit" value="Completar Tarea" class="btn btn-info btn-answer submit">
+					  	<% end %>
 					  </div>
 					  <% if q.explanation && show_explanation %>
-					    <div class="answer">
-					      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
-					      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
-					      <div class="show-video">
-					        <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
-					      </div>
-					    </div>
+				  	<hr style="width:80%">
+				    <div class="answer">
+				      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
+				      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+				      <div class="show-video">
+				        <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+				      </div>
+				    </div>
 					  <% end %>
 					<% end %>
-
-					
 				</div>
 			</div>
 			<% i += 1 %>
@@ -132,10 +134,28 @@
 <div class="main-content-wrapper fr-view row rox-fix" >
   <%= render 'progress_controller'%>
 </div>
+
+<div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="background-color:white;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="color:black;" id="ModalTitle"></h4>
+      </div>
+      <div class="modal-body">
+        <p id="ModalBody"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 	$(document).ready(function(){
 		$(".question_number").html(1);
-		$(".homework-wrapper, .submit").not(".question_active").hide();
+		$(".homework-wrapper").not(".question_active").hide();
 		$(".btn-answer, .next").on('click', function(event) {
 			event.preventDefault();
 			var current = parseInt($(".question.question_active").attr("data-current"));
@@ -144,7 +164,7 @@
 
 		  if( $('input[name^="question_ids"]:checked').size() == <%= @resource.total_questions %> )
 		  {
-				$(".submit").show();
+		  	$("#last").hide();
 		  }
 
 		});
@@ -181,9 +201,28 @@
 	    }
 	    else
 	    {
+	    	$('#ModalTitle').html('Nota:');
+		    $('#ModalBody').html("Usted debe contestar todas las preguntas para completar esta tarea");
+		    showModal();
 	    	return false;
 	    }
 	  });
+
+	  $(".show_explanation").on('click', function(event) {
+	    event.preventDefault();
+	    /* Act on the event */
+	    $('#ModalTitle').html('Ver explicación');
+	    $('#ModalBody').html($(this).attr('data-explanation'));
+	    showModal();
+	  });
+
+	  function showModal() {
+	    $('#message').modal({
+	      keyboard: false,
+	      backdrop: 'static'
+	    });
+	  }
+
 	});
 
 </script>
