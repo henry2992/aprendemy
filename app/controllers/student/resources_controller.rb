@@ -1,8 +1,8 @@
 class Student::ResourcesController < Student::StudentController
   before_action :set_data
-  before_action :set_resource, only: [:index, :show, :update]
+  before_action :set_resource, only: [:show, :show, :update]
   before_action :create_resource_progress, only: [:show, :update]
-  before_action :destroy_answers, only: [:index]
+  before_action :destroy_answers, only: [:show]
 
   before_filter :check_plan
   before_filter :redirect_if_premium_plan
@@ -68,17 +68,19 @@ class Student::ResourcesController < Student::StudentController
           return true
         when "Task"
           success = true
+          return false if @resource_progress.completed
           return false if !params['question_ids']
           return false if params['question_ids'].count != @resource.material.questions.count
           Answer.where(item: @resource.material, user: current_user).destroy_all
           params['question_ids'].each do |i, v|
             q = Question.find(i)
-            if success
-              success = false if q.choice_id != v.to_i
-            end
+            # if success
+              # success = false if q.choice_id != v.to_i
+              # data = "#{data} #{q.choice_id}  #{v}  | "
+            # end
             Answer.create!(item: @resource.material, question: q, user: current_user, choice_id: v.to_i)
           end
-          return false if !success
+          # return false if !success
           return true if @resource_progress.update_attributes(completed: true)
           return false
       end
@@ -97,18 +99,21 @@ class Student::ResourcesController < Student::StudentController
 
     def destroy_answers
       resource = Resource.find(params[:id])
-      resource_data = {
-        course_user: resource.section.course.course_users.where(course: resource.section.course, user: current_user).first,
-        section: resource.section,
-        resource: resource
-      }
-      resource_progress = ResourceProgress.where(resource_data).first
-      if resource_progress
-        if !resource_progress.completed
-          Answer.where(item: resource_progress.resource.material, user: current_user).destroy_all
+      if resource.material_type == "Task"
+        resource_data = {
+          course_user: resource.section.course.course_users.where(course: resource.section.course, user: current_user).first,
+          section: resource.section,
+          resource: resource
+        }
+        resource_progress = ResourceProgress.where(resource_data).first
+        if resource_progress
+          if !resource_progress.completed
+            resource_progress.resource.material.answers.destroy_all
+            # Answer.where(item: resource_progress.resource.material, user: current_user).destroy_all
+          end
+        else
+          Answer.where(item_id: params[:id], item_type:"Task", user: current_user).destroy_all
         end
-      else
-        Answer.where(item_id: params[:id], item_type:"Task", user: current_user).destroy_all
       end
     end
 
