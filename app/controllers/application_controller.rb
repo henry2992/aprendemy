@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :set_current_user
   before_filter :check_license
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   rescue_from ActionController::RoutingError, :with => :render_404
@@ -40,6 +41,10 @@ class ApplicationController < ActionController::Base
     else
       license.update!(days_left: nil, plan: :expired)
     end
+  end
+
+  def set_current_user
+    User.current = current_user
   end
 
 end

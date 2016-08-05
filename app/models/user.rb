@@ -51,4 +51,11 @@ class User < ActiveRecord::Base
     License.create(user: self) unless self.admin?
   end
 
+  def self.current
+    Thread.current[:user]
+  end
+  
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
 end

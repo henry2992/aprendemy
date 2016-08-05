@@ -25,6 +25,7 @@
             <div class="course-content-user">
               <h1>Bienvenido, <%= current_user.first_name %></h1>  
               <p><%= current_user.email %></p>
+              <p>Días restantes: <%= @course.plan_days_left %></p>
             </div>
 
           </div>
