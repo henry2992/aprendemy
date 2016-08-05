@@ -1,6 +1,8 @@
 class CourseUser < ActiveRecord::Base
+  
   belongs_to :user
   belongs_to :course
+  
   has_many :resource_progresses
 
   has_many :course_user_tests
