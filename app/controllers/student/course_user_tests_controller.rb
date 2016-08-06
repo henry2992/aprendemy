@@ -1,6 +1,7 @@
 class Student::CourseUserTestsController < Student::StudentController
   before_action :load_course_user_test, only: [:new, :update, :edit]
   before_action :set_course_user_test, only: [:update, :set_answers, :show, :edit]
+  before_filter :check_plan, only: [:index]
 
   def new
     add_breadcrumb "Inicio", :root_path

@@ -19,12 +19,13 @@
                         <%= image_tag("avatar-guy.png", class: "user-photos", alt: "Apredemy-avatar") %>
                     <% else %>
                         <%= image_tag("avatar-girl", class: "user-photos", alt: "Apredemy-avatar") %>
-                    <%end %>
+                    <% end %>
                 <%end%>
             </div>
             <div class="course-content-user">
               <h1>Bienvenido, <%= current_user.first_name %></h1>  
               <p><%= current_user.email %></p>
+              <p>Días restantes: <%= @course.plan_days_left %></p>
             </div>
 
           </div>

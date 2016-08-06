@@ -14,4 +14,8 @@ class Course < ActiveRecord::Base
   # Picture Uploader
   mount_uploader :picture, PictureUploader
 
+  def plan_days_left
+    (self.course_users.find_by(user: User.current).course_user_plan.expiration_date - Date.today).to_i
+    # (current_user.course_users.find_by(course: @course).course_user_plan.expiration_date - Date.today).to_i
+  end
 end

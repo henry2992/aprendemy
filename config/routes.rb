@@ -30,17 +30,17 @@ Rails.application.routes.draw do
       resources :categories do
         resources :sub_categories do
           resources :answers, only:[:create]
-          # get 'show_answered_questions', to: 'sub_categories#show_answered_questions', as: :show_answered_questions
-          # resources :questions do
-          #   resources :answered_questions
-          #   resources :choices
-          # end
         end
       end
+
+      # get '/payments' => 'home#payments', as: :payments
 
       # TUTORIALS
       resources :tutorials
     end
+    
+    # PAYMENTS
+    resources :payments, only:[:index]
   end
 
   
@@ -65,7 +65,6 @@ Rails.application.routes.draw do
   # USERS
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations', sessions: 'sessions' }
 
-  get '/payments' => 'home#payments', as: :payments
 
   match '*unmatched_route', :to => 'application#raise_not_found!', via: :all
 

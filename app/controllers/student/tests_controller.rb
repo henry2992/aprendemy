@@ -1,6 +1,7 @@
 class Student::TestsController < Student::StudentController
   before_action :load_course
   before_action :update_tests_data
+  before_filter :check_plan, only: [:index]
 
   def index
     @course_user = CourseUser.where(course: @course, user: current_user).first if @course

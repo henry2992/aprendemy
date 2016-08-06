@@ -67,20 +67,14 @@ class Student::ResourcesController < Student::StudentController
           return false if (@resource_progress.completed? || !@resource_progress.update_attributes(completed: true))
           return true
         when "Task"
-          success = true
           return false if @resource_progress.completed
           return false if !params['question_ids']
           return false if params['question_ids'].count != @resource.material.questions.count
           Answer.where(item: @resource.material, user: current_user).destroy_all
           params['question_ids'].each do |i, v|
             q = Question.find(i)
-            # if success
-              # success = false if q.choice_id != v.to_i
-              # data = "#{data} #{q.choice_id}  #{v}  | "
-            # end
             Answer.create!(item: @resource.material, question: q, user: current_user, choice_id: v.to_i)
           end
-          # return false if !success
           return true if @resource_progress.update_attributes(completed: true)
           return false
       end
@@ -109,7 +103,6 @@ class Student::ResourcesController < Student::StudentController
         if resource_progress
           if !resource_progress.completed
             resource_progress.resource.material.answers.destroy_all
-            # Answer.where(item: resource_progress.resource.material, user: current_user).destroy_all
           end
         else
           Answer.where(item_id: params[:id], item_type:"Task", user: current_user).destroy_all
