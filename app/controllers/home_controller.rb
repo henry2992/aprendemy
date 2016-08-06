@@ -23,7 +23,4 @@ class HomeController < ApplicationController
     @simulator_types = SimulatorType.all
   end
 
-  def payments
-  end
-
 end

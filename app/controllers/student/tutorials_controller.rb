@@ -2,6 +2,8 @@ class Student::TutorialsController < Student::StudentController
   before_action :set_data
   before_action :set_tutorial, only: [:show, :edit, :update, :destroy]
 
+  before_filter :check_plan, only: [:index]
+
   # GET /tutorials
   # GET /tutorials.json
   def index

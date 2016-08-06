@@ -1,8 +1,7 @@
 class Student::ProgressController < Student::StudentController
   
   before_action :set_data
-  
-  before_filter :check_plan, only: [:show]
+  before_filter :check_plan, only: [:index]
   
   # GET /progress
   # GET /progress.json
