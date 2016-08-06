@@ -1,23 +1,68 @@
-<div class="topbar">
-    <%= render 'layouts/navbar_landing' %>
-</div>
+
 
 <div class="landing-init">
 
-  <div class=" container">
-    
+  <div class=" container">  
+      
+      <div class="landing-wrapper">
+        <%= image_tag("logoblanco.png", alt: "Estudia con Aprendemy", class: "logo-landing") %>
+        <h1 class="landing-title">Ingresa a la Universidad de tus sueños</h1>
+        <p> Con Aprendemy tu éxito en los exámenes de la Senescyt está garantizado. Estudia lo que quieras en el lugar y el momento que prefieras. </p>
+
+        <div class="landing-buttons">
+            <a href="#know-more" class="btn btn-primary scroll btn-animated">Quiero saber más</a>
+            <a href="registro.html" class="btn btn-primary btn-animated">Quiero registrarme</a>
+        </div>
+
+       
+
+      </div>
+
+       <div class="community-icons">
+          <a href="https://www.facebook.com/aprendemy" target="_blank"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/aprendemy" target="_blank"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+            <a href="https://www.youtube.com/channel/UCc6N8LIO-yPIsDqM50ypxjQ" target="_blank"><i id="social-yt" class="fa fa-youtube-square fa-3x social"></i></a>
+            <a href="https://www.instagram.com/aprendemy" target="_blank"><i id="social-in" class="fa fa-instagram fa-3x social"></i></a>
+            <a href="mailto:hola@aprendemy.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+        </div>
+
   </div>
 
 
 </div>
 
+<div class="topbar">
+    <%= render 'layouts/navbar_landing' %>
+</div>
 
-<div class="know-more white-bg">
-  <div class="container">
-      <div>
-        <h1>Con nuestras aulas en vivo y contenido digital ¡es posible!</h1>
-        <%= link_to "Regístrate Gratis con Facebook", "users/auth/facebook", class: "aprendemy-btn btn btn-primary" %>  
+
+
+
+<div class="know-more blue-bg" id="know-more">
+  <div class="container know-more-wrapper">
+
+
+      <div class="row">
+
+        <div class="col-sm-6">
+          
+          <%= image_tag("enes.png", alt: "Estudia con Aprendemy", class: "know-more-img") %>
+
+        </div>
+
+        <div class="col-sm-6 know-more-content">
+
+          <p class="improve">El 97% de nuestros estudiantes obtienen mejores puntajes en sus pruebas</p>
+          <h1 class="landing-title" >Con nuestras aulas en vivo y contenido digital ¡es posible!</h1>
+          <p>Aprendemy es una plataforma online pensada para apoyarte en el proceso de ingreso a la Universidad. Nuestra tecnología y experiencia en educación te ayudarán a mejorar tus notas en los exámenes de la Senescyt con miles de ejercicios, respuestas, estadísticas y clases en vivo. Accesible donde quieras y cuando quieras.</p>
+
+       
+        </div>
+          
+          
+
       </div>
+  
   </div>
 </div>
 
@@ -25,16 +70,156 @@
 <div class="how-works white-bg">
 
   <div class="container">
-    <h1>¿Cómo Funciona?</h1>
-  </div>
-  
+
+    <div class="row">
+
+      <div class="how-works-title">
+        <h1 class="landing-title">¿Cómo Funciona?</h1>
+        <p>Elige uno de los cursos que Aprendemy a preparado para ti</p>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="how-works-content content-right " >
+            <h2>Sigue tu curriculum</h2>
+            <p>Preparate paso a paso con nuestros cursos perzonalizados</p>
+        </div>
+        <div class="how-works-content content-right" >
+            <h2>Practica con ejercicios</h2>
+            <p>Prepárate con nuestros ejercicios interactivos en todas las áreas</p>
+        </div>
+        <div class="how-works-content content-right" >
+            <h2>Aprende con Tutoriales</h2>
+            <p>Nuestros tutoriales te ayudarán a entender todos los conceptos importantes</p>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+         <%= image_tag("how-works.png", alt: "Como funciona Aprendemy", class: "how-works-img") %>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="how-works-content content-left" >
+            <h2>Únete a las clase en vivo</h2>
+            <p>Interactua con nuestros profesores y participa en vivo</p>
+        </div>
+        <div class="how-works-content content-left" >
+            <h2>Toma nuestros simuladores</h2>
+            <p>¿Estás Listo para tomar el examen real? ¡Descúbrelo con un simulador! </p>
+        </div>
+        <div class="how-works-content content-left" >
+            <h2>Monitorea tu progreso</h2>
+            <p>Conocer tus avances, tus fortalezas y debilidades mediante nuestras estadísticas</p>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>  
 
 </div>
+
+<div class="about ">
+  <div class="about-container"> 
+
+     <div class="container">
+
+      <div class="about-title"> 
+        <h1 class="landing-title" >Todo Lo Que Necesitas Para Tu Examen De Admisión</h1>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-4">
+          <h3>Clases en vivo</h3>
+          <p>Estudia, refuerza y aclara tus dudas con clases en tiempo real (más de 100 horas de clases por mes).</p>
+        </div>
+        <div class="col-sm-4">
+          <h3>Calendario de clases</h3>
+          <p>Podrás ver el día y la hora de las clases que necesites estudiar.</p>
+        </div>
+        <div class="col-sm-4">
+          <h3>Practica</h3>
+          <p>Miles de ejercicios y reactivos que te ayudarán a ser mejor.</p>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Contenido Digital</h3>
+          <p>Más de 550 videos, textos, ejercicios y evaluaciones.</p>
+        </div>
+
+        <div class="col-sm-4">
+          <h3>Compara tu desempeño</h3>
+          <p>Compara tu resultado con el de otros estudiantes</p>
+        </div>
+
+
+         <div class="col-sm-4">
+          <h3>Avance Programado</h3>
+          <p>Realiza un curso paso a paso creado por expertos</p>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="comunity white-bg">
+    <h1>¿Qué es el contenido digital?</h1>
+
+  <p>¡48 cápsulas de aprendizaje del examen de selección!</p>
+
+  <p>El contenido digital está organizado a través de cápsulas de aprendizaje que corresponden a cada uno de los temas que te serán evaluados en tu examen de admisión de acuerdo con el temario oficial del CENEVAL.</p>  
+
+  <p>
+    Una cápsula de aprendizaje es un conjunto de tareas a realizar para completar el estudio de un tema que combina lecciones en video, ejercicios, textos y evaluaciones. Cada Cápsula de Aprendizaje inicia con una evaluación diagnóstica del tema y termina con una evaluación final. El objetivo es que haya una mejora entre como comenzaste y como terminaste. Además, en esta sección podrás ver los videos de las clases en vivo que ya pasaron (del examen de diagnóstico).
+  </p>  
+</div>
+
 
 
 <div class="landing-benefits blue-bg">
   <div class="container">
-    <h1>Ventajas</h1>
+    
+  <div class="row">
+
+    <h1> Ventajas </h1>
+    <p> No importa en donde estés, ¡tienes a tu alcance a profesores calificados!</p>
+    
+    <div class="col-sm-6 right-side">
+
+      <div>
+        <h2>Participas en vivo</h2>
+        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
+      </div>
+       <div>
+        <h2>Participas en vivo</h2>
+        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div>
+        <h2>Participas en vivo</h2>
+        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
+      </div>
+       <div>
+        <h2>Participas en vivo</h2>
+        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
+      </div>
+    </div>
+
+  </div>
+  
+
   </div>
   
 </div>
@@ -42,24 +227,67 @@
 
 
 
-<div class="about white-bg">
-  <div class="container">
-    <h1>Todo Lo Que Necesitas Para Tu Examen De Admisión</h1>
-  </div>
-  
-</div>
 
 
-<div class="our-courses blue-bg">
+
+<div class="our-courses white-bg">
   <div class="container">
+
     <h1>Nuestros Cursos</h1>
+
+
+      
+      <div class="prices text-center ">
+            <div class="row">
+               
+
+                <div class="col-sm-offset-2 col-sm-4">
+                    <div class="price wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.4s" style="height: 750px; background-color: rgb(248, 248, 255); padding: 2em; visibility: visible; animation: fadeInUp 0.5s 0.4s; -webkit-animation: fadeInUp 0.5s 0.4s;">
+                        <h2 style="color: #000; font-size: 2.3em; text-align: center;">PLAN MENSUAL</h2>
+                        <h1 style="color: #ed107d; text-align: center !important;">$799/mes</h1>
+                        <h4 style="text-align: center !important;">Pago mensual</h4>
+                        <br><br><br><br>
+                        <ul>
+                            <li>10 Aulas en vivo por semana de matemáticas, español y pensamiento analítico<br>
+                            </li><li>Acceso a más de 600 videos grabados, más de 5,000 ejercicios, cientos de textos y evaluaciones contenidas en 48 cápsulas de aprendizaje</li><br>
+                            <li>1 simulador del examen de selección con revisión reactivo por reactivo y reporte de resultados</li><br>
+                            <br><br><br><br><br>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="price wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s" style="height: 750px; background-color: rgb(248, 248, 255); padding: 2em; visibility: visible; animation: fadeInUp 0.5s 0.3s; -webkit-animation: fadeInUp 0.5s 0.3s;">
+                        <h2 style="color: #000; font-size: 2.3em;  text-align: center; ">PLAN ANUAL</h2>
+                        <h1 style="color: #ed107d; text-align: center !important;">$2,397</h1>
+                        <h4 style="text-align: center !important;">Pago único anual</h4>
+                        <h5>(75% de desc. sobre precio regular)</h5>
+                        <ul>
+                            <li>10 aulas en vivo por semana de matemáticas, español y pensamiento analítico</li><br>
+                            <li>Acceso a más de 600 videos grabados, más de 5,000 ejercicios, cientos de textos y evaluaciones contenidas en 48 cápsulas de aprendizaje</li><br>
+                            <li>3 simuladores del examen de selección con revisión reactivo por reactivo y reporte de resultados</li><br>
+                            <li>1 simulador del examen de diganóstico con revisión</li><br>
+                            <li>Aulas en vivo por semana enfocadas a química, biología, matemáticas y física</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
+
+
+
   </div>
   
 </div>
 
-<div class="testimonies white-bg">
+<div class="testimonies blue-bg">
   <div class="container">
     <h1>Testimonios</h1>
+       <%= link_to "Regístrate Gratis con Facebook", "users/auth/facebook", class: "aprendemy-btn btn btn-primary" %>  
+          
   </div>
   
 </div>
@@ -70,12 +298,17 @@
 <script type="text/javascript">
     $(function(){ 
       $(window).scroll(function() {
+
+        // height on Scroll
         var scrolltop = $(window).scrollTop();
+
+        // Height of landing init
         var headerheight = $(".landing-init").height();
         
+        console.log(scrolltop);
         console.log(headerheight);
         
-        if (headerheight == 520) {
+        if (headerheight == scrolltop) {
           if (scrolltop > 422) {
             $(".topbar").addClass("visible");
           }
@@ -83,10 +316,10 @@
             $(".topbar").removeClass("visible");
           }
         } else {
-          if (scrolltop > 602) {
+          if (scrolltop > headerheight) {
             $(".topbar").addClass("visible");
           }
-          if (scrolltop < 602) {
+          if (scrolltop < headerheight) {
             $(".topbar").removeClass("visible");
           }
         }   
@@ -94,5 +327,21 @@
       });
 
     });
+
+    // Scroll
+
+   $(".scroll").click(function(event){
+         event.preventDefault();
+         //calculate destination place
+         var dest=0;
+         if($(this.hash).offset().top > $(document).height()-$(window).height()){
+              dest= $(document).height()-$(window).height();
+         }else{
+              dest=$(this.hash).offset().top;
+         }
+         //go to destination
+         $('html,body').animate({scrollTop:dest}, 1000,'swing');
+     });
+
 </script>
 
