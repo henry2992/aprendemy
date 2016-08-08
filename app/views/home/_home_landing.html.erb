@@ -349,12 +349,7 @@
                 </div>
             </div>
         </div>
-      </div>
-
-
-       <%= link_to "Regístrate Gratis con Facebook", "users/auth/facebook", class: "aprendemy-btn btn btn-primary" %>  
-          
-  
+      </div>  
 </div>
 
 
@@ -380,48 +375,63 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header landing-modal-title">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Regístrarme</h4>
+        <h4 class="modal-title " id="myModalLabel">Empieza hoy mismo!</h4>
       </div>
       <div class="modal-body">
+
+        <!-- Facebook Button -->
+        <%= link_to "users/auth/facebook", class: "register-fb-btn btn btn-primary" do %> 
+           <i class="fa fa-facebook-square register-fb-text"> Regístrate con Facebook </i> 
+        <% end %>
+
+        <!--  Divider -->
+        <div class="divider">
+            <i class="fa fa-circle-o"></i>
+        </div>
+
+        <p class="data-create-account">Crea una cuenta con tus datos</p>
         <!-- Form -->
         <div class="form-card">
-          <p class="trial-banner basic">Empieza hoy mismo!</p>
-
-            <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="LX2qNEdP1xluJCvznAlF47Lr5pb88d0wT4MFfuPBgml9ohli4NSU3xpWWPevNu1U7SGmdG6k14o/lp3rpSWv3g==">      
-              <div class="row">
-                <div class="col-sm-6">
-                     <input class="input-text" placeholder="Nombre" type="text" name="user[first_name]" id="user_first_name">
-                </div>
-              
-                <div class="col-sm-6">
-                  <input class="input-text" placeholder="Apellido" type="text" name="user[last_name]" id="user_last_name">
-                </div>
-                <div class="col-sm-12">
-                  <input class="input-text" placeholder="Email" type="email" value="" name="user[email]" id="user_email">
-                </div>
-                <div class="col-sm-12">
-                  <input class="input-text" placeholder="Password (Mínimo 6 caracteres)" autocomplete="off" type="password" name="user[password]" id="user_password">
-                </div>
-                <div class="col-sm-12">
-                  <input class="input-text" placeholder="Confirmación de Password" autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation">
-                </div>
-                <br>
-
-                <div class="col-sm-12">
-                  <div class="input-text">
-                    <label class="gender-text" for="user_Género">Género</label>
-                    <input type="radio" value="true" name="user[gender]" id="user_gender_true"><img class="img-gender" src="/assets/avatar-girl-8378f812d2a6b8bdce5acc6cd7bfc51e22ca64f6cb9b29140b14d804e81dfc79.png" alt="Avatar girl 8378f812d2a6b8bdce5acc6cd7bfc51e22ca64f6cb9b29140b14d804e81dfc79">
-                    <input type="radio" value="false" name="user[gender]" id="user_gender_false"><img class="img-gender" src="/assets/avatar-guy-e8e1457a6abe1266d57cd64bbaa3d653f21f94f213f54ebf6fe0c5954a10d5b2.png" alt="Avatar guy e8e1457a6abe1266d57cd64bbaa3d653f21f94f213f54ebf6fe0c5954a10d5b2">
-                  </div>
-                </div>
-                        
-                <div class="col-sm-12">
-                  <input type="submit" name="commit" value="Reclama tu prueba gratis" class="free-trial-button">
+           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          
+            <%= devise_error_messages! %>
+            <div class="row">
+              <div class="col-sm-6">
+                 <%= f.text_field :first_name, class: "form-input-text", :placeholder => "Nombre"%>
+              </div>
+          
+              <div class="col-sm-6">
+                <%= f.text_field :last_name, class: "form-input-text", :placeholder => "Apellido"%>
+              </div>
+              <div class="col-sm-12">
+                <%= f.email_field :email, class: "form-input-text", :placeholder => "Email" %>
+              </div>
+              <div class="col-sm-12">
+                <%= f.password_field :password, class: "form-input-text", :placeholder => "Password (Mínimo 6 caracteres)", autocomplete: "off" %>
+              </div>
+              <div class="col-sm-12">
+                <%= f.password_field :password_confirmation, class: "form-input-text", :placeholder => "Confirmación de Password", autocomplete: "off" %>
+              </div>
+              <br>
+              <div class="col-sm-12" >
+                <div class= "form-input-text" >
+                  <%= f.label :Género, class: "gender-text"%>
+                  <%= f.radio_button :gender, true %><%= image_tag("avatar-girl.png", :class=> 'img-gender' ) %>
+                  <%= f.radio_button :gender, false %><%= image_tag("avatar-guy.png", :class=> 'img-gender') %>
                 </div>
               </div>
-            </form>     
+                    
+              <div class="col-sm-12">
+                <%= f.submit "Regístrarme", class: "trial-button" %>
+              </div>
+
+
+          </div>
+        <% end %>
+
+                
         </div>
 
       </div>
