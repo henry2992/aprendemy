@@ -37,10 +37,14 @@ Rails.application.routes.draw do
 
       # TUTORIALS
       resources :tutorials
+
+      # PAYMENTS
+      resources :payments
+
+
     end
     
-    # PAYMENTS
-    resources :payments, only:[:index]
+    
   end
 
   
