@@ -11,11 +11,10 @@
 
         <div class="landing-buttons">
             <a href="#know-more" class="btn btn-primary scroll btn-animated">Quiero saber más</a>
-            <a href="registro.html" class="btn btn-primary btn-animated">Quiero registrarme</a>
+            <a href="registro.html" class="btn btn-primary btn-animated" data-toggle="modal" data-target="#myModal">Quiero registrarme</a>
         </div>
 
-       
-
+  
       </div>
 
        <div class="community-icons">
@@ -130,14 +129,17 @@
       <div class="row">
 
         <div class="col-sm-4">
+          <%= image_tag("play-button.png", alt: "Aprendemy en Vivo", class: "") %>
           <h3>Clases en vivo</h3>
           <p>Estudia, refuerza y aclara tus dudas con clases en tiempo real (más de 100 horas de clases por mes).</p>
         </div>
         <div class="col-sm-4">
+          <%= image_tag("calendar-button.png", alt: "Aprendemy en Vivo", class: "") %>
           <h3>Calendario de clases</h3>
           <p>Podrás ver el día y la hora de las clases que necesites estudiar.</p>
         </div>
         <div class="col-sm-4">
+          <%= image_tag("file-button.png", alt: "Aprendemy en Vivo", class: "") %>
           <h3>Practica</h3>
           <p>Miles de ejercicios y reactivos que te ayudarán a ser mejor.</p>
         </div>
@@ -146,17 +148,20 @@
 
       <div class="row">
         <div class="col-sm-4">
+          <%= image_tag("content-button.png", alt: "Aprendemy en Vivo", class: "") %> 
           <h3>Contenido Digital</h3>
           <p>Más de 550 videos, textos, ejercicios y evaluaciones.</p>
         </div>
 
         <div class="col-sm-4">
+          <%= image_tag("diagram-button.png", alt: "Aprendemy en Vivo", class: "") %> 
           <h3>Compara tu desempeño</h3>
           <p>Compara tu resultado con el de otros estudiantes</p>
         </div>
 
 
          <div class="col-sm-4">
+          <%= image_tag("rankings-button.png", alt: "Aprendemy en Vivo", class: "") %> 
           <h3>Avance Programado</h3>
           <p>Realiza un curso paso a paso creado por expertos</p>
         </div>
@@ -171,53 +176,46 @@
 </div>
 
 
-
-<div class="comunity white-bg">
-    <h1>¿Qué es el contenido digital?</h1>
-
-  <p>¡48 cápsulas de aprendizaje del examen de selección!</p>
-
-  <p>El contenido digital está organizado a través de cápsulas de aprendizaje que corresponden a cada uno de los temas que te serán evaluados en tu examen de admisión de acuerdo con el temario oficial del CENEVAL.</p>  
-
-  <p>
-    Una cápsula de aprendizaje es un conjunto de tareas a realizar para completar el estudio de un tema que combina lecciones en video, ejercicios, textos y evaluaciones. Cada Cápsula de Aprendizaje inicia con una evaluación diagnóstica del tema y termina con una evaluación final. El objetivo es que haya una mejora entre como comenzaste y como terminaste. Además, en esta sección podrás ver los videos de las clases en vivo que ya pasaron (del examen de diagnóstico).
-  </p>  
-</div>
-
-
-
-<div class="landing-benefits blue-bg">
+<div class="landing-benefits white-bg">
   <div class="container">
     
-  <div class="row">
-
-    <h1> Ventajas </h1>
-    <p> No importa en donde estés, ¡tienes a tu alcance a profesores calificados!</p>
+    <h1 class="landing-title" > Ventajas </h1>
     
-    <div class="col-sm-6 right-side">
-
-      <div>
-        <h2>Participas en vivo</h2>
-        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
+     <div class="row">
+      <div class="col-sm-4 benefits-card">
+        <%= image_tag("icon1.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Acceso las 24 horas</h3>
+        <p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>
       </div>
-       <div>
-        <h2>Participas en vivo</h2>
-        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
+      <div class=" col-sm-4 benefits-card" >
+        <%= image_tag("icon2.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Acceso en todo dispositivo</h3>
+        <p>Puedes conectarte desde cualquier dispositivo y estudiar desde cualquier lugar sin desperdiciar tu tiempo y dinero.</p> 
+      </div>
+      <div class="col-sm-4 benefits-card">
+        <%= image_tag("icon3.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Contenido Digital</h3>
+        <p>El contenido digital incluye videos, textos, ejercicios, tareas, tutoriales y examenes de todos temas que serán evaluados en tu examen de admisión.</p> 
+      </div>            
+    </div>
+    <div class="row">
+      <div class="col-sm-4 benefits-card">
+        <%= image_tag("icon4.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Avance Programado</h3>
+        <p> Nuestro curso te guiará paso a paso en todos los temas de los examenes, nuestro curso ha sido diseñado en base a la experiencia de nuestros docentes y miles de alumnos.</p>
+      </div>
+      <div class="col-sm-4 benefits-card">
+        <%= image_tag("icon5.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Estadisticas</h3>
+        <p>Observa tu progreso. Gracias a nuestra plataforma podrás conocer tus avances, tus fortalezas y debilidades, de manera que te centres en aquello que más necesitas y asegures la calidad de tu examen.</p>
+      </div>
+      <div class="col-sm-4 benefits-card">
+        <%= image_tag("icon6.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title"> Clases en Vivo</h3>
+        <p>Únete a nuestros cursos en vivo con profesores preparados y con experiencia en enseñanza, descubre nuevas estrategias, infórmate de mejores métodos y concéntrate en lo que realmente necesitas aprender.</p>
       </div>
     </div>
 
-    <div class="col-sm-6">
-      <div>
-        <h2>Participas en vivo</h2>
-        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
-      </div>
-       <div>
-        <h2>Participas en vivo</h2>
-        <p>Tú eres parte importante de la clase ya que el profesor resuelve tus dudas y preguntas así como de todos los participantes</p>
-      </div>
-    </div>
-
-  </div>
   
 
   </div>
@@ -226,72 +224,210 @@
 
 
 
-
-
-
-
-<div class="our-courses white-bg">
+<div class="our-courses blue-bg">
   <div class="container">
 
-    <h1>Nuestros Cursos</h1>
+    <h1 class="landing-title" >Nuestros Cursos</h1>
+      <div class="row">
+      <!-- Enes -->
+        <div class="col-sm-offset-1 col-sm-5 our-course-content">
+          <div class="our-course-wrapper">
+              <br>
+              <h2 >ENES</h2>
+              <br><br><br>
+              <h4>Contenido:</h4>
+              <br>
+              <p>Razonamiento Abstracto</p>
+              <p>Razonamiento Numérico</p>
+              <p>Razonamiento Verbal</p>
+              <br><br>
+              
+              <h4>Incluye:</h4>
+              <br>
+              <ul >
+                  <li>Curso Perzonalizado paso a paso</li>
+                  <li>3000+ ejercicios interactivos</li>
+                  <li>10 Simuladores del Examen</li>
+                  <li>Clases en vivo todas las semanas</li>
+                  <li>Tutoriales de todos los temas </li>
+                  <li>Estadisticas Perzonalidas</li>
+              </ul>
+          </div>
+        </div>
+        <!-- Ser Bachiller -->
+        <div class="col-sm-5 our-course-content">
+            <div class="our-course-wrapper">
+                <h2 >SER BACHILLER</h2>
+                <br>
+                <h4>Contenido:</h4>
+                <br>
+                <p >Matemáticas</p>
+                <p >Literatura</p>
+                <p >Ciencias Sociales</p>
+                <p >Ciencias Naturales</p>
+                <br>
+                <h4 >Incluye:</h4>
+                <br>
+                <ul >
+                    <li>Curso Perzonalizado paso a paso</li>
+                    <li>1000+ ejercicios interactivos</li>
+                    <li>5 Simuladores del Examen</li>
+                    <li>Clases en vivo todas las semanas</li>
+                    <li>Tutoriales de todos los temas </li>
+                    <li>Estadisticas Perzonalidas</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
 
 
-      
-      <div class="prices text-center ">
-            <div class="row">
-               
 
-                <div class="col-sm-offset-2 col-sm-4">
-                    <div class="price wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.4s" style="height: 750px; background-color: rgb(248, 248, 255); padding: 2em; visibility: visible; animation: fadeInUp 0.5s 0.4s; -webkit-animation: fadeInUp 0.5s 0.4s;">
-                        <h2 style="color: #000; font-size: 2.3em; text-align: center;">PLAN MENSUAL</h2>
-                        <h1 style="color: #ed107d; text-align: center !important;">$799/mes</h1>
-                        <h4 style="text-align: center !important;">Pago mensual</h4>
-                        <br><br><br><br>
-                        <ul>
-                            <li>10 Aulas en vivo por semana de matemáticas, español y pensamiento analítico<br>
-                            </li><li>Acceso a más de 600 videos grabados, más de 5,000 ejercicios, cientos de textos y evaluaciones contenidas en 48 cápsulas de aprendizaje</li><br>
-                            <li>1 simulador del examen de selección con revisión reactivo por reactivo y reporte de resultados</li><br>
-                            <br><br><br><br><br>
-                        </ul>
+<div class="testimonies white-bg">
+
+    <h1 class="landing-title" >Testimonios</h1>
+
+    <div class="container">
+      <div class="row">
+          <div class="col-md-12" data-wow-delay="0.5s">
+              <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                <!-- Bottom Carousel Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#quote-carousel" data-slide-to="0" class="active"><img class="img-responsive " src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="">
+                    </li>
+                    <li data-target="#quote-carousel" data-slide-to="1"><img class="img-responsive" src="https://s3.amazonaws.com/uifaces/faces/twitter/rssems/128.jpg" alt="">
+                    </li>
+                    <li data-target="#quote-carousel" data-slide-to="2"><img class="img-responsive" src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg" alt="">
+                    </li>
+                </ol>
+
+                <!-- Carousel Slides / Quotes -->
+                <div class="carousel-inner text-center">
+
+                    <!-- Quote 1 -->
+                    <div class="item active">
+                        <blockquote>
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. !</p>
+                                    <small>Erdhi</small>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- Quote 2 -->
+                    <div class="item">
+                        <blockquote>
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+                                    <small>Zacky</small>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    <!-- Quote 3 -->
+                    <div class="item">
+                        <blockquote>
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. .</p>
+                                    <small>Hasfim</small>
+                                </div>
+                            </div>
+                        </blockquote>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="price wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.3s" style="height: 750px; background-color: rgb(248, 248, 255); padding: 2em; visibility: visible; animation: fadeInUp 0.5s 0.3s; -webkit-animation: fadeInUp 0.5s 0.3s;">
-                        <h2 style="color: #000; font-size: 2.3em;  text-align: center; ">PLAN ANUAL</h2>
-                        <h1 style="color: #ed107d; text-align: center !important;">$2,397</h1>
-                        <h4 style="text-align: center !important;">Pago único anual</h4>
-                        <h5>(75% de desc. sobre precio regular)</h5>
-                        <ul>
-                            <li>10 aulas en vivo por semana de matemáticas, español y pensamiento analítico</li><br>
-                            <li>Acceso a más de 600 videos grabados, más de 5,000 ejercicios, cientos de textos y evaluaciones contenidas en 48 cápsulas de aprendizaje</li><br>
-                            <li>3 simuladores del examen de selección con revisión reactivo por reactivo y reporte de resultados</li><br>
-                            <li>1 simulador del examen de diganóstico con revisión</li><br>
-                            <li>Aulas en vivo por semana enfocadas a química, biología, matemáticas y física</li>
 
-                        </ul>
-                    </div>
+                <!-- Carousel Buttons Next/Prev -->
+                <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+                <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
                 </div>
             </div>
+        </div>
+      </div>
 
 
-
-    </div>
-
-
-
-  </div>
-  
-</div>
-
-<div class="testimonies blue-bg">
-  <div class="container">
-    <h1>Testimonios</h1>
        <%= link_to "Regístrate Gratis con Facebook", "users/auth/facebook", class: "aprendemy-btn btn btn-primary" %>  
           
-  </div>
   
 </div>
 
+
+
+<div class="footer blue-bg">
+  <p class="copyright"> Copyright © 2016. Aprendemy. </p>
+    <div class="footer-img">
+      <%= image_tag("logoblanco.png", alt: "Estudia con Aprendemy", class: "logo-landing") %>
+    </div>
+
+    <div class="community-icons-footer">
+        <a href="https://www.facebook.com/aprendemy" target="_blank"><i id="social-fb-footer" class="fa fa-facebook-square fa-3x social"></i></a>
+        <a href="https://twitter.com/aprendemy" target="_blank"><i id="social-tw-footer" class="fa fa-twitter-square fa-3x social"></i></a>
+        <a href="https://www.youtube.com/channel/UCc6N8LIO-yPIsDqM50ypxjQ" target="_blank"><i id="social-yt-footer" class="fa fa-youtube-square fa-3x social"></i></a>
+        <a href="https://www.instagram.com/aprendemy/" target="_blank"><i id="social-in-footer" class="fa fa-instagram fa-3x social"></i></a>
+        <a href="mailto:hola@aprendemy.com" target="_blank"><i id="social-em-footer" class="fa fa-envelope-square fa-3x social"></i></a>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Regístrarme</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Form -->
+        <div class="form-card">
+          <p class="trial-banner basic">Empieza hoy mismo!</p>
+
+            <form class="new_user" id="new_user" action="/users" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="LX2qNEdP1xluJCvznAlF47Lr5pb88d0wT4MFfuPBgml9ohli4NSU3xpWWPevNu1U7SGmdG6k14o/lp3rpSWv3g==">      
+              <div class="row">
+                <div class="col-sm-6">
+                     <input class="input-text" placeholder="Nombre" type="text" name="user[first_name]" id="user_first_name">
+                </div>
+              
+                <div class="col-sm-6">
+                  <input class="input-text" placeholder="Apellido" type="text" name="user[last_name]" id="user_last_name">
+                </div>
+                <div class="col-sm-12">
+                  <input class="input-text" placeholder="Email" type="email" value="" name="user[email]" id="user_email">
+                </div>
+                <div class="col-sm-12">
+                  <input class="input-text" placeholder="Password (Mínimo 6 caracteres)" autocomplete="off" type="password" name="user[password]" id="user_password">
+                </div>
+                <div class="col-sm-12">
+                  <input class="input-text" placeholder="Confirmación de Password" autocomplete="off" type="password" name="user[password_confirmation]" id="user_password_confirmation">
+                </div>
+                <br>
+
+                <div class="col-sm-12">
+                  <div class="input-text">
+                    <label class="gender-text" for="user_Género">Género</label>
+                    <input type="radio" value="true" name="user[gender]" id="user_gender_true"><img class="img-gender" src="/assets/avatar-girl-8378f812d2a6b8bdce5acc6cd7bfc51e22ca64f6cb9b29140b14d804e81dfc79.png" alt="Avatar girl 8378f812d2a6b8bdce5acc6cd7bfc51e22ca64f6cb9b29140b14d804e81dfc79">
+                    <input type="radio" value="false" name="user[gender]" id="user_gender_false"><img class="img-gender" src="/assets/avatar-guy-e8e1457a6abe1266d57cd64bbaa3d653f21f94f213f54ebf6fe0c5954a10d5b2.png" alt="Avatar guy e8e1457a6abe1266d57cd64bbaa3d653f21f94f213f54ebf6fe0c5954a10d5b2">
+                  </div>
+                </div>
+                        
+                <div class="col-sm-12">
+                  <input type="submit" name="commit" value="Reclama tu prueba gratis" class="free-trial-button">
+                </div>
+              </div>
+            </form>     
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
