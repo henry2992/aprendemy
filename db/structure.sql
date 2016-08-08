@@ -545,39 +545,6 @@ ALTER SEQUENCE events_id_seq OWNED BY events.id;
 
 
 --
--- Name: licenses; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE licenses (
-    id integer NOT NULL,
-    user_id integer,
-    plan integer DEFAULT 10,
-    days_left integer DEFAULT 10,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: licenses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE licenses_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: licenses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE licenses_id_seq OWNED BY licenses.id;
-
-
---
 -- Name: live_classes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1406,13 +1373,6 @@ ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY live_classes ALTER COLUMN id SET DEFAULT nextval('live_classes_id_seq'::regclass);
 
 
@@ -1650,14 +1610,6 @@ ALTER TABLE ONLY event_types
 
 ALTER TABLE ONLY events
     ADD CONSTRAINT events_pkey PRIMARY KEY (id);
-
-
---
--- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY licenses
-    ADD CONSTRAINT licenses_pkey PRIMARY KEY (id);
 
 
 --
@@ -2222,4 +2174,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160726195054');
 INSERT INTO schema_migrations (version) VALUES ('20160801020817');
 
 INSERT INTO schema_migrations (version) VALUES ('20160801021612');
+
+INSERT INTO schema_migrations (version) VALUES ('20160808050550');
 

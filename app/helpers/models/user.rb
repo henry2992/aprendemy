@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
-  after_create :create_license
   after_create :create_courses_by_default
 
   enum role: [:free, :paid, :admin]
@@ -27,7 +26,6 @@ class User < ActiveRecord::Base
 
   has_many :answers
   
-  has_one :license
 
   def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -47,10 +45,6 @@ class User < ActiveRecord::Base
 
   def points
     Point.where(recipient_id: self.id, recipient_type: 'User').sum(:points)
-  end
-
-  def create_license
-    License.create(user: self) unless self.admin?
   end
 
   def create_courses_by_default
