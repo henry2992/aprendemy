@@ -33,13 +33,14 @@ Rails.application.routes.draw do
         end
       end
 
-      # get '/payments' => 'home#payments', as: :payments
+      get '/payments' => 'payments#index', as: :payments
+
 
       # TUTORIALS
       resources :tutorials
 
       # PAYMENTS
-      resources :payments
+      # resources :payments
 
 
     end
