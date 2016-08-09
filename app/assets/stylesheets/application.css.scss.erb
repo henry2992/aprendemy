@@ -112,29 +112,80 @@ ul {
   border-right: 1px solid #fff;
 }
 
+.landing-title{
+  font-weight: bold;
+  font-size: 25px;
+}
 
-/* TOP BAR */
+/*.landing-title {
+    font-weight: bold;
+    font-size: 48px;
+}*/
+
+/**************** NAVBAR  TOP BAR *******************/
 .topbar {
   width: 100%;
-  
   left: 0;
   z-index: 5;
   top: -70px;
-/*  -webkit-transition: all 0.3s ease-out;
-  -moz-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out;*/
 }
 
 .topbar.visible {
   position: fixed;
   top: 0px;
+
 }
 
-.landing-title {
-    font-weight: bold;
-    font-size: 48px;
+.landing-navbar{
+   background-color: #06476b; 
+   border-color: #06476b;
+   border-radius: 0px !important; 
 }
+
+.landing-navbar li > a {
+  color: #fff !important;
+  font-size: 12px !important;
+  text-transform: uppercase;
+}
+
+.btn-session-landing{
+  font-weight: 700;
+  padding: 5px !important;
+  margin-top: 10px;
+  margin-right: 5px !important;
+}
+
+.btn-session-landing:hover{
+  background-color: transparent;
+  border-color: white;
+}
+
+
+#logo-landing-navbar{
+  width: 200px;
+  margin-top: -30px;
+  margin-left: -10px;
+}
+
+/*#logo-landing{
+  width: 225px;
+  margin-top: -35px;
+  margin-left: -10px;
+}
+*/
+.landing-navbar-toggle{
+  color: white !important;
+  border-color: #fff !important;
+}
+
+.landing-navbar-toggle:hover{
+  background-color: transparent !important;
+}
+
+.landing-navbar-toggle span{
+  background-color: #fff !important;
+}
+
 
 /************* Init ******************/
 
@@ -144,19 +195,36 @@ ul {
     background-size: cover; 
     background-position: center center; 
     color: #fff; 
-    height: 100vh; 
+    /*height: 100vh; */
     text-align: center;
 }
 
 .landing-wrapper{
+  margin: 15px auto 0 auto;
+  text-align: center;
+  /*max-width: 650px;*/
+}
+
+
+
+/*.landing-wrapper{
   margin: 100px auto 0 auto;
   text-align: center;
   max-width: 650px;
-}
+}*/
+
+/*.landing-wrapper h1{
+  margin-bottom: 25px !important; 
+}*/
 
 .landing-wrapper h1{
-  margin-bottom: 25px !important; 
+  margin-bottom: 15px !important; 
 }
+
+.landing-wrapper p{
+  font-size: 13px;
+}
+
 
 .logo-landing{
   width: 250px;
@@ -164,7 +232,12 @@ ul {
 }
 
 .landing-buttons{
-  margin: 35px;
+  margin: 35px auto;
+}
+
+.landing-buttons a {
+  margin-bottom: 15px;
+
 }
 
 .btn-animated {
@@ -196,7 +269,7 @@ ul {
 }
 
 .community-icons {
-    margin-top: 30px;
+    margin: 30px auto;
     color: white !important;
 }
 
@@ -240,8 +313,6 @@ ul {
 }
 
 
-
-
 /*****************  Know More ********************/
 
 .know-more{
@@ -251,9 +322,11 @@ ul {
 }
 
 .know-more-wrapper{
-   padding: 150px 0;
-
+   padding: 50px 0;
 }
+
+
+
 
 .know-more-content h1 {
   margin: 30px 0 !important;
@@ -262,8 +335,12 @@ ul {
 
 .know-more-content p {
   text-align: center;
+  font-size: 13px;
 }
 
+.know-more-img {
+  width: 100%;
+}
 
 .improve{
   font-size: 15px;
@@ -275,12 +352,9 @@ ul {
 
 .how-works{
     text-align: center;
-    padding: 50px 0;
+    padding: 20px 0;
 }
 
-.how-works-rocket{
-   width: 75px;
-}
 
 .how-works-title {
   margin: 35px 0;
@@ -290,10 +364,14 @@ ul {
     color: #06476b;
 }
 
+.how-works-title p {
+  font-size: 13px;
+}
+
 .how-works-content h2 {
   color: #06476b;
-  font-size: 24px;
-  margin-bottom: 15px !important;
+  font-size: 18px;
+  margin-bottom: 5px !important;
   font-weight: bold;
 }
 
@@ -306,9 +384,8 @@ ul {
 }
 
 .how-works-content p {
-  /*color: #2B6E92;*/
-  font-size: 16px;
-  margin-bottom: 35px !important;
+  font-size: 14px;
+  margin-bottom: 25px !important;
 }
 
 .how-works-img{
@@ -319,8 +396,8 @@ ul {
 /********************* About ***********/
 
 .about-container{
-  background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .5));
-  min-height: 500px; 
+  background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .7));
+  padding: 20px 0;
 }
 
 .about{
@@ -332,18 +409,29 @@ ul {
     rgb(140, 206, 207) 50%, 
     rgb(140, 206, 207) 100%
     );
-    
     background-repeat: no-repeat;
     background-size: contain; 
     background-position: center center; 
-
     color: #fff; 
-    min-height: 500px; 
 }
 
 .about-title{
   margin: 50px 0;
   text-align: center;
+}
+
+.about-content {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.about-content img {
+   margin-bottom: 25px;
+}
+
+.about-content h3 {
+  margin-bottom: 15px !important; 
+  font-weight: bold;
 }
 
 /***************** Our Courses **************/
@@ -362,7 +450,7 @@ ul {
 
 .our-courses h1 {
   color: #fff;
-  margin-bottom: 30px !important;
+  margin: 35px 0 !important;
 }
 
 .our-course-content h2 {
@@ -418,6 +506,17 @@ ul {
   color: #06476b; 
   text-align: center !important;
   margin-bottom: 30px;
+}
+
+.landing-benefits-content h3 {
+  margin-bottom: 15px !important; 
+  font-size: 18px;
+  font-weight: bold;
+  color: #06476b;
+}
+
+.landing-benefits-content p {
+  font-size: 14px;
 }
 
 
@@ -500,7 +599,7 @@ ul {
 }
 
 .landing-modal-title {
-  background-color: #3fbee8;
+  background-color: #06476b;
   border-radius: 5px 5px 0px 0px;
   text-align: center;
   font-weight: 500;
@@ -587,21 +686,27 @@ ul {
 /***********************************/
 
 /*Global*/
-.dropdown:focus{ outline: none !important; }
-.nav>li>a:focus{ outline: none !important; }
-.navbar{ border-radius: 0px !important;  }
-.navbar-default{ background-color: #06476b; border-color: #06476b; }
-.navbar-default .navbar-nav>.open>a{ background-color: transparent !important; }
-.navbar-nav > li > a{ margin-left:10px; margin-right:10px; font-size: 15px; }
-.navbar-default .navbar-nav>li>a{ color: white; }
-.navbar-default .navbar-nav>li>a:hover{ color: white; }
-.navbar-collapse.collapse { display: block!important; }
-.navbar-nav>li, .navbar-nav { float: left !important; margin: 0 !important; }
-.navbar-right { float: right!important; }
+
+.courses-navbar >li>a:focus{ outline: none !important; }
+.courses-navbar { background-color: #06476b !important; border-color: #06476b !important; border-radius: 0px !important;}
+.courses-navbar li a { margin-left:10px; margin-right:10px; font-size: 15px; }
+
+
+.courses-navbar .dropdown:focus{ outline: none !important; }
+
+a.dropdown-toggle.nav-profile-link {
+  background-color: transparent !important;
+}
+
+.small{
+  font-size: 12px !important;
+}
+
 /*Logos*/
 .navbar{ margin: 0px !important; }
 #logo{ display: none; width: 225px; margin-top: -35px; margin-left: -10px }
 #isotipo{ width: 70px; margin-top: -15px; margin-left: -35px;}
+
 /*Calendar*/
 .nav-calendar-wrapper{ display: none !important; }
 .nav-calendar{ margin-top: 15px !important; padding: 0 !important; }
@@ -609,6 +714,7 @@ ul {
 /*User*/
 .nav-profile-wrapper{ display: none !important; }
 .nav-profile-link{ padding: 12px !important; }
+.nav-profile-link .caret {color: #fff !important}
 .nav-profile-img{ border-radius: 50%; height: 30px; width: 30px }
 .profile-dropdown{ padding: 5px 0px 0px 0px !important; }
 .dropdown-menu{ margin-left: -125px !important; }
@@ -620,12 +726,21 @@ ul {
 .navbar-footer-content{ padding: 15px; }
 .btn-session{ padding: 5px !important; width: 75px;}
 /*Mobile Menu*/
-.nav-mobile-btn{ border: 1px solid white; padding: 7px !important; margin-top: 8px !important; border-radius: 50%;}
+.nav-mobile-btn{ 
+  border: 1px solid white;
+  padding: 7px !important;
+  margin-top: 8px !important;
+  border-radius: 50%;
+  display: inline-block !important;
+  float: right;
+  margin-top: -42px !important;
+}
 .nav-menu-btn{ width: 20px; }
+
 .mobile-menu-icon{ display: block;}
 
 /**********************************************************/
-/****************** MAterial Navbar  *********************/
+/****************** SIDES Navbar  *********************/
 /********************************************************/
 
 /**** Tabs Content ****/
@@ -695,13 +810,19 @@ ul {
 
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) {
+    /*Landing NavBar*/
+
+    .landing-links{
+      display: inline-block;
+    }
+
     /*Index Navbar*/
-	#logo{ display: block; }
-	#isotipo{ display: none; }
-	.nav-calendar-wrapper{ display: block !important;}
-	.nav-calendar{margin-top: 0px; }
-	.nav-profile-wrapper{ display: inline-block !important; }
-	.mobile-menu-icon{ display: none !important;}
+	   #logo{ display: block; }
+	   #isotipo{ display: none; }
+  	.nav-calendar-wrapper{ display: block !important;}
+  	.nav-calendar{margin-top: 0px; }
+  	.nav-profile-wrapper{ display: inline-block !important; }
+  	.mobile-menu-icon{ display: none !important; }
     /* Courses NavBar */
     #logo-courses{ display: block; }
     #isotipo-courses{ display: none; }
@@ -709,6 +830,53 @@ ul {
     #vertical-nav { display: block; }
     /* Course Content */
     #container { padding-left: 50px; margin-top: 55px; }
+
+
+    /************ Know More **************/
+    .know-more-wrapper{
+      padding: 150px 0;
+    }
+
+    .know-more-content p {
+      font-size: 18px;
+    }
+
+    /************* How works *********/
+
+    .how-works{
+        padding: 50px 0;
+    }
+
+    .how-works-title p {
+      font-size: 18px;
+    }
+
+    .how-works-content h2 {
+      font-size: 24px;
+      margin-bottom: 15px !important;
+    }
+
+    .how-works-content p {
+      font-size: 16px;
+      margin-bottom: 35px !important;
+    }
+
+    /************* About **************/
+
+    .about-container{
+      padding: 50px 0;
+    }
+
+    /************* Benefits *******/
+
+    .landing-benefits-content h3 {
+      font-size: 24px;
+      color: #06476b;
+    }
+
+    .landing-benefits-content p {
+      font-size: 18px;
+    }
 }
 
 /* Desktops and laptops ----------- */
