@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   devise :omniauthable, :omniauth_providers => [:facebook]
-  after_create :create_license
 
   enum role: [:free, :paid, :admin]
 
@@ -16,16 +15,11 @@ class User < ActiveRecord::Base
 
   has_many :categories, counter_cache: true
   has_many :sub_categories
-  has_many :simulators
-  has_many :answered_questions
-  has_many :simulator_answered_questions
 
   has_many :course_users, :dependent => :destroy
   has_many :courses, :through => :course_users
 
   has_many :answers
-
-  has_one :license
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -45,10 +39,6 @@ class User < ActiveRecord::Base
 
   def points
     Point.where(recipient_id: self.id, recipient_type: 'User').sum(:points)
-  end
-
-  def create_license
-    License.create(user: self) unless self.admin?
   end
 
   def self.current

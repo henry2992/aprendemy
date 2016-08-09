@@ -5,14 +5,13 @@ class Student::StudentController < ApplicationController
     # There must be a plan free first
     CourseUserPlan.create! course_user: course_user, plan: Plan.where(name: "Free").first if !course_user.course_user_plan.present? 
     # Redirigir a pagos si ha expirado el plan contratado del curso
+    # raise course_user.course_user_plan.expiration_date.to_yaml
     if Date.today > course_user.course_user_plan.expiration_date
-        
-      course_user.course_user_plan.status = 0 #QUE HACE ESTA LINEA?
-
-
+      cup = course_user.course_user_plan
+      cup.status = "expired" # Marcar como expirado el plan
+      cup.save
       redirect_to student_course_payments_path(course_user) 
     end
-
 
   end
 
