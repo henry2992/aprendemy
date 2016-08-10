@@ -20,7 +20,6 @@ class HomeController < ApplicationController
       redirect_to student_courses_path if !admin?
       redirect_to student_courses_path if admin?
     end
-    @simulator_types = SimulatorType.all
   end
 
 end

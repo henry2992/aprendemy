@@ -1,5 +1,5 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top courses-navbar" role="navigation">
+
 		<div class="container">
 		    <div class="navbar-header">
 		    	<a id="brand" class="navbar-brand" href="/">
@@ -55,14 +55,14 @@
 	                                          <%= image_tag("avatar-girl", class: "img-responsive", alt: "Apredemy-avatar") %>
 	                                      <%end %>
 	                                <%end%>
-	                                <p class="text-center small"><a href="#">Cambiar Foto</a></p>
+	                                <p class="text-center"><a class="small" href="#">Cambiar Foto</a></p>
 	                            </div>
 	                            <div class="col-sm-7">
 	                                <span>Henry Sebastian Remache Carrillo</span>
 	                                <p class="text-muted small">henry2992@gmail.com</p>
 	                                <div class="divider">
 	                                </div>
-	                                <a href="#" class="btn btn-primary btn-sm active">Ver Perfil</a>
+	                                <a href="#" class="btn btn-primary btn-sm active small">Ver Perfil</a>
 	                            </div>
 	                        </div>
 	                      <div class="navbar-footer">
@@ -77,15 +77,18 @@
 	                    </li>
 	                </ul>
 	            </li>
-				<!-- Item 2 -->
+				
+	    	</ul>
+
+	    	<ul class="nav navbar-nav navbar-right ">
+	    		<!-- Item 3 -->
 	            <li class="dropdown mobile-menu-icon" onclick="openNavRight()">
 	              <a class="nav-mobile-btn " >
 	                <%= image_tag("menu-icon.png", class:"nav-menu-btn",  alt: "Apredemy") %>
 	              </a>
 	            </li>
-	    	</ul>
+			</ul>
 		</div>
-	</div>
 </nav>
 
 

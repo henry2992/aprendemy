@@ -140,40 +140,6 @@ end $$;
 
 
 --
--- Name: answered_questions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE answered_questions (
-    id integer NOT NULL,
-    correct boolean DEFAULT false,
-    user_id integer,
-    question_id integer,
-    choice_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: answered_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE answered_questions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: answered_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE answered_questions_id_seq OWNED BY answered_questions.id;
-
-
---
 -- Name: answers; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -891,146 +857,6 @@ ALTER SEQUENCE sections_id_seq OWNED BY sections.id;
 
 
 --
--- Name: simulated_categories; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE simulated_categories (
-    id integer NOT NULL,
-    category_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: simulated_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE simulated_categories_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: simulated_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE simulated_categories_id_seq OWNED BY simulated_categories.id;
-
-
---
--- Name: simulator_answered_questions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE simulator_answered_questions (
-    id integer NOT NULL,
-    simulator_id integer,
-    question_id integer,
-    user_id integer,
-    choice_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    status integer DEFAULT 0,
-    marked_status integer DEFAULT 0
-);
-
-
---
--- Name: simulator_answered_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE simulator_answered_questions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: simulator_answered_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE simulator_answered_questions_id_seq OWNED BY simulator_answered_questions.id;
-
-
---
--- Name: simulator_types; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE simulator_types (
-    id integer NOT NULL,
-    name character varying,
-    total_questions integer,
-    time_duration time without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    description character varying,
-    "limit" integer,
-    points integer
-);
-
-
---
--- Name: simulator_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE simulator_types_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: simulator_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE simulator_types_id_seq OWNED BY simulator_types.id;
-
-
---
--- Name: simulators; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE simulators (
-    id integer NOT NULL,
-    user_id integer,
-    time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:07.088937'::timestamp without time zone,
-    last_paused timestamp without time zone,
-    time_completed timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    simulator_type_id integer,
-    status integer DEFAULT 0
-);
-
-
---
--- Name: simulators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE simulators_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: simulators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE simulators_id_seq OWNED BY simulators.id;
-
-
---
 -- Name: sub_categories; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1289,13 +1115,6 @@ ALTER SEQUENCE videos_id_seq OWNED BY videos.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY answered_questions ALTER COLUMN id SET DEFAULT nextval('answered_questions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY answers ALTER COLUMN id SET DEFAULT nextval('answers_id_seq'::regclass);
 
 
@@ -1443,34 +1262,6 @@ ALTER TABLE ONLY sections ALTER COLUMN id SET DEFAULT nextval('sections_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY simulated_categories ALTER COLUMN id SET DEFAULT nextval('simulated_categories_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY simulator_answered_questions ALTER COLUMN id SET DEFAULT nextval('simulator_answered_questions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY simulator_types ALTER COLUMN id SET DEFAULT nextval('simulator_types_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY simulators ALTER COLUMN id SET DEFAULT nextval('simulators_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categories_id_seq'::regclass);
 
 
@@ -1514,14 +1305,6 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 --
 
 ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::regclass);
-
-
---
--- Name: answered_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY answered_questions
-    ADD CONSTRAINT answered_questions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1690,38 +1473,6 @@ ALTER TABLE ONLY schools
 
 ALTER TABLE ONLY sections
     ADD CONSTRAINT sections_pkey PRIMARY KEY (id);
-
-
---
--- Name: simulated_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY simulated_categories
-    ADD CONSTRAINT simulated_categories_pkey PRIMARY KEY (id);
-
-
---
--- Name: simulator_answered_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY simulator_answered_questions
-    ADD CONSTRAINT simulator_answered_questions_pkey PRIMARY KEY (id);
-
-
---
--- Name: simulator_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY simulator_types
-    ADD CONSTRAINT simulator_types_pkey PRIMARY KEY (id);
-
-
---
--- Name: simulators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY simulators
-    ADD CONSTRAINT simulators_pkey PRIMARY KEY (id);
 
 
 --
@@ -2176,4 +1927,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160801020817');
 INSERT INTO schema_migrations (version) VALUES ('20160801021612');
 
 INSERT INTO schema_migrations (version) VALUES ('20160808050550');
+
+INSERT INTO schema_migrations (version) VALUES ('20160808202331');
 
