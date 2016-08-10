@@ -69054,7 +69054,7 @@ questions = Question.create(
                                 {
                                     "id": 522,
                                     "content": "Cuál es la cantidad de cubos existentes en la figura",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69066,7 +69066,7 @@ questions = Question.create(
                                 {
                                     "id": 521,
                                     "content": "Cuantos cubos faltan para completar la matriz",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69078,7 +69078,7 @@ questions = Question.create(
                                 {
                                     "id": 520,
                                     "content": "Hallar el total de cubos",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69090,7 +69090,7 @@ questions = Question.create(
                                 {
                                     "id": 519,
                                     "content": "Hallar el número de triángulos en",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69102,7 +69102,7 @@ questions = Question.create(
                                 {
                                     "id": 518,
                                     "content": "Hallar el total de cuadriláteros",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69114,7 +69114,7 @@ questions = Question.create(
                                 {
                                     "id": 517,
                                     "content": "Hallar el número de triángulos en (1) y (2)",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69126,7 +69126,7 @@ questions = Question.create(
                                 {
                                     "id": 516,
                                     "content": "Hallar el número de triángulos en:",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69138,7 +69138,7 @@ questions = Question.create(
                                 {
                                     "id": 515,
                                     "content": "Hallar el total de cuadriláteros",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69150,7 +69150,7 @@ questions = Question.create(
                                 {
                                     "id": 514,
                                     "content": "Hallar el número de triángulos que tienen un *",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69162,7 +69162,7 @@ questions = Question.create(
                                 {
                                     "id": 513,
                                     "content": "Hallar el número total de triángulos",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69174,7 +69174,7 @@ questions = Question.create(
                                 {
                                     "id": 512,
                                     "content": "Cuál es el número máximo de rectángulos existentes en la figura. ",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69186,7 +69186,7 @@ questions = Question.create(
                                 {
                                     "id": 511,
                                     "content": "Cuantos segmentos se encuentran en:",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69198,7 +69198,7 @@ questions = Question.create(
                                 {
                                     "id": 510,
                                     "content": "Hallar el número total de cuadriláteros",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69210,7 +69210,7 @@ questions = Question.create(
                                 {
                                     "id": 509,
                                     "content": "Hallar el número total de cuadriláteros",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69222,7 +69222,7 @@ questions = Question.create(
                                 {
                                     "id": 508,
                                     "content": "¿Cuantos triángulos hay en la figura?",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
@@ -69234,7 +69234,7 @@ questions = Question.create(
                                 {
                                     "id": 507,
                                     "content": "Hallar el número de triángulos",
-                                    "choice_id": null,
+                                    "choice_id": nil,
                                     "explanation": "",
                                     "url": "",
                                     "picture": {
