@@ -1,5 +1,9 @@
 # Create all categories.
 puts "Espere un momento ..."
+
+# Create Courses
+enes = Course.create! name: 'ENES', description: '&nbsp;'
+
 categories = Category.create([
                               {
                                 "id":3,
