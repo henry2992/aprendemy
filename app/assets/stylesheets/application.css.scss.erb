@@ -117,16 +117,13 @@ ul {
   font-size: 25px;
 }
 
-/*.landing-title {
-    font-weight: bold;
-    font-size: 48px;
-}*/
+
 
 /**************** NAVBAR  TOP BAR *******************/
 .topbar {
   width: 100%;
   left: 0;
-  z-index: 5;
+  z-index: 50;
   top: -70px;
 }
 
@@ -167,12 +164,7 @@ ul {
   margin-left: -10px;
 }
 
-/*#logo-landing{
-  width: 225px;
-  margin-top: -35px;
-  margin-left: -10px;
-}
-*/
+
 .landing-navbar-toggle{
   color: white !important;
   border-color: #fff !important;
@@ -195,27 +187,14 @@ ul {
     background-size: cover; 
     background-position: center center; 
     color: #fff; 
-    /*height: 100vh; */
     text-align: center;
 }
 
 .landing-wrapper{
   margin: 15px auto 0 auto;
   text-align: center;
-  /*max-width: 650px;*/
 }
 
-
-
-/*.landing-wrapper{
-  margin: 100px auto 0 auto;
-  text-align: center;
-  max-width: 650px;
-}*/
-
-/*.landing-wrapper h1{
-  margin-bottom: 25px !important; 
-}*/
 
 .landing-wrapper h1{
   margin-bottom: 15px !important; 
@@ -293,23 +272,23 @@ ul {
 }
 
 #social-fb:hover {
-    color: #3B5998
+    color: #3B5998 !important;
 }
 
 #social-tw:hover {
-    color: #4099FF
+    color: #4099FF !important;
 }
 
 #social-yt:hover {
-    color: #d34836
+    color: #d34836 !important;
 }
 
 #social-em:hover {
-    color: #f39c12
+    color: #f39c12 !important;
 }
 
 #social-in:hover {
-    color: #3f729b
+    color: #3f729b !important;
 }
 
 
@@ -434,6 +413,10 @@ ul {
   font-weight: bold;
 }
 
+.about-content p {
+  font-size: 13px;
+}
+
 /***************** Our Courses **************/
 
 .our-courses{
@@ -456,7 +439,7 @@ ul {
 .our-course-content h2 {
   color: #ed107d;
   text-align: center !important;
-  font-size: 60px;
+  font-size: 30px;
 }
 
 .our-course-content h4{
@@ -473,7 +456,10 @@ ul {
   text-align: center;
   background-color: rgba(237, 16, 125, 0.1);
   border-radius: 5px;
+  font-size: 15px;
 }
+
+
 
 .our-course-content ul {
   list-style: none;
@@ -488,6 +474,7 @@ ul {
   text-align: center;
   background-color: rgba(237, 16, 125, 0.1);
   border-radius: 5px;
+  font-size: 14px;
 }
 
 
@@ -523,69 +510,118 @@ ul {
 /******************** Testimonies ********************/
 
 .testimonies {
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 .testimonies h1 {
   text-align: center;
   color: #06476b;
+  margin-bottom: 30px !important;
 }
 
-#quote-carousel {
-    padding: 0 10px 30px 10px;
-    margin-top: 30px;
+/* Testimonials */
+.testimonials blockquote {
+    background: #f8f8f8 none repeat scroll 0 0;
+    border: medium none;
+    color: #666;
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 15px;
+    position: relative;
+    height: 125px;
+
 }
-#quote-carousel .carousel-control {
-    background: none;
-    color: #CACACA;
-    font-size: 2.3em;
-    text-shadow: none;
-    margin-top: 30px;
+.testimonials blockquote::before {
+    width: 0; 
+    height: 0;
+  right: 0;
+  bottom: 0;
+  content: " "; 
+  display: block; 
+  position: absolute;
+    border-bottom: 20px solid #fff;    
+  border-right: 0 solid transparent;
+  border-left: 15px solid transparent;
+  border-left-style: inset; /*FF fixes*/
+  border-bottom-style: inset; /*FF fixes*/
 }
-#quote-carousel .carousel-control.left {
-    left: -10px;
+.testimonials blockquote::after {
+    width: 0;
+    height: 0;
+    right: 0;
+    bottom: 0;
+    content: " ";
+    display: block;
+    position: absolute;
+    border-style: solid;
+    border-width: 20px 20px 0 0;
+    border-color: #e63f0c transparent transparent transparent;
 }
-#quote-carousel .carousel-control.right {
-    right: -10px;
+.testimonials .carousel-info img {
+    border: 1px solid #f5f5f5;
+    border-radius: 150px !important;
+    height: 75px;
+    padding: 3px;
+    width: 75px;
+    margin-bottom: 25px;
 }
-#quote-carousel .carousel-indicators {
-    right: 50%;
-    top: auto;
-    bottom: 0px;
-    margin-right: -19px;
-}
-#quote-carousel .carousel-indicators li {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    cursor: pointer;
-    border: 4px solid #CCC;
-    border-radius: 50px;
-    opacity: 0.4;
+.testimonials .carousel-info {
     overflow: hidden;
-    transition: all 0.4s;
 }
-#quote-carousel .carousel-indicators .active {
-    background: #333333;
-    width: 128px;
-    height: 128px;
-    border-radius: 100px;
-    border-color: #f33;
-    opacity: 1;
-    overflow: hidden;
+.testimonials .carousel-info img {
+    margin-right: 15px;
 }
-.carousel-inner {
-    min-height: 300px;
+.testimonials .carousel-info span {
+    display: block;
 }
-.item blockquote {
-    border-left: none;
-    margin: 0;
+.testimonials span.testimonials-name {
+    color: #e6400c;
+    font-size: 16px;
+    font-weight: 300;
+    margin: 23px 0 7px;
 }
-.item blockquote p:before {
-    content: "\f10d";
-    font-family: 'Fontawesome';
-    float: left;
-    margin-right: 10px;
+.testimonials span.testimonials-post {
+    color: #656565;
+    font-size: 12px;
+}
+
+/******************* FOOTER ***********************/
+.footer {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.logo-footer{
+  width: 225px;
+}
+
+.community-icons-footer a{
+  color: #fff !important;
+}
+.copyright{
+  color: #fff !important;
+}
+
+#social-fb-footer:hover {
+    color: #3B5998 !important;
+}
+
+#social-tw-footer:hover {
+    color: #4099FF !important;
+}
+
+#social-yt-footer:hover {
+    color: #d34836 !important;
+}
+
+#social-in-footer:hover {
+    color: #3f729b !important;
+}
+
+#social-em-footer:hover {
+    
+    color: #f39c12 !important;
 }
 
 /****************** MODAL REGISTR0 ***************/
@@ -832,6 +868,29 @@ a.dropdown-toggle.nav-profile-link {
     #container { padding-left: 50px; margin-top: 55px; }
 
 
+    /************ Landing Init **********/
+
+    .landing-init {
+      min-height: 100vh; 
+    }
+
+    .landing-title {
+      font-size: 48px;
+    }
+
+    .landing-wrapper{
+      max-width: 650px;
+    }
+
+
+    .landing-wrapper p{
+      font-size: 18px;
+    }
+
+    .logo-landing{
+      margin: 100px auto 25px auto;
+    }
+
     /************ Know More **************/
     .know-more-wrapper{
       padding: 150px 0;
@@ -866,6 +925,10 @@ a.dropdown-toggle.nav-profile-link {
     .about-container{
       padding: 50px 0;
     }
+    .about-content p {
+      font-size: 18px;
+    }
+
 
     /************* Benefits *******/
 
@@ -877,12 +940,43 @@ a.dropdown-toggle.nav-profile-link {
     .landing-benefits-content p {
       font-size: 18px;
     }
+
+    /************* Our Courses ***********/
+
+    .our-course-content h2 {
+      font-size: 40px;
+    }
+
+    
+
+    /************* Testimonies ***********/
+
+    .testimonies {
+      padding: 50px 0;
+    }
+
+    
+    /******************* FOOTER ***********************/
+    .footer {
+      padding: 50px 0;
+    }
+
 }
 
 /* Desktops and laptops ----------- */
 @media only screen  and (min-width : 992px) {
 
-    
+     .our-course-content h2 {
+      font-size: 60px;
+    }
+
+    .our-course-content p {
+      font-size: 18px;
+    }
+
+    .our-course-content ul li {
+      font-size: 18px;
+    }
 
 }
 
