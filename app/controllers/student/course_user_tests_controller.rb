@@ -1,83 +1,106 @@
-class Student::CourseUserTestsController < ApplicationController
-  before_action :set_course_user_test, only: [:show, :edit, :update, :destroy]
-  before_action :load_course_user_test, only: [:new]
+class Student::CourseUserTestsController < Student::StudentController
+  before_action :load_course_user_test, only: [:new, :update, :edit]
+  before_action :set_course_user_test, only: [:update, :set_answers, :show, :edit]
+  before_filter :check_plan, only: [:index]
 
-  # GET /course_user_tests
-  # GET /course_user_tests.json
-  def index
-    add_breadcrumb "Inicio", :root_path
-    @course_user_tests = CourseUserTest.all
-  end
-
-  # GET /course_user_tests/1
-  # GET /course_user_tests/1.json
-  def show
-  end
-
-  # GET /course_user_tests/new
   def new
     add_breadcrumb "Inicio", :root_path
     @course_user_test = CourseUserTest.new(course_user: @course_user, test: @test)
-  end
-
-  # GET /course_user_tests/1/edit
-  def edit
-  end
-
-  # POST /course_user_tests
-  # POST /course_user_tests.json
-  def create
-    @course_user_test = CourseUserTest.new(course_user_test_params)
-
-    respond_to do |format|
-      if @course_user_test.save
-        format.html { redirect_to @course_user_test, notice: 'Course user test was successfully created.' }
-        format.json { render :show, status: :created, location: @course_user_test }
-      else
-        format.html { render :new }
-        format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
+    @course_user_test.last_started = DateTime.now
+    @course_user_test.time_left = @test.time_limit * 60
+    if @course_user_test.save
+      @course_user_test.test.questions.each do |q|
+        @course_user_test.answers.create!(user: current_user, question: q)
       end
+    else
+      redirect_to student_course_tests_path(@course), notice: 'Ha ocurrido un error al guardar'
     end
   end
 
-  # PATCH/PUT /course_user_tests/1
-  # PATCH/PUT /course_user_tests/1.json
+  def edit
+    if !@course_user_test.completed?
+      if @course_user_test.paused?
+        @course_user_test.last_started = Time.at(Time.now)
+      end
+      @course_user_test.time_left -= (Time.now.to_i - @course_user_test.last_started.to_i)
+      @course_user_test.time_left = 0 if @course_user_test.time_left < 0
+      @course_user_test.time_completed = Time.at(Time.now) if @course_user_test.time_left == 0
+      @course_user_test.status = @course_user_test.time_left <= 0 ? "completed" : "opened"
+      @course_user_test.last_started = Time.at(Time.now)
+      @course_user_test.save
+      return redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' if @course_user_test.time_left == 0
+    end
+  end
+
   def update
     respond_to do |format|
-      if @course_user_test.update(course_user_test_params)
-        format.html { redirect_to @course_user_test, notice: 'Course user test was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course_user_test }
-      else
-        format.html { render :edit }
-        format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
+      if params["course_user_test"]['action_form'] == "end"
+        final_questions = params["course_user_test"]["question_ids"].reject {|key,value| value == "marked" } if params["course_user_test"]["question_ids"]
+        total_questions = @course_user_test.test.questions.count
+        answered_questions = 0
+        answered_questions = final_questions.count if final_questions
+        percent_to_go = total_questions * 75/100
+        if @course_user_test.save
+          if ( @course_user_test.time_left - (Time.now.to_i - @course_user_test.last_started.to_i) ) > 0
+            set_answers params["course_user_test"]["question_ids"] if params["course_user_test"]["question_ids"]
+          else
+            @course_user_test.status = "completed" # :completed
+            @course_user_test.time_completed = DateTime.now
+            @course_user_test.time_left = 0
+            @course_user_test.save
+            format.html { redirect_to student_course_tests_path(@course), notice: 'Sorry, time is over!, your answers have not been stored, now this test is completed' }
+            format.json { render :show, status: :created, location: student_course_tests_path(@course) }
+          end
+          if answered_questions >= percent_to_go
+            @course_user_test.status = "completed" # :completed
+            @course_user_test.time_completed = DateTime.now
+            @course_user_test.time_left = 0
+            @course_user_test.save
+            format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' }
+            format.json { render :show, status: :created, location: student_course_tests_path(@course) }
+          else
+            format.html { redirect_to student_course_tests_path(@course), notice: 'Your answers have been stored, but to complete this test you must answer at least 75% of total questions.' }
+            format.json { render :show, status: :created, location: student_course_tests_path(@course) }
+          end
+        else
+          format.html { redirect_to new_student_course_test_course_user_test_path(@course,@test), notice: 'Ha ocurrido un error al guardar, verifique que ya no haya seleccionado este test' }
+          format.json { render json: @course_user_test.errors, status: :unprocessable_entity }
+        end
       end
-    end
-  end
-
-  # DELETE /course_user_tests/1
-  # DELETE /course_user_tests/1.json
-  def destroy
-    @course_user_test.destroy
-    respond_to do |format|
-      format.html { redirect_to course_user_tests_url, notice: 'Course user test was successfully destroyed.' }
-      format.json { head :no_content }
+      if params["course_user_test"]['action_form'] == "pause"
+        set_answers params["course_user_test"]["question_ids"] if params["course_user_test"]["question_ids"]
+        if @course_user_test.save
+          format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully paused.' }
+          format.json { render :show, status: :created, location: student_course_tests_path(@course) }
+        end
+      end
     end
   end
 
   private
+
+    def set_answers answers
+      answers.each do |q|
+        marked = q[1] == "marked" ? 1 : 0
+        if marked == 1
+          @course_user_test.answers.where(user: current_user, question_id: q[0]).update_all(marked: 1)
+        else
+          @course_user_test.answers.where(user: current_user, question_id: q[0]).update_all(choice_id: q[1],marked: 0)
+        end
+      end
+    end
+
     def load_course_user_test
       @course = Course.find(params[:course_id])
       @test = Test.find(params[:test_id])
       @course_user = CourseUser.where(course: @course, user: current_user).first if @course && @test
     end
 
-  # Use callbacks to share common setup or constraints between actions.
     def set_course_user_test
-      @course_user_test = CourseUserTest.find(params[:id])
+      @course_user_test = CourseUserTest.where(course_user: @course_user, test: @test).first # :opened or :paused
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def course_user_test_params
-      params.require(:course_user_test).permit(:course_user_id, :test_id)
+      params.require(:course_user_test).permit(:course_user_id, :test_id, :action_form, :question_ids => [])
     end
 end

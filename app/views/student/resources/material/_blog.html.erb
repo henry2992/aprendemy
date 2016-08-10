@@ -1,0 +1,9 @@
+<div class="main-title-wrapper">
+	<h1> <%= @resource.material.title %> </h1>
+</div>
+<div class="main-content-wrapper fr-view row rox-fix" >
+	<%= @resource.material.content.html_safe %>
+	<%= (link_to "Terminar Tarea", student_course_progress_resource_path(@course,1,@resource), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed %>
+	
+  <%= render 'progress_controller'%>
+</div>

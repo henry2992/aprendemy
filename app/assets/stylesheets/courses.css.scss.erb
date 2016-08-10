@@ -25,8 +25,28 @@
 	padding-bottom: 50px;
 }
 
+
 .main-navigation{
+	margin: 20px;
+}
+
+.main-title-wrapper{
+	background-color: #06476b;
 	padding: 20px !important;
+	position: relative;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.main-title-wrapper  h1 {
+	color: rgba(255, 255, 255, 0.87);
+	font-size: 1.25em;
+	display: inline-block;
+}
+
+.main-content-wrapper{
+	background: #fff;
+	padding: 30px;
+	border-radius: 0px 0px 10px 10px;
 }
 
 .content-navigation{
@@ -147,17 +167,17 @@
 
 .info-landing-bg{
 	background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(<%= asset_path('landing-courses.jpg')%>) ;
-	background-repeat: no-repeat; background-size: cover; background-position: center center; color: #fff; height: 350px; position: relative;}
+	background-repeat: no-repeat; background-size: cover; background-position: center center; color: #fff; height: 350px; position: relative; margin-top: 51px;}
 .info-landing-container { height: 350px }	
 .info-landing{ position: absolute; bottom: 25px; }
 .info-landing p{ margin: 10px 0 20px; }
 
 /* Modal Video */
-.modal-video{ padding:  0px !important; }
+/*.modal-video{ padding:  0px !important; }
 div.modal-content{ background-color: transparent; }
 .modal-header{ padding: 0px; border: none; color: white; background: transparent; }
 .close{ color: #fff !important; font-size: 25px; font-weight: 700; line-height: 1; opacity: 1 !important;}
-
+*/
 /* Button */
 .btn-modal { padding: 14px 24px !important; border: 0 none; letter-spacing: 1px; }
 .btn-modal:focus, .btn-modal:active:focus, .btn-modal.active:focus { outline: 0 none; }
@@ -196,8 +216,12 @@ div.modal-content{ background-color: transparent; }
 /*********** Course Benefits ****************/
 /*******************************************/
 
-#benefits{ background-color: rgb(241, 241, 241); padding-top: 15px; padding-bottom: 50px; }
+#benefits{ background-color: #fff; padding-top: 15px; padding-bottom: 50px; }
 .benefits-card{ margin: 25px 0 10px 0; }
+
+.benefits-card p {
+	margin: 10px 0;
+}
 .benefits-icon{ width: 100px; margin: 10px auto; display: block; }
 .benefits-title{ text-align: center; margin-bottom: 10px !important; }
 
@@ -214,6 +238,10 @@ div.modal-content{ background-color: transparent; }
 /****** COURSE USER DETAILS ******/
 /********************************/
 
+
+.course a:hover {
+	text-decoration: none;
+} 
 
 .user-details{
 	margin-top: 30px;
@@ -321,8 +349,7 @@ div.modal-content{ background-color: transparent; }
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	border-radius: 5px;
 }
 
 
@@ -334,20 +361,7 @@ div.modal-content{ background-color: transparent; }
 	font-weight: 600
 }
 
-.course-card-content {
-	border: 1px solid rgb(225, 225, 225);
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
 
-.course-card-content p{
-	font-size: 0.9em;
-	font-weight: 300;
-	color: #555;
-	line-height: 1.5;
-	margin: 0 10px;
-
-}
 
 
 /***************** MEDIA QUERIES ******************/
@@ -379,6 +393,13 @@ div.modal-content{ background-color: transparent; }
 	}
 	.course-details a {
 		padding: 15px 35px;
+	}
+	.info-landing-bg{
+		margin-top: 55px;
+	}
+
+	.benefits-card p {
+		min-height: 125px;
 	}
 
 }

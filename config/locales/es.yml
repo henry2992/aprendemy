@@ -38,13 +38,13 @@ es:
   #Date
   date:
     abbr_day_names:
-    - dom
-    - lun
-    - mar
-    - mié
-    - jue
-    - vie
-    - sáb
+    - domingo
+    - lunes
+    - martes
+    - miércoles
+    - jueves
+    - viernes
+    - sábado
     abbr_month_names:
     -
     - ene
@@ -73,18 +73,18 @@ es:
       short: "%d de %b"
     month_names:
     -
-    - enero
-    - febrero
-    - marzo
-    - abril
-    - mayo
-    - junio
-    - julio
-    - agosto
-    - septiembre
-    - octubre
-    - noviembre
-    - diciembre
+    - Enero
+    - Febrero
+    - Marzo
+    - Abril
+    - Mayo
+    - Junio
+    - Julio
+    - Agosto
+    - Septiembre
+    - Octubre
+    - Noviembre
+    - Diciembre
     order:
     - :day
     - :month
@@ -482,3 +482,7 @@ es:
       almost_x_years:
         one:   "casi 1 año"
         other: "casi %{count} años"
+  will_paginate:
+    previous_label: <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    next_label: <i class="fa fa-arrow-right" aria-hidden="true"></i>
+    page_gap: "&hellip;"

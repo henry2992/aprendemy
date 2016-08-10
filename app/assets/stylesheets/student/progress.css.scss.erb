@@ -1,0 +1,211 @@
+/**************************************/
+/********** Progress Index ***********/
+/************************************/
+
+
+.progress-course-img{
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 275px;
+	max-width: 250px;
+	background-size: cover;
+	margin: 0 auto;
+	border: 1px solid #ced7df;
+	border-radius: 5px;
+	position: relative;
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease;
+}
+
+
+.progress-course-img:before{
+	border-radius: 2px;
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-image: -webkit-linear-gradient(top, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+	background-image: linear-gradient(to bottom, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+	opacity: 0.8;
+	-webkit-transition: all .3s ease;
+	transition: all .3s ease
+}
+
+.progress-details{ border-left: none; padding: 0px; }
+.progress-details h1 { font-weight: 400; color: #06476B; text-align: center;}
+.progress-details h3 { font-size: 0.8em; font-weight: 300; color: #555; line-height: 1.5; text-align: center; margin-top: -5px !important; }
+
+
+
+.progress-details p {
+	margin-top: 20px;
+	font-size: 0.8em;
+	font-weight: 300;
+	color: #555;
+	line-height: 1.5;
+	margin-bottom: 0px !important;
+}
+
+/****** Curriculum *******/
+
+.curriculum-title { font-weight: 400; color: #06476B; text-align: center; margin-top: 25px !important; }
+
+.progress-wraper { border: 1px solid #ddd; margin-bottom: 20px; margin-top: 20px; }
+.progress-wraper:hover{ cursor: pointer;}
+.progress-card{
+	color: #333333;
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+}
+
+.progress-card h4{
+	font-size: 0.8em;
+	color: #555;
+}
+
+.progress-card h1 {
+	font-weight: 600;
+	color: #06476B;
+	font-size: 1em;
+	margin-top: 5px !important;
+}
+
+
+.curriculum {
+	padding: 10px;
+	display: none;
+}
+.curriculum ul {
+	list-style-type:none
+}
+
+.curriculum li {
+	border: 1px solid #f4f4f4;
+	position: relative;
+	margin: 10px;
+}
+
+.curriculum li:hover {
+	border: 1px solid #337ab7;
+}
+
+.curriculum li:hover {
+	background-color: #f5f5f5;
+}
+
+.curriculum a {
+	color: #337ab7;
+}
+
+
+.curriculum-type{
+	display: inline-block;
+	vertical-align:middle;
+}
+.curriculum-check{
+	display: inline-block;
+}
+
+
+.curriculum-item {
+	font-size: 0.8em;
+	text-decoration: none;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.curriculum-item a:hover {
+	color: #337ab7;
+	text-decoration: none;
+}
+
+
+.curriculum i { padding: 10px; font-size: 1.5em; color: #fff; }
+
+
+.disabled {
+  color: #888 !important;
+  background-color: #ddd !important;
+}
+
+.disabled:hover {
+  border: none !important;
+}
+
+
+
+.video { background-color: #0a8ecd; }
+.blog { background-color: #e4652d; }
+.task{ background-color: #98ca3f }
+.progress-check{
+	color:  #ddd !important;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+
+/*********************************/
+/******** PROGRESS VIDEO ********/
+/*******************************/
+
+.progress-controllers{ margin-top: 35px; }
+.video-holder{ border: 1px solid black; height: 200px; width: 100%; margin: 10px auto; }
+.progress-forward { background-color: #f5f5f5; width: 200px; float: right;}
+.progress-backward { background-color: #98ca3f; display: none; width: 40px; height: 42px; text-align: center;color: #fff; }
+.progress-forward p { margin-top: 0px !important; font-size: 0.8em; font-weight: 300; color: #555; margin-bottom: 0px !important; }
+.progress-forward-content{ display: inline-block; width: 150px; height: 40px; }
+.progress-forward-arrow{ display: inline-block; float: right; width: 40px; height: 42px; text-align: center; background-color: #98ca3f; }
+.progress-forward-arrow i{ position:relative; top: calc(50% - 12px); color: white; }
+.progress-backward-arrow { position:relative; top: calc(50% - 12px); color: white;}
+
+/***************************************/
+/*************** TASK *****************/
+/*************************************/
+
+.homework-wrapper{ margin: 20px; }
+.homework-title-wrapper{ background-color: #06476b; padding: 20px !important; position: relative; border-radius: 10px 10px 0px 0px; }
+.homework-title-wrapper  h1 { color: rgba(255, 255, 255, 0.87); font-size: 1.25em; display: inline-block; }
+.hw-arrows { display: inline-block; float: right; color: #fff; margin-top: -5px; }
+.fa-arrow-left { cursor: pointer;}
+.fa-arrow-right {cursor: pointer;}
+.btn-answer { padding: 14px 24px !important; margin-left: 10px; margin-top: 10px; }
+.hw-progress-bar{ width: 100%; height: 8px; background-color: #87CEEB !important; }
+.hw-progress{ height: 8px; background-color: #2196F3 !important; }
+.hw-question{ background: #fff; padding: 30px; border-radius: 0px 0px 10px 10px; }
+.hw-question p { border-bottom: 1px solid rgb(224, 224, 224); padding-bottom: 20px !important; }
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+	.video-holder{ border: 1px solid black; height: 500px; width: 100%; margin: 10px auto; }
+	.progress-backward { float: left; display: inline-block; }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+    
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+
+
+

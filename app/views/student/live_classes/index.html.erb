@@ -1,0 +1,22 @@
+<div id="container">
+  <!-- Vertical Nav -->
+    <%= render 'student/navigation/vertical_navbar' %>
+  <!-- Course Tools -->
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> Clases en Vivo </h1>
+    </div>
+
+    <div class="main-content-wrapper">
+
+      <% unless @live_class %>
+        <%= render 'not_online' %>
+      <% else %>
+        <%= render @live_class.online_now == false ? 'not_online' : 'online' %>
+      <% end%>
+
+    </div>
+  </div>
+</div>
+

@@ -30,25 +30,4 @@ RSpec.describe Test do
 		expect(@test).to be_invalid
 	end
 
-
-	it 'should not be valid without a total_questions' do
-		@test.total_questions = nil
-		expect(@test).to be_invalid
-	end
-
-	it 'should not be valid if total_questions is not numeric' do
-		@test.total_questions = "anything text"
-		expect(@test).to be_invalid
-	end
-
-	it 'should not be valid if total_questions is less than 5' do
-		@test.total_questions = 4
-		expect(@test).to be_invalid
-	end
-	
-	it 'should not be valid if total_questions is greater than 10' do
-		@test.total_questions = 11
-		expect(@test).to be_invalid
-	end
-
 end

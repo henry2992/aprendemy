@@ -1,0 +1,258 @@
+/******************* PAYMENTS ***************************/
+
+.payments-container{
+  background-color: rgb(246,246,246);
+}
+
+.divider{
+  border-color: rgb(54,54,54);
+}
+
+.payment-heading-text {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.payment-heading-text {
+  text-align: center;
+  padding-top: 100px !important;
+  padding-bottom: 50px !important;
+}
+
+
+
+.payments-img-container{
+  width: 100%;
+  height: 60px;
+  background: url(<%= asset_path('footer.png')%>);
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: 0px;
+  position: relative;
+  border-bottom: 1px solid black;
+}
+
+/*PAyment options*/
+
+.payment-options{
+  margin-top: 50px;
+}
+.payment-tab{
+  background: #fff;
+  box-shadow: 0px 0px 40px #888;
+  margin-top: 10px;
+  border-radius: 10px;
+  position: relative;
+}
+.payment-tab-heading{
+  background-color: rgb(232,136,46);
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+  padding: 20px;
+}
+
+.payment-tab-heading h3{
+  color: white !important;
+}
+
+.payment-tab-info{
+  padding: 25px;
+}
+
+.payment-tab-info p {
+  text-align: center;
+  font-weight: bold;
+}
+
+.price-title{
+  text-align:center;
+  margin: 50px 0  !important;
+  font-size: 3em;
+}
+
+.price{
+  font-size: 2.5em;
+color: rgb(48, 122, 186)
+}
+
+.price-list li{
+  display: inline-block;
+  padding-left: 15px;
+}
+
+
+#btnClick{
+  text-align: center !important;
+  margin: 15px 10%;
+  width: 80%;
+}
+
+.btn-payments{
+  text-align: center; 
+  margin: 45px 0 25px 0 !important;
+}
+
+.btn-payments a {
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+
+.btn-payments a:hover {
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+.btn-payments a:active:focus{
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+.btn-payments a:active:hover{
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+
+.btn-payments a:focus {
+  background-color: rgb(232,136,46);
+  border-color: rgb(232,136,46);
+}
+
+/*PAyment Instructions*/
+
+
+.bank-payments{
+  background-color: rgb(254, 216, 49 );
+  padding: 25px;
+
+}
+
+.payment-instructions{
+  background-color: white;
+  border: 2px solid rgb(254, 216, 49 );
+  margin-top: 25px;
+}
+.banco-pichincha-logo{
+  text-align: center;
+}
+.banco-pichincha-logo img{
+  width:250px;
+  margin: 25px 0 35px;
+}
+
+.payment-intructions-texts{
+  padding: 15px;
+}
+
+/*Payment Steps*/
+
+.payment-steps{
+/*  margin-top: 100px;*/
+  margin-bottom: 50px;
+}
+.confirm-payment{
+  margin-top: 50px;
+  height: 300px;
+  background: #fff;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  border: 2px solid rgb(48, 122, 182);
+}
+
+.whatsapp {
+  width: 100px;
+  background-color: rgb(48, 122, 182) !important;
+  margin: 20px auto;
+  border-radius: 50%;
+  height: 100px;
+  background: url(<%= asset_path('whatsapp.png')%>) center no-repeat;
+}
+
+.email {
+  width: 100px;
+  background-color: rgb(48, 122, 182) !important;
+  margin: 20px auto;
+  border-radius: 50%;
+  height: 100px;
+  background: url(<%= asset_path('email.png')%>) center no-repeat;
+}
+
+.phone {
+  width: 100px;
+  background-color: rgb(48, 122, 182) !important;
+  margin: 20px auto;
+  border-radius: 50%;
+  height: 100px;
+  background: url(<%= asset_path('phone.png')%>) center no-repeat;
+}
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+
+  .payments-img-container {
+    height: 110px;
+    background-position: initial;
+  }
+	
+	
+
+
+}
+
+/* Image ----------- */
+@media only screen and (min-width : 420px) {
+
+
+}
+
+/*Nav Bar fix*/
+@media only screen and (max-width : 768px) {
+
+
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+	
+
+  /*Payments*/
+
+  .payments-img-container {
+      height: 130px;
+      background-position: initial;
+  }
+
+  .banco-pichincha-logo img{
+    width:350px;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+
+  .payments-img-container {
+    height: 200px;
+    background-position: center;
+    margin-top: -60px;
+  }
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+
+
+
+

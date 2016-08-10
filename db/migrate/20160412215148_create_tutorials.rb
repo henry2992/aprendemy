@@ -3,7 +3,6 @@ class CreateTutorials < ActiveRecord::Migration
     create_table :tutorials do |t|
       t.string :title
       t.text :description
-
       t.timestamps null: false
     end
   end

@@ -1,0 +1,463 @@
+
+
+<div id="init" class="landing-init">
+
+  <div class=" container">  
+      
+      <div class="landing-wrapper">
+        <%= image_tag("logoblanco.png", alt: "Estudia con Aprendemy", class: "logo-landing") %>
+        <h1 class="landing-title">Ingresa a la Universidad de tus sueños</h1>
+        <p> Con Aprendemy tu éxito en los exámenes de la Senescyt está garantizado. Estudia lo que quieras en el lugar y el momento que prefieras. </p>
+
+        <div class="landing-buttons">
+            <a href="#know-more" class="btn btn-primary scroll btn-animated">Quiero saber más</a>
+            <a href="registro.html" class="btn btn-primary btn-animated" data-toggle="modal" data-target="#myModal">Quiero registrarme</a>
+        </div>
+
+  
+      </div>
+
+       <div class="community-icons">
+          <a href="https://www.facebook.com/aprendemy" target="_blank"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+            <a href="https://twitter.com/aprendemy" target="_blank"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+            <a href="https://www.youtube.com/channel/UCc6N8LIO-yPIsDqM50ypxjQ" target="_blank"><i id="social-yt" class="fa fa-youtube-square fa-3x social"></i></a>
+            <a href="https://www.instagram.com/aprendemy" target="_blank"><i id="social-in" class="fa fa-instagram fa-3x social"></i></a>
+            <a href="mailto:hola@aprendemy.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+        </div>
+
+  </div>
+
+
+</div>
+
+<div class="topbar">
+    <%= render 'navbar_landing' %>
+</div>
+
+
+
+
+<div class="know-more blue-bg" id="know-more">
+  <div class="container know-more-wrapper">
+
+
+
+
+        <div class="col-sm-6">
+          
+          <%= image_tag("enes.png", alt: "Estudia con Aprendemy", class: "know-more-img") %>
+
+        </div>
+
+        <div class="col-sm-6 know-more-content">
+
+          <p class="improve">El 97% de nuestros estudiantes obtienen mejores puntajes en sus pruebas</p>
+          <h1 class="landing-title" >Con nuestras aulas en vivo y contenido digital ¡es posible!</h1>
+          <p>Aprendemy es una plataforma online pensada para apoyarte en el proceso de ingreso a la Universidad. Nuestra tecnología y experiencia en educación te ayudarán a mejorar tus notas en los exámenes de la Senescyt con miles de ejercicios, respuestas, estadísticas y clases en vivo. Accesible donde quieras y cuando quieras.</p>
+        </div>
+          
+          
+
+
+  
+  </div>
+</div>
+
+
+<div id="how-works" class="how-works white-bg">
+
+  <div class="container">
+
+      <div class="how-works-title">
+        <h1 class="landing-title">¿Cómo Funciona?</h1>
+        <p>Elige uno de los cursos que Aprendemy a preparado para ti</p>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="how-works-content content-right " >
+            <h2>Sigue tu curriculum</h2>
+            <p>Preparate paso a paso con nuestros cursos perzonalizados</p>
+        </div>
+        <div class="how-works-content content-right" >
+            <h2>Practica con ejercicios</h2>
+            <p>Prepárate con nuestros ejercicios interactivos en todas las áreas</p>
+        </div>
+        <div class="how-works-content content-right" >
+            <h2>Aprende con Tutoriales</h2>
+            <p>Nuestros tutoriales te ayudarán a entender todos los conceptos importantes</p>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+         <%= image_tag("how-works.png", alt: "Como funciona Aprendemy", class: "how-works-img") %>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="how-works-content content-left" >
+            <h2>Únete a las clase en vivo</h2>
+            <p>Interactua con nuestros profesores y participa en vivo</p>
+        </div>
+        <div class="how-works-content content-left" >
+            <h2>Toma nuestros simuladores</h2>
+            <p>¿Estás Listo para tomar el examen real? ¡Descúbrelo con un simulador! </p>
+        </div>
+        <div class="how-works-content content-left" >
+            <h2>Monitorea tu progreso</h2>
+            <p>Conocer tus avances, tus fortalezas y debilidades mediante nuestras estadísticas</p>
+        </div>
+      </div>
+      
+
+
+  </div>  
+
+</div>
+
+<div id="about" class="about ">
+  <div class="about-container"> 
+
+     <div class="container">
+
+      <div class="about-title"> 
+        <h1 class="landing-title" >Todo Lo Que Necesitas Para Tu Examen De Admisión</h1>
+      </div>
+
+  
+
+      <div class="row">
+        <div class="col-sm-4 about-content">
+          <%= image_tag("play-button.png", alt: "Aprendemy en Vivo", class: "") %>
+          <h3>Clases en vivo</h3>
+          <p>Estudia, refuerza y aclara tus dudas con clases en tiempo real (más de 100 horas de clases por mes).</p>
+        </div>
+        <div class="col-sm-4 about-content">
+          <%= image_tag("calendar-button.png", alt: "Aprendemy en Vivo", class: "") %>
+          <h3>Calendario de clases</h3>
+          <p>Podrás ver el día y la hora de las clases que necesites estudiar.</p>
+        </div>
+        <div class="col-sm-4 about-content">
+          <%= image_tag("file-button.png", alt: "Aprendemy en Vivo", class: "") %>
+          <h3>Practica</h3>
+          <p>Miles de ejercicios y reactivos que te ayudarán a ser mejor.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 about-content">
+          <%= image_tag("content-button.png", alt: "Aprendemy en Vivo", class: "") %> 
+          <h3>Contenido Digital</h3>
+          <p>Más de 550 videos, textos, ejercicios y evaluaciones.</p>
+        </div>
+
+        <div class="col-sm-4 about-content">
+          <%= image_tag("diagram-button.png", alt: "Aprendemy en Vivo", class: "") %> 
+          <h3>Compara tu desempeño</h3>
+          <p>Compara tu resultado con el de otros estudiantes</p>
+        </div>
+
+
+         <div class="col-sm-4 about-content">
+          <%= image_tag("rankings-button.png", alt: "Aprendemy en Vivo", class: "") %> 
+          <h3>Avance Programado</h3>
+          <p>Realiza un curso paso a paso creado por expertos</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="landing-benefits" class="landing-benefits white-bg">
+  <div class="container">
+    
+    <h1 class="landing-title" > Ventajas </h1>
+    
+    <div class="row">
+      <div class="col-sm-4 benefits-card landing-benefits-content">
+        <%= image_tag("icon1.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Acceso las 24 horas</h3>
+        <p>Accede a nuestros cursos en cualquier momento del día, puedes ingresar cuando gustes y acomodes tus clases a tus horarios.</p>
+      </div>
+      <div class=" col-sm-4 benefits-card landing-benefits-content" >
+        <%= image_tag("icon2.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Acceso en todo dispositivo</h3>
+        <p>Puedes conectarte desde cualquier dispositivo y estudiar desde cualquier lugar sin desperdiciar tu tiempo y dinero.</p> 
+      </div>
+      <div class="col-sm-4 benefits-card landing-benefits-content">
+        <%= image_tag("icon3.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Contenido Digital</h3>
+        <p>El contenido digital incluye videos, textos, ejercicios, tareas, tutoriales y examenes de todos temas que serán evaluados en tu examen de admisión.</p> 
+      </div>            
+    </div>
+    <div class="row"> 
+      <div class="col-sm-4 benefits-card landing-benefits-content">
+        <%= image_tag("icon4.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Avance Programado</h3>
+        <p> Nuestro curso te guiará paso a paso en todos los temas de los examenes, nuestro curso ha sido diseñado en base a la experiencia de nuestros docentes y miles de alumnos.</p>
+      </div>
+      <div class="col-sm-4 benefits-card landing-benefits-content">
+        <%= image_tag("icon5.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title">Estadisticas</h3>
+        <p>Observa tu progreso. Gracias a nuestra plataforma podrás conocer tus avances, tus fortalezas y debilidades, de manera que te centres en aquello que más necesitas y asegures la calidad de tu examen.</p>
+      </div>
+      <div class="col-sm-4 benefits-card landing-benefits-content">
+        <%= image_tag("icon6.png", class: "benefits-icon", alt: "Aprendemy Beneficios") %>
+        <h3 class="benefits-title"> Clases en Vivo</h3>
+        <p>Únete a nuestros cursos en vivo con profesores preparados y con experiencia en enseñanza, descubre nuevas estrategias, infórmate de mejores métodos y concéntrate en lo que realmente necesitas aprender.</p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+
+<div id="our-courses" class="our-courses blue-bg">
+  <div class="container">
+
+    <h1 class="landing-title" >Nuestros Cursos</h1>
+      <!-- Enes -->
+        <div class="col-sm-offset-1 col-sm-5 our-course-content">
+          <div class="our-course-wrapper">
+              <br>
+              <h2 >ENES</h2>
+              <br><br><br>
+              <h4>Contenido:</h4>
+              <br>
+              <p>Razonamiento Abstracto</p>
+              <p>Razonamiento Numérico</p>
+              <p>Razonamiento Verbal</p>
+              <br><br>
+              
+              <h4>Incluye:</h4>
+              <br>
+              <ul >
+                  <li>Curso Perzonalizado paso a paso</li>
+                  <li>3000+ ejercicios interactivos</li>
+                  <li>10 Simuladores del Examen</li>
+                  <li>Clases en vivo todas las semanas</li>
+                  <li>Tutoriales de todos los temas </li>
+                  <li>Estadisticas Perzonalidas</li>
+              </ul>
+          </div>
+        </div>
+        <!-- Ser Bachiller -->
+        <div class="col-sm-5 our-course-content">
+            <div class="our-course-wrapper">
+                <h2 >SER BACHILLER</h2>
+                <br>
+                <h4>Contenido:</h4>
+                <br>
+                <p >Matemáticas</p>
+                <p >Literatura</p>
+                <p >Ciencias Sociales</p>
+                <p >Ciencias Naturales</p>
+                <br>
+                <h4 >Incluye:</h4>
+                <br>
+                <ul >
+                    <li>Curso Perzonalizado paso a paso</li>
+                    <li>1000+ ejercicios interactivos</li>
+                    <li>5 Simuladores del Examen</li>
+                    <li>Clases en vivo todas las semanas</li>
+                    <li>Tutoriales de todos los temas </li>
+                    <li>Estadisticas Perzonalidas</li>
+                </ul>
+            </div>
+        </div>
+  </div>
+</div>
+
+
+
+<div id="testimonies" class="testimonies white-bg">
+
+    <h1 class="landing-title" >Testimonios</h1>
+
+    <div class="container">
+        <div class="col-md-4">
+            <div class="testimonials">
+              <div class="active item">
+                  <blockquote><p>Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.</p></blockquote>
+                  <div class="carousel-info">
+                    <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+                    <div class="pull-left">
+                      <span class="testimonials-name">Lina Mars</span>
+                      <span class="testimonials-post">Commercial Director</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonials">
+              <div class="active item">
+                  <blockquote><p>Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met.</p></blockquote>
+                  <div class="carousel-info">
+                    <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+                    <div class="pull-left">
+                      <span class="testimonials-name">Lina Mars</span>
+                      <span class="testimonials-post">Commercial Director</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonials">
+              <div class="active item">
+                  <blockquote><p>liqua. Lorem ipsum dolor met.</p></blockquote>
+                  <div class="carousel-info">
+                    <img alt="" src="http://keenthemes.com/assets/bootsnipp/img1-small.jpg" class="pull-left">
+                    <div class="pull-left">
+                      <span class="testimonials-name">Lina Mars</span>
+                      <span class="testimonials-post">Commercial Director</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="footer blue-bg">
+  
+    <div class="footer-img">
+      <%= image_tag("logoblanco.png", alt: "Estudia con Aprendemy", class: "logo-footer") %>
+    </div>
+
+    <div class="community-icons-footer">
+        <a href="https://www.facebook.com/aprendemy" target="_blank"><i id="social-fb-footer" class="fa fa-facebook-square fa-3x social"></i></a>
+        <a href="https://twitter.com/aprendemy" target="_blank"><i id="social-tw-footer" class="fa fa-twitter-square fa-3x social"></i></a>
+        <a href="https://www.youtube.com/channel/UCc6N8LIO-yPIsDqM50ypxjQ" target="_blank"><i id="social-yt-footer" class="fa fa-youtube-square fa-3x social"></i></a>
+        <a href="https://www.instagram.com/aprendemy/" target="_blank"><i id="social-in-footer" class="fa fa-instagram fa-3x social"></i></a>
+        <a href="mailto:hola@aprendemy.com" target="_blank"><i id="social-em-footer" class="fa fa-envelope-square fa-3x social"></i></a>
+    </div>
+
+    <p class="copyright"> Copyright © 2016. Aprendemy. </p>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header landing-modal-title">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title " id="myModalLabel">Empieza hoy mismo!</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- Facebook Button -->
+        <%= link_to "users/auth/facebook", class: "register-fb-btn btn btn-primary" do %> 
+           <i class="fa fa-facebook-square register-fb-text"> Regístrate con Facebook </i> 
+        <% end %>
+
+        <!--  Divider -->
+        <div class="divider">
+            <i class="fa fa-circle-o"></i>
+        </div>
+
+        <p class="data-create-account">Crea una cuenta con tus datos</p>
+        <!-- Form -->
+        <div class="form-card">
+           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          
+            <%= devise_error_messages! %>
+            <div class="row">
+              <div class="col-sm-6">
+                 <%= f.text_field :first_name, class: "form-input-text", :placeholder => "Nombre"%>
+              </div>
+          
+              <div class="col-sm-6">
+                <%= f.text_field :last_name, class: "form-input-text", :placeholder => "Apellido"%>
+              </div>
+              <div class="col-sm-12">
+                <%= f.email_field :email, class: "form-input-text", :placeholder => "Email" %>
+              </div>
+              <div class="col-sm-12">
+                <%= f.password_field :password, class: "form-input-text", :placeholder => "Password (Mínimo 6 caracteres)", autocomplete: "off" %>
+              </div>
+              <div class="col-sm-12">
+                <%= f.password_field :password_confirmation, class: "form-input-text", :placeholder => "Confirmación de Password", autocomplete: "off" %>
+              </div>
+              <br>
+              <div class="col-sm-12" >
+                <div class= "form-input-text" >
+                  <%= f.label :Género, class: "gender-text"%>
+                  <%= f.radio_button :gender, true %><%= image_tag("avatar-girl.png", :class=> 'img-gender' ) %>
+                  <%= f.radio_button :gender, false %><%= image_tag("avatar-guy.png", :class=> 'img-gender') %>
+                </div>
+              </div>
+                    
+              <div class="col-sm-12">
+                <%= f.submit "Regístrarme", class: "trial-button" %>
+              </div>
+
+
+          </div>
+        <% end %>
+
+                
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(function(){ 
+      $(window).scroll(function() {
+
+        // height on Scroll
+        var scrolltop = $(window).scrollTop();
+
+        // Height of landing init
+        var headerheight = $(".landing-init").height();
+        
+        console.log(scrolltop);
+        console.log(headerheight);
+        
+        if (headerheight == scrolltop) {
+          if (scrolltop > 422) {
+            $(".topbar").addClass("visible");
+          }
+          if (scrolltop < 422) {
+            $(".topbar").removeClass("visible");
+          }
+        } else {
+          if (scrolltop > headerheight) {
+            $(".topbar").addClass("visible");
+          }
+          if (scrolltop < headerheight) {
+            $(".topbar").removeClass("visible");
+          }
+        }   
+        
+      });
+
+    });
+
+    // Scroll
+
+   $(".scroll").click(function(event){
+         event.preventDefault();
+         //calculate destination place
+         var dest=0;
+         if($(this.hash).offset().top > $(document).height()-$(window).height()){
+              dest= $(document).height()-$(window).height();
+         }else{
+              dest=$(this.hash).offset().top;
+         }
+         //go to destination
+         $('html,body').animate({scrollTop:dest}, 1000,'swing');
+     });
+
+</script>
+

@@ -1,0 +1,14 @@
+<div id="application"> 
+      <!-- Vertical Nav -->
+      <%= render 'student/navigation/vertical_navbar' %>
+
+      <div id="container">
+        <div class="main-navigation">
+          <% if @tutorial.material_type.downcase == 'video' %>
+            <%= render 'video' %>      
+          <% else %>
+            <%= render 'blog'%>
+          <% end %>
+        </div>
+      </div>
+</div>

@@ -13,13 +13,9 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require angular
-//= require angular-animate
-//= require angular-aria
-//= require angular-material
 //= require bootstrap
 //= require thirdparty/require_all
-//= require turbolinks
+// require turbolinks
 //= require flipclock.min
 //= require_tree .
 //= require froala_editor.min.js

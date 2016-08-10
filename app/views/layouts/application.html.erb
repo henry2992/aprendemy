@@ -27,38 +27,26 @@
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400,300italic,700' rel='stylesheet' type='text/css'>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
 
 </head>
-<body ng-app="app" >
+<body >
 
-<md-content>
+  <div id="main">
     <!-- Navbar -->
     <% if user_signed_in? %>
-        <% if current_page?(controller: 'courses', action: 'index') %>
+        <% if (controller.controller_name == 'courses' && controller.action_name == 'index') or (controller.controller_name == 'events' && controller.action_name == 'index') %>
           <%= render 'student/courses/index_navbar' %> 
         <% else %> 
           <%= render 'student/courses/courses_navbar' %>
         <% end %>
-    <% else %>
-      <%= render 'layouts/navbar_sing_in.haml' %>
     <% end %>
     <!-- End Navbar -->
-    <%= render "layouts/flash"  %>
+  
+      <%= render "layouts/flash"  %>
     <%= yield %>
-</md-content>
-
-
-<% if user_signed_in? %>
-    <% if current_page?(controller: 'courses', action: 'index') %>
-          <%= render 'layouts/navigation/index_navbar' %>
-        <% else %> 
-          <%= render 'layouts/navigation/courses_navbar' %>
-    <% end %>
-<% end %>
-
-
+  </div>
 </body>
 
 </html>

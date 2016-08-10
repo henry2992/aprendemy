@@ -4,7 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.belongs_to :user, index: true, foreign_key: true, null: false
       t.belongs_to :question, index: true, foreign_key: true, null: false
       t.belongs_to :choice, index: true, foreign_key: true, null: false
-      t.references :item, polymorphic: true, index: true, null: false
+      t.references :item, polymorphic: true, index: true, null: true
     end
   end
 end

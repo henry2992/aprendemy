@@ -1,0 +1,49 @@
+<% var = @resource.material.url[-11,11] %>
+<div class="main-title-wrapper">
+	<h1> <%= @resource.material.name %> </h1>
+</div>
+<div class="main-content-wrapper row rox-fix">
+	<div class="video-holder" id="video-holder"></div>
+
+  <%= render 'progress_controller'%>
+</div>
+<script src="http://www.youtube.com/iframe_api"></script>
+<script>
+  var player,
+    	time_update_interval = 0;
+
+  function onYouTubeIframeAPIReady() {
+      player = new YT.Player('video-holder', {
+          width: 600,
+          height: 400,
+          videoId: '<%= var %>',
+          playerVars: {
+              color: 'white'
+          },
+          events: {
+              onStateChange: finished
+          }
+      });
+  }
+  function finished(event)
+  {
+    if (event.data == 0){
+      $.ajax({
+         url: '<%= student_course_progress_resource_path %>',
+         type: 'PUT',
+         dataType: 'json',
+         data: {course_id:<%= @course.id %>,resource_id: 1, id:<%= (@resource.id) %> },
+         success: function(data) {
+          console.log(data);
+          if (data[0].success)
+          {
+            $(".show-flash").html(data[0].message);
+            $(".alert")
+              .addClass("alert-success")
+              .show();
+            }
+          }
+      });
+    }
+  }
+</script>

@@ -22,7 +22,7 @@
 		<div class="row ">
 
 			<% @courses.each do |course| %>
-				<a href="/student/courses/<%= course.id %>">
+				<a href="/student/courses/<%=course.id %>">
 					<div class="course col-sm-4">	
 							<div class="course-card " style="background-image:  url('<%= course.picture %>') " >
 								<div class="course-card-wrapper ">
@@ -101,6 +101,10 @@
   		</div>
 	</div>
 </div>
+
+
+
+
 
 
 

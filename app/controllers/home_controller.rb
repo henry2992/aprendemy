@@ -18,12 +18,8 @@ class HomeController < ApplicationController
   def index
     if user_signed_in?
       redirect_to student_courses_path if !admin?
-      redirect_to backend_dashboard_path if admin?
+      redirect_to student_courses_path if admin?
     end
-    @simulator_types = SimulatorType.all
-  end
-
-  def payments
   end
 
 end

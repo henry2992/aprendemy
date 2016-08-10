@@ -1,0 +1,60 @@
+<div id="container">
+	<!-- Vertical Nav -->
+  	<%= render 'student/navigation/vertical_navbar' %>
+	<!-- Course Tools -->
+	<div class="main-navigation">
+
+		<div class="main-title-wrapper">
+			<h1> Ejercicios </h1>
+		</div>
+
+
+
+		<div class="main-content-wrapper">
+
+			<%= render 'no_exercises' unless @categories %>
+
+			<% @categories.each do |category| %>
+				<div class="category-wraper">
+					<div class="category-heading">
+						<h1><%= category.name %></h1>
+					</div>
+					<div class="subcategories-wraper">
+						<div class=" row">
+							<% category.sub_categories.each do |subcategory| %>
+
+								<!-- Subcategory -->
+								<a href="<%= student_course_category_sub_category_path(@course,category,subcategory) %>" class="col-md-3 col-sm-4 col-xs-12 cat-grid subcategory-holder" style="display: inline-block;" >
+								    
+								    <div class="subcategory-card" style="background-image: url('<%= subcategory.picture %>');">
+								      
+								      <div class="subcategory-info-wrapper">
+								        
+								        <h2 class="subcategory-title">
+								          <p><%= subcategory.name %></p>
+								        </h2>
+								        
+								        <ul class="subcategory-information">
+								          <li>
+								            <i class="nc-icon-mini ui-1_eye-19"></i>
+								            <%= subcategory.questions.count %> Ejercicios
+								          </li>
+								        </ul>
+
+								      </div>
+								    </div>
+								</a>
+							<% end %>		
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(".category-heading").click(function(event) {
+	  $(this).next(".subcategories-wraper").slideToggle(200);
+	});
+</script>
