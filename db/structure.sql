@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.0
--- Dumped by pg_dump version 9.5.0
+-- Dumped from database version 9.5.2
+-- Dumped by pg_dump version 9.5.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -249,7 +249,6 @@ ALTER SEQUENCE careers_id_seq OWNED BY careers.id;
 CREATE TABLE categories (
     id integer NOT NULL,
     name character varying,
-    user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     sub_categories_count integer DEFAULT 0,
@@ -352,7 +351,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-07-29 12:18:08.669748'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-08-10 21:21:32.39895'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -863,7 +862,6 @@ ALTER SEQUENCE sections_id_seq OWNED BY sections.id;
 CREATE TABLE sub_categories (
     id integer NOT NULL,
     name character varying,
-    user_id integer,
     category_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -1052,7 +1050,6 @@ CREATE TABLE users (
     uid character varying,
     first_name character varying,
     last_name character varying,
-    questions_count integer DEFAULT 0,
     image character varying,
     gender boolean,
     role integer DEFAULT 0
@@ -1929,4 +1926,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160801021612');
 INSERT INTO schema_migrations (version) VALUES ('20160808050550');
 
 INSERT INTO schema_migrations (version) VALUES ('20160808202331');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809193149');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809193501');
 
