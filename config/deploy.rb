@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:henry2992/aprendemy.git' # Edit this to match you
 set :deploy_to, '/home/deploy/aprendemy'
 set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml}
-set :linked_dirs, %w{/bin bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 set :keep_releases, 5
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.3.1' # Edit this if you are using MRI Ruby
