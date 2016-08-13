@@ -83,5 +83,4 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rvm'
   gem 'capistrano-rails-console'
-  gem 'rvm-capistrano'
 end
