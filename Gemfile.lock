@@ -74,6 +74,8 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-nginx (2.1.5)
+      capistrano (>= 3.0.0)
     capistrano3-puma (1.2.1)
       capistrano (~> 3.0)
       puma (>= 2.6)
@@ -347,6 +349,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rails-console
   capistrano-rvm
+  capistrano3-nginx (~> 2.0)
   capistrano3-puma
   carrierwave (~> 0.10.0)
   cloudinary
