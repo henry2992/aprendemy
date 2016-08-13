@@ -41,9 +41,9 @@ gem 'haml'
 
 group :production do
   # Production gems
+end
   gem 'figaro'
   gem 'puma'
-end
 
 
 # Add this if you're using rvm
