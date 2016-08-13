@@ -9,8 +9,10 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  enum role: [:free, :paid, :admin]
-  # self.inheritance_column = :_role_disabled
+  # enum role: [:free, :paid, :admin] unless instance_methods.include? :role
+
+  enum role: %w(free paid admin)
+
   mount_uploader :image, UserUploader
 
   has_many :course_users, :dependent => :destroy
