@@ -77,7 +77,7 @@ group :development do
 
   # Deployment gems
   gem 'capistrano'
-  # gem 'capistrano3-puma'
+  gem 'capistrano3-puma'
   # gem 'capistrano3-nginx', '~> 2.0'
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
