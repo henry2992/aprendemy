@@ -1,3 +1,7 @@
+require 'rvm/capistrano'
+set :rvm_ruby_string, 'ruby-2.3.1p112' # Change to your ruby version
+set :rvm_type, :system # :user if RVM installed in $HOME
+
 # config valid only for current version of Capistrano
 lock '3.6.0'
 
@@ -9,7 +13,7 @@ set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 set :keep_releases, 5
-set :rvm_type, :user
+# set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.3.1' # Edit this if you are using MRI Ruby
 
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }

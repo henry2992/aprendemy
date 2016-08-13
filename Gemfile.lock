@@ -276,6 +276,8 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    rvm-capistrano (1.5.0)
+      capistrano (>= 2.15.4)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -371,6 +373,7 @@ DEPENDENCIES
   rename
   rspec-rails (~> 3.0)
   rubocop (~> 0.39.0)
+  rvm-capistrano
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_calendar (~> 2.0)
