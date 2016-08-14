@@ -8,13 +8,13 @@
 # role :web, %w{deploy@104.131.36.116}
 # role :db,  %w{deploy@104.131.36.116}
 
-set :branch, 'master'
+set :branch, 'staging'
 set :rails_env, 'production'
 
 # Extended Server Syntax
 # ======================
 # server '45.79.97.233', user: 'deploy', roles: %w{web app db} # Linode
-# server '52.42.29.107', user: 'deploy', roles: %w{web app db} # AWS Johnmer
+server '52.42.29.107', user: 'deploy', roles: %w{web app db} # AWS Johnmer
 
 # This can be used to drop a more detailed server
 # definition into the server list. The second argument
