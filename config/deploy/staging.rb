@@ -14,7 +14,8 @@ set :rails_env, 'production'
 # Extended Server Syntax
 # ======================
 # server '45.79.97.233', user: 'deploy', roles: %w{web app db} # Linode
-server '52.42.29.107', user: 'deploy', roles: %w{web app db} # AWS Johnmer
+# server '52.42.29.107', user: 'deploy', roles: %w{web app db} # AWS Johnmer
+server '104.236.228.208', user: 'deploy', roles: %w{web app db} # Digital Ocean Testing server
 
 # This can be used to drop a more detailed server
 # definition into the server list. The second argument
