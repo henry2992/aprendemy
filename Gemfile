@@ -38,10 +38,10 @@ gem 'kaminari'
 gem 'flipclockjs-rails', '~> 0.7.7'
 gem 'haml'
 
+gem 'figaro'
 
 group :production do
   # Production gems
-  gem 'figaro'
   gem 'puma'
 end
 

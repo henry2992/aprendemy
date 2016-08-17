@@ -17,4 +17,8 @@ class Course < ActiveRecord::Base
   def plan_days_left
     (self.course_users.find_by(user: User.current).course_user_plan.expiration_date - Date.today).to_i
   end
+
+  def question_count
+    self.categories.map {|c| c.sub_categories.map { |s| s.questions.count }.inject(0, :+)}.inject(0, :+)
+  end
 end

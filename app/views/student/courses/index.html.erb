@@ -29,9 +29,9 @@
 									<h2 class="course-card-title"><%= course.name %></h2>
 									<h3 class="course-card-author"><%= course.author %></h3>
 									<ul class="course-card-information">
-							          <li><i class="nc-icon-mini ui-1_eye-19"></i>3000 Ejercicios</li>
+							          <li><i class="nc-icon-mini ui-1_eye-19"></i><%= course.question_count %> Ejercicios</li>
 							          <li><i class="nc-icon-mini ui-2_time-clock"></i>120 Tutoriales</li>
-							          <li><i class="nc-icon-mini ui-2_time-clock"></i>20 Simuladores</li>
+							          <li><i class="nc-icon-mini ui-2_time-clock"></i><%= course.tests.count %> Simuladores</li>
 							          <li><i class="nc-icon-mini ui-2_time-clock"></i>Clases en vivo</li>
 							        </ul>
 								</div>

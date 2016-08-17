@@ -10,4 +10,5 @@ class SubCategory < ActiveRecord::Base
   def points
     Point.where(recipient_id: self.id, recipient_type: 'SubCategory').sum(:points)
   end
+
 end
