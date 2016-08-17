@@ -1,7 +1,0 @@
-- unless @simulator.completed?
-  = button_to 'Pausar', simulator_pause_simulator_path(@simulator), :id => 'submitTimerBtn', :class => "hide", :form_class => "simulator-pause-form", remote: true
-  / pseudo pause
-  = link_to "Pausar", "#", :id => 'pauseTimerBtn', :class => "hide"
-  = link_to "#", :data => {'toggle' => "modal", 'target' => "#pausedSimulationModal", 'backdrop' => "static", 'keyboard' => "false", :disable_with => 'Paused. . .',  'status' => 'pause' }, :id => 'pauseLink', :class => "btn btn-info simulator-btn" do
-    %span.fa.fa-home
-    Pausar

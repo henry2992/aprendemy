@@ -38,14 +38,13 @@ gem 'kaminari'
 gem 'flipclockjs-rails', '~> 0.7.7'
 gem 'haml'
 
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-bundler', '~> 1.1.2'
-gem 'capistrano-rails', '~> 1.1.1'
-gem "figaro"
 
+group :production do
+  # Production gems
+  gem 'figaro'
+  gem 'puma'
+end
 
-# Add this if you're using rbenv
-gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 # Add this if you're using rvm
 # gem 'capistrano-rvm', github: "capistrano/rvm"
@@ -75,5 +74,14 @@ group :development do
   gem "better_errors"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'puma'
+
+  # Deployment gems
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  # gem 'capistrano3-nginx', '~> 2.0'
+  gem 'capistrano-rake', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails-console'
 end
