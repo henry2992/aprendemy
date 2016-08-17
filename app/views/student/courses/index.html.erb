@@ -22,6 +22,11 @@
 		<div class="row ">
 
 			<% @courses.each do |course| %>
+				<% 
+					# Se ve feo aquí pero es eficiente al usar pleload en la consulta, sensiblemente se va a apreciar en rendimiento  
+					exercises_count = course.categories.map {|c| c.sub_categories.map { |s| s.questions.length }.inject(0, :+)}.inject(0, :+)
+					tutorials_count = course.categories.map {|c| c.sub_categories.map { |s| s.tutorials.length }.inject(0, :+)}.inject(0, :+)
+				%>
 				<a href="/student/courses/<%=course.id %>">
 					<div class="course col-sm-4">	
 							<div class="course-card " style="background-image:  url('<%= course.picture %>') " >
@@ -29,9 +34,9 @@
 									<h2 class="course-card-title"><%= course.name %></h2>
 									<h3 class="course-card-author"><%= course.author %></h3>
 									<ul class="course-card-information">
-							          <li><i class="nc-icon-mini ui-1_eye-19"></i>3000 Ejercicios</li>
-							          <li><i class="nc-icon-mini ui-2_time-clock"></i>120 Tutoriales</li>
-							          <li><i class="nc-icon-mini ui-2_time-clock"></i>20 Simuladores</li>
+							          <li><i class="nc-icon-mini ui-1_eye-19"></i><%= exercises_count %> Ejercicios</li>
+							          <li><i class="nc-icon-mini ui-2_time-clock"></i><%= tutorials_count %> Tutoriales</li>
+							          <li><i class="nc-icon-mini ui-2_time-clock"></i><%= course.tests.length %> Simuladores</li>
 							          <li><i class="nc-icon-mini ui-2_time-clock"></i>Clases en vivo</li>
 							        </ul>
 								</div>

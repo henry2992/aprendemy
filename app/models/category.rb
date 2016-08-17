@@ -4,4 +4,7 @@ class Category < ActiveRecord::Base
 
   belongs_to :course
   
+  def question_count
+    self.sub_categories.map { |s| s.questions.length }.inject(0, :+)
+  end
 end

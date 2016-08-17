@@ -39,6 +39,7 @@ gem 'flipclockjs-rails', '~> 0.7.7'
 gem 'haml'
 gem 'figaro'
 
+gem 'figaro'
 
 group :production do
   # Production gems
@@ -77,7 +78,7 @@ group :development do
 
   # Deployment gems
   gem 'capistrano'
-  gem 'capistrano3-puma'
+  # gem 'capistrano3-puma'
   # gem 'capistrano3-nginx', '~> 2.0'
   gem 'capistrano-rake', require: false
   gem 'capistrano-rails', require: false
