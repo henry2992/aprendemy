@@ -249,7 +249,6 @@ ALTER SEQUENCE careers_id_seq OWNED BY careers.id;
 CREATE TABLE categories (
     id integer NOT NULL,
     name character varying,
-    user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     sub_categories_count integer DEFAULT 0,
@@ -863,7 +862,6 @@ ALTER SEQUENCE sections_id_seq OWNED BY sections.id;
 CREATE TABLE sub_categories (
     id integer NOT NULL,
     name character varying,
-    user_id integer,
     category_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -1052,7 +1050,6 @@ CREATE TABLE users (
     uid character varying,
     first_name character varying,
     last_name character varying,
-    questions_count integer DEFAULT 0,
     image character varying,
     gender boolean,
     role integer DEFAULT 0
@@ -1929,4 +1926,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160801021612');
 INSERT INTO schema_migrations (version) VALUES ('20160808050550');
 
 INSERT INTO schema_migrations (version) VALUES ('20160808202331');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809193149');
+
+INSERT INTO schema_migrations (version) VALUES ('20160809193501');
 
