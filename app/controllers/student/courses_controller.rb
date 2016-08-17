@@ -9,7 +9,7 @@ class Student::CoursesController < Student::StudentController
   # GET /courses.json
   def index
     add_breadcrumb "Inicio", :root_path
-    @courses = Course.all
+    @courses = Course.preload(:tests,:categories => [:sub_categories => [:questions,:tutorials]] ).all
   end
 
   # GET /courses/1
