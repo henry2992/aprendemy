@@ -1,48 +1,97 @@
-  <div id='registro' class="home-payment-section home_section_wrapper container-fluid">
-    <div class="row center-container lg-screen-container">
-      <div  class="col-sm-4 aprendemy-text">
-        <h1>Ingresa a la Universidad de tus sueños</h1>
-        <p>Crea una cuenta gratis para empezar.</p>
+<div>
+  <nav class="navbar navbar-default landing-navbar">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed landing-navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+          <a class="navbar-brand" href="/">
+            <%= image_tag("logo.png", id:"logo-landing-navbar",  alt: "Apredemy-logo") %>
+          </a>
+
       </div>
-      <div class="form-card col-sm-6 col-sm-offset-1">
-        <p class="trial-banner basic">Empieza hoy mismo!</p>
 
-          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-            <%= devise_error_messages! %>
-            <div class="row">
-              <div class="col-sm-6">
-                 <%= f.text_field :first_name, class: "input-text", :placeholder => "Nombre"%>
-            </div>
-          
-            <div class="col-sm-6">
-              <%= f.text_field :last_name, class: "input-text", :placeholder => "Apellido"%>
-            </div>
-            <div class="col-sm-12">
-              <%= f.email_field :email, class: "input-text", :placeholder => "Email" %>
-            </div>
-            <div class="col-sm-12">
-              <%= f.password_field :password, class: "input-text", :placeholder => "Password (Mínimo 6 caracteres)", autocomplete: "off" %>
-          </div>
-          <div class="col-sm-12">
-            <%= f.password_field :password_confirmation, class: "input-text", :placeholder => "Confirmación de Password", autocomplete: "off" %>
-          </div>
-          <br>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/" class="scroll">Inicio</a></li>
+          <li><a class="btn btn-primary btn-session-landing " href="/users/sign_in" >Iniciar Sesión</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
 
-          <div class="col-sm-12" >
-            <div class= "input-text " >
-                      <%= f.label :Género, class: "gender-text"%>
-                      <%= f.radio_button :gender, true, class: 'errors-b' %><%= image_tag("avatar-girl.png", :class=> 'img-gender' ) %>
-                      <%= f.radio_button :gender, false %><%= image_tag("avatar-guy.png", :class=> 'img-gender') %>
-                      </div>
+<div class="sessions-container" >
+  
+  <div class="container"> 
+    <div class=" sessions-wrapper">
+    
+      <h1 class="sessions-title">Ingresa a la Universidad de tus sueños</h1>
+      <p> Con Aprendemy tu éxito en los exámenes de la Senescyt está garantizado. Estudia lo que quieras en el lugar y el momento que prefieras. </p>
+
+
+      
+      <div class="sessions-form-container"> 
+
+        <a class="register-fb-btn btn btn-primary" href="users/auth/facebook"> 
+           <i class="fa fa-facebook-square register-fb-text">  Regístrate con Facebook </i> 
+        </a> 
+
+        <div class="divider">
+            <i class="fa fa-circle-o"></i>
+        </div>
+
+        <h3 class="session-init-email" >
+            Crea una cuenta con tus datos
+        </h3>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+              <div class="row">
+                <div class="col-sm-6">
+                   <%= f.text_field :first_name, class: "form-input-text", :placeholder => "Nombre"%>
                 </div>
-                
-          <div class="col-sm-12">
-            <%= f.submit "Reclama tu prueba gratis", class: "free-trial-button" %>
-          </div>
-
-
-          </div>
-        <% end %>
+          
+                <div class="col-sm-6">
+                  <%= f.text_field :last_name, class: "form-input-text", :placeholder => "Apellido"%>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.email_field :email, class: "form-input-text", :placeholder => "Email" %>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.password_field :password, class: "form-input-text", :placeholder => "Password (Mínimo 6 caracteres)", autocomplete: "off" %>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.password_field :password_confirmation, class: "form-input-text", :placeholder => "Confirmación de Password", autocomplete: "off" %>
+                </div>
+                <br>
+                <div class="col-sm-12" >
+                  <div class= "form-input-text" >
+                    <%= f.label :Género, class: "gender-text"%>
+                    <%= f.radio_button :gender, true %><%= image_tag("avatar-girl.png", :class=> 'img-gender' ) %>
+                    <%= f.radio_button :gender, false %><%= image_tag("avatar-guy.png", :class=> 'img-gender') %>
+                  </div>
+                </div>
+                    
+                <div class="col-sm-12">
+                  <%= f.submit "Regístrarme", class: "trial-button" %>
+                </div>
+              </div>
+            <% end %>
+        <br>
+        <a class="sessions-link" href="/users/password/new">¿Olvidaste tu contraseña?</a>
       </div>
+
+    </div>  
+
     </div>
   </div>
+</div>
+
+

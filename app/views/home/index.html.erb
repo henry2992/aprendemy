@@ -12,7 +12,10 @@
         <div class="landing-buttons">
             <a href="#know-more" class="btn btn-primary scroll btn-animated">Quiero saber más</a>
             <a href="registro.html" class="btn btn-primary btn-animated" data-toggle="modal" data-target="#myModal">Quiero registrarme</a>
+
+            <p>Ya tienes una cuenta?<a class="btn btn-primary btn-session-init" href="/users/sign_in" >Iniciar Sesión</a></p>
         </div>
+
 
   
       </div>
@@ -321,23 +324,7 @@
 </div>
 
 
-
-<div class="footer blue-bg">
-  
-    <div class="footer-img">
-      <%= image_tag("logoblanco.png", alt: "Estudia con Aprendemy", class: "logo-footer") %>
-    </div>
-
-    <div class="community-icons-footer">
-        <a href="https://www.facebook.com/aprendemy" target="_blank"><i id="social-fb-footer" class="fa fa-facebook-square fa-3x social"></i></a>
-        <a href="https://twitter.com/aprendemy" target="_blank"><i id="social-tw-footer" class="fa fa-twitter-square fa-3x social"></i></a>
-        <a href="https://www.youtube.com/channel/UCc6N8LIO-yPIsDqM50ypxjQ" target="_blank"><i id="social-yt-footer" class="fa fa-youtube-square fa-3x social"></i></a>
-        <a href="https://www.instagram.com/aprendemy/" target="_blank"><i id="social-in-footer" class="fa fa-instagram fa-3x social"></i></a>
-        <a href="mailto:hola@aprendemy.com" target="_blank"><i id="social-em-footer" class="fa fa-envelope-square fa-3x social"></i></a>
-    </div>
-
-    <p class="copyright"> Copyright © 2016. Aprendemy. </p>
-</div>
+<%= render 'footer' %>
 
 
 

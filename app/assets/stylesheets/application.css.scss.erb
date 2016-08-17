@@ -152,9 +152,18 @@ ul {
   margin-right: 5px !important;
 }
 
+
+
 .btn-session-landing:hover{
   background-color: transparent;
   border-color: white;
+}
+
+.btn-session-init{
+  font-weight: 700;
+  padding: 5px !important;
+  margin-top: 10px !important;
+  margin-left: 10px !important;
 }
 
 
@@ -587,6 +596,7 @@ ul {
 }
 
 /******************* FOOTER ***********************/
+
 .footer {
   text-align: center;
   padding: 20px 0;
@@ -715,7 +725,52 @@ ul {
   width: 100%
 }
 
+/**************************************************************/
+/*********************  USER SESSIONS ************************/
+/************************************************************/
 
+.sessions-container{
+  /*background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .7)), url(<%= asset_path('landing-courses.jpg')%>) ;*/
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center center; 
+  /*color: #fff; */
+  background-color: #fff;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.sessions-wrapper{
+  max-width: 650px;
+  padding-top: 50px;
+  text-align: center;
+  margin: auto;
+}
+
+.sessions-title{
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 15px !important; 
+}
+
+
+.sessions-wrapper p{
+  font-size: 13px;
+}
+
+.sessions-btn {
+  width: 100%;
+}
+
+
+.sessions-form-container{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.session-init-email {
+  margin-bottom: 25px !important; 
+}
 
 /************************************
 /************  Index NavBar *********/
@@ -888,7 +943,7 @@ a.dropdown-toggle.nav-profile-link {
     }
 
     .logo-landing{
-      margin: 100px auto 25px auto;
+      margin: 60px auto 25px auto;
     }
 
     /************ Know More **************/
@@ -960,6 +1015,19 @@ a.dropdown-toggle.nav-profile-link {
     .footer {
       padding: 50px 0;
     }
+
+    /***********************************************/
+    /**************** SESSIONS ********************/
+    /*********************************************/
+
+    .sessions-title {
+      font-size: 48px;
+    }
+
+    .sessions-wrapper p{
+      font-size: 18px;
+    }
+
 
 }
 
