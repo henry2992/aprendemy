@@ -34,7 +34,7 @@
                 </a>
                 <ul class="dropdown-menu profile-dropdown">
                     <li>
-                        <div class="row">
+                        <div class="row rox-fix profile-dropdown-wrapper">
                             <div class="col-sm-5">
                                 <% if (current_user.image.present?) %>
                                       <%= image_tag(current_user.image.url, class: "img-responsive", alt: "Apredemy-avatar") %>
@@ -45,14 +45,16 @@
                                           <%= image_tag("avatar-girl", class: "img-responsive", alt: "Apredemy-avatar") %>
                                       <%end %>
                                 <%end%>
-                                <p class="text-center"><a class="small"  href="#">Cambiar Foto</a></p>
+
+                                <p class="text-center small img-text">
+                                  <%= link_to 'Cambiar Foto de Perfíl', edit_user_registration_path %>
+                                </p>
                             </div>
                             <div class="col-sm-7">
                                 <span>Henry Sebastian Remache Carrillo</span>
                                 <p class="text-muted small">henry2992@gmail.com</p>
-                                <div class="divider">
-                                </div>
-                                <a href="#" class="btn btn-primary btn-sm active small">Ver Perfil</a>
+                                <div class="divider"></div>
+                                 <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'btn btn-primary btn-sm active' %>
                             </div>
                         </div>
                       <div class="navbar-footer">
