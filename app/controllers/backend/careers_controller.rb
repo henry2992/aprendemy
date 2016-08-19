@@ -1,4 +1,4 @@
-class CareersController < ApplicationController
+class Backend::CareersController < Backend::DashboardController
   before_action :set_career, only: [:show, :edit, :update, :destroy]
 
   # GET /careers

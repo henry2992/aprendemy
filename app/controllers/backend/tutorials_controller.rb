@@ -1,4 +1,4 @@
-class TutorialsController < ApplicationController
+class Backend::TutorialsController < Backend::DashboardController
   before_action :set_tutorial, only: [:show, :edit, :update, :destroy]
 
   # GET /tutorials

@@ -1,4 +1,4 @@
-class UniversitiesController < ApplicationController
+class Backend::UniversitiesController < Backend::DashboardController
   before_action :set_university, only: [:show, :edit, :update, :destroy]
 
   # GET /universities
