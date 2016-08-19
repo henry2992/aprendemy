@@ -18,6 +18,7 @@
 
 # Ignore uploaded test images.
 /public/uploads
+/public/assets/*
 /public/assets/.sprockets
 
 # Ignore application configuration

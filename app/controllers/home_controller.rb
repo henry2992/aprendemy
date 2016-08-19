@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  
+  layout "frontend"
 
   # Helper Methods to allow device resources to be used in home page
   helper_method :resource_name, :resource, :devise_mapping

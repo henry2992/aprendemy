@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="utf-8">
+  <!-- Titutlo -->
+  <title> Aprendemy - Aprueba el examen ENES de la SENESCYT </title>
+
+  <!-- Icono -->
+  <%= favicon_link_tag 'isotipo.png' %>
+
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <!-- Key Words -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Aprendemy.com te ofrece cientos de preguntas, videos explicativos simuladores del examen y mas herramientas de estudio con las que te preparamos para el ENES">
+  <meta name="abstract" content=" Aprendemy.com te ofrece cientos de preguntas, videos explicativos simuladores del examen y mas herramientas de estudio con las que te preparamos para el ENES">
+  <meta name="author" content="Aprendemy">
+  <meta name="copyright" content="Aprendemy.com">
+  <meta name="keywords" content="ENES, Preuniversitario, Cursos preuniversitarios, Preguntas ENES, Preparación para examen del Senescyt, Preparación para ingreso a universidades, Practicar para el examen de la Senescyt, examenes ENES resueltos, examenes anteriores del enes, banco de preguntas del ENES, examen Senescyt, examen del snna, Cursos de ingreso a universidades, simulador del Senescyt, simulador del ENES, Inscripciones para el ENES, Prueba senescyt resuelta, ejercicios de razonamiento abstracto, ejercicios de aptitud numerica, ejercicios de aptitud verbal, preguntas de razonamiento numerico, preguntas de razonamiento abstracto, inscripciones para el examen de la Senescyt, Inscripciones para el examen del SNNA">
+  <meta property="og:title" content="El Curso Online ENES-SENESCYT de Aprendemy.com te ayuda a ingresar a la Universidad.">
+  <meta property="og:description" content="Aprendemy te ofrece cientos de preguntas, videos explicativos simuladores del examen y clases online con las que te preparamos para el ENES">
+
+
+  <!-- Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400,300italic,700' rel='stylesheet' type='text/css'>
+
+  <%= stylesheet_link_tag    'frontend', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body >
+  <div id="main">
+    <!-- Navbar -->
+    <% if user_signed_in? %>
+        <% if (controller.controller_name == 'courses' && controller.action_name == 'index') or (controller.controller_name == 'events' && controller.action_name == 'index') or (controller.controller_name == 'registrations' && controller.action_name == 'edit') %>
+
+
+          <%= render 'student/courses/index_navbar' %> 
+        <% else %> 
+          <%= render 'student/courses/courses_navbar' %>
+        <% end %>
+    <% end %>
+    <!-- End Navbar -->
+  
+      <%= render "layouts/flash"  %>
+    <%= yield %>
+  </div>
+  <%= javascript_include_tag 'frontend' %>
+</body>
+
+</html>
+    
