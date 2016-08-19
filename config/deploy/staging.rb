@@ -14,7 +14,7 @@ set :rails_env, 'production'
 # Extended Server Syntax
 # ======================
 # Delete on production is ready
-server '45.56.79.74', user: 'deploy', roles: %w{web app db} # Linode Production Server
+# server '45.56.79.74', user: 'deploy', roles: %w{web app db} # Linode Production Server
 # Testing server
 server '104.236.228.208', user: 'deploy', roles: %w{web app db} # Digital Ocean Testing server
 
