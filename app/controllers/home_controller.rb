@@ -18,6 +18,8 @@ class HomeController < ApplicationController
   end
 
   def index
+    raise Rails.application.secrets.facebook_secret.to_yaml
+
     if user_signed_in?
       redirect_to student_courses_path if !admin?
       redirect_to student_courses_path if admin?
