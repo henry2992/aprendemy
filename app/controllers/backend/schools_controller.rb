@@ -1,4 +1,4 @@
-class SchoolsController < ApplicationController
+class Backend::SchoolsController < Backend::DashboardController
   before_action :set_school, only: [:show, :edit, :update, :destroy]
 
   # GET /schools

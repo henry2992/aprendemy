@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.2
--- Dumped by pg_dump version 9.5.2
+-- Dumped from database version 9.5.0
+-- Dumped by pg_dump version 9.5.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -351,7 +351,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-08-10 21:21:32.39895'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-08-19 18:13:02.264188'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,

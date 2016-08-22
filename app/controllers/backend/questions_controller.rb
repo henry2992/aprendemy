@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class Backend::QuestionsController < Backend::DashboardController
   before_filter :authenticate_user!
   before_filter :user_is_admin?, except: [:index, :show]
 

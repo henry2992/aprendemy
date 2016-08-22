@@ -1,4 +1,4 @@
-class SectionsController < ApplicationController
+class Backend::SectionsController < Backend::DashboardController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
   # GET /sections

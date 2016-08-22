@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+class Backend::TasksController < Backend::DashboardController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks

@@ -1,4 +1,4 @@
-class Backend::BlogsController < ApplicationController
+class Backend::BlogsController < Backend::DashboardController
   before_filter :authenticate_user!
   before_filter :user_is_admin?
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
