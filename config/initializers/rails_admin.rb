@@ -54,6 +54,13 @@ RailsAdmin.config do |config|
     end
   end
 
+  # config.model Question do
+  #   field :picture do
+  #     formatted_value do
+  #       bindings[:view].tag(:img, { :src => bindings[:object].picture.url }) << value
+  #     end
+  #   end
+  # end
   # config.model SimulatedCategory do
   #   edit do
   #     field :category, :belongs_to_association

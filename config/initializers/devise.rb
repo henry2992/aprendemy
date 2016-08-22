@@ -241,7 +241,7 @@ Devise.setup do |config|
 
   {provider_ignores_state: true }
 
-  config.omniauth :facebook, Figaro.env.facebook_key, Figaro.env.facebook_secret,  scope: 'email, public_profile', info_fields: 'email, first_name, last_name, gender', :image_size => 'large'
+  config.omniauth :facebook, "834590109976033", "98822c6b995e0de0d92e64c7e0ec3c73",  scope: 'email, public_profile', info_fields: 'email, first_name, last_name, gender', :image_size => 'large'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
