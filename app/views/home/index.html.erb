@@ -8,6 +8,8 @@
         <%= image_tag("logoblanco.png", alt: "Estudia con Aprendemy", class: "logo-landing") %>
         <h1 class="landing-title">Ingresa a la Universidad de tus sueños</h1>
         <p> Con Aprendemy tu éxito en los exámenes de la Senescyt está garantizado. Estudia lo que quieras en el lugar y el momento que prefieras. </p>
+        <p><%= Rails.application.secrets.facebook_app_id %></p>
+        <p><%= ENV["FACEBOOK_APP_ID"] %></p>
 
         <div class="landing-buttons">
             <a href="#know-more" class="btn btn-primary scroll btn-animated">Quiero saber más</a>
