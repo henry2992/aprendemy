@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  # enum role: [:free, :paid, :admin] unless instance_methods.include? :role
-
   enum role: %w(free paid admin)
 
   mount_uploader :image, UserUploader
