@@ -50,5 +50,8 @@ Rails.application.routes.draw do
   # USERS
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations', sessions: 'sessions' }
 
+  # get 'auth/facebook/callback', to: 'sessions#create'
+  # get 'auth/failure', to: redirect('/')
+  
   match '*unmatched_route', :to => 'application#raise_not_found!', via: :all
 end
