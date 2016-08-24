@@ -1,5 +1,4 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_filter :verify_signed_out_user
   def facebook
     # Implementaremos este método en nuestro modelo más adelante
     @user = User.from_omniauth(request.env["omniauth.auth"])
