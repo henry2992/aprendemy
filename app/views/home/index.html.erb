@@ -336,7 +336,7 @@
         <%= link_to user_omniauth_authorize_path(:facebook), class: "register-fb-btn btn btn-primary" do %> 
            <i class="fa fa-facebook-square register-fb-text"> Regístrate con Facebook </i> 
            <p>
-             <%= current_user.as_json %>
+             - <%= current_user.as_json %> -
            </p>
         <% end %>
         <!--  Divider -->
