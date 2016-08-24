@@ -33,6 +33,14 @@ class User < ActiveRecord::Base
       user.remote_image_url = auth.info.image.gsub('http://','https://')
     end
   end
+  
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
 
   def points
     Point.where(recipient_id: self.id, recipient_type: 'User').sum(:points)
