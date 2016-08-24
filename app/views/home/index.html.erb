@@ -333,7 +333,7 @@
       <div class="modal-body">
 
         <!-- Facebook Button -->
-        <%= link_to "users/auth/facebook", class: "register-fb-btn btn btn-primary" do %> 
+        <%= link_to user_omniauth_authorize_path(:facebook), class: "register-fb-btn btn btn-primary" do %> 
            <i class="fa fa-facebook-square register-fb-text"> Regístrate con Facebook </i> 
         <% end %>
         <!--  Divider -->
