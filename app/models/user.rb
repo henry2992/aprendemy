@@ -5,9 +5,8 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true, :length => { :minimum => 2 }
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  devise :omniauthable, :omniauth_providers => [:facebook]
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   enum role: %w(free paid admin)
 
