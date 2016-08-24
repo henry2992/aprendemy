@@ -1,6 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
-    return render json { value: "data data" }
+    render json { value: "data data" }
     # # Implementaremos este método en nuestro modelo más adelante
     # @user = User.from_omniauth(request.env["omniauth.auth"])
 
@@ -15,7 +15,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    return render json { value: "data data" }
+    render json { value: "data 2" }
 
     # redirect_to root_path
   end
