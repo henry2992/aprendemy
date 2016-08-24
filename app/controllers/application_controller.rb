@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || root_path
+  end
+
   def set_current_user
     User.current = current_user
   end
