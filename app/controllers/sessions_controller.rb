@@ -1,5 +1,4 @@
 class SessionsController < Devise::SessionsController
-  skip_before_filter :verify_signed_out_user
   # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
