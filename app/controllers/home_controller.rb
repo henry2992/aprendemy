@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    if current_user.blank?
+    if current_user
       # raise user_signed_in?.to_yaml
       redirect_to student_courses_path if !admin?
       redirect_to student_courses_path if admin?
