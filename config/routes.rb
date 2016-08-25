@@ -52,7 +52,8 @@ Rails.application.routes.draw do
 
   # USERS
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions' }
-  
+
+  get 'signout', to: 'users/sessions#destroy', as: 'signout'
   # get 'auth/facebook/callback', to: 'sessions#create'
   # get 'auth/failure', to: redirect('/')
   
