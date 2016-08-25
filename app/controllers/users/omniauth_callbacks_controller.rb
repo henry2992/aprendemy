@@ -15,8 +15,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    # render json: { value: request.env["omniauth.auth"] }
+    render json: { value: request.env["omniauth.auth"] }
 
-    redirect_to root_path
+    # redirect_to root_path
   end
 end
