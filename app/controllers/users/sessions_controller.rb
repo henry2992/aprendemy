@@ -19,6 +19,7 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     super
+    session[:fb_token] = nil
   end
 
   # protected
