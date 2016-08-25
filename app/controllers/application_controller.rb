@@ -24,8 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || student_courses_path
-    # student_courses_path
+    request.env['omniauth.origin'] || stored_location_for(resource) || user_root_path
   end
 
   def set_current_user
