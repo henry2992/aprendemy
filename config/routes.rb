@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     # resources :universities
   end
 
+  get 'student/courses' => 'student/courses#index', as: :user_root
   namespace :student do
     resources :courses, only: [:index, :show] do
+      # root_path
+      
       # TESTS
       resources :tests, only: [:index] do
         resources :course_user_tests, :path => "test", only:[:edit, :new, :update]
