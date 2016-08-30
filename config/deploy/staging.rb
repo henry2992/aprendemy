@@ -16,8 +16,8 @@ set :rails_env, 'production'
 # Delete on production is ready
 # server '45.56.79.74', user: 'deploy', roles: %w{web app db} # Linode Production Server
 # Testing server
-# server '104.236.228.208', user: 'deploy', roles: %w{web app db} # Digital Ocean Testing server
-server '52.42.254.221', user: 'deploy', roles: %w{web app db} # Digital Ocean Testing server
+server '104.236.228.208', user: 'deploy', roles: %w{web app db} # Digital Ocean Testing server
+# server '52.42.254.221', user: 'deploy', roles: %w{web app db} # Digital Ocean Testing server
 
 # This can be used to drop a more detailed server
 # definition into the server list. The second argument
