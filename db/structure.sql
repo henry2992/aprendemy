@@ -351,7 +351,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-08-19 18:13:02.264188'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-08-29 19:21:00.544201'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
