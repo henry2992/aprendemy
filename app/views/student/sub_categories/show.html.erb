@@ -98,7 +98,7 @@
 
 
               <div class="hw-arrows">
-                <%= will_paginate @questions, :page_links=>false , renderer: BootstrapPagination::Rails %>
+                <%= will_paginate @questions, renderer: BootstrapPagination::Rails, :params => { :paginate => "q" } %>
               </div>
 
 
@@ -107,7 +107,6 @@
 
           <div class="tab-pane <%= "active" if params[:paginate] == "a" %> test-content-wrapper" id="contestadas" style="padding:0">
             <div class="row rox-fix">
-              <%= will_paginate @answered, renderer: BootstrapPagination::Rails, :params => { :paginate => "a" } %>
               <!-- Question -->
               <% @answered.each do |q| %>
                 <div class="test-question">
@@ -177,6 +176,11 @@
                   <% qs+=1 %>
                 </div>
               <% end %>
+              
+              <div class="hw-arrows">
+              <%= will_paginate @answered, renderer: BootstrapPagination::Rails, :params => { :paginate => "a" } %>
+              </div>
+
             </div>  
           </div>
         </div>

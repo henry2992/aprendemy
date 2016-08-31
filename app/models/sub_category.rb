@@ -7,6 +7,10 @@ class SubCategory < ActiveRecord::Base
   # Picture Uploader
   mount_uploader :picture, PictureUploader
 
+  def question_count
+    self.questions.where(parent_id:nil).length
+  end
+
   def points
     Point.where(recipient_id: self.id, recipient_type: 'SubCategory').sum(:points)
   end
