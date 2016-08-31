@@ -8,16 +8,16 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'pg'
 gem 'jquery-rails'
-gem 'turbolinks'
+# gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #Bootstrap and Font Awesome
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem "font-awesome-rails"
 # User Autentification
-gem 'devise', '~> 3.5', '>= 3.5.6'
+gem 'devise'
 gem 'omniauth'
-gem 'omniauth-facebook', '~> 3.0'
+gem 'omniauth-facebook'
 
 #Admin
 gem 'rails_admin'

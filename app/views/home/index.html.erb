@@ -7,7 +7,7 @@
       <div class="landing-wrapper">
         <%= image_tag("logoblanco.png", alt: "Estudia con Aprendemy", class: "logo-landing") %>
         <h1 class="landing-title">Ingresa a la Universidad de tus sueños</h1>
-        <p> Con Aprendemy tu éxito en los exámenes de la Senescyt está garantizado. Estudia lo que quieras en el lugar y el momento que prefieras. </p>
+        <p> Con Aprendemy tu éxito en los exámenes de la Senescyt está garantizado. Estudia lo que quieras en el lugar y el momento que prefieras.</p>
 
         <div class="landing-buttons">
             <a href="#know-more" class="btn btn-primary scroll btn-animated">Quiero saber más</a>
@@ -333,8 +333,8 @@
       <div class="modal-body">
 
         <!-- Facebook Button -->
-        <%= link_to "users/auth/facebook", class: "register-fb-btn btn btn-primary" do %> 
-           <i class="fa fa-facebook-square register-fb-text"> Regístrate con Facebook </i> 
+        <%= link_to user_facebook_omniauth_authorize_path, class: "register-fb-btn btn btn-primary" do %> 
+           <i class="fa fa-facebook-square register-fb-text"> Regístrate con Facebook </i>
         <% end %>
         <!--  Divider -->
         <div class="divider">

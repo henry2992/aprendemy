@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.0'
+# lock '3.6.0'
 
 set :application, 'aprendemy'
 set :repo_url, 'git@github.com:henry2992/aprendemy.git' # Edit this to match your repository

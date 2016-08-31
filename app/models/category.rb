@@ -5,6 +5,6 @@ class Category < ActiveRecord::Base
   belongs_to :course
   
   def question_count
-    self.sub_categories.map { |s| s.questions.length }.inject(0, :+)
+    self.sub_categories.map { |s| s.questions.where(parent_id:nil).length }.inject(0, :+)
   end
 end

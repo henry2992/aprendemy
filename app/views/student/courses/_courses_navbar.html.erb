@@ -69,7 +69,7 @@
 	                          <div class="navbar-footer-content">
 	                              <div class="row">
 	                                  <div class="col-md-12">
-	                                       <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session'  %>
+	                                       <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session', :data => { :no_turbolink => true }  %>
 	                                  </div>
 	                              </div>
 	                          </div>

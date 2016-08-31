@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     # resources :universities
   end
 
+  get 'student/courses' => 'student/courses#index', as: :user_root
   namespace :student do
     resources :courses, only: [:index, :show] do
+      # root_path
+      
       # TESTS
       resources :tests, only: [:index] do
         resources :course_user_tests, :path => "test", only:[:edit, :new, :update]
@@ -51,7 +54,10 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   # USERS
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", registrations: 'registrations', sessions: 'sessions' }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations', sessions: 'users/sessions' }
 
+  # get 'auth/facebook/callback', to: 'sessions#create'
+  # get 'auth/failure', to: redirect('/')
+  
   match '*unmatched_route', :to => 'application#raise_not_found!', via: :all
 end
