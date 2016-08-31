@@ -42,6 +42,9 @@ Rails.application.routes.draw do
       # TUTORIALS
       resources :tutorials
 
+      #STATISTICS
+      resources :statistics, only: [:index]
+
     end
     
   end
