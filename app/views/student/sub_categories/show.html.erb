@@ -46,7 +46,7 @@
                       <%= image_tag(q.picture, class: "img-question", alt: q.content) %>
                     <% end %>
                     <% if q.url %>
-                      <%= link_to q.url, q.url %>
+                      <%= link_to q.url, q.url, class: "show_explanation", "data-explanation": q.url, "data-title":"Ver video explicativo" %>
                     <% end %>
                     <% if q.questions %>
                       <% q.questions.each do |qss| %>
@@ -56,7 +56,7 @@
                             <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
                           <% end %>
                           <% if qss.url %>
-                            <%= link_to qss.url, qss.url %>
+                            <%= link_to qss.url, qss.url, class: "show_explanation", "data-explanation": qss.url, "data-title":"Ver video explicativo" %>
                           <% end %>
                         </div>
                       <% end %>
@@ -123,7 +123,7 @@
                           <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
                         <% end %>
                         <% if qss.url %>
-                          <%= link_to qss.url, qss.url %>
+                          <%= link_to qss.url, qss.url, class: "show_explanation", "data-explanation": qss.url, "data-title":"Ver video explicativo" %>
                         <% end %>
                       </div>
                     <% end %>
@@ -185,8 +185,8 @@
       </div>
     </div>
 
-    <div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
-      <div class="modal-dialog" style="background-color:white;">
+    <div class="modal fade" id="message" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" style="background-color:white;">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -207,9 +207,17 @@
   $(".answer").not(".tab2").hide();
   $(".show_explanation").on('click', function(event) {
     event.preventDefault();
-
-    $('#ModalTitle').html('Ver explicación');
-    $('#ModalBody').html($(this).attr('data-explanation'));
+    if ( $(this).attr('data-title') ) 
+    {
+      $('#ModalTitle').html($(this).attr('data-title'));  
+      $('#ModalBody').html('<iframe src="'+$(this).attr('data-explanation')+'" width="100%" height="329" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+    }
+    else
+    {
+      $('#ModalTitle').html('Ver explicación');
+      $('#ModalBody').html($(this).attr('data-explanation'));
+    }
+    
     showModal();
   });
   $(".go_answer").on('click', function(event) {
