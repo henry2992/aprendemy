@@ -115,9 +115,7 @@
                   <% if q.picture.present? %>
                     <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
                   <% end %>
-                  <% if q.url %>
-                    <%= link_to q.url, q.url %>
-                  <% end %>
+                  
                   <% if q.questions %>
                     <% q.questions.each do |qss| %>
                       <div class="test-question">
