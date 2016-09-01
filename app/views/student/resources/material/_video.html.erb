@@ -4,7 +4,7 @@
 </div>
 <div class="main-content-wrapper row rox-fix">
 	<div class="video-holder" id="video-holder"></div>
-
+  <%= (link_to "Terminar Tarea", student_course_progress_resource_path(@course,1,@resource), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed %>
   <%= render 'progress_controller'%>
 </div>
 <script src="http://www.youtube.com/iframe_api"></script>
