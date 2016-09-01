@@ -5,6 +5,9 @@ class Test < ActiveRecord::Base
   has_many :course_user_test, dependent: :destroy
   belongs_to :course
 
+  # Picture Uploader
+  mount_uploader :picture, PictureUploader
+
   validates :title, :presence => true, :length => { :minimum => 2 }
   validates :time_limit, presence: true, 
                          numericality: { 
