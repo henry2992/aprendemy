@@ -933,7 +933,8 @@ CREATE TABLE tests (
     time_limit integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    course_id integer
+    course_id integer,
+    picture character varying
 );
 
 
@@ -1930,4 +1931,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160808202331');
 INSERT INTO schema_migrations (version) VALUES ('20160809193149');
 
 INSERT INTO schema_migrations (version) VALUES ('20160809193501');
+
+INSERT INTO schema_migrations (version) VALUES ('20160901013740');
 
