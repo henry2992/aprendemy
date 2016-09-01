@@ -28,7 +28,7 @@ class Student::CourseUserTestsController < Student::StudentController
       @course_user_test.status = @course_user_test.time_left <= 0 ? "completed" : "opened"
       @course_user_test.last_started = Time.at(Time.now)
       @course_user_test.save
-      return redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' if @course_user_test.time_left == 0
+      return redirect_to student_course_tests_path(@course), notice: 'El Test fue completado exitosamente.' if @course_user_test.time_left == 0
     end
   end
 
@@ -48,7 +48,7 @@ class Student::CourseUserTestsController < Student::StudentController
             @course_user_test.time_completed = DateTime.now
             @course_user_test.time_left = 0
             @course_user_test.save
-            format.html { redirect_to student_course_tests_path(@course), notice: 'Sorry, time is over!, your answers have not been stored, now this test is completed' }
+            format.html { redirect_to student_course_tests_path(@course), notice: 'Lo siento, ¡el tiempo de ha consumido!, yus respuestas no han sido almacenadas, ahora este Test está completado.' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           end
           if answered_questions >= percent_to_go
@@ -59,7 +59,7 @@ class Student::CourseUserTestsController < Student::StudentController
             format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully completed.' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           else
-            format.html { redirect_to student_course_tests_path(@course), notice: 'Your answers have been stored, but to complete this test you must answer at least 75% of total questions.' }
+            format.html { redirect_to student_course_tests_path(@course), notice: 'Tus respuestas han sido almacenadas, pero para completar este test debes responder al menos el 75% del total de las preguntas.' }
             format.json { render :show, status: :created, location: student_course_tests_path(@course) }
           end
         else
@@ -70,7 +70,7 @@ class Student::CourseUserTestsController < Student::StudentController
       if params["course_user_test"]['action_form'] == "pause"
         set_answers params["course_user_test"]["question_ids"] if params["course_user_test"]["question_ids"]
         if @course_user_test.save
-          format.html { redirect_to student_course_tests_path(@course), notice: 'Test was successfully paused.' }
+          format.html { redirect_to student_course_tests_path(@course), notice: 'El Test fue pausado exitosamente.' }
           format.json { render :show, status: :created, location: student_course_tests_path(@course) }
         end
       end

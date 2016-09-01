@@ -31,7 +31,7 @@ class Student::TutorialsController < Student::StudentController
 
     respond_to do |format|
       if @tutorial.save
-        format.html { redirect_to @tutorial, notice: 'Tutorial was successfully created.' }
+        format.html { redirect_to @tutorial, notice: 'El Tutorial fue creado exitosamente.' }
         format.json { render :show, status: :created, location: @tutorial }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class Student::TutorialsController < Student::StudentController
   def update
     respond_to do |format|
       if @tutorial.update(tutorial_params)
-        format.html { redirect_to @tutorial, notice: 'Tutorial was successfully updated.' }
+        format.html { redirect_to @tutorial, notice: 'El Tutorial fue modificado exitosamente.' }
         format.json { render :show, status: :ok, location: @tutorial }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class Student::TutorialsController < Student::StudentController
   def destroy
     @tutorial.destroy
     respond_to do |format|
-      format.html { redirect_to tutorials_url, notice: 'Tutorial was successfully destroyed.' }
+      format.html { redirect_to tutorials_url, notice: 'El Tutorial fue eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end

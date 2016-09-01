@@ -8,14 +8,14 @@ class Student::AnswersController < Student::StudentController
         @answer = current_user.answers.new(answer_params)
         @answer.item = nil
         if @answer.save
-          format.html { redirect_to student_course_category_sub_category_path(@course,@category,@sub_category), notice: 'Answer was successfully created.' }
+          format.html { redirect_to student_course_category_sub_category_path(@course,@category,@sub_category), notice: 'La respuesta fue creada exitosamente.' }
           format.json { render json: { "is_correct": @answer.is_correct?, "already_answered": false }, status: :created }
         else
-          format.html { redirect_to student_course_category_sub_category_path(@course,@category,@sub_category), notice: 'Answer was not created.' }
+          format.html { redirect_to student_course_category_sub_category_path(@course,@category,@sub_category), notice: 'La respuesta no pudo ser creada.' }
           format.json { render json: @answer.errors, status: :unprocessable_entity }
         end
       else
-        format.html { redirect_to student_course_category_sub_category_path(@course,@category,@sub_category), notice: 'Answer was already created.' }
+        format.html { redirect_to student_course_category_sub_category_path(@course,@category,@sub_category), notice: 'La respuesta ya fue creada.' }
         format.json { render json: { "is_correct": false, "already_answered": true }, status: :unprocessable_entity }
       end
     end
