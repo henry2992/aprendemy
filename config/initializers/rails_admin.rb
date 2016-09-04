@@ -54,6 +54,8 @@ RailsAdmin.config do |config|
     end
   end
 
+  
+
   # config.model Question do
   #   field :picture do
   #     formatted_value do
