@@ -284,7 +284,9 @@ CREATE TABLE choices (
     content character varying,
     question_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    total_answered_count integer DEFAULT 0,
+    wrong_answered_count integer DEFAULT 0
 );
 
 
@@ -1933,4 +1935,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160809193149');
 INSERT INTO schema_migrations (version) VALUES ('20160809193501');
 
 INSERT INTO schema_migrations (version) VALUES ('20160901013740');
+
+INSERT INTO schema_migrations (version) VALUES ('20160908152902');
 

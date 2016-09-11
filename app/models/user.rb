@@ -14,8 +14,15 @@ class User < ActiveRecord::Base
 
   has_many :course_users, :dependent => :destroy
   has_many :courses, :through => :course_users
+  has_many :categories, :through => :courses
+  has_many :sub_categories, :through => :categories
+  has_many :answers, :through => :sub_categories
 
   has_many :answers
+
+  def statistics
+    self.sub_categories.preload(:answers,:questions).map { |sc| [sc.category.name, sc.name, "correct" => sc.correct_answers, "total" => sc.total_answers] }
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
