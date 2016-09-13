@@ -26,6 +26,11 @@
               <h1>Bienvenido, <%= current_user.first_name %></h1>  
               <p><%= current_user.email %></p>
               <p>Días restantes: <%= @course.plan_days_left %></p>
+              <% if @course_user.course_user_plan.plan.name == "Free" %>
+              <p>
+                <a href="<%= student_course_payments_path(@course_user.course) %>" class="btn btn-success"> <span>Hazte Premium</span></a>
+              </p>
+              <% end %>
             </div>
 
           </div>

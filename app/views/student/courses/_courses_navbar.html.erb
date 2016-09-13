@@ -58,8 +58,8 @@
 	                                <p class="text-center"><a class="small" href="#">Cambiar Foto</a></p>
 	                            </div>
 	                            <div class="col-sm-7">
-	                                <span>Henry Sebastian Remache Carrillo</span>
-	                                <p class="text-muted small">henry2992@gmail.com</p>
+	                                <span><%= current_user.first_name %> <%= current_user.last_name %></span>
+	                                <p class="text-muted small"><%= current_user.email %></p>
 	                                <div class="divider">
 	                                </div>
 	                                <a href="#" class="btn btn-primary btn-sm active small">Ver Perfil</a>
