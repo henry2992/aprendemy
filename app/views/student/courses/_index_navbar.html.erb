@@ -51,8 +51,8 @@
                                 </p>
                             </div>
                             <div class="col-sm-7">
-                                <span>Henry Sebastian Remache Carrillo</span>
-                                <p class="text-muted small">henry2992@gmail.com</p>
+                                <span><%= current_user.first_name %> <%= current_user.last_name %></span>
+                                <p class="text-muted small"><%= current_user.email %></p>
                                 <div class="divider"></div>
                                  <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'btn btn-primary btn-sm active' %>
                             </div>
