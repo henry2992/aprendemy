@@ -43,7 +43,7 @@
                   <div class="test-question">
                     <p><%= q.content %></p>
                     <% if q.picture.present? %>
-                      <%= image_tag(q.picture, class: "img-question", alt: q.content) %>
+                      <%= image_tag(q.picture.url, class: "img-question", alt: q.content) %>
                     <% end %>
                     <% if q.url %>
                       <%= link_to q.url, q.url, class: "show_explanation", "data-explanation": q.url, "data-title":"Ver video explicativo" %>
@@ -53,7 +53,7 @@
                         <div class="test-question">
                           <p><%= qss.content %></p>
                           <% if qss.picture.present? %>
-                            <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
+                            <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
                           <% end %>
                           <% if qss.url %>
                             <%= link_to qss.url, qss.url, class: "show_explanation", "data-explanation": qss.url, "data-title":"Ver video explicativo" %>
@@ -112,7 +112,7 @@
                 <div class="test-question">
                   <p><%= q.content %></p>
                   <% if q.picture.present? %>
-                    <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
+                    <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content) %>
                   <% end %>
                   
                   <% if q.questions %>
@@ -120,7 +120,7 @@
                       <div class="test-question">
                         <p><%= qss.content %></p>
                         <% if qss.picture.present? %>
-                          <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
+                          <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
                         <% end %>
                         <% if qss.url %>
                           <%= link_to qss.url, qss.url, class: "show_explanation", "data-explanation": qss.url, "data-title":"Ver video explicativo" %>

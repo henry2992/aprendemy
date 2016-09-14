@@ -29,7 +29,7 @@
 						<% wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id %>
 					<% end %>
 					<% if q.picture.present? %>
-					  <%= image_tag(q.picture, class: "img-responsive", alt: q.content, style: "width: 100%, height: auto;") %>
+					  <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content, style: "width: 100%, height: auto;") %>
 					<% end %>
 					<% if q.explanation && show_explanation %>
 				    <!-- Explicación = q.explanation -->
@@ -45,7 +45,7 @@
 					  	<div class="hw-question">
 					  		<p><%= qs.content %></p>
 						    <% if qs.picture.present? %>
-						      <%= image_tag(q.picture, class: "img-responsive", alt: qs.content, style: "width: 100%, height: auto;") %>
+						      <%= image_tag(q.picture.url, class: "img-responsive", alt: qs.content, style: "width: 100%, height: auto;") %>
 						    <% end %>
 						    <% if @answers %>
 						        <!-- Explicaciones = qs.explanation -->
