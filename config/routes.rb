@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   end
 
   get 'student/courses' => 'student/courses#index', as: :user_root
+  
   namespace :student do
+
     resources :courses, only: [:index, :show] do
       # root_path
       
@@ -37,8 +39,7 @@ Rails.application.routes.draw do
         end
       end
 
-      # PAYMENTS
-      get '/payments' => 'payments#index', as: :payments
+      
 
       # TUTORIALS
       resources :tutorials
@@ -49,6 +50,10 @@ Rails.application.routes.draw do
     end
     
   end
+
+  # PAYMENTS
+  get 'payments' => 'payments#index', as: :payments
+
 
   root 'home#index'
 
