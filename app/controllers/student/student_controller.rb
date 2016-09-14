@@ -11,7 +11,7 @@ class Student::StudentController < ApplicationController
         cup = course_user.course_user_plan
         cup.status = "expired" # Marcar como expirado el plan
         cup.save
-        redirect_to student_course_payments_path(course_user) 
+        redirect_to payments_path 
       end
     end
   end
