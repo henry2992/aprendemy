@@ -85,7 +85,7 @@
                   wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
                 end %>
               <% if q.picture.present? %>
-                <%= image_tag(q.picture, class: "img-responsive", alt: q.content) %>
+                <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content) %>
               <% end %>
               <% if q.url %>
                 <%= link_to q.url, q.url %>
@@ -96,7 +96,7 @@
                   <div class="test-question">
                     <p><%= qss.content %></p>
                     <% if qss.picture.present? %>
-                      <%= image_tag(qss.picture, class: "img-responsive", alt: qss.content) %>
+                      <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
                     <% end %>
                     <% if qss.url %>
                       <%= link_to qss.url, qss.url %>
