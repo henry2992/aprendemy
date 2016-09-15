@@ -17,6 +17,7 @@ class Student::CoursesController < Student::StudentController
   def show
     add_breadcrumb "Inicio", :root_path
     add_breadcrumb "Cursos ", student_courses_path
+    @progress = @course_user.progress_percent
   end
 
   private
