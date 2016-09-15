@@ -1,3 +1,7 @@
+// Place all the styles related to the courses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
 /******************* PAYMENTS ***************************/
 
 .payments-container{
@@ -188,6 +192,44 @@ color: rgb(48, 122, 186)
   background: url(<%= asset_path('phone.png')%>) center no-repeat;
 }
 
+/********************* Price Box **********************************/
+
+.panel-pricing {
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+}
+.panel-pricing:hover {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+}
+.panel-pricing .panel-heading {
+  padding: 20px 10px;
+}
+.panel-pricing .panel-heading .fa {
+  margin-top: 10px;
+  font-size: 58px;
+}
+.panel-pricing .list-group-item {
+  color: #777777;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+}
+.panel-pricing .list-group-item:last-child {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.panel-pricing .list-group-item:first-child {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+.panel-pricing .panel-body {
+  background-color: #f0f0f0;
+  font-size: 40px;
+  color: #777777;
+  padding: 20px;
+  margin: 0px;
+}
+
+
 
 /***************** MEDIA QUERIES ******************/
 
@@ -200,8 +242,8 @@ color: rgb(48, 122, 186)
     height: 110px;
     background-position: initial;
   }
-	
-	
+  
+  
 
 
 }
@@ -222,7 +264,7 @@ color: rgb(48, 122, 186)
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) {
 
-	
+  
 
   /*Payments*/
 
@@ -252,6 +294,7 @@ color: rgb(48, 122, 186)
 @media only screen  and (min-width : 1824px) {
 /* Styles */
 }
+
 
 
 

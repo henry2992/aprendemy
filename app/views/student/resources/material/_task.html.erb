@@ -34,9 +34,6 @@
 					<% if q.explanation && show_explanation %>
 				    <!-- Explicación = q.explanation -->
 					<% end %>
-					<% if q.url %>
-					  <%= link_to q.url, q.url, class: "btn btn-link" %>
-					<% end %>
 					<p><%= q.content %></p>
 	
 					<% if q.questions %>
@@ -49,9 +46,6 @@
 						    <% end %>
 						    <% if @answers %>
 						        <!-- Explicaciones = qs.explanation -->
-						    <% end %>
-						    <% if qs.url %>
-						      <%= link_to qs.url, qs.url, class: "btn btn-link" %>
 						    <% end %>
 					    </div>
 						<% end %>
@@ -119,7 +113,7 @@
 				      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
 				      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
 				      <div class="show-video">
-				        <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+				        <p data-explanation="<%= q.explanation %>" data-url="<%= q.url %>" class="show_explanation"> Ver explicación </p> 
 				      </div>
 				    </div>
 					  <% end %>
@@ -135,8 +129,8 @@
   <%= render 'progress_controller'%>
 </div>
 
-<div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
-  <div class="modal-dialog" style="background-color:white;">
+<div class="modal fade" id="message" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" style="background-color:white;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -151,7 +145,6 @@
     </div>
   </div>
 </div>
-
 <script>
 	$(document).ready(function(){
 		$(".question_number").html(1);
@@ -212,7 +205,14 @@
 	    event.preventDefault();
 	    /* Act on the event */
 	    $('#ModalTitle').html('Ver explicación');
-	    $('#ModalBody').html($(this).attr('data-explanation'));
+	    exp_data = $(this).attr('data-explanation');
+
+	    html = "<div class='video-holder' id='video-holder'>\
+	    					<iframe src='"+$(this).attr('data-url')+"' width='100%' height='100%' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\
+	    				</div>\
+	    				<p>"+exp_data+"</p>";
+
+	    $('#ModalBody').html(html);
 	    showModal();
 	  });
 
