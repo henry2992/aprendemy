@@ -36,8 +36,7 @@
   <div id="main">
     <!-- Navbar -->
     <% if user_signed_in? %>
-        <% if (controller.controller_name == 'courses' && controller.action_name == 'index') or (controller.controller_name == 'events' && controller.action_name == 'index') or (controller.controller_name == 'registrations' && controller.action_name == 'edit') or !(controller.controller_name == 'backend/blogs') %>
-
+        <% if (controller.controller_name == 'courses' && controller.action_name == 'index') or (controller.controller_name == 'events' && controller.action_name == 'index') or (controller.controller_name == 'registrations' && controller.action_name == 'edit') and (controller.controller_name != 'blogs') %>
           <%= render 'student/courses/index_navbar'  %> 
         <% else %> 
           <%= render 'student/courses/courses_navbar'  %> 

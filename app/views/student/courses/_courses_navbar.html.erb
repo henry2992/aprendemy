@@ -69,7 +69,7 @@
 	                          <div class="navbar-footer-content">
 	                              <div class="row">
 	                                  <div class="col-md-12">
-	                                       <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session', :data => { :no_turbolink => true }  %>
+	                                       <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session'  %>
 	                                  </div>
 	                              </div>
 	                          </div>
@@ -106,7 +106,7 @@
 					</symbol>
 					<use xlink:href="#icon-home"></use>
 				</svg>
-    			<a href="<%= student_course_path(@course) %>" >
+    			<a href="<%= student_course_path(@course) if @course %>" >
 	    			<span> Inicio</span>
     			</a>
 			</li>
@@ -117,7 +117,7 @@
 					</symbol>
 					<use xlink:href="#icon-rocket"></use>
 				</svg>
-				<a href="<%= student_course_progress_index_path(@course) %>"><span>Progreso</span></a>
+				<a href="<%= student_course_progress_index_path(@course) if @course %>"><span>Progreso</span></a>
 			</li>
 			<li class="index-nav-item">
 			 	<svg class="icon icon-book">
@@ -128,7 +128,7 @@
 					</symbol>
 					<use xlink:href="#icon-book"></use>
 				</svg>
-            	<a href="<%= student_course_categories_path(@course) %>">
+            	<a href="<%= student_course_categories_path(@course) if @course %>">
 					<span > Ejercicios </span>
 				</a>
             </li>
@@ -142,7 +142,7 @@
 					</symbol>
 					<use xlink:href="#icon-books"></use>
 				</svg>
-            	<a href="<%= student_course_tutorials_path(@course) %>">
+            	<a href="<%= student_course_tutorials_path(@course) if @course %>">
 					<span > Tutoriales </span>
 				</a>
             </li>
@@ -153,7 +153,7 @@
 					<path class="path1" d="M0 2v20h32v-20h-32zM30 20h-28v-16h28v16zM21 24h-10l-1 4-2 2h16l-2-2z"></path>
 					</symbol><use xlink:href="#icon-display"></use>
 				</svg>
-				<a  href="<%= student_course_tests_path(@course) %>">
+				<a  href="<%= student_course_tests_path(@course) if @course  if @course%>">
 					<span > Simuladores </span>
 				</a>
 			</li>
@@ -166,7 +166,7 @@
 					</symbol>
 					<use xlink:href="#icon-play"></use>
 				</svg>
-				<a href="<%= student_course_live_classes_path(@course) %>">
+				<a href="<%= student_course_live_classes_path(@course) if @course %>">
 					<span > Clases en Vivo </span>
 				</a>
 			</li>
@@ -242,9 +242,7 @@
 					</symbol>
 					<use xlink:href="#icon-enter"></use>
 				</svg>
-            	<a href="<%= destroy_user_session_path %>">
-					<span > Cerrar Sesión </span>
-				</a>
-            </li>
+        <%= link_to "<span> Cerrar Sesión </span>".html_safe, destroy_user_session_path, method: :delete %>
+      </li>
 		</ul>
 </div>

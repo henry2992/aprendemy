@@ -127,9 +127,7 @@
             </symbol>
             <use xlink:href="#icon-enter"></use>
           </svg>
-          <a href="<%= destroy_user_session_path %>">
-            <span > Cerrar Sesión </span>
-          </a>
+          <%= link_to "<span> Cerrar Sesión </span>".html_safe, destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session'  %>
       </li>
     </ul>
 </div>
