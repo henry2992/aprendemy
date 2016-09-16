@@ -11,7 +11,7 @@ class Student::ResourcesController < Student::StudentController
     add_breadcrumb "Inicio", :root_path
     @course = @resource.section.course
     course_resources = @course.sections.all.map{ |s| s.resources.order(:position,:created_at).map(&:position) }.flatten
-    current_resource_index = course_resources.index(@resource.position)
+    current_resource_index = course_resources.index(@resource.id)
     @prev = current_resource_index == 0 ? nil :  Resource.find(course_resources[current_resource_index-1])
     
     if @prev
