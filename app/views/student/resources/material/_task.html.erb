@@ -206,11 +206,15 @@
 	    /* Act on the event */
 	    $('#ModalTitle').html('Ver explicación');
 	    exp_data = $(this).attr('data-explanation');
+	    html = "";
+	    if ($(this).attr('data-url').length > 0)
+	    {
 
-	    html = "<div class='video-holder' id='video-holder'>\
-	    					<iframe src='"+$(this).attr('data-url')+"' width='100%' height='100%' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\
-	    				</div>\
-	    				<p>"+exp_data+"</p>";
+	    	html = "<div class='video-holder' id='video-holder'>\
+		    					<iframe src='"+$(this).attr('data-url')+"' width='100%' height='100%' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\
+		    				</div>";
+	    }	
+	    html = html + "<p>"+exp_data+"</p>";
 
 	    $('#ModalBody').html(html);
 	    showModal();
