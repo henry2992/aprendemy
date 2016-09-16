@@ -54,7 +54,7 @@
 
                     <div class="curriculum">
                       <ul>
-                        <% section.resources.each do |resource| %>
+                        <% section.resources.order(:position,:created_at).each do |resource| %>
                           <% go = active ? student_course_progress_resource_path(@course,@course.id,resource) : "" %>
                           <% completed = ResourceProgress.find_by(resource: resource, course_user: @course_user).completed? ? true : false if ResourceProgress.find_by(resource: resource, course_user: @course_user) %>
                           <li <%= "class='disabled'".html_safe if !active %>>

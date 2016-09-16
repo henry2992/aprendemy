@@ -4,4 +4,8 @@ class Section < ActiveRecord::Base
   has_many :resource_progresses
   validates :name, :presence => true, :length => { :minimum => 2 }
   validates :course, :presence => true
+
+  def top_position
+    self.resources.map(&:position).max
+  end
 end
