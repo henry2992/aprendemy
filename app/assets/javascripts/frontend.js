@@ -24,9 +24,6 @@ $(function(){
     // Height of landing init
     var headerheight = $(".landing-init").height();
     
-    console.log(scrolltop);
-    console.log(headerheight);
-    
     if (headerheight == scrolltop) {
       if (scrolltop > 422) {
         $(".topbar").addClass("visible");
