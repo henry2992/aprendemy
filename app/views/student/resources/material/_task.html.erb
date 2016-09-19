@@ -107,14 +107,16 @@
 					  		<input type="submit" value="Completar Tarea" class="btn btn-info btn-answer submit">
 					  	<% end %>
 					  </div>
-					  <% if q.explanation && show_explanation %>
+					  <% if show_explanation %>
 				  	<hr style="width:80%">
 				    <div class="answer">
 				      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
 				      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+				      <% if !q.explanation.empty? %>
 				      <div class="show-video">
 				        <p data-explanation="<%= q.explanation %>" data-url="<%= q.url %>" class="show_explanation"> Ver explicación </p> 
 				      </div>
+					  	<% end %>
 				    </div>
 					  <% end %>
 					<% end %>
