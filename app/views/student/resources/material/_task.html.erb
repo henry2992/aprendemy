@@ -107,14 +107,16 @@
 					  		<input type="submit" value="Completar Tarea" class="btn btn-info btn-answer submit">
 					  	<% end %>
 					  </div>
-					  <% if q.explanation && show_explanation %>
+					  <% if show_explanation %>
 				  	<hr style="width:80%">
 				    <div class="answer">
 				      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
 				      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+				      <% if !q.explanation.empty? %>
 				      <div class="show-video">
 				        <p data-explanation="<%= q.explanation %>" data-url="<%= q.url %>" class="show_explanation"> Ver explicación </p> 
 				      </div>
+					  	<% end %>
 				    </div>
 					  <% end %>
 					<% end %>
@@ -206,11 +208,15 @@
 	    /* Act on the event */
 	    $('#ModalTitle').html('Ver explicación');
 	    exp_data = $(this).attr('data-explanation');
+	    html = "";
+	    if ($(this).attr('data-url').length > 0)
+	    {
 
-	    html = "<div class='video-holder' id='video-holder'>\
-	    					<iframe src='"+$(this).attr('data-url')+"' width='100%' height='100%' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\
-	    				</div>\
-	    				<p>"+exp_data+"</p>";
+	    	html = "<div class='video-holder' id='video-holder'>\
+		    					<iframe src='"+$(this).attr('data-url')+"' width='100%' height='100%' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\
+		    				</div>";
+	    }	
+	    html = html + "<p>"+exp_data+"</p>";
 
 	    $('#ModalBody').html(html);
 	    showModal();
