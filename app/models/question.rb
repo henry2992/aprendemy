@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   has_many :answers
-  has_many :choices
+  has_many :choices, -> { order(:id) }
 
   belongs_to :sub_category, counter_cache: true
 
