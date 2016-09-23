@@ -8,8 +8,8 @@ class Category < ActiveRecord::Base
   def question_count
     self.sub_categories.map { |s| s.questions.where(parent_id:nil).length }.inject(0, :+)
   end
-
-  def statistics
+  
+  def subcategories_statistics
     self.sub_categories.map { |s| [s.name, "correct" => s.correct_answers, "total" => s.total_answers] }
   end
 end
