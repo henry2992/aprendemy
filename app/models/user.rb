@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   has_many :answers
 
   def statistics
-    self.sub_categories.preload(:answers,:questions).map { |sc| [sc.category.name, sc.name, "correct" => sc.correct_answers, "total" => sc.total_answers] }
+    self.categories.preload(:answers,:questions).map { |c| [c.name,c.sub_categories.map{ |sc| [sc.name,sc.correct_answers,sc.wrong_answers,sc.total_answers] }]}
+    # self.sub_categories.preload(:answers,:questions).map { |sc| [sc.category.name, sc.name, "correct" => sc.correct_answers, "total" => sc.total_answers] }
   end
 
   def self.from_omniauth(auth)
