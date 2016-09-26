@@ -6,6 +6,6 @@ class Section < ActiveRecord::Base
   validates :course, :presence => true
 
   def top_position
-    self.resources.map(&:position).max
+    self.resources.map(&:position).max == nil ? 0 : self.resources.map(&:position).max
   end
 end
