@@ -2,7 +2,7 @@ class SubCategory < ActiveRecord::Base
   belongs_to :category, counter_cache: true
   has_many :questions
   has_many :choices, through: :questions
-  has_many :answers, through: :choices
+  has_many :answers, through: :questions
   has_many :tutorials
 
   # Picture Uploader
