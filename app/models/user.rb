@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :answers
 
   def statistics
-    self.categories.preload(:answers,:questions).map { |c| [c.name,c.sub_categories.map{ |sc| [sc.name,sc.correct_answers,sc.wrong_answers,sc.total_answers] }]}
+    self.categories.preload(:answers,:questions).map { |c| [c.name,c.sub_categories.map{ |sc| [sc.name,sc.correct_answers,sc.wrong_answers,sc.question_count] }]}
     # self.sub_categories.preload(:answers,:questions).map { |sc| [sc.category.name, sc.name, "correct" => sc.correct_answers, "total" => sc.total_answers] }
   end
 
