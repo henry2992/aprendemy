@@ -19,7 +19,7 @@
                 %p
                   %h3= "Title: #{@blog.title}"
                 %p
-                  %h4= "Resource: #{@blog.resource.generic_name if @blog.resource}"
+                  %h4= "Resource: #{@blog.resource.name if @blog.resource}"
                 %p
                   %strong= "Content:"
                   = @blog.content.html_safe

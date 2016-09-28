@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :events
   
   namespace :backend do
-  
-  resources :blogs
+    resources :blogs
     get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     # resources :sections
     # resources :tasks

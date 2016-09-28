@@ -19,10 +19,15 @@
 :javascript
   $(document).ready(function(){
   
-    $('.wysiwyg').each(function(i, elem) {
-      $(elem).froalaEditor({
-        height: 700
-      })
+    //$('.wysiwyg').each(function(i, elem) {
+      //$(elem).froalaEditor({
+        //height: 700
+      //})
+    //});
+
+    CKEDITOR.replace( 'blog[content]' , {
+      extraPlugins: 'uploadimage',
+      language: 'es'
     });
     
   })
