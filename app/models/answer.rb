@@ -12,17 +12,19 @@ class Answer < ActiveRecord::Base
 
   # SubCategory.find(44).answers.map{ |a| a.is_correct? }
   def add_to_statistics
-    add1q = self.question
-    add1c = self.choice
-    add1q.total_answered_count += 1
-    add1c.total_answered_count += 1
-    # if self.choice_id != add1q.choice_id
-    if !self.is_correct?
-      add1q.wrong_answered_count += 1
-      add1c.wrong_answered_count += 1
+    if self.question && self.choice
+      add1q = self.question
+      add1c = self.choice
+      add1q.total_answered_count += 1
+      add1c.total_answered_count += 1
+      # if self.choice_id != add1q.choice_id
+      if !self.is_correct?
+        add1q.wrong_answered_count += 1
+        add1c.wrong_answered_count += 1
+      end
+      add1q.save
+      add1c.save
     end
-    add1q.save
-    add1c.save
   end
 
 end
