@@ -12,14 +12,17 @@
             .content-margin.row
               .app-text-holder.row.main-bg
                 %content
-                = link_to 'Edit', edit_backend_blog_path(@blog) |
-                = link_to 'Back', backend_blogs_path
-                %br
-                %br
-                %p
-                  %h3= "Title: #{@blog.title}"
-                %p
-                  %h4= "Resource: #{@blog.resource.name if @blog.resource}"
-                %p
-                  %strong= "Content:"
-                  = @blog.content.html_safe
+                  %br
+                  %br
+                  %br
+                  = link_to 'Edit', edit_backend_blog_path(@blog) |
+                  = link_to 'Back', backend_blogs_path
+                  %br
+                  %br
+                  %p
+                    %h3= "Title: #{@blog.title}"
+                  %p
+                    %h4= "Resource: #{@blog.resource.name if @blog.resource}"
+                  %p
+                    %strong= "Content:"
+                    = @blog.content.html_safe

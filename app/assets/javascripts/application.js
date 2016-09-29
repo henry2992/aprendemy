@@ -15,9 +15,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require thirdparty/require_all
-// require ckeditor/ckeditor.js
 // require turbolinks
 //= require flipclock.min
+//= require tinymce/tinymce.min.js
 // require_tree .
 // require froala_editor.min.js
 // require plugins/align.min.js
