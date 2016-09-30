@@ -14,14 +14,14 @@ class User < ActiveRecord::Base
 
   has_many :course_users, :dependent => :destroy
   has_many :courses, :through => :course_users
-  has_many :categories, :through => :courses
+  has_many :categories, -> { order(:id) }, :through => :courses
   has_many :sub_categories, :through => :categories
   has_many :answers, :through => :sub_categories
 
   has_many :answers
 
   def statistics
-    self.categories.preload(:answers,:questions).map { |c| [c.name,c.sub_categories.map{ |sc| [sc.name,sc.correct_answers,sc.wrong_answers,sc.question_count] }]}
+    self.categories.preload(:answers,:questions).map { |c| [c.name,c.sub_categories.map{ |sc| [sc.name,sc.correct_answers,sc.wrong_answers,sc.question_count, sc.id] },c.id]}
     # self.sub_categories.preload(:answers,:questions).map { |sc| [sc.category.name, sc.name, "correct" => sc.correct_answers, "total" => sc.total_answers] }
   end
 
