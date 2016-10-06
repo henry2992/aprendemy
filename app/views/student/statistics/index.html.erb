@@ -108,12 +108,13 @@
                             <h5 class="aprendemy-title-blue"><%= sc[0] %></h5>
                             <ul class="chart">
                               <li>
-                                <span style="height:<%= p %>%" title="Tu"><%= p %>%</span>
+                                <span style="height:<%= p %>%" title="Tu"><%= p.round(2) %>%</span>
                               </li>
                               <li>
+                                <% pt = 0 %>
                                 <% sct = SubCategory.find(sc[4]) %>
                                 <% pt = ( sct.correct_answers.to_f * 100 ) / sct.total_answers if sct.total_answers > 0 %>
-                                <span class="other-students" style="height:<%= pt %>%" title="Estudiantes de Aprendemy"><%= pt %>%</span>
+                                <span class="other-students" style="height:<%= pt %>%" title="Estudiantes de Aprendemy"><%= pt.round(2) %>%</span>
                               </li>
                             </ul> 
                           </div>
