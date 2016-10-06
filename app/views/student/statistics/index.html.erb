@@ -50,7 +50,7 @@
                         <% p = 0 %>
                         <% p = ( sc[1].to_f * 100 ) / sc[3] if sc[3] > 0 %> 
                         
-                      <div class="sub-starts-holder"  data-toggle="tooltip" data-placement="top" title="<%= p %>%" >
+                      <div class="sub-starts-holder"  data-toggle="tooltip" data-placement="top" title="<%= p.round(2) %>%" >
                           <p class="sub-sta-name"><%= sc[0] %></p>                 
                           <span class="spnStarsClass" data-memberid="102">
                             <% done = true %>
