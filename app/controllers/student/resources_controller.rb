@@ -22,7 +22,7 @@ class Student::ResourcesController < Student::StudentController
         resource: resource
       }
       resource_progress = ResourceProgress.find_by(resource_data)
-      return redirect_to student_course_progress_resource_path(@course,@course,@prev), notice: 'Usted debe completar esta tarea para pasar a la siguiente' if !resource_progress.completed?
+      # return redirect_to student_course_progress_resource_path(@course,@course,@prev), notice: 'Usted debe completar esta tarea para pasar a la siguiente' if !resource_progress.completed?
     end
     
     @next = current_resource_index == course_resources.index(course_resources.last) ? nil : Resource.find(course_resources[current_resource_index+1])

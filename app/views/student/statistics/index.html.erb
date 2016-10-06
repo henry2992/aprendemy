@@ -1,9 +1,9 @@
-<!-- MOSTRAR TODO EN PORCTENAJE DE ACIERTOS -->
+<!-- MOSTRAR TODO EN PORCENTAJE DE ACIERTOS -->
 
 <div id="application"> 
   <!-- Vertical Nav -->
   <%= render 'student/navigation/vertical_navbar' %>
-  <% cus = current_user.statistics %>
+  <% cus = current_user.statistics @course %>
   <div id="container">
         <div class="main-navigation">
           
@@ -108,12 +108,12 @@
                             <h5 class="aprendemy-title-blue"><%= sc[0] %></h5>
                             <ul class="chart">
                               <li>
-                                <span style="height:<%= p %>%" title="Tu"></span>
+                                <span style="height:<%= p %>%" title="Tu"><%= p %>%</span>
                               </li>
                               <li>
                                 <% sct = SubCategory.find(sc[4]) %>
                                 <% pt = ( sct.correct_answers.to_f * 100 ) / sct.total_answers if sct.total_answers > 0 %>
-                                <span class="other-students" style="height:<%= pt %>%" title="Estudiantes de Aprendemy"></span>
+                                <span class="other-students" style="height:<%= pt %>%" title="Estudiantes de Aprendemy"><%= pt %>%</span>
                               </li>
                             </ul> 
                           </div>

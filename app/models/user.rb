@@ -20,9 +20,10 @@ class User < ActiveRecord::Base
 
   has_many :answers
 
-  def statistics
-    self.categories.preload(:answers,:questions).map { |c| [c.name,c.sub_categories.map{ |sc| [sc.name,sc.correct_answers,sc.wrong_answers,sc.question_count, sc.id] },c.id]}
-    # self.sub_categories.preload(:answers,:questions).map { |sc| [sc.category.name, sc.name, "correct" => sc.correct_answers, "total" => sc.total_answers] }
+  def statistics course = nil
+    result = self
+    result = self.courses.find(course) if course
+    result.categories.preload(:answers,:questions,:sub_categories).map { |c| [c.name,c.sub_categories.map{ |sc| [sc.name,sc.correct_answers,sc.wrong_answers,sc.question_count, sc.id] },c.id]}
   end
 
   def self.from_omniauth(auth)
