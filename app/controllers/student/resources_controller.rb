@@ -22,6 +22,7 @@ class Student::ResourcesController < Student::StudentController
         resource: resource
       }
       resource_progress = ResourceProgress.find_by(resource_data)
+      # Habilitar si se quiere bloquear de nuevo el progreso
       # return redirect_to student_course_progress_resource_path(@course,@course,@prev), notice: 'Usted debe completar esta tarea para pasar a la siguiente' if !resource_progress.completed?
     end
     
