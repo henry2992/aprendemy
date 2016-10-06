@@ -30,7 +30,7 @@
                   <% end %>
                   <% p = (tc * 100) / t if t > 0%>
                   <li>
-                    <span style="height:<%= p %>%" title="<%= c[0] %>"></span>
+                    <span style="height:<%= p.round(2) %>%" title="<%= c[0] %>"></span>
                   </li>
                   <% end %>
                 </ul> 
