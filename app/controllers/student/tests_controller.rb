@@ -6,7 +6,7 @@ class Student::TestsController < Student::StudentController
   def index
     @course_user = CourseUser.where(course: @course, user: current_user).first if @course
     
-    @tests = @course.tests.all.where.not(id: CourseUserTest.where(course_user: @course_user).map(&:test_id)).order(:id) if @course_user
+    @tests = @course.tests.all.where(test_type: 0).where.not(id: CourseUserTest.where(course_user: @course_user).map(&:test_id)).order(:id) if @course_user
     @course_user_tests = CourseUserTest.where(course_user: @course_user) if @course_user
   end
   

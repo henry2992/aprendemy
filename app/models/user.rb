@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  enum role: %w(free paid admin)
+  enum role: %w(free paid admin psicologist)
 
   mount_uploader :image, UserUploader
 

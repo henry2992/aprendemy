@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.0
--- Dumped by pg_dump version 9.5.0
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -353,7 +353,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-08-29 19:21:00.544201'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-08-19 18:13:02.264188'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -936,8 +936,9 @@ CREATE TABLE tests (
     time_limit integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    course_id integer,
-    picture character varying
+    course_id character varying,
+    picture character varying,
+    test_type integer DEFAULT 0
 );
 
 
@@ -1940,4 +1941,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160901013740');
 INSERT INTO schema_migrations (version) VALUES ('20160908152902');
 
 INSERT INTO schema_migrations (version) VALUES ('20160916144827');
+
+INSERT INTO schema_migrations (version) VALUES ('20161011143210');
+
+INSERT INTO schema_migrations (version) VALUES ('20161011152718');
 
