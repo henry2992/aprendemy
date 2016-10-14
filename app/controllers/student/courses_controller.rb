@@ -10,6 +10,7 @@ class Student::CoursesController < Student::StudentController
   def index
     add_breadcrumb "Inicio", :root_path
     @courses = Course.preload(:tests,:categories => [:sub_categories => [:questions,:tutorials]] ).all
+    @tests = Test.attitude
   end
 
   # GET /courses/1

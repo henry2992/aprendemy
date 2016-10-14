@@ -4,7 +4,7 @@ class CourseUserTest < ActiveRecord::Base
 
   has_many :answers, :as => :item, dependent: :destroy
 
-  enum status: [:opened,:paused,:completed]
+  enum status: [:opened,:paused,:completed,:evaluated]
 
   validates_presence_of :test, :course_user
   validates_uniqueness_of :test_id, :scope => :course_user_id

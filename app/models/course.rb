@@ -1,5 +1,7 @@
 class Course < ActiveRecord::Base
   has_many :categories
+  has_many :sub_categories, :through => :categories
+  
   has_many :sections
 
   has_many :course_users, :dependent => :destroy

@@ -1,10 +1,9 @@
-<!-- MOSTRAR TODO EN PORCTENAJE DE ACIERTOS -->
+<!-- MOSTRAR TODO EN PORCENTAJE DE ACIERTOS -->
 
 <div id="application"> 
   <!-- Vertical Nav -->
   <%= render 'student/navigation/vertical_navbar' %>
-
-
+  <% cus = current_user.statistics @course %>
   <div id="container">
         <div class="main-navigation">
           
@@ -23,7 +22,7 @@
                 <h3 class="aprendemy-title-blue">Estadísticas en todas las Categorias </h3>
               
                 <ul class="chart">
-                  <% current_user.statistics.each do |c| %>
+                  <% cus.each do |c| %>
                   <% p = 0; t = 0; tc = 0 %>
                   <% c[1].each do |a| %>
                     <% t += a[3] %>
@@ -31,7 +30,7 @@
                   <% end %>
                   <% p = (tc * 100) / t if t > 0%>
                   <li>
-                    <span style="height:<%= p %>%" title="<%= c[0] %>"></span>
+                    <span style="height:<%= p.round(2) %>%" title="<%= c[0] %>"></span>
                   </li>
                   <% end %>
                 </ul> 
@@ -39,11 +38,11 @@
 
               <!-- Estas son las estadisticas por Cada una de las subcategorias -->
               <div class="sc-st-holder">
-                <h3 class="aprendemy-title-blue sc-st-title">Estadísticas por SubCategorias </h3>
+                <h3 class="aprendemy-title-blue sc-st-title">Estaditicas en por SubCategorias </h3>
 
                 <div class="row">
                   
-                  <% current_user.statistics.each do |c| %>
+                  <% cus.each do |c| %>
                   
                   <div class="col-sm-4 sc-st-wrapper">
                       <h4 class="aprendemy-title-blue center sc-st-subtitle"><%= c[0] %> </h4>
@@ -51,7 +50,7 @@
                         <% p = 0 %>
                         <% p = ( sc[1].to_f * 100 ) / sc[3] if sc[3] > 0 %> 
                         
-                      <div class="sub-starts-holder"  data-toggle="tooltip" data-placement="top" title="<%= p %>%" >
+                      <div class="sub-starts-holder"  data-toggle="tooltip" data-placement="top" title="<%= p.round(2) %>%" >
                           <p class="sub-sta-name"><%= sc[0] %></p>                 
                           <span class="spnStarsClass" data-memberid="102">
                             <% done = true %>
@@ -92,52 +91,57 @@
 
                   <p>¿Cómo estoy con respecto a los demás?</p>
 
-                  <div class="row">
-                    <!-- Subcategories --> 
-                    <div class="col-md-6">
+                  <p>
+                    <%= select_tag "categories", options_from_collection_for_select(Category.where(id: Course.first.categories).order(:id), 'id', 'name', 1) %>
+                  </p>
+                  <% i = 0; hidden = false %>
+                  <% cus.each do |c| %>
+                    <div class="row category <%= "hidden" if hidden %>" id="c_<%= c[2] %>">
+                      <% hidden = true %>
+                      <!-- Subcategories -->
+                      <% c[1].each do |sc| %>
+                        <% p = 0 %>
+                        <% p = ( sc[1].to_f * 100 ) / sc[3] if sc[3] > 0 %>
+                        <div class="col-md-4">
 
-                      <div class="st-global-wrapper">
-                        <h5 class="aprendemy-title-blue">Sinónimos</h5>
-                        <ul class="chart">
-                          <li>
-                            <span style="height:5%" title="Tu"></span>
-                          </li>
-                          <li>
-                            <span class="other-students" style="height:70%" title="Estudiantes de Aprendemy"></span>
-                          </li>
-                        </ul> 
-                      </div>
+                          <div class="st-global-wrapper">
+                            <h5 class="aprendemy-title-blue"><%= sc[0] %></h5>
+                            <ul class="chart">
+                              <li>
+                                <span style="height:<%= p %>%" title="Tu"><%= p.round(2) %>%</span>
+                              </li>
+                              <li>
+                                <% pt = 0 %>
+                                <% sct = SubCategory.find(sc[4]) %>
+                                <% pt = ( sct.correct_answers.to_f * 100 ) / sct.total_answers if sct.total_answers > 0 %>
+                                <span class="other-students" style="height:<%= pt %>%" title="Estudiantes de Aprendemy"><%= pt.round(2) %>%</span>
+                              </li>
+                            </ul> 
+                          </div>
 
+                        </div>
+                      <% end %>
+                      
                     </div>
-
-                    <div class="col-md-6">
-
-                      <div class="st-global-wrapper">
-                        <h5 class="aprendemy-title-blue">Antónimos</h5>
-                        <ul class="chart">
-                          <li>
-                            <span style="height:5%" title="Tu"></span>
-                          </li>
-                          <li>
-                            <span class="other-students" style="height:70%" title="Estudiantes de Aprendemy"></span>
-                          </li>
-                        </ul> 
-                      </div>
-
-                    </div>
-                    
-                  </div>
-                  
+                  <% end %>
                 
               </div>
 
             </div>
 
-
-
-
-            
         </div>
 
-      </div>
+  </div>
+
 </div>
+<script type="text/javascript">
+  $(document).ready(function($) {
+    $("#categories").on('change', function(event) {
+      event.preventDefault();
+      /* Act on the event */
+      $("#c_"+$(this).val()+".category").removeClass('hidden')
+      $(".category").hide();
+      $("#c_"+$(this).val()+".category").show();
+    });
+  });
+</script>

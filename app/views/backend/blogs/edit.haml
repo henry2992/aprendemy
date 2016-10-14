@@ -8,9 +8,12 @@
       %content
         .content-wrapper.col-sm-9.col-md-10
           .application-content
-            .content-margin.row
+            .content-margin.col-sm-12
               .app-text-holder.row.main-bg
                 %content
+                  %br
+                  %br
+                  %br
                   %h1="Editing Blog"
                   = render 'form'
                   = link_to 'Show', backend_blog_path(@blog) + "|"

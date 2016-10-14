@@ -83,7 +83,7 @@
                           </li>
                           <% if first && !completed
                               go = active == true ? student_course_progress_resource_path(@course,@course.id,resource) : "" 
-                              active = false 
+                              active = true # cambiar a false si se quiere habilitar el bloqueo de progreso
                               first = false
                              end %>
                         <% end %>

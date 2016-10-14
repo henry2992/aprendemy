@@ -9,19 +9,26 @@ class SubCategory < ActiveRecord::Base
   mount_uploader :picture, PictureUploader
 
   def question_count
-    self.questions.where(parent_id:nil).length
+    self.questions.length
   end
 
-  def correct_answers
-    self.answers.map{ |a| a.is_correct? }.each_with_object(Hash.new(0)) { |o, h| h[o] += 1 }[true]
+  def correct_answers user = nil
+    answers = self.answers.where.not(question_id: Test.where(test_type: 1).map { |t| t.questions.map(&:id) }.flatten)
+    # answers = answers.where() if course
+    answers = answers.where.not(user: user) if user
+    answers.map{ |a| a.is_correct? }.each_with_object(Hash.new(0)) { |o, h| h[o] += 1 }[true]
   end
   
-  def wrong_answers
-    self.answers.map{ |a| a.is_correct? }.each_with_object(Hash.new(0)) { |o, h| h[o] += 1 }[false]
+  def wrong_answers user = nil
+    answers = self.answers.where.not(question_id: Test.where(test_type: 1).map { |t| t.questions.map(&:id) }.flatten)
+    answers = answers.where.not(user: user) if user
+    answers.map{ |a| a.is_correct? }.each_with_object(Hash.new(0)) { |o, h| h[o] += 1 }[false]
   end
 
-  def total_answers
-    self.answers.length
+  def total_answers user = nil
+    answers = self.answers.where.not(question_id: Test.where(test_type: 1).map { |t| t.questions.map(&:id) }.flatten)
+    answers = answers.where.not(user: user) if user
+    answers.length
   end
 
   def points

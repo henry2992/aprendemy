@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :events
   
   namespace :backend do
-  
-  resources :blogs
+    resources :blogs
     get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     # resources :sections
     # resources :tasks
@@ -24,6 +23,7 @@ Rails.application.routes.draw do
       resources :tests, only: [:index] do
         resources :course_user_tests, :path => "test", only:[:edit, :new, :update]
       end
+      
       # PROGRESS
       resources :progress, only: [:index] do
         # RESOURCES
@@ -39,8 +39,6 @@ Rails.application.routes.draw do
         end
       end
 
-      
-
       # TUTORIALS
       resources :tutorials
 
@@ -53,7 +51,6 @@ Rails.application.routes.draw do
 
   # PAYMENTS
   get 'payments' => 'payments#index', as: :payments
-
 
   root 'home#index'
 
