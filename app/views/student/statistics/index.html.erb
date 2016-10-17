@@ -92,7 +92,7 @@
                   <p>¿Cómo estoy con respecto a los demás?</p>
 
                   <p>
-                    <%= select_tag "categories", options_from_collection_for_select(Category.where(id: Course.first.categories).order(:id), 'id', 'name', 1) %>
+                    <%= select_tag "categories", options_from_collection_for_select(Category.where(id: @course.categories).order(:id), 'id', 'name', 1) %>
                   </p>
                   <% i = 0; hidden = false %>
                   <% cus.each do |c| %>
