@@ -22,7 +22,7 @@ class Student::StudentController < ApplicationController
     # Redirigir a pagos si no tiene plan registrado
     return redirect_to payments_path if !course_user.course_user_plan.present?
     # Redirigir si no es un plan Premium
-    return redirect_to payments_path if course_user.plan.name != "Premium"
+    # return redirect_to payments_path if course_user.plan.name != "Premium"
   end
 
   def course_user
