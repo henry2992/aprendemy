@@ -20,9 +20,9 @@ class Student::StudentController < ApplicationController
   # CUAL ES LA DIFERENCIA DE UN PLAN REGISTRADO Y UN PLAN PREMIUM?
   def redirect_if_premium_plan
     # Redirigir a pagos si no tiene plan registrado
-    return redirect_to  payments_path if !course_user.course_user_plan.present?
+    return redirect_to payments_path if !course_user.course_user_plan.present?
     # Redirigir si no es un plan Premium
-    return redirect_to  payments_path if course_user.plan.name == "Premium"
+    return redirect_to payments_path if course_user.plan.name != "Premium"
   end
 
   def course_user
