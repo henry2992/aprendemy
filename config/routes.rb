@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   
   namespace :student do
 
+    # ATTITUDE TESTS
+    resources :attitude_tests, :path => "attitude", only: [:index] do
+      # resources :course_user_tests, :path => "test", only:[:edit, :new, :update]
+    end
+    
     resources :courses, only: [:index, :show] do
       # root_path
       

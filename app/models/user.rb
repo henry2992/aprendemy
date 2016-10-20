@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_many :sub_categories, :through => :categories
   has_many :answers, :through => :sub_categories
 
+  has_many :user_attitude_tests
+  has_many :tests, :through => :user_attitude_tests
+  
   has_many :answers
 
   def statistics course = nil
