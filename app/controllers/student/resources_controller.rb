@@ -5,7 +5,7 @@ class Student::ResourcesController < Student::StudentController
   before_action :destroy_answers, only: [:show]
 
   before_filter :check_plan
-  before_filter :redirect_if_premium_plan
+  # before_filter :redirect_if_premium_plan
   
   def show
     add_breadcrumb "Inicio", :root_path
