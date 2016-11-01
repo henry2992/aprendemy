@@ -23,12 +23,6 @@
 
 # Ignore application configuration
 /config/application.yml
-<<<<<<< HEAD
-
-/config/database.yaml
-
-/sftp-config.json
-=======
 /config/database.yml
 /config/puma.rb
 
@@ -39,4 +33,3 @@ sftp-config.json
 
 /.DS_Store
 
->>>>>>> origin/staging

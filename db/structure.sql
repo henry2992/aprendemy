@@ -832,16 +832,8 @@ ALTER SEQUENCE schools_id_seq OWNED BY schools.id;
 
 CREATE TABLE sections (
     id integer NOT NULL,
-<<<<<<< HEAD
-    user_id integer,
-    time_left time without time zone DEFAULT '00:00:30'::time without time zone,
-    last_started timestamp without time zone DEFAULT '2016-06-15 01:10:15.34497'::timestamp without time zone,
-    last_paused timestamp without time zone,
-    time_completed timestamp without time zone,
-=======
     name character varying,
     course_id integer,
->>>>>>> origin/staging
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
