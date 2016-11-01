@@ -1,0 +1,295 @@
+<div id="application"> 
+  <!-- Vertical Nav -->
+  <%= render 'student/navigation/vertical_navbar' %>
+  <!-- Content -->
+  <div id="container">
+    <!-- Nav tabs -->
+    <% 
+      qs = 0
+      target = ""
+      met = ""
+      met = :post
+      target = student_course_category_sub_category_answers_path(@course,@sub_category.category,@sub_category)
+    %>
+
+
+ 
+
+    <!-- Content Homework Progress-->
+    <div class="main-navigation">
+      <div class="main-title-wrapper">
+        <h1> Ejercicios de <%= @sub_category.name %> </h1>
+      </div>
+      <ul class="nav nav-tabs nav-justified test-navs" role="tablist">
+          <li class="<%= "active" if params[:paginate] == "q" || !params[:paginate].present? %>"><a href="#no_contestadas" aria-controls="no_contestadas" role="tab" data-toggle="tab" class="test-navs-link">No Contestadas</a></li>
+          <li class="<%= "active" if params[:paginate] == "a" %>"><a href="#contestadas" aria-controls="contestadas" role="tab" data-toggle="tab" class="test-navs-links" >Contestadas</a></li>
+      </ul>
+
+      <div class="test-content-wrapper">
+        
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane <%= "active" if params[:paginate] == "q" || !params[:paginate].present? %> test-content-wrapper" id="no_contestadas" style="padding:0">
+            
+            <div class="row rox-fix">
+            
+
+
+              <!-- Question -->
+              <% @questions.each do |q| %>
+                <%= form_tag target, :method => met, :id => "form" do %>
+                
+                  <div class="test-question">
+                    <p><%= q.content %></p>
+                    <% if q.picture.present? %>
+                      <%= image_tag(q.picture.url, class: "img-question", alt: q.content) %>
+                    <% end %>
+                    <% if q.url %>
+                      <% # link_to q.url, q.url, class: "show_explanation", "data-explanation": q.url, "data-title":"Ver video explicativo" %>
+                    <% end %>
+                    <% if q.questions %>
+                      <% q.questions.each do |qss| %>
+                        <div class="test-question">
+                          <p><%= qss.content %></p>
+                          <% if qss.picture.present? %>
+                            <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
+                          <% end %>
+                          <% if qss.url %>
+                            <%= link_to qss.url, qss.url, class: "show_explanation", "data-explanation": qss.url, "data-title":"Ver video explicativo" %>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                    <% if q.choices %>
+                      <% 
+                      letters = ("A".."Z").to_a
+                      lpos = 0
+                      %>
+                      <% q.choices.each do |c| %>
+                        <%
+                        cl = ""
+                        st = ""
+                        ch = false 
+                        %>
+                        <label class="coolbox">
+                          <%= radio_button_tag "answer[choice_id]", c.id, ch %>
+                          <span class="box-number number_<%= q.id %>_<%= c.id %>"> <%= letters[lpos] %> </span>
+                          <span class="box-info"> <%= c.content %> </span>
+                          <input type="hidden" name="answer[question_id]" value="<%= q.id %>">
+                        </label>
+                        <% lpos += 1 %>
+                      <% end %>
+                      <div class="answer explanation_<%= q.id %>">
+                        <p>
+                          <i class="fa fa-times-circle-o" aria-hidden="true"></i> 
+                          <span class=""> <span class="answer_title_<%= q.id %>"></span> </span> <span class="answer_text_<%= q.id %>"></span>
+                        </p>
+                        <div class="show-video">
+                          <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+                        </div>
+                      </div>
+                    <% end %>
+                    <% qs+=1 %>
+                    <button class="btn btn-info go_answer" data-question="<%= q.id %>">Contestar</button>
+                  </div>
+                <% end %>
+              <% end %>
+
+
+              <div class="hw-arrows">
+                <%= will_paginate @questions, renderer: BootstrapPagination::Rails, :params => { :paginate => "q" } %>
+              </div>
+
+
+            </div>  
+          </div>
+
+          <div class="tab-pane <%= "active" if params[:paginate] == "a" %> test-content-wrapper" id="contestadas" style="padding:0">
+            <div class="row rox-fix">
+              <!-- Question -->
+              <% @answered.each do |q| %>
+                <div class="test-question">
+                  <p><%= q.content %></p>
+                  <% if q.picture.present? %>
+                    <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content) %>
+                  <% end %>
+                  
+                  <% if q.questions %>
+                    <% q.questions.each do |qss| %>
+                      <div class="test-question">
+                        <p><%= qss.content %></p>
+                        <% if qss.picture.present? %>
+                          <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
+                        <% end %>
+                        <% if qss.url %>
+                          <%= link_to qss.url, qss.url, class: "show_explanation", "data-explanation": qss.url, "data-title":"Ver video explicativo" %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                  <% if q.choices %>
+                    <% 
+                    letters = ("A".."Z").to_a
+                    lpos = 0
+                    answer_class = ""
+                    answer_title = ""
+                    answer_text = ""
+                    %>
+                    <% q.choices.each do |c| %>
+                      <%
+                      cl = ""
+                      st = ""
+                      ch = q.answers.first.choice_id == c.id ? true : false
+                      %>
+                      <% if ch %>
+                        <% if q.choice_id == q.answers.first.choice_id %>
+                          <% cl = "right" 
+                             answer_class = "right-color"
+                             answer_title = "Bien hecho!"
+                             answer_text = "La respuesta es correcta :)" %>
+                        <% else %>
+                          <% cl = "wrong" 
+                             answer_class = "wrong-color"
+                             answer_title = "Ops!"
+                             answer_text = "Esa respuesta es incorrecta :(" %>
+                        <% end %>
+                      <% end %>
+                      <label class="coolbox">
+                        <%= radio_button_tag "answer[choice_id]", c.id, ch %>
+                        <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
+                        <span class="box-info"> <%= c.content %> </span>
+                        <input type="hidden" name="answer[question_id]" value="<%= q.id %>">
+                      </label>
+                      <% lpos += 1 %>
+                    <% end %>
+                    <div class="answer tab2">
+                      <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
+                      <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+                      <div class="show-video">
+                        <p data-explanation="<%= q.explanation %>" data-url="<%= q.url %>" class="show_explanation"> Ver explicación </p> 
+                      </div>
+                    </div>
+                  <% end %>
+                  <% qs+=1 %>
+                </div>
+              <% end %>
+              
+              <div class="hw-arrows">
+              <%= will_paginate @answered, renderer: BootstrapPagination::Rails, :params => { :paginate => "a" } %>
+              </div>
+
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="message" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" style="background-color:white;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" style="color:black;" id="ModalTitle"></h4>
+          </div>
+          <div class="modal-body">
+            <p id="ModalBody"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="closeModal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(".answer").not(".tab2").hide();
+
+  $(".show_explanation").on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Ver explicación');
+    exp_data = $(this).attr('data-explanation');
+    html = "";
+    if ($(this).attr('data-url').length > 0)
+    {
+
+      html = "<div class='video-holder' id='video-holder'>\
+                <iframe src='"+$(this).attr('data-url')+"' width='100%' height='100%' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\
+              </div>";
+    } 
+    html = html + "<p>"+exp_data+"</p>";
+
+    $('#ModalBody').html(html);
+    showModal();
+  });
+  /*$(".show_explanation").on('click', function(event) {
+    event.preventDefault();
+    if ( $(this).attr('data-title') ) 
+    {
+      console.log("adsada");
+      $('#ModalTitle').html($(this).attr('data-title'));  
+      $('#ModalBody').html('<iframe src="'+$(this).attr('data-explanation')+'" width="100%" height="329" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+    }
+    else
+    {
+      $('#ModalTitle').html('Ver explicación');
+      $('#ModalBody').html($(this).attr('data-explanation'));
+    }
+    
+    showModal();
+  });*/
+  $(".go_answer").on('click', function(event) {
+    event.preventDefault();
+    var question = $(this).attr("data-question");
+    var this_button = $(this);
+    var answer = {
+      choice_id : $(this).parent().find(".coolbox input[type='radio']:checked").val(),
+      question_id : $(this).parent().find(".coolbox input[type='hidden']").val()
+    };
+
+    $.ajax({
+      url: '<%= target %>',
+      type: 'POST',
+      dataType: 'json',
+      data: { answer: answer },
+    })
+    .done(function(data) {
+      $(".explanation_"+question).show();
+      this_button.hide();
+      if (!data.already_answered) 
+      {
+        if (data.is_correct) 
+        {
+          $(".number_"+question+"_"+answer.choice_id).addClass("right");
+          $(".explanation_"+question+" p span:first-child").addClass("right-color");
+          $(".explanation_"+question+" p > i").addClass("right-color");
+          $(".answer_title_"+question).html("Bien hecho!");
+          $(".answer_text_"+question).html("La respuesta es correcta :)");
+        }
+        else
+        {
+          $(".number_"+question+"_"+answer.choice_id).addClass("wrong");
+          $(".explanation_"+question+" p span:first-child").addClass("wrong-color");
+          $(".explanation_"+question+" p > i").addClass("wrong-color");
+          $(".answer_title_"+question).html("Ops!");
+          $(".answer_text_"+question).html("Esa respuesta es incorrecta :(");
+        }
+      }
+    })
+    .fail(function(data) {
+      console.log(data);
+    })
+    .always(function() {
+      console.log("completed");
+    });
+    
+  });
+  function showModal() {
+    $('#message').modal({
+      keyboard: false,
+      backdrop: 'static'
+    });
+  }
+</script>

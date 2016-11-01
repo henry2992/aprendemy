@@ -1,0 +1,136 @@
+<nav class="navbar navbar-default navbar-fixed-top courses-navbar" role="navigation">
+    <div class="container">
+        <div >
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a class="navbar-brand" href="/">
+                      <%= image_tag("logo.png", id:"logo",  alt: "Apredemy-logo") %>
+                      <%= image_tag("isotipo.png", id:"isotipo",  alt: "Apredemy-logo") %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <!-- Item 1 -->
+            <li class="nav-calendar-wrapper">
+              <%= link_to events_path, class: 'nav-calendar'  do %>
+                  <%= image_tag("calendar.png", class:"notification-calendar",  alt: "Apredemy-Calendario")  %>
+              <% end %>
+            </li>
+            <!-- Item 2 -->
+            <li class="dropdown nav-profile-wrapper" >
+                <a href="#" class="dropdown-toggle nav-profile-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <% if (current_user.image.present?) %>
+                      <%= image_tag(current_user.image.url, class: "nav-profile-img", alt: "Apredemy-avatar") %>
+                  <% else %>
+                      <% if (current_user.gender == false) %>
+
+                          <%= image_tag("avatar-guy.png", class: "nav-profile-img", alt: "Apredemy-avatar") %>
+                      <% else %>
+                          <%= image_tag("avatar-girl", class: "nav-profile-img", alt: "Apredemy-avatar") %>
+                      <%end %>
+                  <%end%>   
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu profile-dropdown">
+                    <li>
+                        <div class="row rox-fix profile-dropdown-wrapper">
+                            <div class="col-sm-5">
+                                <% if (current_user.image.present?) %>
+                                      <%= image_tag(current_user.image.url, class: "img-responsive", alt: "Apredemy-avatar") %>
+                                  <% else %>
+                                      <% if (current_user.gender == false) %>
+                                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "Apredemy-avatar") %>
+                                      <% else %>
+                                          <%= image_tag("avatar-girl", class: "img-responsive", alt: "Apredemy-avatar") %>
+                                      <%end %>
+                                <%end%>
+
+                                <p class="text-center small img-text">
+                                  <%= link_to 'Cambiar Foto de Perfíl', edit_user_registration_path %>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <span><%= current_user.first_name %> <%= current_user.last_name %></span>
+                                <p class="text-muted small"><%= current_user.email %></p>
+                                <div class="divider"></div>
+                                 <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'btn btn-primary btn-sm active' %>
+                            </div>
+                        </div>
+                      <div class="navbar-footer">
+                          <div class="navbar-footer-content">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                       <%= link_to "Salir", destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session', :data => { :no_turbolink => true }  %>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </li>
+                </ul>
+            </li>
+            <!-- Item 2 -->
+            <li class="dropdown mobile-menu-icon" onclick="openNavRight()">
+              <a class="nav-mobile-btn " >
+                <%= image_tag("menu-icon.png", class:"nav-menu-btn",  alt: "Apredemy") %>
+              </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div id="mySidenavRight" class="sidenav-right">
+    <div class="side-bar-container">
+      <h1> Menú</h1>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">×</a>
+      </div>
+      <ul>
+      <li class="index-nav-item">
+        <svg class="icon icon-stack">
+          <symbol id="icon-stack" viewBox="0 0 32 32">
+            <title>stack</title>
+            <path class="path1" d="M32 10l-16-8-16 8 16 8 16-8zM16 4.655l10.689 5.345-10.689 5.345-10.689-5.345 10.689-5.345zM28.795 14.398l3.205 1.602-16 8-16-8 3.205-1.602 12.795 6.398zM28.795 20.398l3.205 1.602-16 8-16-8 3.205-1.602 12.795 6.398z"></path>
+            </symbol>
+          <use xlink:href="#icon-stack"></use>
+        </svg>
+        <a href="<%= root_path %>">
+            <span>Cursos</span>
+          </a>
+      </li>
+      <li class="index-nav-item">
+        <svg class="icon icon-calendar">
+              <symbol id="icon-calendar" viewBox="0 0 32 32">
+            <title>calendar</title>
+            <path class="path1" d="M10 12h4v4h-4zM16 12h4v4h-4zM22 12h4v4h-4zM4 24h4v4h-4zM10 24h4v4h-4zM16 24h4v4h-4zM10 18h4v4h-4zM16 18h4v4h-4zM22 18h4v4h-4zM4 18h4v4h-4zM26 0v2h-4v-2h-14v2h-4v-2h-4v32h30v-32h-4zM28 30h-26v-22h26v22z"></path>
+            </symbol>
+            <use xlink:href="#icon-calendar"></use> 
+        </svg>
+          <a href="/events">
+            <span> Agenda </span>
+          </a>
+      </li>
+      <li class="index-nav-item">
+        <svg class="icon icon-user">
+          <symbol id="icon-user" viewBox="0 0 25 32">
+          <title>user</title>
+          <path class="path1" d="M25.143 25.089q0 2.143-1.304 3.384t-3.464 1.241h-15.607q-2.161 0-3.464-1.241t-1.304-3.384q0-0.946 0.063-1.848t0.25-1.946 0.473-1.938 0.768-1.741 1.107-1.446 1.527-0.955 1.991-0.357q0.161 0 0.75 0.384t1.33 0.857 1.929 0.857 2.384 0.384 2.384-0.384 1.929-0.857 1.33-0.857 0.75-0.384q1.089 0 1.991 0.357t1.527 0.955 1.107 1.446 0.768 1.741 0.473 1.938 0.25 1.946 0.063 1.848zM19.429 9.143q0 2.839-2.009 4.848t-4.848 2.009-4.848-2.009-2.009-4.848 2.009-4.848 4.848-2.009 4.848 2.009 2.009 4.848z"></path>
+          </symbol>
+          <use xlink:href="#icon-user"></use>
+        </svg>
+        <a href=""><span>Perfil</span></a>
+      </li>
+       <li class="index-nav-item">
+          <svg class="icon icon-enter"><symbol id="icon-enter" viewBox="0 0 32 32">
+            <title>enter</title>
+            <path class="path1" d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
+            </symbol>
+            <use xlink:href="#icon-enter"></use>
+          </svg>
+          <%= link_to "<span> Cerrar Sesión </span>".html_safe, destroy_user_session_path, method: :delete, :class => 'btn btn-default btn-sm pull-right btn-session'  %>
+      </li>
+    </ul>
+</div>
+
+
+

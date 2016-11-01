@@ -1,0 +1,33 @@
+.alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
+  .button.close{ :"data-dismiss"=>"alert"}
+    ×
+  .show-flash
+.application-wrapper.container-fluid
+  .row
+    =render 'layouts/user_sidebar'
+    .main-bg
+      %content
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .app-text-holder.row.main-bg
+                %content
+                  %h1= "Listing Blogs"
+                  %table.table
+                    %thead
+                      %tr
+                        %th= "Title"
+                        %th= "Content"
+                        %th= "Resource"
+                        %th{:colspan=>"3"}= "Actions"
+                    %tbody
+                      - @blogs.each do |blog|
+                        %tr
+                          %td= blog.title
+                          %td= blog.content.truncate(60) + "..."
+                          %td= blog.resource.name if blog.resource
+                          %td= link_to 'Show', backend_blog_path(blog)
+                          %td= link_to 'Edit', edit_backend_blog_path(blog)
+                          %td= link_to 'Destroy', backend_blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' }
+                  %br
+                  = link_to 'New Blog', new_backend_blog_path

@@ -1,0 +1,35 @@
+- path = @blog.id ? backend_blog_path : backend_blogs_path
+= form_for @blog, url: path do |f|
+  - if @blog.errors.any?
+    %div#error_explanation
+      %h2= pluralize(@blog.errors.count, "error") + "prohibited this blog from being saved:"
+      %ul
+      - @blog.errors.full_messages.each do |message|
+        %li= message
+  %div.form-group
+    %div.field
+      = f.label :title
+      = f.text_field :title, class: "col-sm-12"
+  %div.form-group
+    %div.field
+      = f.label :content
+      = f.text_area :content, class: :wysiwyg
+  %div.form-group
+    = f.submit
+:javascript
+  $(document).ready(function(){
+  
+    tinymce.init({
+      selector: '.wysiwyg',
+      height: 700,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code'
+      ],
+      toolbar: 'insertfile undo redo | fontselect fontsizeselect | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      menubar: false
+    });
+  })
+
+

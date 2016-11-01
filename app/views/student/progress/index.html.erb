@@ -1,0 +1,111 @@
+<!-- Main Content -->
+    <div id="application"> 
+      <!-- Vertical Nav -->
+      <%= render 'student/navigation/vertical_navbar' %>
+
+      
+      <div id="container">
+        <div class="main-navigation">
+          
+            <div class="main-title-wrapper">
+              <h1> Progreso</h1>
+            </div>
+              
+
+            <div class="main-content-wrapper">
+              <!-- Course Info -->
+              <div class=" row rox-fix">
+                <!-- Course Info -->
+                <div class="col-sm-4 "> 
+                  <div class="progress-course-img " style="background-image:  url('<%= @course.picture.url %>');" >
+                  </div>
+                  </div>
+                  <div class="col-sm-8 progress-details" >
+                  <h1><%= @course.name %> </h1>
+                  <h3>Por <%= @course.author %></h3>
+
+                  <p><%=  @course.description  %></p>
+
+                  <p>Progreso en este curso: </p>
+                  <div class="progress nav-progress-bar">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: <%= @progress %>%;">
+                      <%= @progress %> %
+                    </div>
+
+                    
+                  </div>
+                </div>
+              </div>
+
+              <h1 class="curriculum-title"> Curriculum </h1>
+
+              <%= render 'no_curriculum' if @course.sections.empty? %>
+
+              <!-- Curriculum -->
+                <% 
+                first = true 
+                active = true 
+                %>
+                <% @course.sections.each do |section| %>
+                  <div class="progress-wraper">                
+                    <div class="progress-card">
+                      <h1><%= section.name %></h1>
+                    </div>
+
+                    <div class="curriculum">
+                      <ul>
+                        <% section.resources.each do |resource| %>
+                          <% go = active ? student_course_progress_resource_path(@course,@course.id,resource) : "" %>
+                          <% completed = ResourceProgress.find_by(resource: resource, course_user: @course_user).completed? ? true : false if ResourceProgress.find_by(resource: resource, course_user: @course_user) %>
+                          <li <%= "class='disabled'".html_safe if !active %>>
+                            <%= link_to go do %>
+                              <% if resource.material_type.downcase == 'video' %>
+                                <div class="curriculum-type  <%= "disabled".html_safe if !active %>" >
+                                  <i class="fa fa-play-circle-o <%=  resource.material_type.downcase %>" aria-hidden="true"></i>
+                                </div>
+                              <% elsif resource.material_type.downcase == 'blog' %>
+                                <div class="curriculum-type <%= "disabled".html_safe if !active %>" >
+                                  <i class="fa fa-file-text-o <%= resource.material_type.downcase %>" aria-hidden="true"></i>
+                                </div>
+                              <% else %>
+                                <div class="curriculum-type <%= "disabled".html_safe if !active %>" >
+                                  <i class="fa fa-question-circle-o <%=resource.material_type.downcase%>" aria-hidden="true"></i>
+                                </div>
+                              <% end %>
+
+                              <div class="curriculum-item <%= "disabled".html_safe if !active %>">
+                                <span><%= resource.name %></span>
+                              </div>
+                              <div class="curriculum-check <%= "disabled".html_safe if !active %>">
+                                <i class="fa fa-check-circle-o progress-check" <%= 'style="color: #98ca3f !important"'.html_safe if completed %> aria-hidden="true"></i>
+                              </div>   
+                            <% end %>
+                          </li>
+                          <% if first && !completed
+                              go = active == true ? student_course_progress_resource_path(@course,@course.id,resource) : "" 
+                              active = true # cambiar a false si se quiere habilitar el bloqueo de progreso
+                              first = false
+                             end %>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+            
+        </div>
+
+      </div>
+    </div>
+
+<!-- // JQUERY animations an CSS changes$("#squarespaceModal").on('hidden.bs.modal', function (e) { -->
+<script type="text/javascript">
+  $(".progress-card").click(function(event) {
+    $(this).parent().find(".curriculum").slideToggle(200);
+  });
+</script>
+
+
+
+  
+

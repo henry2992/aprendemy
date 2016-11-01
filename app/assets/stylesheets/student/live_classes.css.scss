@@ -1,0 +1,83 @@
+.live-class-holder{
+  text-align: center;
+}
+
+.liveclass-video-holder  {
+    position: relative;
+    width: 100%;
+    margin: 10px auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.liveclass-video-holder  iframe {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 30px;
+}
+
+
+.video {
+    top: 0;
+    left: 0;
+}
+.youtube-start{
+    display: table;
+    margin: 15px auto 15px auto;
+    background-color: rgb(192,35,43) !important;
+    border-color: rgb(192,35,43) !important;
+}
+
+/*Online Now*/
+
+.online-now-info{
+    margin: 20px 0;
+    display: inline-block;
+}
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+ 
+
+
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+
+  /*Online Now*/
+
+  .online-now-info{
+      display: block;
+  }
+
+  .liveclass-video-holder  {
+    width: 100%;
+  }
+  .liveclass-video-holder  iframe {
+    width: 100%;
+    height: 450px;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+   
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}

@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
+  
+  layout "frontend"
 
-  #Helper Methods to allow device resources to be used in home page
+  # Helper Methods to allow device resources to be used in home page
   helper_method :resource_name, :resource, :devise_mapping
-
 
   def resource_name
 	    :user
@@ -17,10 +18,11 @@ class HomeController < ApplicationController
   end
 
   def index
-    @simulator_types = SimulatorType.all
-  end
-
-  def payments
+    if user_signed_in?
+      # raise user_signed_in?.to_yaml
+      redirect_to user_root_path if !admin?
+      redirect_to user_root_path if admin?
+    end
   end
 
 

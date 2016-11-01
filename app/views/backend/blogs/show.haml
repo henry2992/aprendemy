@@ -1,0 +1,28 @@
+.alert.fade.in.alert-notice{ :style=>"display:none; margin-bottom:0;"}
+  .button.close{ :"data-dismiss"=>"alert"}
+    ×
+  .show-flash
+.application-wrapper.container-fluid
+  .row
+    =render 'layouts/user_sidebar'
+    .main-bg
+      %content
+        .content-wrapper.col-sm-9.col-md-10
+          .application-content
+            .content-margin.row
+              .app-text-holder.row.main-bg
+                %content
+                  %br
+                  %br
+                  %br
+                  = link_to 'Edit', edit_backend_blog_path(@blog) |
+                  = link_to 'Back', backend_blogs_path
+                  %br
+                  %br
+                  %p
+                    %h3= "Title: #{@blog.title}"
+                  %p
+                    %h4= "Resource: #{@blog.resource.name if @blog.resource}"
+                  %p
+                    %strong= "Content:"
+                    = @blog.content.html_safe

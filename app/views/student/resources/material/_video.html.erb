@@ -1,0 +1,66 @@
+<% var = @resource.material.url[-11,11] %>
+<div class="main-title-wrapper">
+	<h1> <%= @resource.material.name %> </h1>
+</div>
+<div class="main-content-wrapper row rox-fix">
+	<div class="video-holder" id="video-holder"></div>
+  <%= (link_to "Terminar Tarea", student_course_progress_resource_path(@course,1,@resource), :method=> :put, class: 'btn btn-primary') unless @resource_progress.completed %>
+  <%= render 'progress_controller'%>
+</div>
+
+<div class="modal fade bs-modal-sm" id="message" tabindex="-1" role="dialog">
+  <div class="modal-dialog" style="background-color:white;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="color:black;" id="ModalTitle">Nota:</h4>
+      </div>
+      <div class="modal-body">
+        <p id="ModalBody"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="http://www.youtube.com/iframe_api"></script>
+<script>
+  var player,
+    	time_update_interval = 0;
+
+  function onYouTubeIframeAPIReady() {
+      player = new YT.Player('video-holder', {
+          width: 600,
+          height: 400,
+          videoId: '<%= var %>',
+          playerVars: {
+              color: 'white'
+          },
+          events: {
+              onStateChange: finished
+          }
+      });
+  }
+  function finished(event)
+  {
+    if (event.data == 0){
+      $.ajax({
+        url: '<%= student_course_progress_resource_path(@course,1,@resource) %>',
+        type: 'PUT',
+        dataType: 'json',
+        // data: {course_id:<%= @course.id %>,resource_id: 1, id:<%= (@resource.id) %> },
+        success: function(data) {
+          if (data[0].success)
+          {
+            $('#ModalBody').html(data[0].message);
+            $('#message').modal({
+              keyboard: false,
+              backdrop: 'static'
+            });
+          }
+        }
+      });
+    }
+  }
+</script>

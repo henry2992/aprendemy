@@ -1,81 +1,94 @@
+<div>
+  <nav class="navbar navbar-default landing-navbar">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed landing-navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
 
-<div class="container sessions-container" >
-    
-    <div class="row">
-      <div class="sessions-holder-heading" >
-        <h1 >El 97% de nuestros estudiantes obtienen mejores notas en el ENES</h1>
-        <h3>Ahora tú tambien lo puedes hacer</h3>
-      </div>
-      <!-- left column -->
-      <div class="col-md-6">
-
-        <div class="sessions-form-container ">
-          
-          <div class="home-sessions-buttons">
-            <%= link_to "Ingresa con Facebook", "auth/facebook", class: "aprendemy-btn btn btn-primary" %> 
-
-            <span>O con tu cuenta de correo electrónico.</a>
-          </div>
-
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                <div class="field">
-                  <%= f.label :email %><br />
-                  <%= f.email_field :email, autofocus: true %>
-                </div>
-
-                <div class="field">
-                  <%= f.label :password %><br />
-                  <%= f.password_field :password, autocomplete: "off" %>
-                </div>
-
-                <% if devise_mapping.rememberable? -%>
-                  <div class="field">
-                    <%= f.check_box :remember_me  %>
-                    <%= f.label :recordarme %>
-                  </div>
-                <% end -%>
-
-                <div class="actions">
-                  <%= f.submit "Ingresar", class: "sessions-btn btn btn-primary"  %>
-                </div>
-          <% end %>
-
-          <a class="sessions-link" href="/users/sign_up">¿No tienes una cuenta? Regístrate
+          <a class="navbar-brand" href="/">
+            <%= image_tag("logo.png", id:"logo-landing-navbar",  alt: "Apredemy-logo") %>
           </a>
 
-
-          <a class="sessions-link"href="/users/password/new">¿Olvidaste tu contraseña?</a>
-          <br>
       </div>
 
-      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/" class="scroll">Inicio</a></li>
+          <li><a class="btn btn-primary btn-session-landing " href="/users/sign_up" >Registro</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</div>
 
-        <!-- edit form column -->
-        <div class="col-md-6">
 
-          <h3 class="home_section_heading"><span>¿Qué te ofrecemos?</span></h3>
-          <p class="home_section_caption">
-            Aprendemy es una plataforma online pensada para apoyarte en el proceso de ingreso a la Universidad. Nuestra tecnología y experiencia en educación te ayudará a mejorar tus notas en los exámenes de la Senescyt con miles ejercicios, respuestas, estadisticas, clases en vivo, accesible donde quieras y cuando quieras.
-          </p>
+<div class="sessions-container" >
+  
+  <div class="container"> 
+    <div class=" sessions-wrapper">
     
-          <div class="sessions-img-container col-md-6" >
-            <%= image_tag("ejercicios.png", class: "sessions-img", alt: "Apredemy Ejercicio") %>
-            <h3 class="sessions-info-heading" >Ejercicios Interactivos</h3>
+      <h1 class="sessions-title">Ingresa a la Universidad de tus sueños</h1>
+      <p> Con Aprendemy tu éxito en los exámenes de la Senescyt está garantizado. Estudia lo que quieras en el lugar y el momento que prefieras.</p>
+
+
+      
+      <div class="sessions-form-container"> 
+
+        <a class="register-fb-btn btn btn-primary" href="<%= user_facebook_omniauth_authorize_path %>"> 
+           <i class="fa fa-facebook-square register-fb-text"> Inicia Sesión con Facebook </i> 
+        </a> 
+
+        <div class="divider">
+            <i class="fa fa-circle-o"></i>
+        </div>
+
+        <h3 class="session-init-email" >
+            Inicia sesión con tu correo electrónico
+        </h3>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %>
           </div>
-          <div class="sessions-img-container col-md-6">
-            <%= image_tag("simulacros.png", class: "sessions-img", alt: "Apredemy Simuladores") %>
-            <h3 class="sessions-info-heading">Simulacros de Exámenes</h3>
+
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
           </div>
-          <div class="sessions-img-container col-md-6" >
-            <%= image_tag("estadisticas.png", class: "sessions-img", alt: "Apredemy Estadisticas") %>
-            <h3 class="sessions-info-heading" >Estadísticas Personalizadas</h3>
-          </div>
-          <div class="sessions-img-container col-md-6">
-            <%= image_tag("vivo.png", class: "sessions-img", alt: "Apredemy Clases") %>
-            <h3 class="sessions-info-heading">Clases Online en Vivo</h3>
-          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me  %>
+              <%= f.label :recordarme %>
+            </div>
+          <% end -%>
+
+            <div class="actions">
+              <%= f.submit "Ingresar", class: "btn btn-primary"  %>
+            </div>
+        <% end %>
+        <br>
+        <a class="sessions-link" href="/users/sign_up">¿No tienes una cuenta? Regístrate </a>
+        <br>
+        <a class="sessions-link" href="/users/password/new">¿Olvidaste tu contraseña?</a>
       </div>
-      </div>
-       
+
+    </div>  
+
     </div>
   </div>
+</div>
+
+
+<%= render 'home/footer' %>
+
+
+

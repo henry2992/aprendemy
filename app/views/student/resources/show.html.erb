@@ -1,0 +1,16 @@
+<div id="application"> 
+  <!-- Vertical Nav -->
+  <%= render 'student/navigation/vertical_navbar' %>
+
+  <div id="container">
+    <div class="main-navigation">
+      <% if @resource.material_type.downcase == 'video' %>
+        <%= render 'student/resources/material/video' %>      
+      <% elsif @resource.material_type.downcase == 'blog' %>
+        <%= render 'student/resources/material/blog'%>
+      <% else %>
+        <%= render 'student/resources/material/task'%>
+      <% end %>
+    </div>
+  </div>
+</div>

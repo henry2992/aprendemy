@@ -1,0 +1,52 @@
+<style type="text/css">
+  <% @events_types.each do |et|  %>
+    .legend .<%= et.name %>:before{
+      <%= et.color %> !important;
+    }
+  <% end %>
+</style>
+
+<div id="application"> 
+
+
+  <h3 class="live-class-heading">En vivo en este momento:</h3>
+
+  <div class="online-now-info">
+    <h2 class="live-class-heading">Tema: <%= @live_class.subject %></h2>
+    <p> <%= @live_class.explanation %></p>
+    <h2 class="live-class-heading" >Profe: <%= @live_class.professor %></h2>
+    <a href="<%= @live_class.Urlyoutube %>" class="btn btn-info youtube-start"><i class="fa fa-youtube-play"></i>     Ver en Youtube</a>
+  </div>
+  
+  <div class="liveclass-video-holder" >
+    <iframe class="liveclass-video" src="<%= @live_class.url %>?autoplay=1" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  
+
+
+
+  <h1 class="events-title">Lo que viene en Aprendemy para ti</h1>
+  <ul class="legend">
+    <% @events_types.each do |et|  %>
+      <li class="<%= et.name %>"><%= et.name %> </li>
+    <% end %>
+  </ul>
+  <!-- Session -->
+  <% @events.each do |event| %>
+    <div class="sessions-dates ">
+      <div class="row row-fix">
+        <div class="row-date col-xs-12 col-sm-3 col-md-2">
+          <strong><%= I18n.localize(event.start_time, :format => " %B  %e ") %></strong>
+          <%= event.start_time.strftime(" %I:%M  %p ") %>
+        </div>
+
+        <div class="col-xs-12 col-sm-9 col-md-10">
+          <span class="RowDate-detailCopy"><%= event.name %></span>
+          <span class="tag" style="background-color: <%= event.event_type.color if event.event_type %> ; background-position: initial initial; background-repeat: initial initial;"><%= event.event_type.name if event.event_type %></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

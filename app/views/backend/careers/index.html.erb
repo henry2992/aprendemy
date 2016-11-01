@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Careers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Faculty</th>
+      <th>School</th>
+      <th>Type</th>
+      <th>University</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @careers.each do |career| %>
+      <tr>
+        <td><%= career.name %></td>
+        <td><%= career.description %></td>
+        <td><%= career.image %></td>
+        <td><%= career.faculty %></td>
+        <td><%= career.school.name %></td>
+        <td><%= career.type %></td>
+        <td><%= career.university.name %></td>
+        <td><%= link_to 'Show', career %></td>
+        <td><%= link_to 'Edit', edit_career_path(career) %></td>
+        <td><%= link_to 'Destroy', career, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Career', new_career_path %>

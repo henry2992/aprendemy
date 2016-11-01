@@ -1,19 +1,19 @@
 ---
 development:
-  cloud_name: www-aprendemy-com
-  api_key: '449685953831144'
-  api_secret: PgPomrQlsfn9wiuRqMyt8Pa1XWQ
+  cloud_name: drkw6qcjz
+  api_key: '138152763199323'
+  api_secret: ZXnzhv7zB2NS2neEaxYQmtMUV9Y
   enhance_image_tag: true
   static_image_support: false
 production:
-  cloud_name: www-aprendemy-com
-  api_key: '449685953831144'
-  api_secret: PgPomrQlsfn9wiuRqMyt8Pa1XWQ
+  cloud_name: drkw6qcjz
+  api_key: '138152763199323'
+  api_secret: ZXnzhv7zB2NS2neEaxYQmtMUV9Y
   enhance_image_tag: true
   static_image_support: true
 test:
-  cloud_name: www-aprendemy-com
-  api_key: '449685953831144'
-  api_secret: PgPomrQlsfn9wiuRqMyt8Pa1XWQ
+  cloud_name: drkw6qcjz
+  api_key: '138152763199323'
+  api_secret: ZXnzhv7zB2NS2neEaxYQmtMUV9Y
   enhance_image_tag: true
   static_image_support: false

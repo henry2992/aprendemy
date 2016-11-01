@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @career.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @career.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @career.image %>
+</p>
+
+<p>
+  <strong>Faculty:</strong>
+  <%= @career.faculty %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @career.school.name %>
+</p>
+
+
+<p>
+  <strong>Type:</strong>
+  <%= @career.type %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @career.university.name %>
+</p>
+<%= link_to 'Edit', edit_career_path(@career) %> |
+<%= link_to 'Back', careers_path %>

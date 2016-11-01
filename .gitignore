@@ -18,10 +18,25 @@
 
 # Ignore uploaded test images.
 /public/uploads
+/public/assets/*
+/public/assets/.sprockets
 
 # Ignore application configuration
 /config/application.yml
+<<<<<<< HEAD
 
 /config/database.yaml
 
 /sftp-config.json
+=======
+/config/database.yml
+/config/puma.rb
+
+sftp-config.json
+
+# RubyMine project files
+.idea
+
+/.DS_Store
+
+>>>>>>> origin/staging

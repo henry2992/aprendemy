@@ -1,4 +1,3 @@
-
 RailsAdmin.config do |config|
 
   ### Popular gems integration
@@ -51,14 +50,27 @@ RailsAdmin.config do |config|
       end
       field :explanation
       field :Urlyoutube
+      field :course
     end
   end
 
-  config.model SimulatedCategory do
-    edit do
-      field :category, :belongs_to_association
-    end
-  end
+  
+
+  # config.model Question do
+  #   field :picture do
+  #     formatted_value do
+  #       bindings[:view].tag(:img, { :src => bindings[:object].picture.url }) << value
+  #     end
+  #   end
+  # end
+  # config.model SimulatedCategory do
+  #   edit do
+  #     field :category, :belongs_to_association
+  #   end
+  # end
+
+
+
 
   config.label_methods.unshift(:rails_admin_displayed_label)
   config.model Point do

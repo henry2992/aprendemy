@@ -1,5 +1,4 @@
 module SimulatorsHelper
-
   def get_simulator_type id
     SimulatorType.find_by_id(id) if id
   end
@@ -38,11 +37,13 @@ module SimulatorsHelper
 
   def save_simulator_time
     current_time = params[:timer]
-    message = ""
+    # message = ""
     if current_time.eql?('00:00:00')
-      message = "Este simulador ha sido completado" if @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed')
+      # message = 
+      "Este simulador ha sido completado" if @simulator.update(time_completed: Time.now, time_left: current_time, status: 'completed')
     else
-      message = "Este simulador ha sido pausado" if @simulator.update(last_paused: Time.now, time_left: current_time || @simulator.time_left, status: 'paused')
+      # message = 
+      "Este simulador ha sido pausado" if @simulator.update(last_paused: Time.now, time_left: current_time || @simulator.time_left, status: 'paused')
     end
   end
 

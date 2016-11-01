@@ -7,8 +7,8 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'f23e8d0109bb374f6a8e35ddab654a2b9811e9361eb3a82de52eab8c19e9c4fbf9466df61cd1c8fad1ca13da6627b65818b8e11cd0462146521739313dfa24ef'
-    config.secret_key = 'b80b05727dbaddc7f656413bb536da1ca53636c0344018af7e8bc527042182895cabf2807e06204b8ebc6147203181db0d54a071341cf809c61a24d098721c72'
-    
+  config.secret_key = 'b80b05727dbaddc7f656413bb536da1ca53636c0344018af7e8bc527042182895cabf2807e06204b8ebc6147203181db0d54a071341cf809c61a24d098721c72'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -32,7 +32,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  
+
   # config.authentication_keys = [:email, :first_name, :last_name]
 
   # Configure parameters from the request object used for authentication. Each entry
@@ -239,9 +239,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  {provider_ignores_state: true }
-  
-  config.omniauth :facebook, ENV["FB_ACCESS_KEY"], ENV["FB_SECRET_KEY"],  scope: 'email, public_profile', info_fields: 'email, first_name, last_name, gender', :image_size => 'large'
+  config.omniauth :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"],  scope: 'email, public_profile', info_fields: 'email, first_name, last_name, gender', :image_size => 'large', provider_ignores_state: true
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

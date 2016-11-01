@@ -1,9 +1,0 @@
-<h1>All Choices for <%= @question.content if @question %></h1>
-
-<ul>
-<% @choices.each do |choice| %>
-  <li>
-    <%= link_to choice.content, category_sub_category_question_choice_path(@category, @sub_category, @question, choice) %>
-  </li>
-<% end if @choices %>
-</ul>

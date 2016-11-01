@@ -1,0 +1,464 @@
+// Place all the styles related to the courses controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*************************************** Global Courses *************************************/
+
+
+
+/*************************************************/
+/******* General Course Content Container *******/
+/***********************************************/
+
+
+#application {
+	width: 100%;
+	height: 100%;
+}
+
+#container{
+	background: rgb(244, 244, 244) !important;;
+	margin-top: 50px;
+	overflow-y: auto;
+	padding-top: 10px;
+	padding-bottom: 50px;
+}
+
+.main-navigation{
+	margin: 20px;
+}
+
+.main-title-wrapper{
+	background-color: #06476b;
+	padding: 20px !important;
+	position: relative;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.main-title-wrapper h1 {
+	color: rgba(255, 255, 255, 0.87);
+	font-size: 1.25em;
+	display: inline-block;
+}
+
+.main-content-wrapper{
+	background: #fff;
+	padding: 30px;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.content-navigation{
+	width: 100%;
+	border: 1px solid rgb(225, 225, 225);
+	box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1) !important;
+	border-radius: 4px;
+	background-color: #fff !important;
+	padding: 20px 20px !important;
+	position: relative;
+	margin: 0px !important;
+	box-shadow: 0px 1px 0px 0px rgba(56, 61, 72, 0.09);
+}
+
+/***************************************/
+/********** Vertical NavbAr ***********/
+/*************************************/
+
+
+.ver-nav-icon{
+	width: 30px;
+	height: 24px;
+	fill: #60676d;
+}
+
+
+#vertical-nav {
+	width: 50px;
+	z-index: 101;
+	background: #3e474f;
+	position: fixed;
+	top: 55px;
+	bottom: 0;
+	left: 0;
+	display: none;
+}
+
+#main-links {
+	list-style: none;
+	padding: 20px 0 !important;
+	text-align: center;
+}
+
+.icon {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	fill: #60676d;
+}
+
+.icon:hover{
+	fill: #fff;
+}
+
+
+
+.nav-item {
+	display: block;
+	color: #788188;
+	position: relative;
+	height: 100%;
+	line-height: 50px
+}
+
+
+.nav-item:hover span {
+	opacity: 1;
+	visibility: visible;
+}
+
+.nav-item span{
+	visibility: hidden;
+	top: 0px;
+	left: 65px;
+	background: #2d3339;
+	color: #fff;
+	border-radius: 5px;
+	padding: 0 14px;
+	line-height: 38px;
+	white-space: nowrap;
+	z-index: 100;
+	opacity: 0;
+	transition: opacity 0.4s ease, left 0.4s ease;
+	position: absolute;
+}
+
+
+.nav-item span:after{
+	position: absolute;
+	content: "";
+	background: #2d3339;
+	width: 10px;
+	height: 10px;
+	border-radius: 0 0 0 3px;
+	transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	top: 14px;
+	left: -5px
+}
+
+.nav-wrapper{
+	position: absolute;
+    bottom: 0;
+    text-align: center;
+    padding: 20px 0 !important;
+    width: 100%;
+}
+
+
+/*************************************** Index Courses *************************************/
+
+
+
+/*******************************************/
+/*******  Landing Index Background ********/
+/*****************************************/
+
+.info-landing-bg{
+	background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(<%= asset_path('landing-courses.jpg')%>) ;
+	background-repeat: no-repeat; background-size: cover; background-position: center center; color: #fff; height: 350px; position: relative; margin-top: 51px;}
+.info-landing-container { height: 350px }	
+.info-landing{ position: absolute; bottom: 25px; }
+.info-landing p{ margin: 10px 0 20px; }
+
+/* Modal Video */
+/*.modal-video{ padding:  0px !important; }
+div.modal-content{ background-color: transparent; }
+.modal-header{ padding: 0px; border: none; color: white; background: transparent; }
+.close{ color: #fff !important; font-size: 25px; font-weight: 700; line-height: 1; opacity: 1 !important;}
+*/
+/* Button */
+.btn-modal { padding: 14px 24px !important; border: 0 none; letter-spacing: 1px; }
+.btn-modal:focus, .btn-modal:active:focus, .btn-modal.active:focus { outline: 0 none; }
+.btn-modal { background: #0099cc; color: #ffffff; }
+.btn-modal:hover, .btn-modal:focus, .btn-modal:active, .btn-modal.active, .open > .dropdown-toggle.btn-modal { background: #33a6cc; }
+.btn-modal:active, .btn-modal.active { background: #007299; box-shadow: none;}
+.btn i { margin-right: 10px; }
+
+
+/*******************************************/
+/**************  Courses  *****************/
+/*****************************************/
+
+#courses{ padding-top: 30px; padding-bottom: 25px; }
+
+.courses-title h1{ 
+	margin-bottom: 10px !important; 
+ 	color: #06476b;
+ 	font-weight: bold;
+	font-size: 25px;
+}
+
+.course-card{ background-position: center; background-repeat: no-repeat; height: 375px; background-size: cover;
+			  margin-bottom: 0; border: 1px solid #ced7df; border-radius: 5px; position: relative; cursor: pointer;
+	          -webkit-transition: all .3s ease; transition: all .3s ease; margin-bottom: 25px; margin-top: 10px; }
+.course-card:before{ border-radius: 2px; content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+					 background-image: -webkit-linear-gradient(top, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+					 background-image: linear-gradient(to bottom, rgba(0, 38, 45, 0) 0%, #00262d 100%);
+					 opacity: 0.8; -webkit-transition: all .3s ease; transition: all .3s ease }
+.course-card-wrapper{ position: absolute; bottom: -1rem; left: 0; right: 0; padding: 1rem; 
+	                  -webkit-transition: all .3s ease; transition: all .3s ease }
+.card-info{ height: 100px; }
+
+.course-card-title{ font-weight: 300; text-align: right; color: white; line-height: 1.3; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.64) !important; margin-bottom: 9px; text-transform: uppercase !important; }
+.course-card-author{ text-align: right; font-weight: 300; color: #C7C7C7; margin-bottom: 0; }
+.course-card-information{ margin: 0; padding: 0; text-align: right; opacity: 0; margin-bottom: 0; -webkit-transition: all .3s ease; transition: all .3s ease; }
+.course:hover .course-card-information{ -webkit-animation: cardInfo .3s ease forwards; animation: cardInfo .3s ease forwards; -webkit-animation-iteration-count: 1; animation-iteration-count: 1; display: block; position: relative; opacity: 1; margin-top: 10px; color: white; }
+.course-card-information li{ list-style: none; color: white; font-size: 12px; font-weight: 400; }
+.course-card-information li i{ vertical-align: middle; margin-right: 0.1rem; color: #1FBADA}
+
+
+/*********************************************/
+/*********** Course Benefits ****************/
+/*******************************************/
+
+#benefits{ background-color: #fff; padding-top: 15px; padding-bottom: 50px; }
+
+
+.benefits-card{ margin: 25px 0 10px 0; }
+
+.benefits-card p {
+	margin: 10px 0;
+}
+.benefits-icon{ width: 100px; margin: 10px auto; display: block; }
+
+.benefits-main-title{
+	margin-bottom: 10px !important; 
+ 	color: #06476b;
+ 	font-weight: bold;
+	font-size: 25px;
+}
+
+.benefits-title{ text-align: center; margin-bottom: 10px !important; }
+
+
+
+
+
+/*************************************** Show Courses *************************************/
+
+
+
+
+
+/**********************************/
+/****** COURSE USER DETAILS ******/
+/********************************/
+
+
+.course a:hover {
+	text-decoration: none;
+} 
+
+.user-details{
+	margin-top: 30px;
+	display: none;
+}
+
+.user-photos{
+	width: 100px;
+	border-radius: 50%;
+	border: 7px solid #3FBEE8;
+	height: 100px !important;
+}
+
+
+.coralbg {
+    background-color: #1CAEF6;
+} 
+
+.user-image {
+  max-height:200px;
+  overflow:hidden;
+}
+
+
+.course-content-img{
+	text-align: center;
+}
+
+
+
+.course-content-user h1 {
+	color: #06476B;
+	font-size: 1em;
+	margin-top: 15px !important;
+	text-align: center;
+}
+
+.course-content-user p {
+	font-size: 0.8em;
+	font-weight: 300;
+	color: #555;
+	line-height: 1.5;
+	text-align: center;
+	margin-top: -2px !important;
+}
+
+.course-details{
+	border-left: none;
+	padding: 0px;
+}
+
+
+.course-details h1 {
+	font-weight: 400;
+	color: #06476B;
+	text-align: center;
+}
+
+.course-details h3 {
+	font-size: 0.8em;
+	font-weight: 300;
+	color: #555;
+	line-height: 1.5;
+	text-align: center;
+	margin-top: -5px !important;
+}
+
+.course-details a {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.course-details p {
+	font-size: 0.8em;
+	font-weight: 300;
+	color: #555;
+	line-height: 1.5;
+	margin-bottom: 0px !important;
+}
+
+
+/***************************/
+/****** Course Tools ******/
+/*************************/
+
+
+
+.tool-card-wrapper{
+	margin: 0px 0 25px;
+}
+
+.tool-card{
+	background-size: cover;
+	background-blend-mode: soft-light;
+	height: 225px;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	border-radius: 5px;
+}
+
+
+.tool-card-title{
+	color: white;
+	text-transform: uppercase;
+	font-size: 22px;
+	letter-spacing: 0.4px;
+	font-weight: 600
+}
+
+
+
+
+/***************** MEDIA QUERIES ******************/
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+
+}
+
+/* Card fixes */
+@media only screen and (max-width : 550px) {
+
+	.course{
+		width: 100% !important;
+	}
+}
+
+
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) {
+
+	.user-details{
+		display: block;
+	}
+	.course-details{
+		border-left: 1px #eee solid;
+		padding: 15px;
+	}
+	.course-details a {
+		padding: 15px 35px;
+	}
+	.info-landing-bg{
+		margin-top: 55px;
+	}
+
+	.benefits-card p {
+		min-height: 125px;
+	}
+
+	.courses-title h1{ 
+		font-size: 48px;
+	}
+
+	.benefits-main-title{
+		font-size: 48px;
+	}
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 992px) {
+
+    
+
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

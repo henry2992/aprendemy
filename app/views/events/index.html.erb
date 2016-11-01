@@ -1,0 +1,76 @@
+<style type="text/css">
+
+
+  <% @events_types.each do |et|  %>
+    .legend .<%= et.name %>:before{
+      <%= et.color %> !important;
+    }
+  <% end %>
+
+</style>
+
+<div id="application"> 
+
+  <div class="events-holder">
+
+        <div class="container">
+
+            <div class="events-heading">
+              <h1 class="events-title">Lo que viene en Aprendemy para ti</h1>
+              <ul class="legend">
+                <% @events_types.each do |et|  %>
+                  <li class="<%= et.name %>"><%= et.name %> </li>
+                <% end %>
+              </ul>
+            </div>
+
+            
+              <%= month_calendar events: @events do |date, meetings, event_type| %>
+                
+
+          
+   
+                  <%= date.day %>
+
+                  <br>
+                  <% meetings.each do |meeting| %>
+                    
+                    <div style=" <%=  meeting.event_type.color %>">
+                      <%= meeting.name %>
+                      <br>
+                      <%= meeting.start_time.strftime(" %I:%M  %p ") %>
+                    </div> 
+
+                  <% end %>
+            
+
+              <% end %>
+            
+
+
+            <div class="sessions-wrapper">
+                <!-- Session -->
+                <% @events.each do |event| %>
+                  <div class="sessions-dates ">
+                    <div class="row row-fix">
+                      <div class="row-date col-xs-12 col-sm-4 col-md-3">
+                        <strong><%= I18n.localize(event.start_time, :format => " %B  %e ") %></strong>
+                        <%= event.start_time.strftime(" %I:%M  %p ") %>
+                      </div>
+
+                      <div class="col-xs-12 col-sm-8 col-md-9">
+                        <span class="RowDate-detailCopy"><%= event.name %></span>
+                        <span class="tag" style="background-color: <%= event.event_type.color if event.event_type %> ; background-position: initial initial; background-repeat: initial initial;"><%= event.event_type.name if event.event_type %></span>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+
+
+          </div>
+    </div>
+
+</div>
+
+
