@@ -5,7 +5,7 @@ class Student::LiveClassesController < Student::StudentController
   def index
   	@live_class = @course.live_class # Revisar para obtener un parámetro o usar otro filtro, verificar cuando se destruyen las clases en vivo
     # flash[:notice] = "No hay clases en vivo programadas"  if !@live_class
-    @events = Event.all
+    @events = Event.all.order(:start_time)
     @events_types = EventType.all
   end
 
