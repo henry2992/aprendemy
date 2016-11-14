@@ -27,6 +27,14 @@ class Student::StudentController < ApplicationController
 
   def course_user
     CourseUser.where(course: @course, user: current_user).first_or_create
+
+    # cu = CourseUser.where(course: @course, user: current_user)
+    # empty = cu.empty?
+    # get_course_user = CourseUser.where(course: @course, user: current_user).first_or_create
+    # if empty
+    #   # TakingNewCourse.send_mail(get_course_user).deliver
+    # end
+    # return get_course_user
   end
 
   def update_tests_data
