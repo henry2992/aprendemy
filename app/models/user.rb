@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   
   has_many :answers
 
+  after_create :send_register_mail
+
   def statistics course = nil
     result = self
     result = self.courses.find(course) if course
@@ -56,4 +58,9 @@ class User < ActiveRecord::Base
   def self.current=(user)
     Thread.current[:user] = user
   end
+
+  def send_register_mail
+    RegisterUser.send_mail(self).deliver
+  end
+
 end

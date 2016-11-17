@@ -11,11 +11,20 @@ class Student::StudentController < ApplicationController
         cup = course_user.course_user_plan
         cup.status = "expired" # Marcar como expirado el plan
         cup.save
-        redirect_to payments_path 
+        ExpiredLicense.send_mail(course_user).deliver
+        redirect_to payments_path
+      else
+        if (course_user.course_user_plan.expiration_date - Date.today).to_i <= 7
+          cup = course_user.course_user_plan
+          if cup.updated_at.strftime("%Y-%m-%d") != Date.today.strftime("%Y-%m-%d")
+            RenewPlan.send_mail(course_user).deliver
+          end
+          cup.updated_at = Date.today
+          cup.save
+        end
       end
     end
   end
-
 
   # CUAL ES LA DIFERENCIA DE UN PLAN REGISTRADO Y UN PLAN PREMIUM?
   def redirect_if_premium_plan

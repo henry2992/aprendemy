@@ -1,4 +1,4 @@
-class TakingNewCourse < ApplicationMailer
+class RenewPlan < ApplicationMailer
   def send_mail (course_user)
     
     sub_data = { 
@@ -15,8 +15,8 @@ class TakingNewCourse < ApplicationMailer
     #   api_key = "MESSAGE_SPECIFIC_API_KEY"
     #   subaccount = "123"
       substitution_data: sub_data, 
-      template_id: "welcome-to-course"
+      template_id: "renew-plan"
     }
-    mail(to: course_user.user.email, subject: "Bienvenido al curso #{course_user.course.name}", body: "", sparkpost_data: data)
+    mail(to: course_user.user.email, subject: "Renueva tu plan del curso #{course_user.course.name}", body: "", sparkpost_data: data)
   end
 end
