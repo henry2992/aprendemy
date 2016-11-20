@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.5.0
+-- Dumped by pg_dump version 9.5.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -353,7 +353,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-08-19 18:13:02.264188'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-08-29 19:21:00.544201'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -651,6 +651,46 @@ CREATE SEQUENCE points_id_seq
 --
 
 ALTER SEQUENCE points_id_seq OWNED BY points.id;
+
+
+--
+-- Name: professors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE professors (
+    id integer NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: professors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE professors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: professors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE professors_id_seq OWNED BY professors.id;
 
 
 --
@@ -1222,6 +1262,13 @@ ALTER TABLE ONLY points ALTER COLUMN id SET DEFAULT nextval('points_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY professors ALTER COLUMN id SET DEFAULT nextval('professors_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('questions_id_seq'::regclass);
 
 
@@ -1430,6 +1477,14 @@ ALTER TABLE ONLY points
 
 
 --
+-- Name: professors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY professors
+    ADD CONSTRAINT professors_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1594,6 +1649,20 @@ CREATE INDEX index_events_on_event_type_id ON events USING btree (event_type_id)
 --
 
 CREATE INDEX index_live_classes_on_course_id ON live_classes USING btree (course_id);
+
+
+--
+-- Name: index_professors_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_professors_on_email ON professors USING btree (email);
+
+
+--
+-- Name: index_professors_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_professors_on_reset_password_token ON professors USING btree (reset_password_token);
 
 
 --
@@ -1945,4 +2014,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160916144827');
 INSERT INTO schema_migrations (version) VALUES ('20161011143210');
 
 INSERT INTO schema_migrations (version) VALUES ('20161011152718');
+
+INSERT INTO schema_migrations (version) VALUES ('20161013230441');
 
