@@ -46,7 +46,7 @@
                       <%= image_tag(q.picture.url, class: "img-question", alt: q.content) %>
                     <% end %>
                     <% if q.url %>
-                      <%= link_to q.url, q.url, class: "show_explanation", "data-explanation": q.url, "data-title":"Ver video explicativo" %>
+                      <% # link_to q.url, q.url, class: "show_explanation", "data-explanation": q.url, "data-title":"Ver video explicativo" %>
                     <% end %>
                     <% if q.questions %>
                       <% q.questions.each do |qss| %>
@@ -167,7 +167,7 @@
                       <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
                       <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
                       <div class="show-video">
-                        <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+                        <p data-explanation="<%= q.explanation %>" data-url="<%= q.url %>" class="show_explanation"> Ver explicación </p> 
                       </div>
                     </div>
                   <% end %>
@@ -205,10 +205,30 @@
 </div>
 <script>
   $(".answer").not(".tab2").hide();
+
   $(".show_explanation").on('click', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    $('#ModalTitle').html('Ver explicación');
+    exp_data = $(this).attr('data-explanation');
+    html = "";
+    if ($(this).attr('data-url').length > 0)
+    {
+
+      html = "<div class='video-holder' id='video-holder'>\
+                <iframe src='"+$(this).attr('data-url')+"' width='100%' height='100%' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\
+              </div>";
+    } 
+    html = html + "<p>"+exp_data+"</p>";
+
+    $('#ModalBody').html(html);
+    showModal();
+  });
+  /*$(".show_explanation").on('click', function(event) {
     event.preventDefault();
     if ( $(this).attr('data-title') ) 
     {
+      console.log("adsada");
       $('#ModalTitle').html($(this).attr('data-title'));  
       $('#ModalBody').html('<iframe src="'+$(this).attr('data-explanation')+'" width="100%" height="329" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
     }
@@ -219,7 +239,7 @@
     }
     
     showModal();
-  });
+  });*/
   $(".go_answer").on('click', function(event) {
     event.preventDefault();
     var question = $(this).attr("data-question");

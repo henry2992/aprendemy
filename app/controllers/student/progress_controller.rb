@@ -17,5 +17,4 @@ class Student::ProgressController < Student::StudentController
       @progress = @course_user.progress_percent
       @course = Course.find(params[:course_id])
     end
-    
 end

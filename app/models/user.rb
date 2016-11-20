@@ -18,7 +18,12 @@ class User < ActiveRecord::Base
   has_many :sub_categories, :through => :categories
   has_many :answers, :through => :sub_categories
 
+  has_many :user_attitude_tests
+  has_many :tests, :through => :user_attitude_tests
+  
   has_many :answers
+
+  after_create :send_register_mail
 
   def statistics course = nil
     result = self
@@ -53,4 +58,9 @@ class User < ActiveRecord::Base
   def self.current=(user)
     Thread.current[:user] = user
   end
+
+  def send_register_mail
+    RegisterUser.send_mail(self).deliver
+  end
+
 end

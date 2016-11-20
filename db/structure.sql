@@ -1074,6 +1074,36 @@ ALTER SEQUENCE universities_id_seq OWNED BY universities.id;
 
 
 --
+-- Name: user_attitude_tests; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE user_attitude_tests (
+    id integer NOT NULL,
+    user_id integer,
+    test_id integer
+);
+
+
+--
+-- Name: user_attitude_tests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_attitude_tests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_attitude_tests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_attitude_tests_id_seq OWNED BY user_attitude_tests.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1346,6 +1376,13 @@ ALTER TABLE ONLY universities ALTER COLUMN id SET DEFAULT nextval('universities_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY user_attitude_tests ALTER COLUMN id SET DEFAULT nextval('user_attitude_tests_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -1573,6 +1610,14 @@ ALTER TABLE ONLY universities
 
 
 --
+-- Name: user_attitude_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_attitude_tests
+    ADD CONSTRAINT user_attitude_tests_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1708,6 +1753,20 @@ CREATE INDEX index_tutorials_on_material_type_and_material_id ON tutorials USING
 
 
 --
+-- Name: index_user_attitude_tests_on_test_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_attitude_tests_on_test_id ON user_attitude_tests USING btree (test_id);
+
+
+--
+-- Name: index_user_attitude_tests_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_attitude_tests_on_user_id ON user_attitude_tests USING btree (user_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1798,6 +1857,14 @@ ALTER TABLE ONLY answers
 
 
 --
+-- Name: fk_rails_6c63bdd4b2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_attitude_tests
+    ADD CONSTRAINT fk_rails_6c63bdd4b2 FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: fk_rails_6d1984789f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1819,6 +1886,14 @@ ALTER TABLE ONLY live_classes
 
 ALTER TABLE ONLY questions
     ADD CONSTRAINT fk_rails_c685b1dfea FOREIGN KEY (question_id) REFERENCES questions(id);
+
+
+--
+-- Name: fk_rails_cfb9ab956b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_attitude_tests
+    ADD CONSTRAINT fk_rails_cfb9ab956b FOREIGN KEY (test_id) REFERENCES tests(id);
 
 
 --
@@ -2015,5 +2090,5 @@ INSERT INTO schema_migrations (version) VALUES ('20161011143210');
 
 INSERT INTO schema_migrations (version) VALUES ('20161011152718');
 
-INSERT INTO schema_migrations (version) VALUES ('20161013230441');
+INSERT INTO schema_migrations (version) VALUES ('20161018150110');
 

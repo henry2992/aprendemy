@@ -26,7 +26,7 @@
 			<div class="homework-wrapper row rox-fix question <%= "question_active" if i == 0 %>" data-current="<%= i %>" >
 				<div class="hw-question">
 					<% if @answers %>
-						<% wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id %>
+						<% wrong = true if ( @answers.where(question_id: q.id).first.choice_id != q.choice_id if (@answers.where(question_id: q.id).first.choice_id && q.choice_id) ) %>
 					<% end %>
 					<% if q.picture.present? %>
 					  <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content, style: "width: 100%, height: auto;") %>

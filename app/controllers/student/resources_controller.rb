@@ -5,14 +5,14 @@ class Student::ResourcesController < Student::StudentController
   before_action :destroy_answers, only: [:show]
 
   before_filter :check_plan
-  before_filter :redirect_if_premium_plan
+  # before_filter :redirect_if_premium_plan
   
   def show
     add_breadcrumb "Inicio", :root_path
     @course = @resource.section.course
-    course_resources = @course.sections.all.map{ |s| s.resources.order(:position,:created_at).map(&:id) }.flatten
-    current_resource_index = course_resources.index(@resource.id)
-    @prev = current_resource_index == 0 ? nil :  Resource.find(course_resources[current_resource_index-1])
+    course_resources = @course.sections.all.map{ |s| s.resources.order(:position,:created_at).map(&:id) }.flatten if @course
+    current_resource_index = course_resources.index(@resource.id) if course_resources
+    @prev = ( current_resource_index == 0 ? nil :  Resource.find(course_resources[current_resource_index-1]) ) if current_resource_index
     
     if @prev
       resource = Resource.find(@prev)
@@ -26,9 +26,9 @@ class Student::ResourcesController < Student::StudentController
       # return redirect_to student_course_progress_resource_path(@course,@course,@prev), notice: 'Usted debe completar esta tarea para pasar a la siguiente' if !resource_progress.completed?
     end
     
-    @next = current_resource_index == course_resources.index(course_resources.last) ? nil : Resource.find(course_resources[current_resource_index+1])
-    add_breadcrumb "#{@resource.section.course.name} ", student_course_path(@resource.section.course_id)
-    add_breadcrumb "Progress", student_course_progress_index_path(@resource.section.course_id)
+    @next = ( current_resource_index == course_resources.index(course_resources.last) ? nil : Resource.find(course_resources[current_resource_index+1]) )  if current_resource_index
+    #add_breadcrumb "#{@resource.section.course.name} ", student_course_path(@resource.section.course_id)
+    #add_breadcrumb "Progress", student_course_progress_index_path(@resource.section.course_id)
   end
 
   def update
