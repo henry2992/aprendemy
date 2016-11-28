@@ -1,5 +1,5 @@
 class ChangePassword < ApplicationMailer
-  def send_mail (user 
+  def send_mail (user)
     sub_data = { 
                   first_name: user.first_name, 
                   last_name: user.last_name, 
