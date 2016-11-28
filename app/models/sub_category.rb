@@ -4,6 +4,7 @@ class SubCategory < ActiveRecord::Base
   has_many :choices, through: :questions
   has_many :answers, through: :questions
   has_many :tutorials
+  has_many :video_classes
 
   # Picture Uploader
   mount_uploader :picture, PictureUploader

@@ -1,0 +1,11 @@
+ <div class="online-now-info">
+    <h2 class="live-class-heading">Tema: <%= @live_class.subject %></h2>
+    <h2 class="live-class-heading"> Explicacion: <%= @live_class.explanation %></h2>
+    <h2 class="live-class-heading" >Profesor: <%= @live_class.professor %></h2>
+    <a href="<%= @live_class.Urlyoutube %>" class="btn btn-info youtube-start"><i class="fa fa-youtube-play"></i>     Ver en Youtube</a>
+  </div>
+
+
+  <div class="liveclass-video-holder" >
+	<iframe class="liveclass-video" src="<%= @live_class.url %>?autoplay=1" frameborder="0" allowfullscreen></iframe>
+  </div> 

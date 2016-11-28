@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  namespace :student do
+  get 'video_classes/index'
+  end
+
+  namespace :student do
+  get 'video_classes/show'
+  end
+
+  get 'webinar/index'
+
+
   resources :events
   
   namespace :backend do
@@ -49,6 +60,9 @@ Rails.application.routes.draw do
 
       #STATISTICS
       resources :statistics, only: [:index]
+
+     # TUTORIALS
+      resources :video_classes
 
     end
     

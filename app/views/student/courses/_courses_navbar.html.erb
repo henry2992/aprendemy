@@ -20,6 +20,11 @@
 	    	<ul class="nav navbar-nav navbar-right ">
 	    		
 		      	<!-- Item 1 -->
+
+		      	<li class="nav-calendar-wrapper">
+		       		<%= link_to "Clases en Vivo", webinar_index_path, class:"white" %>
+	            </li>
+
 		        <li class="nav-calendar-wrapper">
 
 		       		<%= link_to events_path, class: 'nav-calendar'  do %>
@@ -49,7 +54,7 @@
 	                                <% if (current_user.image.present?) %>
 	                                      <%= image_tag(current_user.image.url, class: "img-responsive", alt: "Apredemy-avatar") %>
 	                                  <% else %>
-	                                      <% if (current_user.gender == false) %>
+	                                      <% if (current_user.gender == false or current_user.gender == nil) %>
 	                                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "Apredemy-avatar") %>
 	                                      <% else %>
 	                                          <%= image_tag("avatar-girl", class: "img-responsive", alt: "Apredemy-avatar") %>
@@ -166,8 +171,8 @@
 					</symbol>
 					<use xlink:href="#icon-play"></use>
 				</svg>
-				<a href="<%= student_course_live_classes_path(@course) if @course %>">
-					<span > Clases en Vivo </span>
+				<a href="<%= student_course_video_classes_path(@course) if @course %>">
+					<span > Clases en Video </span>
 				</a>
 			</li>
 			<li class="index-nav-item">
@@ -201,6 +206,20 @@
 	  		<a href="javascript:void(0)" class="closebtn" onclick="closeNavRight()">×</a>
 	  	</div>
 	  	<ul>
+
+	  		
+	  		<li class="index-nav-item">
+				<svg class="icon icon-play">
+            		<symbol id="icon-play" viewBox="0 0 32 32">
+					<title>play</title>
+					<path class="path1" d="M30.662 5.003c-4.488-0.645-9.448-1.003-14.662-1.003s-10.174 0.358-14.662 1.003c-0.86 3.366-1.338 7.086-1.338 10.997s0.477 7.63 1.338 10.997c4.489 0.645 9.448 1.003 14.662 1.003s10.174-0.358 14.662-1.003c0.86-3.366 1.338-7.086 1.338-10.997s-0.477-7.63-1.338-10.997zM12 22v-12l10 6-10 6z"></path>
+					</symbol>
+					<use xlink:href="#icon-play"></use>
+				</svg>
+				<a href="<%= webinar_index_path %>">
+	    			<span>Clases en Vivo</span>
+    			</a>
+			</li>
 			<li class="index-nav-item">
 				<svg class="icon icon-stack">
 					<symbol id="icon-stack" viewBox="0 0 32 32">

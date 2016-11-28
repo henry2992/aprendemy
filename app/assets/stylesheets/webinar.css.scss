@@ -1,0 +1,62 @@
+// Place all the styles related to the webinar controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.webinar-subject {
+	background-color: #06476b;
+	text-align: center;
+	padding: 10px;
+	color: white;
+	border-radius: 5px 5px 0px 0px;
+}
+
+.webinar-holder{
+	border: 1px solid #06476b;
+	padding: 15px 5px;
+}
+
+.webinar-online{
+    color:  #5cb85c;
+}
+
+.webinar-offline{
+    color: rgb(230, 88, 83)
+}
+
+
+/*** LIVE CLASS ****/
+
+.live-class-holder{
+  text-align: center;
+}
+
+.liveclass-video-holder  {
+    position: relative;
+    width: 100%;
+    margin: 10px auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.live-class-heading{
+	margin-bottom: 15px !important;
+}
+
+.video {
+    top: 0;
+    left: 0;
+}
+.youtube-start{
+    display: table;
+    margin: 15px auto 15px auto;
+    background-color: rgb(192,35,43) !important;
+    border-color: rgb(192,35,43) !important;
+}
+
+/*Online Now*/
+
+.online-now-info{
+    margin: 20px 0;
+    display: inline-block;
+}
