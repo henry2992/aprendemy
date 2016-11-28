@@ -96,6 +96,6 @@ Rails.application.configure do
   #    :openssl_verify_mode  => 'none',
   #    :enable_starttls_auto => true
   #  }
-  # config.action_mailer.delivery_method = :sparkpost
+  config.action_mailer.delivery_method = :sparkpost
    
 end
