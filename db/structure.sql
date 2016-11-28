@@ -2,12 +2,11 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.0
--- Dumped by pg_dump version 9.6.1
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -354,7 +353,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-11-20 13:36:08.015689'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-11-03 10:43:10.70557'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -1216,224 +1215,224 @@ ALTER SEQUENCE webinars_id_seq OWNED BY webinars.id;
 
 
 --
--- Name: answers id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answers ALTER COLUMN id SET DEFAULT nextval('answers_id_seq'::regclass);
 
 
 --
--- Name: blogs id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY blogs ALTER COLUMN id SET DEFAULT nextval('blogs_id_seq'::regclass);
 
 
 --
--- Name: careers id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY careers ALTER COLUMN id SET DEFAULT nextval('careers_id_seq'::regclass);
 
 
 --
--- Name: categories id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
 
 
 --
--- Name: choices id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY choices ALTER COLUMN id SET DEFAULT nextval('choices_id_seq'::regclass);
 
 
 --
--- Name: course_user_plans id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_user_plans ALTER COLUMN id SET DEFAULT nextval('course_user_plans_id_seq'::regclass);
 
 
 --
--- Name: course_user_tests id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_user_tests ALTER COLUMN id SET DEFAULT nextval('course_user_tests_id_seq'::regclass);
 
 
 --
--- Name: course_users id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_users ALTER COLUMN id SET DEFAULT nextval('course_users_id_seq'::regclass);
 
 
 --
--- Name: courses id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq'::regclass);
 
 
 --
--- Name: event_types id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY event_types ALTER COLUMN id SET DEFAULT nextval('event_types_id_seq'::regclass);
 
 
 --
--- Name: events id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY events ALTER COLUMN id SET DEFAULT nextval('events_id_seq'::regclass);
 
 
 --
--- Name: live_classes id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY live_classes ALTER COLUMN id SET DEFAULT nextval('live_classes_id_seq'::regclass);
 
 
 --
--- Name: plans id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY plans ALTER COLUMN id SET DEFAULT nextval('plans_id_seq'::regclass);
 
 
 --
--- Name: point_actions id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY point_actions ALTER COLUMN id SET DEFAULT nextval('point_actions_id_seq'::regclass);
 
 
 --
--- Name: points id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY points ALTER COLUMN id SET DEFAULT nextval('points_id_seq'::regclass);
 
 
 --
--- Name: questions id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('questions_id_seq'::regclass);
 
 
 --
--- Name: queue_classic_jobs id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY queue_classic_jobs ALTER COLUMN id SET DEFAULT nextval('queue_classic_jobs_id_seq'::regclass);
 
 
 --
--- Name: resource_progresses id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY resource_progresses ALTER COLUMN id SET DEFAULT nextval('resource_progresses_id_seq'::regclass);
 
 
 --
--- Name: resources id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY resources ALTER COLUMN id SET DEFAULT nextval('resources_id_seq'::regclass);
 
 
 --
--- Name: schools id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY schools ALTER COLUMN id SET DEFAULT nextval('schools_id_seq'::regclass);
 
 
 --
--- Name: sections id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sections ALTER COLUMN id SET DEFAULT nextval('sections_id_seq'::regclass);
 
 
 --
--- Name: sub_categories id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sub_categories ALTER COLUMN id SET DEFAULT nextval('sub_categories_id_seq'::regclass);
 
 
 --
--- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tasks ALTER COLUMN id SET DEFAULT nextval('tasks_id_seq'::regclass);
 
 
 --
--- Name: tests id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tests ALTER COLUMN id SET DEFAULT nextval('tests_id_seq'::regclass);
 
 
 --
--- Name: tutorials id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tutorials ALTER COLUMN id SET DEFAULT nextval('tutorials_id_seq'::regclass);
 
 
 --
--- Name: universities id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY universities ALTER COLUMN id SET DEFAULT nextval('universities_id_seq'::regclass);
 
 
 --
--- Name: user_attitude_tests id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY user_attitude_tests ALTER COLUMN id SET DEFAULT nextval('user_attitude_tests_id_seq'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Name: video_classes id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY video_classes ALTER COLUMN id SET DEFAULT nextval('video_classes_id_seq'::regclass);
 
 
 --
--- Name: videos id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::regclass);
 
 
 --
--- Name: webinars id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY webinars ALTER COLUMN id SET DEFAULT nextval('webinars_id_seq'::regclass);
 
 
 --
--- Name: answers answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answers
@@ -1441,7 +1440,7 @@ ALTER TABLE ONLY answers
 
 
 --
--- Name: blogs blogs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: blogs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY blogs
@@ -1449,7 +1448,7 @@ ALTER TABLE ONLY blogs
 
 
 --
--- Name: careers careers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: careers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY careers
@@ -1457,7 +1456,7 @@ ALTER TABLE ONLY careers
 
 
 --
--- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY categories
@@ -1465,7 +1464,7 @@ ALTER TABLE ONLY categories
 
 
 --
--- Name: choices choices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: choices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY choices
@@ -1473,7 +1472,7 @@ ALTER TABLE ONLY choices
 
 
 --
--- Name: course_user_plans course_user_plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: course_user_plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_user_plans
@@ -1481,7 +1480,7 @@ ALTER TABLE ONLY course_user_plans
 
 
 --
--- Name: course_user_tests course_user_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: course_user_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_user_tests
@@ -1489,7 +1488,7 @@ ALTER TABLE ONLY course_user_tests
 
 
 --
--- Name: course_users course_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: course_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_users
@@ -1497,7 +1496,7 @@ ALTER TABLE ONLY course_users
 
 
 --
--- Name: courses courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: courses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY courses
@@ -1505,7 +1504,7 @@ ALTER TABLE ONLY courses
 
 
 --
--- Name: event_types event_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: event_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY event_types
@@ -1513,7 +1512,7 @@ ALTER TABLE ONLY event_types
 
 
 --
--- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY events
@@ -1521,7 +1520,7 @@ ALTER TABLE ONLY events
 
 
 --
--- Name: live_classes live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: live_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY live_classes
@@ -1529,7 +1528,7 @@ ALTER TABLE ONLY live_classes
 
 
 --
--- Name: plans plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY plans
@@ -1537,7 +1536,7 @@ ALTER TABLE ONLY plans
 
 
 --
--- Name: point_actions point_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: point_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY point_actions
@@ -1545,7 +1544,7 @@ ALTER TABLE ONLY point_actions
 
 
 --
--- Name: points points_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: points_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY points
@@ -1553,7 +1552,7 @@ ALTER TABLE ONLY points
 
 
 --
--- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
@@ -1561,7 +1560,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: queue_classic_jobs queue_classic_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: queue_classic_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY queue_classic_jobs
@@ -1569,7 +1568,7 @@ ALTER TABLE ONLY queue_classic_jobs
 
 
 --
--- Name: resource_progresses resource_progresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: resource_progresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY resource_progresses
@@ -1577,7 +1576,7 @@ ALTER TABLE ONLY resource_progresses
 
 
 --
--- Name: resources resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY resources
@@ -1585,7 +1584,7 @@ ALTER TABLE ONLY resources
 
 
 --
--- Name: schools schools_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: schools_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY schools
@@ -1593,7 +1592,7 @@ ALTER TABLE ONLY schools
 
 
 --
--- Name: sections sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sections
@@ -1601,7 +1600,7 @@ ALTER TABLE ONLY sections
 
 
 --
--- Name: sub_categories sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sub_categories
@@ -1609,7 +1608,7 @@ ALTER TABLE ONLY sub_categories
 
 
 --
--- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tasks
@@ -1617,7 +1616,7 @@ ALTER TABLE ONLY tasks
 
 
 --
--- Name: tests tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tests
@@ -1625,7 +1624,7 @@ ALTER TABLE ONLY tests
 
 
 --
--- Name: tutorials tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: tutorials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tutorials
@@ -1633,7 +1632,7 @@ ALTER TABLE ONLY tutorials
 
 
 --
--- Name: universities universities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: universities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY universities
@@ -1641,7 +1640,7 @@ ALTER TABLE ONLY universities
 
 
 --
--- Name: user_attitude_tests user_attitude_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: user_attitude_tests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY user_attitude_tests
@@ -1649,7 +1648,7 @@ ALTER TABLE ONLY user_attitude_tests
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -1657,7 +1656,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: video_classes video_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: video_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY video_classes
@@ -1665,7 +1664,7 @@ ALTER TABLE ONLY video_classes
 
 
 --
--- Name: videos videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY videos
@@ -1673,7 +1672,7 @@ ALTER TABLE ONLY videos
 
 
 --
--- Name: webinars webinars_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: webinars_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY webinars
@@ -1842,14 +1841,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
--- Name: queue_classic_jobs queue_classic_notify; Type: TRIGGER; Schema: public; Owner: -
+-- Name: queue_classic_notify; Type: TRIGGER; Schema: public; Owner: -
 --
 
 CREATE TRIGGER queue_classic_notify AFTER INSERT ON queue_classic_jobs FOR EACH ROW EXECUTE PROCEDURE queue_classic_notify();
 
 
 --
--- Name: course_user_plans fk_rails_035e5e1f83; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_035e5e1f83; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_user_plans
@@ -1857,7 +1856,7 @@ ALTER TABLE ONLY course_user_plans
 
 
 --
--- Name: sections fk_rails_20b1e5de46; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_20b1e5de46; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sections
@@ -1865,7 +1864,7 @@ ALTER TABLE ONLY sections
 
 
 --
--- Name: answers fk_rails_3d5ed4418f; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_3d5ed4418f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answers
@@ -1873,7 +1872,7 @@ ALTER TABLE ONLY answers
 
 
 --
--- Name: course_user_plans fk_rails_4268765eb3; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_4268765eb3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY course_user_plans
@@ -1881,7 +1880,7 @@ ALTER TABLE ONLY course_user_plans
 
 
 --
--- Name: answers fk_rails_584be190c2; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_584be190c2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answers
@@ -1889,7 +1888,7 @@ ALTER TABLE ONLY answers
 
 
 --
--- Name: answers fk_rails_5f494521a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_5f494521a1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answers
@@ -1897,7 +1896,7 @@ ALTER TABLE ONLY answers
 
 
 --
--- Name: user_attitude_tests fk_rails_6c63bdd4b2; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_6c63bdd4b2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY user_attitude_tests
@@ -1905,7 +1904,7 @@ ALTER TABLE ONLY user_attitude_tests
 
 
 --
--- Name: resources fk_rails_6d1984789f; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_6d1984789f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY resources
@@ -1913,7 +1912,7 @@ ALTER TABLE ONLY resources
 
 
 --
--- Name: live_classes fk_rails_97ebb10078; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_97ebb10078; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY live_classes
@@ -1921,7 +1920,7 @@ ALTER TABLE ONLY live_classes
 
 
 --
--- Name: questions fk_rails_c685b1dfea; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_c685b1dfea; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
@@ -1929,7 +1928,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: user_attitude_tests fk_rails_cfb9ab956b; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: fk_rails_cfb9ab956b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY user_attitude_tests
