@@ -41,7 +41,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Added by Cent. The default url options for user by devise
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'aprendemy.dev' }
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
   #     :address              => "smtp.gmail.com",
@@ -55,6 +55,5 @@ Rails.application.configure do
   #   }
 
   config.action_mailer.delivery_method = :sparkpost  
-
 
 end
