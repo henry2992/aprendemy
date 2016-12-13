@@ -101,7 +101,9 @@
 					  	<% if i + 1 < @resource.total_questions %>
 					  		<button class="btn btn-info btn-answer">Siguiente Pregunta</button>
 					  	<% else %>
-					  		<input type="submit" value="Completar Tarea" class="btn btn-info btn-answer submit">
+					  		<% unless @resource_progress.completed  %>
+					  			<input type="submit" value="Completar Tarea" class="btn btn-info btn-answer submit">
+					  		<% end %>
 					  	<% end %>
 					  </div>
 					  <% if show_explanation %>
