@@ -1040,7 +1040,10 @@ ALTER SEQUENCE universities_id_seq OWNED BY universities.id;
 CREATE TABLE user_attitude_tests (
     id integer NOT NULL,
     user_id integer,
-    test_id integer
+    test_id integer,
+    status integer DEFAULT 0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -2134,4 +2137,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161018150110');
 INSERT INTO schema_migrations (version) VALUES ('20161120182705');
 
 INSERT INTO schema_migrations (version) VALUES ('20161127150842');
+
+INSERT INTO schema_migrations (version) VALUES ('20161130201248');
 

@@ -8,6 +8,11 @@ module ApplicationHelper
     current_user.admin? if logged_in?
   end
 
+  def psicologist?
+    # current_user.psicologist? if logged_in?
+    current_user.admin? if logged_in?
+  end
+
   def logged_in?
     !current_user.nil?
   end
@@ -17,13 +22,19 @@ module ApplicationHelper
     @current_user = nil
   end
 
+  def user_is_psicologist?
+    return unless !psicologist?
+    flash[:danger] = "No tienes acceso a la página que quieres visitar"
+    redirect_to root_path
+  end
+
   def user_is_admin?
     # unless admin?
-    #   flash[:danger] = "You do not have access to the Admin page"
+    #   flash[:danger] = "No tienes acceso a la página que quieres visitar"
     #   redirect_to root_path
     # end
     return unless !admin?
-    flash[:danger] = "You do not have access to the Admin page"
+    flash[:danger] = "No tienes acceso a la página que quieres visitar"
     redirect_to root_path
   end
 

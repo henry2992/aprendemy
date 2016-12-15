@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :student do
-  get 'video_classes/index'
+    get 'video_classes/index'
   end
 
   namespace :student do
-  get 'video_classes/show'
+    get 'video_classes/show'
   end
 
   get 'webinar/index'
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :backend do
     resources :blogs
     get '/dashboard' => 'dashboard#index', :as => 'dashboard'
+    get '/attitude' => 'attitude#index', :as => 'attitude'
     # resources :sections
     # resources :tasks
     # resources :schools
@@ -28,9 +29,11 @@ Rails.application.routes.draw do
   namespace :student do
 
     # ATTITUDE TESTS
-    resources :attitude_tests, :path => "attitude", only: [:index] do
+    # post '/attitude/process' => 'attitude#process', :as => 'attitude_process'
+    resources :attitude_tests, :path => "attitude", only: [:index, :show, :update]
+    # resources :attitude_tests, :path => "attitude", only: [:index, :show] do
       # resources :course_user_tests, :path => "test", only:[:edit, :new, :update]
-    end
+    # end
     
     resources :courses, only: [:index, :show] do
       # root_path

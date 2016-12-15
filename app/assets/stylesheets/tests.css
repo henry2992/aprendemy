@@ -413,7 +413,7 @@ label.coolbox .box-number:hover {
 }
 
 
-label.coolbox input:checked + span {
+label.coolbox input:checked + span, .checked {
     color: #06476b;
     border: solid #06476b 3px;
     background-color: rgb(232,243,251);

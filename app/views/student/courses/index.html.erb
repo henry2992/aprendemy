@@ -53,23 +53,24 @@
 		</div>
 		<div class="row ">
 
-			<% @tests.each do |test| %>
+			<% @tests.each do |t| %>
 				<div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
 				  <div class="card">
-				      <div class="subcategory-card" style="background-image: url('<%= test.picture.url %>');">
+				      <div class="subcategory-card" style="background-image: url('<%= t.picture.url %>');">
 				        <div class="subcategory-info-wrapper">
 				          <h2 class="subcategory-title">
-				            <p><%= test.title %></p>
+				            <p><%= t.title %></p>
 				          </h2>
 				          <ul class="subcategory-information">
-				            <li> <%= test.questions.length %> Preguntas</li>
+				            <li> <%= t.questions.length %> Preguntas</li>
 				          </ul>
 				        </div>
 				      </div>
 				      <div class="info-card">
-				        <p><%= test.description %></p>
-				        <%= link_to 'Continuar Prueba',nil, class: 'btn btn-warning' %>
-				        <%= link_to 'Ver Resultados', nil, class: 'btn btn-info' %>
+				        <p><%= t.description %></p>
+				        <%= link_to 'Iniciar Prueba',student_attitude_test_path(t), class: 'btn btn-success' if !current_user.user_attitude_tests.find_by_test_id(t) %>
+				        <%= link_to 'Continuar Prueba',student_attitude_test_path(t), class: 'btn btn-warning' if current_user.user_attitude_tests.find_by_test_id(t) && current_user.user_attitude_tests.find_by_test_id(t).opened? %>
+				        <%= link_to 'Ver respuestas', student_attitude_test_path(t), class: 'btn btn-info' if current_user.user_attitude_tests.find_by_test_id(t) &&  current_user.user_attitude_tests.find_by_test_id(t).completed? %>
 				      </div>
 				  </div>
 				</div>
