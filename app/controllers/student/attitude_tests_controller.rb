@@ -4,7 +4,6 @@ class Student::AttitudeTestsController < Student::StudentController
   before_filter :check_plan, only: [:show]
 
   def index
-    raise "Entra".to_yaml
   end
 
   def update
@@ -27,9 +26,11 @@ class Student::AttitudeTestsController < Student::StudentController
       if params['action_form'] == "pause" && current_user.user_attitude_tests.find_by_test_id(params[:id]).test.questions.count >= vs.count
         return redirect_to student_attitude_test_path(params['id']), notice: 'Test pausado correctamente, para finalizar un test debe contestar todas las preguntas' 
       end
-      current_user.user_attitude_tests.find_by_test_id(params[:id]).update_attribute(:status,1) if params['action_form'] == "end"
       if params['action_form'] == "end" && current_user.user_attitude_tests.find_by_test_id(params[:id]).test.questions.count == vs.count
+        current_user.user_attitude_tests.find_by_test_id(params[:id]).update_attribute(:status,1)
         return redirect_to student_courses_path, notice: 'Finalizado correctamente' 
+      else
+        return redirect_to student_courses_path, notice: 'Test pausado, para finalizar un test debe contestar todas las preguntas' 
       end
     else
       return redirect_to student_attitude_test_path(params['id']), alert: 'Ocurrió un error al actualizar este test'
