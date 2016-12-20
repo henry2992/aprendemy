@@ -1,0 +1,167 @@
+<div id="application">
+  <% 
+    show_explanation = false
+  %>
+  <!-- Vertical Nav -->
+  <div id="container">
+    <%= form_tag nil, :method => :put, id: "form" do %>
+    <!-- Button Panel -->
+    <div class="test-time-wrapper-mobile">
+      <div class="test-title-wrapper">
+        <h1> Controles </h1>
+      </div>  
+      <div class="test-clue-content-wrapper">
+        <div>
+          <div class="test-question">
+            <div class="row">
+              <div class="col-sm-2">
+                <% if (@uat.user.image.present?) %>
+                      <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                <% else %>
+                      <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
+                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                      <% else %>
+                          <%= image_tag("avatar-girl", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                      <% end %>
+                <% end %>
+              </div>
+              <div class="col-sm-10">
+                <h6><%= @uat.user.first_name %> <%= @uat.user.last_name %></h6>
+              </div>
+            </div>
+          </div>
+          <% # button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "action_form", id: "pause") do
+                #content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')
+              #end unless @uat.completed?
+          %>
+          <% # button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "action_form", id: "qualify") do
+                #content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Terminar')
+              #end unless @uat.completed?
+          %>
+          <% # link_to student_courses_path, :class => "btn btn-info simulator-btn", id: "exit" do 
+                #content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Menú')
+          #end %>
+        </div>
+        
+
+      </div>
+    </div>
+    <!-- \Button Panel -->
+    <!-- Content Homework Progress-->
+    <div class="test-inner-wrapper">
+      
+      <div class="test-title-wrapper">
+        <h1><%= @uat.test.title %></h1>
+      </div>
+        
+      <div class="test-content-wrapper">
+        <div class="row rox-fix">
+          <!-- Question --> 
+          <% @uat.test.questions.each do |q| %>
+            <div class="test-question">
+              <p><%= q.content %></p>
+              <% if q.picture.present? %>
+                <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content) %>
+              <% end %>
+              <% if q.url %>
+                <%= link_to q.url, q.url %>
+              <% end %>
+              <% if q.questions %>
+                <% q.questions.each do |qss| %>
+                  <div class="test-question">
+                    <p><%= qss.content %></p>
+                    <% if qss.picture.present? %>
+                      <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
+                    <% end %>
+                    <% if qss.url %>
+                      <%= link_to qss.url, qss.url %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if q.choices %>
+                <% 
+                letters = ("A".."Z").to_a
+                lpos = 0
+                
+                answer_class = ""
+                answer_title = ""
+                answer_text = ""
+                %>
+                <% q.choices.each do |c| %>
+                  <%
+                  cl = ""
+                  st = ""
+                  ch = @uat.test.answers.find_by(question: q, choice: c) ? true : false
+                  cl = "checked" if ch
+                  %>
+                  <label class="coolbox">
+                    <%= radio_button_tag "question_ids[#{q.id}]", c.id, ch %>
+                    <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
+                    <span class="box-info"> <%= c.content %> </span>
+                  </label>
+                  <% lpos += 1 %>
+                <% end %>
+                <% if q.explanation && show_explanation %>
+                  <div class="answer">
+                    <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
+                    <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+                    <div class="show-video">
+                      <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <input type="hidden" value="" name="attitude_test[course_user_id]">
+          <input type="hidden" value="" name="attitude_test[test_id]">
+          <input type="hidden" value="" name="attitude_test[action_form]" id="action_form">
+        </div>  
+      </div>
+    </div>
+
+
+    <!-- Button Panel -->
+    <div class="test-time-wrapper">
+      <div class="test-title-wrapper">
+        <h1> Controles </h1>
+      </div>  
+      <div class="test-clue-content-wrapper">
+        <div>
+          <div class="test-question">
+            <div class="row">
+              <div class="col-sm-12">
+                <% if (@uat.user.image.present?) %>
+                      <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                <% else %>
+                      <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
+                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                      <% else %>
+                          <%= image_tag("avatar-girl", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                      <% end %>
+                <% end %>
+              </div>
+              <div class="col-sm-12">
+                <p style="text-align: center"><%= @uat.user.first_name %> <%= @uat.user.last_name %></p>
+                <%= label_tag "attitude_test[observation]", "Observación"  %>
+                <%= text_area_tag "attitude_test[observation]", @uat.observation, rows: "5", class: "form-control" %>
+                <%= button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "action_form", id: "qualify") do
+                    content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Evaluar')
+                  end if @uat.completed?
+                %>
+                <%= link_to backend_attitude_index_path, :class => "btn btn-info simulator-btn", id: "exit" do 
+                      content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Menú')
+                end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+    <!-- \Button Panel -->
+    <% end %>
+  </div>
+</div>

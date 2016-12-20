@@ -8,8 +8,9 @@ class Student::AttitudeTestsController < Student::StudentController
 
   def update
     current_user.user_attitude_tests.find_by_test_id(params[:id]).test.answers.destroy_all if current_user.user_attitude_tests.find_by_test_id(params[:id])
-    qs = params['question_ids'].keys.map { |e| e }
-    vs = params['question_ids'].values.map { |e| e }
+    qs = vs = []
+    qs = params['question_ids'].keys.map { |e| e } if params['question_ids']
+    vs = params['question_ids'].values.map { |e| e } if params['question_ids']
     us = current_user.slice(:id)
     i = qs.map.with_index { |e, k| k }
     data = []
@@ -22,7 +23,7 @@ class Student::AttitudeTestsController < Student::StudentController
                 }
 
     end
-    if Answer.create!(data)
+    if Answer.create!(data) and data.any?
       if params['action_form'] == "pause" && current_user.user_attitude_tests.find_by_test_id(params[:id]).test.questions.count >= vs.count
         return redirect_to student_attitude_test_path(params['id']), notice: 'Test pausado correctamente, para finalizar un test debe contestar todas las preguntas' 
       end
@@ -38,10 +39,6 @@ class Student::AttitudeTestsController < Student::StudentController
   end
   
   def show
-    # @course_user = CourseUser.where(course: @course, user: current_user).first if @course
-    
-    # @tests = @course.tests.all.where(test_type: 0).where.not(id: CourseUserTest.where(course_user: @course_user).map(&:test_id)).order(:id) if @course_user
-    # @course_user_tests = CourseUserTest.where(course_user: @course_user) if @course_user
   end
   
   private
