@@ -10,7 +10,7 @@ module ApplicationHelper
 
   def psicologist?
     # current_user.psicologist? if logged_in?
-    current_user.admin? if logged_in?
+    ( current_user.admin? || current_user.psicologist? ) if logged_in?
   end
 
   def logged_in?
