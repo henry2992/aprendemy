@@ -29,7 +29,7 @@ class Student::AttitudeTestsController < Student::StudentController
       end
       if params['action_form'] == "end" && current_user.user_attitude_tests.find_by_test_id(params[:id]).test.questions.count == vs.count
         current_user.user_attitude_tests.find_by_test_id(params[:id]).update_attribute(:status,1)
-        return redirect_to student_courses_path, notice: 'Finalizado correctamente' 
+        return redirect_to student_courses_path, notice: 'Hemos recibido tus pruebas de actitud, muy pronto recibiras tu resultados por email' 
       else
         return redirect_to student_courses_path, notice: 'Test pausado, para finalizar un test debe contestar todas las preguntas' 
       end
