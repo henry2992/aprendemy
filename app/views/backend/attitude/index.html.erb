@@ -63,7 +63,7 @@
                           <% end %>
                         </div>
                       </p>
-                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"></textarea>
+                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control" placeholder="Escriba aquí su evaluación"></textarea>
                       <p>
                         <div class="btn-group btn-group-justified">
                           <%= link_to "Evaluar", nil, class: "btn btn-warning"  %>
@@ -71,6 +71,7 @@
                       </p>
                     </div>
                   </div>
+                  <hr>
                 <% end %>
               </div>
               <div class="tab-pane test-content-wrapper" id="en_progreso" style="padding:0">
@@ -100,14 +101,9 @@
                           <% end %>
                         </div>
                       </p>
-                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"></textarea>
-                      <p>
-                        <div class="btn-group btn-group-justified">
-                          <%= link_to "Evaluar", nil, class: "btn btn-warning"  %>
-                        </div>
-                      </p>
                     </div>
                   </div>
+                  <hr>
                 <% end %>
               </div>
               <div class="tab-pane test-content-wrapper" id="respondidos" style="padding:0">
@@ -137,14 +133,15 @@
                           <% end %>
                         </div>
                       </p>
-                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"></textarea>
-                      <p>
+                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"><%= u.attitude_test_observation %></textarea>
+                      <!-- <p>
                         <div class="btn-group btn-group-justified">
-                          <%= link_to "Evaluar", nil, class: "btn btn-warning"  %>
+                          <% # link_to "Evaluar", nil, class: "btn btn-warning"  %>
                         </div>
-                      </p>
+                      </p> -->
                     </div>
                   </div>
+                  <hr>
                 <% end %>
               </div>
             </div>
