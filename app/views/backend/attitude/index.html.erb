@@ -62,7 +62,9 @@
                             </div>
                           </div>
                         <% end %>
+                          <% if ut == 0 %>
                       </div>
+                          <% end %>
 
                         <% if u.user_attitude_tests.completed.count != Test.attitude.count %>
                           <% if up == 0 %>
@@ -95,7 +97,9 @@
                             </div>
                           </div>
                         <% end %>
+                          <% if up == 0 %>
                       </div>
+                          <% end %>
                       
                         <% if u.user_attitude_tests.completed.count == Test.attitude.count && u.attitude_test_observation %>
                           <% if ur == 0 %>
@@ -130,7 +134,9 @@
                             </div>
                           </div>
                         <% end %>
+                          <% if ur == 0 %>
                       </div>
+                          <% end %>
                     <% end %>
                   <% end %>
                 </div>
