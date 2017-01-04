@@ -23,10 +23,10 @@
                   <% User.all.each do |u| %>
                     <% if u.has_attitude_tests? %>
                       <!-- Tab panes -->
+                        <% if u.user_attitude_tests.completed.count == Test.attitude.count && !u.attitude_test_observation %>
                           <% if ut == 0 %>
                       <div class="tab-pane active test-content-wrapper" id="terminados" style="padding:0">
                           <% end %>
-                        <% if u.user_attitude_tests.completed.count == Test.attitude.count && !u.attitude_test_observation %>
                           <% ut += 1 %>
                           <div class="row rox-fix">
                             <div class="col-sm-2">
@@ -64,10 +64,10 @@
                         <% end %>
                       </div>
 
-                          <% if ut == 1 %>
+                        <% if u.user_attitude_tests.completed.count != Test.attitude.count %>
+                          <% if up == 0 %>
                       <div class="tab-pane test-content-wrapper" id="en_progreso" style="padding:0">
                           <% end %>
-                        <% if u.user_attitude_tests.completed.count != Test.attitude.count %>
                           <% up += 1 %>
                           <div class="row rox-fix">
                             <div class="col-sm-2">
@@ -97,10 +97,10 @@
                         <% end %>
                       </div>
                       
-                          <% if ut == 1 %>
+                        <% if u.user_attitude_tests.completed.count == Test.attitude.count && u.attitude_test_observation %>
+                          <% if ur == 0 %>
                       <div class="tab-pane test-content-wrapper" id="respondidos" style="padding:0">
                           <% end %>
-                        <% if u.user_attitude_tests.completed.count == Test.attitude.count && u.attitude_test_observation %>
                           <% ur += 1 %>
                           <div class="row rox-fix">
                             <div class="col-sm-2">
