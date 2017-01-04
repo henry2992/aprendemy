@@ -9,34 +9,135 @@
         </div>
           <div class="test-content-wrapper">
             <div class=" row rox-fix">
-              <% @uat.each do |a| %>
-                <div class="test-question">
-                  <div class="row">
-                    <div class="col-sm-2">
-                      <% if (a.user.image.present?) %>
-                            <%= image_tag(a.user.image.url, class: "img-responsive", alt: "#{a.user.first_name} #{a.user.last_name}") %>
-                        <% else %>
-                            <% if (a.user.gender == false or a.user.gender == nil) %>
-                                <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{a.user.first_name} #{a.user.last_name}") %>
+              <ul class="nav nav-tabs nav-justified test-navs" role="tablist">
+                  <li class="<%= "active" if params[:paginate] == "q" || !params[:paginate].present? %>"><a href="#terminados" aria-controls="terminados" role="tab" data-toggle="tab" class="test-navs-link">Terminados <span class="badge badge-terminados"></span></a></li>
+                  <li class="<%= "active" if params[:paginate] == "a" %>"><a href="#en_progreso" aria-controls="en_progreso" role="tab" data-toggle="tab" class="test-navs-links" >En Progreso <span class="badge badge-pendientes"></span></a></li>
+                  <li class="<%= "active" if params[:paginate] == "a" %>"><a href="#respondidos" aria-controls="respondidos" role="tab" data-toggle="tab" class="test-navs-links" >Respondidos <span class="badge badge-respondido"></span></a></li>
+              </ul>
+
+              <div class="test-content-wrapper">
+              <% ut = 0; up = 0; ur = 0 %>
+              <% User.all.each do |u| %>
+                <% if u.has_attitude_tests? %>
+                 
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div class="tab-pane active test-content-wrapper" id="terminados" style="padding:0">
+                      <% if u.user_attitude_tests.completed.count == Test.attitude.count && !u.attitude_test_observation %>
+                        <div class="row rox-fix">
+                          <div class="col-sm-2">
+                            <% if (u.image.present?) %>
+                              <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
                             <% else %>
-                                <%= image_tag("avatar-girl", class: "img-responsive", alt: "#{a.user.first_name} #{a.user.last_name}") %>
-                            <%end %>
-                      <%end%>
+                              <% if (u.gender == false or u.gender == nil) %>
+                                  <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                              <% else %>
+                                  <%= image_tag("avatar-girl", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                              <% end %>
+                            <% end %>
+                          </div>
+                          <div class="col-sm-3">
+                            <h3><%= u.first_name %> <%= u.last_name %></h3>
+                            <h4><%= u.email %></h4>
+                          </div>
+                          <div class="col-sm-7">
+                            <p style="text-align: center">
+                              Ver respuestas
+                              <div class="btn-group btn-group-justified">
+                                <% ut += 1 %>
+                                <% u.user_attitude_tests.each do |a| %>
+                                  <%= link_to "#{a.test.title}", backend_attitude_path(a), class: 'btn btn-success' %>
+                                <% end %>
+                              </div>
+                            </p>
+                            <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"></textarea>
+                            <p>
+                              <div class="btn-group btn-group-justified">
+                                <%= link_to "Evaluar", nil, class: "btn btn-warning"  %>
+                              </div>
+                            </p>
+                          </div>
+                        </div>
+                      <% end %>
                     </div>
-                    <div class="col-sm-10">
-                      <h6><%= a.user.first_name %> <%= a.user.last_name %></h6>
-                      <h3><%= a.test.title %></h3>
-                      <span style="background-color: #ffffcc"><%= a.observation if a.observation %></span>
-                      <span class="pull-right">
-                        <%= link_to 'Ver respuestas', backend_attitude_path(a), class: 'btn btn-info' %>
-                      </span>
+
+                    <div class="tab-pane test-content-wrapper" id="en_progreso" style="padding:0">
+                      <% if u.user_attitude_tests.completed.count != Test.attitude.count %>
+                        <div class="row rox-fix">
+                          <div class="col-sm-2">
+                            <% if (u.image.present?) %>
+                              <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                            <% else %>
+                              <% if (u.gender == false or u.gender == nil) %>
+                                  <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                              <% else %>
+                                  <%= image_tag("avatar-girl", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                              <% end %>
+                            <% end %>
+                          </div>
+                          <div class="col-sm-3">
+                            <h3><%= u.first_name %> <%= u.last_name %></h3>
+                            <h4><%= u.email %></h4>
+                          </div>
+                          <div class="col-sm-7">
+                            <p>
+                              <% ut += 1 %>
+                              <% u.user_attitude_tests.each do |a| %>
+                                <% cl = "btn" + (a.completed? ? " btn-success" : " btn-warning") %>
+                                <%= link_to "#{a.test.title}", backend_attitude_path(a), class: cl  %>
+                              <% end %>
+                            </p>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                    
+                    <div class="tab-pane test-content-wrapper" id="respondidos" style="padding:0">
+                      <% if u.user_attitude_tests.completed.count == Test.attitude.count && u.attitude_test_observation %>
+                        <div class="row rox-fix">
+                          <div class="col-sm-2">
+                            <% if (u.image.present?) %>
+                              <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                            <% else %>
+                              <% if (u.gender == false or u.gender == nil) %>
+                                  <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                              <% else %>
+                                  <%= image_tag("avatar-girl", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                              <% end %>
+                            <% end %>
+                          </div>
+                          <div class="col-sm-3">
+                            <h3><%= u.first_name %> <%= u.last_name %></h3>
+                            <h4><%= u.email %></h4>
+                          </div>
+                          <div class="col-sm-7">
+                            <p>
+                              <% ur += 1 %>
+                              <% u.user_attitude_tests.each do |a| %>
+                                <%= link_to "#{a.test.title}", backend_attitude_path(a), class: 'btn btn-info' %>
+                              <% end %>
+                            </p>
+                            <p>
+                              <textarea name="attitude_test_observation" id="ato" rows="10" class="form-control"><%= u.attitude_test_observation %></textarea>
+                            </p>
+                          </div>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
-                </div>
+                <% end %>
               <% end %>
-              <% # raise @uat.to_yaml %>
+              </div>
+
             </div>  
           </div>
       </div>
     </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $(".badge-terminados").html(<%= ut %>);
+    $(".badge-pendientes").html(<%= up %>);
+    $(".badge-respondido").html(<%= ur %>);
+  });
+</script>

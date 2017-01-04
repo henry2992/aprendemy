@@ -1091,7 +1091,8 @@ CREATE TABLE users (
     last_name character varying,
     image character varying,
     gender boolean,
-    role integer DEFAULT 0
+    role integer DEFAULT 0,
+    attitude_test_observation text
 );
 
 
@@ -2142,4 +2143,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161127150842');
 INSERT INTO schema_migrations (version) VALUES ('20161130201248');
 
 INSERT INTO schema_migrations (version) VALUES ('20161220212616');
+
+INSERT INTO schema_migrations (version) VALUES ('20170103154140');
 

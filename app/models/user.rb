@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     self.course_users.map { |a| a.course_user_plan.plan.paid? }.count(true) > 0 ? true : false
   end
 
+  def has_attitude_tests?
+    self.user_attitude_tests.any?
+  end
+
   def points
     Point.where(recipient_id: self.id, recipient_type: 'User').sum(:points)
   end
