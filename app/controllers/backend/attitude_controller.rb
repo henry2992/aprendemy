@@ -4,7 +4,7 @@ class Backend::AttitudeController < ApplicationController
   before_action :set_attitude_test, only: [:show, :update]
 
   def index
-    @uat = UserAttitudeTest.order(created_at: :desc).where.not(status: 0)
+    # @uat = UserAttitudeTest.order(created_at: :desc).where.not(status: 0)
   end
 
   def show
