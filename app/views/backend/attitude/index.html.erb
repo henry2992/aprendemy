@@ -100,7 +100,7 @@
                       <p style="text-align: center">
                         Ver respuestas
                         <div class="btn-group btn-group-justified">
-                          <% u.user_attitude_tests.each do |a| %>
+                          <% u.user_attitude_tests.order(:test_id).each do |a| %>
                             <%= link_to "#{a.test.title}", backend_attitude_path(a), class: 'btn btn-success' %>
                           <% end %>
                         </div>
@@ -138,11 +138,6 @@
                         </div>
                       </p>
                       <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"><%= u.attitude_test_observation %></textarea>
-                      <!-- <p>
-                        <div class="btn-group btn-group-justified">
-                          <% # link_to "Evaluar", nil, class: "btn btn-warning"  %>
-                        </div>
-                      </p> -->
                     </div>
                   </div>
                   <hr>
