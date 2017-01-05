@@ -51,7 +51,23 @@
 			<h3>Pruebas de Aptitud</h3>
 			<p>Sólo los usuarios premium pueden acceder a los examenes de aptitud</p>
 		</div>
-		<div class="row ">
+		<% if current_user.attitude_test_observation %>
+      <p>
+      	<%= link_to 'Mostrar Resultado de Evaluación',nil, class: 'btn btn-info', id: "show-eval" %>
+      </p>
+			<div class="row eval">
+				<div class="col-xs-12">
+					<ul class="list-group">
+					  <li class="list-group-item list-group-item-info"><strong>Resutado de la Evaluación:</strong><br> <%= current_user.attitude_test_observation %>
+			        <p>
+			        	<%= link_to 'Cerrar',nil, class: 'btn btn-info', id: "close-eval" %>
+			        </p>
+					  </li>
+					</ul>
+				</div>
+			</div>
+		<% end %>
+		<div class="row">
       <% if current_user.is_paid? %>
 				<% @tests.each do |t| %>
 					<div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
@@ -126,3 +142,16 @@
 		</div>
 	</div>
 </div>
+<script>
+	$("#show-eval").hide();
+	$("#close-eval").click(function(event) {
+			$(".eval").hide('slow');
+			$("#show-eval").show('slow');
+			return false;
+	});
+	$("#show-eval").click(function(event) {
+			$(this).hide('slow');
+			$(".eval").show('slow');
+			return false;
+	});
+</script>
