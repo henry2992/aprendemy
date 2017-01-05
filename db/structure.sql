@@ -1043,8 +1043,7 @@ CREATE TABLE user_attitude_tests (
     test_id integer,
     status integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    observation text
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -2145,4 +2144,6 @@ INSERT INTO schema_migrations (version) VALUES ('20161130201248');
 INSERT INTO schema_migrations (version) VALUES ('20161220212616');
 
 INSERT INTO schema_migrations (version) VALUES ('20170103154140');
+
+INSERT INTO schema_migrations (version) VALUES ('20170105111700');
 

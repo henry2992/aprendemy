@@ -68,9 +68,6 @@
 					      </div>
 					      <div class="info-card">
 					        <p><%= t.description %></p>
-					        <p>
-					        	<%= content_tag(:span, '', class:'fa fa-star') << content_tag(:span, ' Evaluado') if current_user.user_attitude_tests.find_by_test_id(t) && current_user.user_attitude_tests.find_by_test_id(t).evaluated? %>
-					        </p>
 					        <%= link_to 'Iniciar Prueba',student_attitude_test_path(t), class: 'btn btn-success' if !current_user.user_attitude_tests.find_by_test_id(t) %>
 					        <%= link_to 'Continuar Prueba',student_attitude_test_path(t), class: 'btn btn-warning' if current_user.user_attitude_tests.find_by_test_id(t) && current_user.user_attitude_tests.find_by_test_id(t).opened? %>
 					        <%= link_to 'Ver respuestas', student_attitude_test_path(t), class: 'btn btn-info' if current_user.user_attitude_tests.find_by_test_id(t) && !current_user.user_attitude_tests.find_by_test_id(t).opened? %>

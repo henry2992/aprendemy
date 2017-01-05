@@ -63,12 +63,16 @@
                           <% end %>
                         </div>
                       </p>
-                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control" placeholder="Escriba aquí su evaluación"></textarea>
-                      <p>
-                        <div class="btn-group btn-group-justified">
-                          <%= link_to "Evaluar", nil, class: "btn btn-warning"  %>
-                        </div>
-                      </p>
+                      <%= form_tag backend_attitude_path(u.id), :method => :put, id: "form" do %>
+                        <textarea name="attitude_test[attitude_test_observation]" id="ato" rows="5" tabindex="1" class="form-control" placeholder="Escriba aquí su evaluación"></textarea>
+                        <br>
+                        <p>
+                          <%= button_tag(type: 'submit', class: 'btn btn-warning col-sm-12 pull-right', data: { confirm: "¿Está seguro de almacenar la evaluación de este test?" }) do
+                              content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Evaluar')
+                            end
+                          %>
+                        </p>
+                      <% end %>
                     </div>
                   </div>
                   <hr>
@@ -153,8 +157,8 @@
 </div>
 <script>
   $(document).ready(function() {
-    $(".badge-terminados").html(<%= ut %>);
-    $(".badge-pendientes").html(<%= up %>);
-    $(".badge-respondido").html(<%= ur %>);
+    $(".badge-terminados").html(<%= ut.count %>);
+    $(".badge-pendientes").html(<%= up.count %>);
+    $(".badge-respondido").html(<%= ur.count %>);
   });
 </script>

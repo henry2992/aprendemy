@@ -11,12 +11,6 @@
         <h1> Controles </h1>
       </div>  
       <div class="test-clue-content-wrapper">
-        <p>
-          <%= label_tag "attitude_test[observation]", "Observación: "  if @uat.evaluated? %>
-        </p>
-        <p>
-          <%= @uat.observation if @uat.evaluated? %>
-        </p>
         <div>
           <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "action_form", id: "pause") do
                 content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')
@@ -113,12 +107,6 @@
         <h1> Controles </h1>
       </div>  
       <div class="test-clue-content-wrapper">
-        <p>
-          <%= label_tag "attitude_test[observation]", "Observación: "  if @uat.evaluated? %>
-        </p>
-        <p>
-          <%= @uat.observation if @uat.evaluated? %>
-        </p>
         <div>
           <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "action_form", id: "pause") do
                 content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')

@@ -6,7 +6,7 @@ class UserAttitudeTest < ActiveRecord::Base
 
   after_destroy :delete_answers
 
-  enum status: [:opened, :completed, :evaluated]
+  enum status: [:opened, :completed]
 
   validates_presence_of :user, :test
 
