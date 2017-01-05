@@ -16,3 +16,4 @@
 //= require bootstrap
 //= require thirdparty/require_all
 //= require flipclock.min
+//= require jquery.quicksearch

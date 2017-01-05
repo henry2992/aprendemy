@@ -37,8 +37,19 @@
 
             <div class="tab-content">
               <div class="tab-pane active test-content-wrapper" id="terminados" style="padding:0">
+                <div class="row rox-fix">
+                  <div class="col-sm-offset-3 col-sm-6">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control pull-right" placeholder="Buscar por Email" aria-describedby="sizing-addon1" name="search_terminados" id="search_terminados" >
+                      <span class="input-group-addon" id="sizing-addon1">@</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rox-fix">
+                  <br>
+                </div>
                 <% ut.each do |u| %>
-                  <div class="row rox-fix">
+                  <div class="row rox-fix items_t">
                     <div class="col-sm-2">
                       <% if (u.image.present?) %>
                         <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
@@ -79,8 +90,19 @@
                 <% end %>
               </div>
               <div class="tab-pane test-content-wrapper" id="en_progreso" style="padding:0">
+                <div class="row rox-fix">
+                  <div class="col-sm-offset-3 col-sm-6">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control pull-right" placeholder="Buscar por Email" aria-describedby="sizing-addon1" name="search_en_progreso" id="search_en_progreso" >
+                      <span class="input-group-addon" id="sizing-addon1">@</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rox-fix">
+                  <br>
+                </div>
                 <% up.each do |u| %>
-                  <div class="row rox-fix">
+                  <div class="row rox-fix items_p">
                     <div class="col-sm-2">
                       <% if (u.image.present?) %>
                         <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
@@ -111,8 +133,20 @@
                 <% end %>
               </div>
               <div class="tab-pane test-content-wrapper" id="respondidos" style="padding:0">
+                <div class="row rox-fix">
+                  <div class="col-sm-offset-3 col-sm-6">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control pull-right" placeholder="Buscar por Email" aria-describedby="sizing-addon1" name="search_respondidos" id="search_respondidos" >
+                      <span class="input-group-addon" id="sizing-addon1">@</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rox-fix">
+                  <br>
+                </div>
+
                 <% ur.each do |u| %>
-                  <div class="row rox-fix">
+                  <div class="row rox-fix items_r">
                     <div class="col-sm-2">
                       <% if (u.image.present?) %>
                         <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
@@ -155,5 +189,16 @@
     $(".badge-terminados").html(<%= ut.count %>);
     $(".badge-pendientes").html(<%= up.count %>);
     $(".badge-respondido").html(<%= ur.count %>);
+
+    $('input#search_terminados').quicksearch('#terminados div.items_t', {
+      'selector': 'div.col-sm-3 h4'
+    });
+    $('input#search_en_progreso').quicksearch('#en_progreso div.items_p', {
+      'selector': 'div.col-sm-3 h4'
+    });
+    $('input#search_respondidos').quicksearch('#respondidos div.items_r', {
+      'selector': 'div.col-sm-3 h4'
+    });
+
   });
 </script>
