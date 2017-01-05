@@ -42,7 +42,7 @@
 
 	                          <%= image_tag("avatar-guy.png", class: "nav-profile-img", alt: "Apredemy-avatar") %>
 	                      <% else %>
-	                          <%= image_tag("avatar-girl", class: "nav-profile-img", alt: "Apredemy-avatar") %>
+	                          <%= image_tag("avatar-girl.png", class: "nav-profile-img", alt: "Apredemy-avatar") %>
 	                      <%end %>
 	                  <%end%>   
 	                  <span class="caret"></span>
@@ -57,7 +57,7 @@
 	                                      <% if (current_user.gender == false or current_user.gender == nil) %>
 	                                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "Apredemy-avatar") %>
 	                                      <% else %>
-	                                          <%= image_tag("avatar-girl", class: "img-responsive", alt: "Apredemy-avatar") %>
+	                                          <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "Apredemy-avatar") %>
 	                                      <%end %>
 	                                <%end%>
 	                                <p class="text-center"><a class="small" href="#">Cambiar Foto</a></p>
