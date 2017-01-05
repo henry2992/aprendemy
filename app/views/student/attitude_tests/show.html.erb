@@ -20,6 +20,7 @@
                 content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Terminar')
               end if @uat.opened?
           %>
+          <%= link_to "Atrás", student_courses_path, class: 'btn btn-success simulator-btn' %>
         </div>
         
 
@@ -116,8 +117,8 @@
                 content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Terminar')
               end if @uat.opened?
           %>
+          <%= link_to "Atrás", student_courses_path, class: 'btn btn-success simulator-btn' %>
         </div>
-        
 
       </div>
     </div>
