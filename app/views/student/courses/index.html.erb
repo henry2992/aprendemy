@@ -51,7 +51,7 @@
 			<h3>Pruebas de Aptitud</h3>
 			<p>Sólo los usuarios premium pueden acceder a los examenes de aptitud</p>
 		</div>
-		<% if current_user.attitude_test_observation %>
+		<% if !current_user.attitude_test_observation.blank? %>
       <p>
       	<%= link_to 'Mostrar Resultado de Evaluación',nil, class: 'btn btn-info', id: "show-eval" %>
       </p>
