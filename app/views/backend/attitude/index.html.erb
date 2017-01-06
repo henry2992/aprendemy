@@ -21,7 +21,7 @@
 
             <% User.all.each do |u| %>
               <% if u.has_attitude_tests? %>
-                <% if u.user_attitude_tests.completed.count == Test.attitude.count && !u.attitude_test_observation %>
+                <% if u.user_attitude_tests.completed.count == Test.attitude.count && u.attitude_test_observation.blank? %>
                   <% ut << u %>
                 <% end %>
 
@@ -29,7 +29,7 @@
                   <% up << u  %>
                 <% end %>
               
-                <% if u.user_attitude_tests.completed.count == Test.attitude.count && u.attitude_test_observation %>
+                <% if u.user_attitude_tests.completed.count == Test.attitude.count && !u.attitude_test_observation.blank? %>
                   <% ur << u %>
                 <% end %>
               <% end %>
