@@ -47,58 +47,59 @@
 
 		<!-- Tests -->
 		<% if @tests.any? %>
-		<div class="courses-title">
-			<h3>Pruebas de Aptitud</h3>
-			<p>Sólo los usuarios premium pueden acceder a los examenes de aptitud</p>
-		</div>
-		<% if !current_user.attitude_test_observation.blank? %>
-      <p>
-      	<%= link_to 'Mostrar Resultado de Evaluación',nil, class: 'btn btn-info', id: "show-eval" %>
-      </p>
-			<div class="row eval">
-				<div class="col-xs-12">
-					<ul class="list-group">
-					  <li class="list-group-item list-group-item-info"><strong>Resutado de la Evaluación:</strong><br> <%= current_user.attitude_test_observation %>
-			        <p>
-			        	<%= link_to 'Cerrar',nil, class: 'btn btn-info', id: "close-eval" %>
-			        </p>
-					  </li>
-					</ul>
-				</div>
+			<div class="courses-title">
+				<h3>Pruebas de Aptitud</h3>
+				<p>Sólo los usuarios premium pueden acceder a los examenes de aptitud</p>
 			</div>
-		<% end %>
-		<div class="row">
-      <% if current_user.is_paid? %>
-				<% @tests.each do |t| %>
-					<div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
-					  <div class="card">
-					      <div class="subcategory-card" style="background-image: url('<%= t.picture.url %>');">
-					        <div class="subcategory-info-wrapper">
-					          <h2 class="subcategory-title">
-					            <p><%= t.title %></p>
-					          </h2>
-					          <ul class="subcategory-information">
-					            <li> <%= t.questions.length %> Preguntas</li>
-					          </ul>
-					        </div>
-					      </div>
-					      <div class="info-card">
-					        <p><%= t.description %></p>
-					        <%= link_to 'Iniciar Prueba',student_attitude_test_path(t), class: 'btn btn-success' if !current_user.user_attitude_tests.find_by_test_id(t) %>
-					        <%= link_to 'Continuar Prueba',student_attitude_test_path(t), class: 'btn btn-warning' if current_user.user_attitude_tests.find_by_test_id(t) && current_user.user_attitude_tests.find_by_test_id(t).opened? %>
-					        <%= link_to 'Ver respuestas', student_attitude_test_path(t), class: 'btn btn-info' if current_user.user_attitude_tests.find_by_test_id(t) && !current_user.user_attitude_tests.find_by_test_id(t).opened? %>
-					      </div>
-					  </div>
+			<% if !current_user.attitude_test_observation.blank? %>
+	      <p>
+	      	<%= link_to 'Mostrar Resultado de Evaluación',nil, class: 'btn btn-info', id: "show-eval" %>
+	      </p>
+				<div class="row eval">
+					<div class="col-xs-12">
+						<ul class="list-group">
+						  <li class="list-group-item list-group-item-info"><strong>Resutado de la Evaluación:</strong><br> <%= current_user.attitude_test_observation %>
+				        <p>
+				        	<%= link_to 'Cerrar',nil, class: 'btn btn-info', id: "close-eval" %>
+				        </p>
+						  </li>
+						</ul>
 					</div>
-				<% end %>
+				</div>
 			<% else %>
-				<div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
-				  <p>
-				    <%= link_to 'Hazte Premium', payments_path, class: 'btn btn-info' %>
-				  </p>
-		  	</div>
+				<div class="row">
+		      <% if current_user.is_paid? %>
+						<% @tests.each do |t| %>
+							<div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
+							  <div class="card">
+							      <div class="subcategory-card" style="background-image: url('<%= t.picture.url %>');">
+							        <div class="subcategory-info-wrapper">
+							          <h2 class="subcategory-title">
+							            <p><%= t.title %></p>
+							          </h2>
+							          <ul class="subcategory-information">
+							            <li> <%= t.questions.length %> Preguntas</li>
+							          </ul>
+							        </div>
+							      </div>
+							      <div class="info-card">
+							        <p><%= t.description %></p>
+							        <%= link_to 'Iniciar Prueba',student_attitude_test_path(t), class: 'btn btn-success' if !current_user.user_attitude_tests.find_by_test_id(t) %>
+							        <%= link_to 'Continuar Prueba',student_attitude_test_path(t), class: 'btn btn-warning' if current_user.user_attitude_tests.find_by_test_id(t) && current_user.user_attitude_tests.find_by_test_id(t).opened? %>
+							        <%= link_to 'Ver respuestas', student_attitude_test_path(t), class: 'btn btn-info' if current_user.user_attitude_tests.find_by_test_id(t) && !current_user.user_attitude_tests.find_by_test_id(t).opened? %>
+							      </div>
+							  </div>
+							</div>
+						<% end %>
+					<% else %>
+						<div class="col-md-3 col-sm-4 col-xs-12 cat-grid">
+						  <p>
+						    <%= link_to 'Hazte Premium', payments_path, class: 'btn btn-info' %>
+						  </p>
+				  	</div>
+					<% end %>
+				</div>
 			<% end %>
-		</div>
 		<% end %>
 	</div>
 </div>
