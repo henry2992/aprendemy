@@ -1,7 +1,7 @@
 puts "Espere un momento ..."
 
 # Create Test Vocacional
-tv = Test.create! title: 'Test Vocacional', description: 'Test Vocacional', test_type: 1
+tv = Test.create! title: 'Test Vocacional', description: 'Test Vocacional', test_type: 1, legend: "<span><strong>Area 1:</strong> Arte y Creatividad</span><br><span><strong>Area 2:</strong> Ciencias Sociales</span><br><span><strong>Area 3:</strong> Económica, Administrativa y Financiera</span><br><span><strong>Area 4:</strong> Ciencia y Tecnología</span><br><span><strong>Area 5:</strong> Ciencias Ecológicas, Biológicas y de Salud</span><br>"
 
 # Create Choices for Test Vocacional's questions
 choice1 = { "id": nil, "content":"Me interesa", "value_count":1 }
@@ -169,7 +169,7 @@ q.choices.create! [ choice1, choice2 ]
 q = Question.create! "content": "Organizar, planificar y administrar centros educativos", "choice_id": nil, "explanation": "", "url": nil, "picture": nil, "parent": tv, "area": 3
 q.choices.create! [ choice1, choice2 ]
 
-ti = Test.create! title: 'Test de Inteligencias múltiples', description: 'Test de Inteligencias multiples', test_type: 1
+ti = Test.create! title: 'Test de Inteligencias múltiples', description: 'Test de Inteligencias multiples', test_type: 1, legend: "<span><strong>Area 1:</strong> Int. Verbal</span><br><span><strong>Area 2:</strong> Int. Lógico-matemática</span><br><span><strong>Area 3:</strong> Int. Visual espacial</span><br><span><strong>Area 4:</strong> Int. kinestesica-corporal</span><br><span><strong>Area 5:</strong> Int. Musical-rítmica</span><br><span><strong>Area 6:</strong> Int. Intrapersonal</span><br><span><strong>Area 7:</strong> Int Interpersonal</span><br>"
 
 # Create Choices for Test de Inteligencias's questions
 choice1 = { "id": nil, "content":"Sí", "value_count":1 }
