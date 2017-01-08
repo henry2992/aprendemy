@@ -1,7 +1,4 @@
 <div id="application">
-  <% 
-    show_explanation = false
-  %>
   <!-- Vertical Nav -->
   <div id="container">
     <% # form_tag nil, :method => :put, id: "form" do %>
@@ -16,13 +13,13 @@
             <div class="row">
               <div class="col-sm-2">
                 <% if (@uat.user.image.present?) %>
-                      <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
                 <% else %>
-                      <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
-                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
-                      <% else %>
-                          <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
-                      <% end %>
+                  <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
+                      <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% else %>
+                      <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -55,6 +52,9 @@
       <div class="test-content-wrapper">
         <div class="row rox-fix">
           <!-- Question --> 
+          <% areas = @uat.test.questions.map(&:area).uniq.sort %>
+          <% areas_array = [] %>
+
           <% @uat.test.questions.each do |q| %>
             <div class="test-question">
               <p><%= q.content %></p>
@@ -91,6 +91,10 @@
                   cl = ""
                   st = ""
                   ch = @uat.test.answers.find_by(question: q, choice: c) ? true : false
+                  
+                  index = areas.index(q.area)
+                  areas_array << areas[index] if (c.value_count > 0) && ch
+                  
                   cl = "checked" if ch
                   %>
                   <label class="coolbox">
@@ -100,25 +104,16 @@
                   </label>
                   <% lpos += 1 %>
                 <% end %>
-                <% if q.explanation && show_explanation %>
-                  <div class="answer">
-                    <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
-                    <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
-                    <div class="show-video">
-                      <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
-                    </div>
-                  </div>
-                <% end %>
               <% end %>
             </div>
           <% end %>
+          
           <input type="hidden" value="" name="attitude_test[course_user_id]">
           <input type="hidden" value="" name="attitude_test[test_id]">
           <input type="hidden" value="" name="attitude_test[action_form]" id="action_form">
         </div>  
       </div>
     </div>
-
 
     <!-- Button Panel -->
     <div class="test-time-wrapper">
@@ -131,13 +126,13 @@
             <div class="row">
               <div class="col-sm-12">
                 <% if (@uat.user.image.present?) %>
-                      <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
                 <% else %>
-                      <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
-                          <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
-                      <% else %>
-                          <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
-                      <% end %>
+                  <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
+                      <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% else %>
+                      <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -152,11 +147,30 @@
                       content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Pruebas de Aptitud')
                 end %>
               </div>
+              <div class="col-sm-12">
+                <table class="table">
+                  <tr>
+                    <th colspan="2">Resultados del Test</th>
+                  </tr>
+                  <%
+                  counts = Hash.new(0)
+                  a = areas_array.inject(Hash.new(0)) { |total, e| total[e] += 1 ;total }
+                  %>
+                  <% a.sort.each do |area, value| %>
+                    <tr>
+                      <th>Area <%= area %></th>
+                      <td><%= value %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              </div>
+              <div class="col-sm-12">
+                <h3>Leyenda</h3>
+                <%= @uat.test.legend.html_safe %>
+              </div>
             </div>
           </div>
         </div>
-        
-
       </div>
     </div>
     <!-- \Button Panel -->

@@ -286,7 +286,8 @@ CREATE TABLE choices (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     total_answered_count integer DEFAULT 0,
-    wrong_answered_count integer DEFAULT 0
+    wrong_answered_count integer DEFAULT 0,
+    value_count integer DEFAULT 0
 );
 
 
@@ -673,7 +674,8 @@ CREATE TABLE questions (
     total_answered_count integer DEFAULT 0 NOT NULL,
     wrong_answered_count integer DEFAULT 0 NOT NULL,
     parent_id integer,
-    parent_type character varying
+    parent_type character varying,
+    area integer DEFAULT 1
 );
 
 
@@ -938,7 +940,8 @@ CREATE TABLE tests (
     updated_at timestamp without time zone NOT NULL,
     course_id character varying,
     picture character varying,
-    test_type integer DEFAULT 0
+    test_type integer DEFAULT 0,
+    legend text DEFAULT ''::text
 );
 
 
@@ -2146,4 +2149,10 @@ INSERT INTO schema_migrations (version) VALUES ('20161220212616');
 INSERT INTO schema_migrations (version) VALUES ('20170103154140');
 
 INSERT INTO schema_migrations (version) VALUES ('20170105111700');
+
+INSERT INTO schema_migrations (version) VALUES ('20170107185358');
+
+INSERT INTO schema_migrations (version) VALUES ('20170107230553');
+
+INSERT INTO schema_migrations (version) VALUES ('20170108004237');
 
