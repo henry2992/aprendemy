@@ -42,7 +42,7 @@
             %li{:class => "list #{'active' if params[:controller] == 'live_classes'} "}
               = link_to student_course_live_classes_path(@course) do
                 %i.fa.fa-youtube-play.list-icon
-                Clases en Vivo
+                Clases Pregrabadas
           / Free y Pro
           - if @course_user.plan.name == "Free" || @course_user.plan == "Pro"
             %li{:class => "list #{'active' if params[:controller] == 'tutorials'} "}

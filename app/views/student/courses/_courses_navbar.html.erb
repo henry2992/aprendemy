@@ -22,7 +22,7 @@
 		      	<!-- Item 1 -->
 
 		      	<li class="nav-calendar-wrapper">
-		       		<%= link_to "Clases en Vivo", webinar_index_path, class:"white" %>
+		       		<%= link_to "Clases Pregrabadas", webinar_index_path, class:"white" %>
 	            </li>
 
 		        <li class="nav-calendar-wrapper">
@@ -172,7 +172,7 @@
 					<use xlink:href="#icon-play"></use>
 				</svg>
 				<a href="<%= student_course_video_classes_path(@course) if @course %>">
-					<span > Clases en Video </span>
+					<span > Clases Pregrabadas </span>
 				</a>
 			</li>
 			<li class="index-nav-item">
@@ -217,7 +217,7 @@
 					<use xlink:href="#icon-play"></use>
 				</svg>
 				<a href="<%= webinar_index_path %>">
-	    			<span>Clases en Vivo</span>
+	    			<span>Clases Pregrabadas</span>
     			</a>
 			</li>
 			<li class="index-nav-item">
