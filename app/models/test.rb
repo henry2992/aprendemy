@@ -1,7 +1,9 @@
 class Test < ActiveRecord::Base
-  has_many :questions, -> { order('id') }, :as => :parent
+  has_many :questions, -> { order('id') }, :as => :parent, dependent: :destroy
   has_many :answers, :as => :item, dependent: :destroy
 
+  has_many :areas, :through => :questions
+  
   has_many :course_user_test, dependent: :destroy
   belongs_to :course
 
