@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
-  has_many :answers
-  has_many :choices, -> { order(:id) }
+  has_many :answers, :dependent => :destroy
+  has_many :choices, -> { order(:id) }, :dependent => :destroy
 
   belongs_to :sub_category, counter_cache: true
 
@@ -11,6 +11,9 @@ class Question < ActiveRecord::Base
   # Add capability to have multiple questions - https://app.asana.com/0/107597944834039/116471366670689
   has_many :questions, class_name: "Question", foreign_key: "question_id"
   belongs_to :question, class_name: "Question"
+
+  has_many :area_questions
+  has_many :areas, through: :area_questions
 
   mount_uploader :picture, PictureUploader
 
