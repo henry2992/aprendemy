@@ -180,7 +180,7 @@
               <% -qs+=1 %>
             </div>
             <% clue_index += 1 %>
-            <%= question_number += 1 %>
+            <% question_number += 1 %>
           <% end %>
           <input type="hidden" value="<%= @course_user.id %>" name="course_user_test[course_user_id]">
           <input type="hidden" value="<%= @test.id %>" name="course_user_test[test_id]">
