@@ -7,7 +7,7 @@ class Test < ActiveRecord::Base
   has_many :course_user_test, dependent: :destroy
   belongs_to :course
 
-  has_many :user_attitude_tests
+  has_many :user_attitude_tests, dependent: :destroy
   has_many :users, :through => :user_attitude_tests
 
   enum test_type: [:standard, :attitude]
