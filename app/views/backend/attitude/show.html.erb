@@ -34,6 +34,7 @@
                       content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Pruebas de Aptitud')
                 end %>
               </div>
+              
             </div>
           </div>
         </div>
@@ -52,7 +53,7 @@
       <div class="test-content-wrapper">
         <div class="row rox-fix">
           <!-- Question --> 
-          <% areas = @uat.test.questions.map(&:area).uniq.sort %>
+          <% areas = @uat.test.areas.map{|a| [a.id,a.id] }.uniq.sort.to_h %>
           <% areas_array = [] %>
 
           <% @uat.test.questions.each do |q| %>
@@ -91,10 +92,11 @@
                   cl = ""
                   st = ""
                   ch = @uat.test.answers.find_by(question: q, choice: c) ? true : false
-                  
-                  index = areas.index(q.area)
-                  areas_array << areas[index] if (c.value_count > 0) && ch
-                  
+                  q.areas.each do |area|
+                    # raise area.to_yaml
+                    index = areas.index(area.id)
+                    areas_array << areas[index] if (c.value_count > 0) && ch
+                  end
                   cl = "checked" if ch
                   %>
                   <label class="coolbox">
@@ -158,16 +160,21 @@
                   %>
                   <% a.sort.each do |area, value| %>
                     <tr>
-                      <th>Area <%= area %></th>
+                      <th><%= Area.find(area).name %></th>
                       <td><%= value %></td>
                     </tr>
                   <% end %>
                 </table>
               </div>
-              <div class="col-sm-12">
-                <h3>Leyenda</h3>
-                <%= @uat.test.legend.html_safe %>
-              </div>
+              <h3>Leyenda</h3>
+              <table class="table">
+              <% @uat.test.areas.map(&:id).uniq.each do |a| %>
+                <tr>
+                  <th><small><%= Area.find(a).name %></small></th>
+                  <td><small><%= Area.find(a).description %></small></td>
+                </tr>
+              <% end %>
+              </table>
             </div>
           </div>
         </div>
