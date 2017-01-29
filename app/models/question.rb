@@ -12,8 +12,8 @@ class Question < ActiveRecord::Base
   has_many :questions, class_name: "Question", foreign_key: "question_id"
   belongs_to :question, class_name: "Question"
 
-  has_many :area_questions
-  has_many :areas, through: :area_questions
+  # has_many :area_questions
+  # has_many :areas, through: :area_questions
 
   mount_uploader :picture, PictureUploader
 
