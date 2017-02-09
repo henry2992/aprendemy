@@ -7,7 +7,8 @@ class Student::AttitudeTestsController < Student::StudentController
   end
 
   def update
-    current_user.user_attitude_tests.find_by_test_id(params[:id]).test.answers.destroy_all if current_user.user_attitude_tests.find_by_test_id(params[:id])
+    uat = current_user.user_attitude_tests.find_by_test_id(params[:id])
+    current_user.user_attitude_tests.find_by_test_id(params[:id]).test.answers.destroy_all if uat
     qs = vs = []
     qs = params['question_ids'].keys.map { |e| e } if params['question_ids']
     vs = params['question_ids'].values.map { |e| e } if params['question_ids']
@@ -19,7 +20,7 @@ class Student::AttitudeTestsController < Student::StudentController
                   "question" => Question.find(qs[i].to_i), 
                   "choice"   => Choice.find(vs[i].to_i),
                   "user"     => current_user,
-                  "item"   => Test.find(params['id'])
+                  "item"   => uat
                 }
 
     end
@@ -53,6 +54,5 @@ class Student::AttitudeTestsController < Student::StudentController
     def load_uat
       current_user.user_attitude_tests.create!(test_id: params[:id]) unless current_user.user_attitude_tests.find_by_test_id(params[:id])
       @uat = current_user.user_attitude_tests.find_by_test_id(params[:id])
-      # raise @uat.to_yaml
     end
 end

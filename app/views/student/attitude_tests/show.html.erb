@@ -72,7 +72,7 @@
                   <%
                   cl = ""
                   st = ""
-                  ch = @uat.test.answers.find_by(question: q, choice: c) ? true : false
+                  ch = Answer.where(question: q, choice: c, item: @uat).first ? true : false
                   cl = "checked" if ch
                   %>
                   <label class="coolbox">
