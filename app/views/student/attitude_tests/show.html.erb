@@ -73,6 +73,9 @@
                   cl = ""
                   st = ""
                   ch = Answer.where(question: q, choice: c, item: @uat).first ? true : false
+                  # if lpos >0
+                  #   raise @uat.to_yaml
+                  # end
                   cl = "checked" if ch
                   %>
                   <label class="coolbox">

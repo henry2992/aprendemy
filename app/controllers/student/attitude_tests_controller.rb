@@ -8,7 +8,7 @@ class Student::AttitudeTestsController < Student::StudentController
 
   def update
     uat = current_user.user_attitude_tests.find_by_test_id(params[:id])
-    current_user.user_attitude_tests.find_by_test_id(params[:id]).test.answers.destroy_all if uat
+    Answer.where(item: uat).destroy_all if !uat.blank?
     qs = vs = []
     qs = params['question_ids'].keys.map { |e| e } if params['question_ids']
     vs = params['question_ids'].values.map { |e| e } if params['question_ids']
@@ -17,10 +17,11 @@ class Student::AttitudeTestsController < Student::StudentController
     data = []
     i.each do |i|
       data[i] = { 
-                  "question" => Question.find(qs[i].to_i), 
-                  "choice"   => Choice.find(vs[i].to_i),
-                  "user"     => current_user,
-                  "item"   => uat
+                  "question_id" => qs[i].to_i, 
+                  "choice_id"   => vs[i].to_i,
+                  "user_id"     => current_user.id,
+                  "item_id"     => uat.id,
+                  "item_type"   => "UserAttitudeTest"
                 }
 
     end
@@ -32,7 +33,7 @@ class Student::AttitudeTestsController < Student::StudentController
       band = true
     end
 
-    if Answer.create!(data) and data.any?
+    if Answer.create!(data) and !data.blank?
       if params['action_form'] == "pause" && current_user.user_attitude_tests.find_by_test_id(params[:id]).test.questions.count >= vs.count
         return redirect_to student_attitude_test_path(params['id']), notice: 'Test pausado correctamente, para finalizar un test debe contestar todas las preguntas' 
       end

@@ -91,14 +91,16 @@
                   <%
                   cl = ""
                   st = ""
-                  ch = @uat.test.answers.find_by(question: q, choice: c) ? true : false
+                  ch = Answer.where(question: q, choice: c, item: @uat).first ? true : false
+                  # raise Answer.where(question: q, choice: c, item: @uat).first.id.to_yaml
                   q.areas.each do |area|
-                    # raise area.to_yaml
                     index = areas.index(area.id)
                     areas_array << areas[index] if (c.value_count > 0) && ch
                   end
                   cl = "checked" if ch
                   %>
+                <% 
+                %>
                   <label class="coolbox">
                     <%= radio_button_tag "question_ids[#{q.id}]", c.id, ch %>
                     <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
