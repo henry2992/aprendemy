@@ -174,6 +174,68 @@ ALTER SEQUENCE answers_id_seq OWNED BY answers.id;
 
 
 --
+-- Name: area_questions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE area_questions (
+    id integer NOT NULL,
+    area_id integer,
+    question_id integer,
+    timestamps character varying
+);
+
+
+--
+-- Name: area_questions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE area_questions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: area_questions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE area_questions_id_seq OWNED BY area_questions.id;
+
+
+--
+-- Name: areas; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE areas (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    timestamps character varying
+);
+
+
+--
+-- Name: areas_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE areas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: areas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE areas_id_seq OWNED BY areas.id;
+
+
+--
 -- Name: blogs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -286,7 +348,8 @@ CREATE TABLE choices (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     total_answered_count integer DEFAULT 0,
-    wrong_answered_count integer DEFAULT 0
+    wrong_answered_count integer DEFAULT 0,
+    value_count integer DEFAULT 0
 );
 
 
@@ -353,7 +416,7 @@ CREATE TABLE course_user_tests (
     test_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    last_started timestamp without time zone DEFAULT '2016-08-19 18:13:02.264188'::timestamp without time zone,
+    last_started timestamp without time zone DEFAULT '2016-11-03 10:43:10.70557'::timestamp without time zone,
     last_paused timestamp without time zone,
     time_completed timestamp without time zone,
     time_left bigint,
@@ -673,7 +736,8 @@ CREATE TABLE questions (
     total_answered_count integer DEFAULT 0 NOT NULL,
     wrong_answered_count integer DEFAULT 0 NOT NULL,
     parent_id integer,
-    parent_type character varying
+    parent_type character varying,
+    area integer DEFAULT 1
 );
 
 
@@ -938,7 +1002,8 @@ CREATE TABLE tests (
     updated_at timestamp without time zone NOT NULL,
     course_id character varying,
     picture character varying,
-    test_type integer DEFAULT 0
+    test_type integer DEFAULT 0,
+    legend text DEFAULT ''::text
 );
 
 
@@ -1040,7 +1105,10 @@ ALTER SEQUENCE universities_id_seq OWNED BY universities.id;
 CREATE TABLE user_attitude_tests (
     id integer NOT NULL,
     user_id integer,
-    test_id integer
+    test_id integer,
+    status integer DEFAULT 0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1087,7 +1155,8 @@ CREATE TABLE users (
     last_name character varying,
     image character varying,
     gender boolean,
-    role integer DEFAULT 0
+    role integer DEFAULT 0,
+    attitude_test_observation text
 );
 
 
@@ -1108,6 +1177,40 @@ CREATE SEQUENCE users_id_seq
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: video_classes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE video_classes (
+    id integer NOT NULL,
+    title character varying,
+    link character varying,
+    picture character varying,
+    sub_category_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: video_classes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE video_classes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: video_classes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE video_classes_id_seq OWNED BY video_classes.id;
 
 
 --
@@ -1144,10 +1247,61 @@ ALTER SEQUENCE videos_id_seq OWNED BY videos.id;
 
 
 --
+-- Name: webinars; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE webinars (
+    id integer NOT NULL,
+    subject character varying,
+    professor character varying,
+    description text,
+    "time" timestamp without time zone,
+    online boolean,
+    link character varying,
+    code character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: webinars_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE webinars_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: webinars_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE webinars_id_seq OWNED BY webinars.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY answers ALTER COLUMN id SET DEFAULT nextval('answers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY area_questions ALTER COLUMN id SET DEFAULT nextval('area_questions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY areas ALTER COLUMN id SET DEFAULT nextval('areas_id_seq'::regclass);
 
 
 --
@@ -1343,7 +1497,21 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY video_classes ALTER COLUMN id SET DEFAULT nextval('video_classes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY webinars ALTER COLUMN id SET DEFAULT nextval('webinars_id_seq'::regclass);
 
 
 --
@@ -1352,6 +1520,22 @@ ALTER TABLE ONLY videos ALTER COLUMN id SET DEFAULT nextval('videos_id_seq'::reg
 
 ALTER TABLE ONLY answers
     ADD CONSTRAINT answers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: area_questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY area_questions
+    ADD CONSTRAINT area_questions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: areas_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY areas
+    ADD CONSTRAINT areas_pkey PRIMARY KEY (id);
 
 
 --
@@ -1571,11 +1755,27 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: video_classes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY video_classes
+    ADD CONSTRAINT video_classes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: videos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY videos
     ADD CONSTRAINT videos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: webinars_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY webinars
+    ADD CONSTRAINT webinars_pkey PRIMARY KEY (id);
 
 
 --
@@ -1611,6 +1811,20 @@ CREATE INDEX index_answers_on_question_id ON answers USING btree (question_id);
 --
 
 CREATE INDEX index_answers_on_user_id ON answers USING btree (user_id);
+
+
+--
+-- Name: index_area_questions_on_area_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_area_questions_on_area_id ON area_questions USING btree (area_id);
+
+
+--
+-- Name: index_area_questions_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_area_questions_on_question_id ON area_questions USING btree (question_id);
 
 
 --
@@ -1726,6 +1940,13 @@ CREATE INDEX index_users_on_uid ON users USING btree (uid);
 
 
 --
+-- Name: index_video_classes_on_sub_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_video_classes_on_sub_category_id ON video_classes USING btree (sub_category_id);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1812,11 +2033,27 @@ ALTER TABLE ONLY live_classes
 
 
 --
+-- Name: fk_rails_bde236fcd3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY area_questions
+    ADD CONSTRAINT fk_rails_bde236fcd3 FOREIGN KEY (area_id) REFERENCES areas(id);
+
+
+--
 -- Name: fk_rails_c685b1dfea; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
     ADD CONSTRAINT fk_rails_c685b1dfea FOREIGN KEY (question_id) REFERENCES questions(id);
+
+
+--
+-- Name: fk_rails_c9c2a96740; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY area_questions
+    ADD CONSTRAINT fk_rails_c9c2a96740 FOREIGN KEY (question_id) REFERENCES questions(id);
 
 
 --
@@ -2022,4 +2259,26 @@ INSERT INTO schema_migrations (version) VALUES ('20161011143210');
 INSERT INTO schema_migrations (version) VALUES ('20161011152718');
 
 INSERT INTO schema_migrations (version) VALUES ('20161018150110');
+
+INSERT INTO schema_migrations (version) VALUES ('20161120182705');
+
+INSERT INTO schema_migrations (version) VALUES ('20161127150842');
+
+INSERT INTO schema_migrations (version) VALUES ('20161130201248');
+
+INSERT INTO schema_migrations (version) VALUES ('20161220212616');
+
+INSERT INTO schema_migrations (version) VALUES ('20170103154140');
+
+INSERT INTO schema_migrations (version) VALUES ('20170105111700');
+
+INSERT INTO schema_migrations (version) VALUES ('20170107185358');
+
+INSERT INTO schema_migrations (version) VALUES ('20170107230553');
+
+INSERT INTO schema_migrations (version) VALUES ('20170108004237');
+
+INSERT INTO schema_migrations (version) VALUES ('20170127015659');
+
+INSERT INTO schema_migrations (version) VALUES ('20170127015845');
 

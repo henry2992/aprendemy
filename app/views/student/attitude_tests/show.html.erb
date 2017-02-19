@@ -1,0 +1,131 @@
+<div id="application">
+  <% 
+    show_explanation = false
+  %>
+  <!-- Vertical Nav -->
+  <div id="container">
+    <%= form_tag nil, :method => :put, id: "form" do %>
+    <!-- Button Panel -->
+    <div class="test-time-wrapper-mobile">
+      <div class="test-title-wrapper">
+        <h1> Controles </h1>
+      </div>  
+      <div class="test-clue-content-wrapper">
+        <div>
+          <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "action_form", id: "pause") do
+                content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')
+              end if @uat.opened?
+          %>
+          <%= button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "action_form", id: "qualify") do
+                content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Terminar')
+              end if @uat.opened?
+          %>
+          <%= link_to "Atrás", student_courses_path, class: 'btn btn-success simulator-btn' %>
+        </div>
+        
+
+      </div>
+    </div>
+    <!-- \Button Panel -->
+    <!-- Content Homework Progress-->
+    <div class="test-inner-wrapper">
+      
+      <div class="test-title-wrapper">
+        <h1><%= @uat.test.title %></h1>
+      </div>
+        
+      <div class="test-content-wrapper">
+        <div class="row rox-fix">
+          <!-- Question --> 
+          <% @uat.test.questions.each do |q| %>
+            <div class="test-question">
+              <p><%= q.content %></p>
+              <% if q.picture.present? %>
+                <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content) %>
+              <% end %>
+              <% if q.url %>
+                <%= link_to q.url, q.url %>
+              <% end %>
+              <% if q.questions %>
+                <% q.questions.each do |qss| %>
+                  <div class="test-question">
+                    <p><%= qss.content %></p>
+                    <% if qss.picture.present? %>
+                      <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
+                    <% end %>
+                    <% if qss.url %>
+                      <%= link_to qss.url, qss.url %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if q.choices %>
+                <% 
+                letters = ("A".."Z").to_a
+                lpos = 0
+                
+                answer_class = ""
+                answer_title = ""
+                answer_text = ""
+                %>
+                <% q.choices.each do |c| %>
+                  <%
+                  cl = ""
+                  st = ""
+                  ch = Answer.where(question: q, choice: c, item: @uat).first ? true : false
+                  # if lpos >0
+                  #   raise @uat.to_yaml
+                  # end
+                  cl = "checked" if ch
+                  %>
+                  <label class="coolbox">
+                    <%= radio_button_tag "question_ids[#{q.id}]", c.id, ch %>
+                    <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
+                    <span class="box-info"> <%= c.content %> </span>
+                  </label>
+                  <% lpos += 1 %>
+                <% end %>
+                <% if q.explanation && show_explanation %>
+                  <div class="answer">
+                    <p><i class="fa fa-times-circle-o <%= answer_class %>" aria-hidden="true"></i> 
+                    <span class="<%= answer_class %>"> <%= answer_title %> </span> <%= answer_text %> </p>
+                    <div class="show-video">
+                      <p data-explanation="<%= q.explanation %>" class="show_explanation"> Ver explicación </p> 
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <input type="hidden" value="" name="course_user_test[course_user_id]">
+          <input type="hidden" value="" name="course_user_test[test_id]">
+          <input type="hidden" value="" name="course_user_test[action_form]" id="action_form">
+        </div>  
+      </div>
+    </div>
+
+
+    <!-- Button Panel -->
+    <div class="test-time-wrapper">
+      <div class="test-title-wrapper">
+        <h1> Controles </h1>
+      </div>  
+      <div class="test-clue-content-wrapper">
+        <div>
+          <%= button_tag(type: 'submit', class: 'btn btn-warning simulator-btn', value: "pause", name: "action_form", id: "pause") do
+                content_tag(:span, '', class:'fa fa-pause') << content_tag(:span, ' Pausar')
+              end if @uat.opened?
+          %>
+          <%= button_tag(type: 'submit', class: 'btn btn-success simulator-btn', value: "end", name: "action_form", id: "qualify") do
+                content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Terminar')
+              end if @uat.opened?
+          %>
+          <%= link_to "Atrás", student_courses_path, class: 'btn btn-success simulator-btn' %>
+        </div>
+
+      </div>
+    </div>
+    <!-- \Button Panel -->
+    <% end %>
+  </div>
+</div>

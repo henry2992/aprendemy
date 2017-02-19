@@ -9,6 +9,7 @@ class Course < ActiveRecord::Base
 
   has_many :tests
   has_one :live_class
+
   
   # Validations
   validates :name, :description, presence: true

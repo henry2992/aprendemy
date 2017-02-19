@@ -1,0 +1,204 @@
+<div id="application"> 
+
+  <div id="container">
+    <!-- Content Homework Progress-->
+    <div class="test-wrapper">
+      <div class="test-title-wrapper">
+        <h1> Pruebas de Aptitud</h1>
+      </div>
+      <div class="test-content-wrapper">
+        <div class=" row rox-fix">
+          <ul class="nav nav-tabs nav-justified test-navs" role="tablist">
+            <li class="active"><a href="#terminados" aria-controls="terminados" role="tab" data-toggle="tab" class="test-navs-link">Terminados <span class="badge badge-terminados"></span></a></li>
+
+            <li><a href="#en_progreso" aria-controls="en_progreso" role="tab" data-toggle="tab" class="test-navs-links" >En Progreso <span class="badge badge-pendientes"></span></a></li>
+
+            <li><a href="#respondidos" aria-controls="respondidos" role="tab" data-toggle="tab" class="test-navs-links" >Respondidos <span class="badge badge-respondido"></span></a></li>
+          </ul>
+
+          <div class="test-content-wrapper">
+            <% ut = []; up = []; ur = [] %>
+
+            <% User.all.each do |u| %>
+              <% if u.has_attitude_tests? %>
+                <% if u.user_attitude_tests.completed.count == Test.attitude.count && u.attitude_test_observation.blank? %>
+                  <% ut << u %>
+                <% end %>
+
+                <% if u.user_attitude_tests.completed.count != Test.attitude.count %>
+                  <% up << u  %>
+                <% end %>
+              
+                <% if u.user_attitude_tests.completed.count == Test.attitude.count && !u.attitude_test_observation.blank? %>
+                  <% ur << u %>
+                <% end %>
+              <% end %>
+            <% end %>
+
+            <div class="tab-content">
+              <div class="tab-pane active test-content-wrapper" id="terminados" style="padding:0">
+                <div class="row rox-fix">
+                  <div class="col-sm-offset-3 col-sm-6">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control pull-right" placeholder="Buscar por Email" aria-describedby="sizing-addon1" name="search_terminados" id="search_terminados" >
+                      <span class="input-group-addon" id="sizing-addon1">@</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rox-fix">
+                  <br>
+                </div>
+                <% ut.each do |u| %>
+                  <div class="row rox-fix items_t">
+                    <div class="col-sm-2">
+                      <% if (u.image.present?) %>
+                        <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                      <% else %>
+                        <% if (u.gender == false or u.gender == nil) %>
+                            <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                        <% else %>
+                            <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="col-sm-3">
+                      <h3><%= u.first_name %> <%= u.last_name %></h3>
+                      <h4><%= u.email %></h4>
+                    </div>
+                    <div class="col-sm-7">
+                      <p style="text-align: center">
+                        Ver respuestas
+                        <div class="btn-group btn-group-justified">
+                          <% u.user_attitude_tests.each do |a| %>
+                            <%= link_to "#{a.test.title}", backend_attitude_path(a), class: 'btn btn-success' %>
+                          <% end %>
+                        </div>
+                      </p>
+                      <%= form_tag backend_attitude_path(u.id), :method => :put, id: "form" do %>
+                        <textarea name="attitude_test[attitude_test_observation]" id="ato" rows="5" tabindex="1" class="form-control" placeholder="Escriba aquí su evaluación"></textarea>
+                        <br>
+                        <p>
+                          <%= button_tag(type: 'submit', class: 'btn btn-warning col-sm-12 pull-right', data: { confirm: "¿Está seguro de almacenar la evaluación de este test?" }) do
+                              content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Evaluar')
+                            end
+                          %>
+                        </p>
+                      <% end %>
+                    </div>
+                  </div>
+                  <hr>
+                <% end %>
+              </div>
+              <div class="tab-pane test-content-wrapper" id="en_progreso" style="padding:0">
+                <div class="row rox-fix">
+                  <div class="col-sm-offset-3 col-sm-6">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control pull-right" placeholder="Buscar por Email" aria-describedby="sizing-addon1" name="search_en_progreso" id="search_en_progreso" >
+                      <span class="input-group-addon" id="sizing-addon1">@</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rox-fix">
+                  <br>
+                </div>
+                <% up.each do |u| %>
+                  <div class="row rox-fix items_p">
+                    <div class="col-sm-2">
+                      <% if (u.image.present?) %>
+                        <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                      <% else %>
+                        <% if (u.gender == false or u.gender == nil) %>
+                            <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                        <% else %>
+                            <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="col-sm-3">
+                      <h3><%= u.first_name %> <%= u.last_name %></h3>
+                      <h4><%= u.email %></h4>
+                    </div>
+                    <div class="col-sm-7">
+                      <p style="text-align: center">
+                        Ver respuestas
+                        <div class="btn-group btn-group-justified">
+                          <% u.user_attitude_tests.order(:test_id).each do |a| %>
+                            <%= link_to "#{a.test.title}", backend_attitude_path(a), class: 'btn btn-success' %>
+                          <% end %>
+                        </div>
+                      </p>
+                    </div>
+                  </div>
+                  <hr>
+                <% end %>
+              </div>
+              <div class="tab-pane test-content-wrapper" id="respondidos" style="padding:0">
+                <div class="row rox-fix">
+                  <div class="col-sm-offset-3 col-sm-6">
+                    <div class="input-group input-group-lg">
+                      <input type="text" class="form-control pull-right" placeholder="Buscar por Email" aria-describedby="sizing-addon1" name="search_respondidos" id="search_respondidos" >
+                      <span class="input-group-addon" id="sizing-addon1">@</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row rox-fix">
+                  <br>
+                </div>
+
+                <% ur.each do |u| %>
+                  <div class="row rox-fix items_r">
+                    <div class="col-sm-2">
+                      <% if (u.image.present?) %>
+                        <%= image_tag(u.image.url, class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                      <% else %>
+                        <% if (u.gender == false or u.gender == nil) %>
+                            <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                        <% else %>
+                            <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{u.first_name} #{u.last_name}") %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="col-sm-3">
+                      <h3><%= u.first_name %> <%= u.last_name %></h3>
+                      <h4><%= u.email %></h4>
+                    </div>
+                    <div class="col-sm-7">
+                      <p style="text-align: center">
+                        Ver respuestas
+                        <div class="btn-group btn-group-justified">
+                          <% u.user_attitude_tests.each do |a| %>
+                            <%= link_to "#{a.test.title}", backend_attitude_path(a), class: 'btn btn-success' %>
+                          <% end %>
+                        </div>
+                      </p>
+                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"><%= u.attitude_test_observation %></textarea>
+                    </div>
+                  </div>
+                  <hr>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $(".badge-terminados").html(<%= ut.count %>);
+    $(".badge-pendientes").html(<%= up.count %>);
+    $(".badge-respondido").html(<%= ur.count %>);
+
+    $('input#search_terminados').quicksearch('#terminados div.items_t', {
+      'selector': 'div.col-sm-3 h4'
+    });
+    $('input#search_en_progreso').quicksearch('#en_progreso div.items_p', {
+      'selector': 'div.col-sm-3 h4'
+    });
+    $('input#search_respondidos').quicksearch('#respondidos div.items_r', {
+      'selector': 'div.col-sm-3 h4'
+    });
+
+  });
+</script>

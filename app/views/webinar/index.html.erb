@@ -1,0 +1,97 @@
+<div style="margin-top: 70px;">
+
+  <div class="main-navigation">
+
+  	    <div class="main-title-wrapper">
+			<h1> Clases Pregrabadas </h1>
+		</div>
+
+		<div class="main-content-wrapper">
+
+			<% unless @live_class %>
+		        <%= render 'not_online' %>
+		    <% else %>
+		        <%= render @live_class.online_now == false ? 'not_online' : 'online' %>
+		    <% end%>
+
+		</div>
+	  
+	   	
+
+</div>
+
+<div style="margin-top: 70px;">
+	
+	<!-- Course Tools -->
+	<div class="main-navigation">
+
+		<div class="main-title-wrapper">
+			<h1> Webinars </h1>
+		</div>
+
+		<div class="main-content-wrapper">
+
+			<div class="row">
+				
+				<% @webinars.each do |webinar| %>
+
+				<div class="col-md-4">
+					
+					<div class="webinar-subject">
+						<%= webinar.subject %>
+					</div>
+
+					<div class="webinar-holder">
+							
+						<p>Profesor: <%= webinar.professor %></p>
+						
+						<p>Tema: <%= webinar.description %> </p>
+
+						<p>Horario: <%= webinar.time.strftime('%D  %I:%M:%S %p') %> </p>
+						
+						<p>Código de acceso: <%= webinar.code %> </p>
+
+						
+						<%  if current_user.role == 'free' %>
+
+							<% if webinar.online == true %>
+								<p style="display: inline-block;" class="webinar-online"> Online </p>
+							<% else %>
+								<p style="display: inline-block;" class="webinar-offline"> Offline </p>
+							<% end %>
+
+
+							<div class="center">
+								<p> ¿Quieres tener acceso a todos los webinar de Aprendemy? </p>
+								<%= link_to 'Hazte Premium', payments_path, class: "btn btn-success center" %>
+
+							</div>
+
+						<% else %>
+
+							<% if webinar.online == true %>
+								<p style="display: inline-block;" class="webinar-online"> Online </p>
+							<% else %>
+								<p style="display: inline-block;" class="webinar-offline"> Offline </p>
+							<% end %>
+
+
+							<div class="center">
+								<a href="<%= webinar.link %>" class="btn btn-info center" target="_blank" >Entrar a la clase</a>
+							</div>
+
+
+						<% end %>
+
+						
+					
+					</div>
+				</div>										
+					
+				<% end %>
+			</div>
+
+
+		</div>
+	</div>
+</div>

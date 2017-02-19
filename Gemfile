@@ -45,6 +45,7 @@ group :production do
   gem 'puma'
 end
 
+gem 'sparkpost_rails'
 # Add this if you're using rvm
 # gem 'capistrano-rvm', github: "capistrano/rvm"
 

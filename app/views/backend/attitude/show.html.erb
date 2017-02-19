@@ -1,0 +1,188 @@
+<div id="application">
+  <!-- Vertical Nav -->
+  <div id="container">
+    <% # form_tag nil, :method => :put, id: "form" do %>
+    <!-- Button Panel -->
+    <div class="test-time-wrapper-mobile">
+      <div class="test-title-wrapper">
+        <h1> Controles </h1>
+      </div>  
+      <div class="test-clue-content-wrapper">
+        <div>
+          <div class="test-question">
+            <div class="row">
+              <div class="col-sm-2">
+                <% if (@uat.user.image.present?) %>
+                  <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                <% else %>
+                  <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
+                      <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% else %>
+                      <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">&nbsp;</div>
+              <div class="col-sm-12">
+                <h3 style="text-align: center"><%= @uat.user.first_name %> <%= @uat.user.last_name %></h3>
+                <h4 style="text-align: center"><%= @uat.user.email %></h4>
+              </div>
+              <div class="col-sm-12">
+                <%= link_to backend_attitude_index_path, :class => "btn btn-info simulator-btn", id: "exit" do 
+                      content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Pruebas de Aptitud')
+                end %>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+    <!-- \Button Panel -->
+    <!-- Content Homework Progress-->
+    <div class="test-inner-wrapper">
+      
+      <div class="test-title-wrapper">
+        <h1><%= @uat.test.title %></h1>
+      </div>
+        
+      <div class="test-content-wrapper">
+        <div class="row rox-fix">
+          <!-- Question --> 
+          <% areas = @uat.test.areas.map{|a| [a.id,a.id] }.uniq.sort.to_h %>
+          <% areas_array = [] %>
+
+          <% @uat.test.questions.each do |q| %>
+            <div class="test-question">
+              <p><%= q.content %></p>
+              <% if q.picture.present? %>
+                <%= image_tag(q.picture.url, class: "img-responsive", alt: q.content) %>
+              <% end %>
+              <% if q.url %>
+                <%= link_to q.url, q.url %>
+              <% end %>
+              <% if q.questions %>
+                <% q.questions.each do |qss| %>
+                  <div class="test-question">
+                    <p><%= qss.content %></p>
+                    <% if qss.picture.present? %>
+                      <%= image_tag(qss.picture.url, class: "img-responsive", alt: qss.content) %>
+                    <% end %>
+                    <% if qss.url %>
+                      <%= link_to qss.url, qss.url %>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if q.choices %>
+                <% 
+                letters = ("A".."Z").to_a
+                lpos = 0
+                
+                answer_class = ""
+                answer_title = ""
+                answer_text = ""
+                %>
+                <% q.choices.each do |c| %>
+                  <%
+                  cl = ""
+                  st = ""
+                  ch = Answer.where(question: q, choice: c, item: @uat).first ? true : false
+                  # raise Answer.where(question: q, choice: c, item: @uat).first.id.to_yaml
+                  q.areas.each do |area|
+                    index = areas.index(area.id)
+                    areas_array << areas[index] if (c.value_count > 0) && ch
+                  end
+                  cl = "checked" if ch
+                  %>
+                <% 
+                %>
+                  <label class="coolbox">
+                    <%= radio_button_tag "question_ids[#{q.id}]", c.id, ch %>
+                    <span class="box-number <%= cl %>"> <%= letters[lpos] %> </span>
+                    <span class="box-info"> <%= c.content %> </span>
+                  </label>
+                  <% lpos += 1 %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          
+          <input type="hidden" value="" name="attitude_test[course_user_id]">
+          <input type="hidden" value="" name="attitude_test[test_id]">
+          <input type="hidden" value="" name="attitude_test[action_form]" id="action_form">
+        </div>  
+      </div>
+    </div>
+
+    <!-- Button Panel -->
+    <div class="test-time-wrapper">
+      <div class="test-title-wrapper">
+        <h1> Controles </h1>
+      </div>  
+      <div class="test-clue-content-wrapper">
+        <div>
+          <div class="test-question">
+            <div class="row">
+              <div class="col-sm-12">
+                <% if (@uat.user.image.present?) %>
+                  <%= image_tag(@uat.user.image.url, class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                <% else %>
+                  <% if (@uat.user.gender == false or @uat.user.gender == nil) %>
+                      <%= image_tag("avatar-guy.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% else %>
+                      <%= image_tag("avatar-girl.png", class: "img-responsive", alt: "#{@uat.user.first_name} #{@uat.user.last_name}") %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">&nbsp;</div>
+              <div class="col-sm-12">
+                <h3 style="text-align: center"><%= @uat.user.first_name %> <%= @uat.user.last_name %></h3>
+                <h4 style="text-align: center"><%= @uat.user.email %></h4>
+              </div>
+              <div class="col-sm-12">
+                <%= link_to backend_attitude_index_path, :class => "btn btn-info simulator-btn", id: "exit" do 
+                      content_tag(:span, '', class:'fa fa-home') << content_tag(:span, ' Pruebas de Aptitud')
+                end %>
+              </div>
+              <div class="col-sm-12">
+                <table class="table">
+                  <tr>
+                    <th colspan="2">Resultados del Test</th>
+                  </tr>
+                  <%
+                  counts = Hash.new(0)
+                  a = areas_array.inject(Hash.new(0)) { |total, e| total[e] += 1 ;total }
+                  %>
+                  <% a.sort.each do |area, value| %>
+                    <tr>
+                      <th><%= Area.find(area).name %></th>
+                      <td><%= value %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              </div>
+              <h3>Leyenda</h3>
+              <table class="table">
+              <% @uat.test.areas.map(&:id).uniq.each do |a| %>
+                <tr>
+                  <th><small><%= Area.find(a).name %></small></th>
+                  <td><small><%= Area.find(a).description %></small></td>
+                </tr>
+              <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- \Button Panel -->
+    <% # end %>
+  </div>
+</div>

@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   
   has_many :answers
 
+  after_create :send_register_mail
+
   def statistics course = nil
     result = self
     result = self.courses.find(course) if course
@@ -45,6 +47,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_paid?
+    self.course_users.map { |a| a.course_user_plan.plan.paid? }.count(true) > 0 ? true : false
+  end
+
+  def has_attitude_tests?
+    self.user_attitude_tests.any?
+  end
+
   def points
     Point.where(recipient_id: self.id, recipient_type: 'User').sum(:points)
   end
@@ -56,4 +66,9 @@ class User < ActiveRecord::Base
   def self.current=(user)
     Thread.current[:user] = user
   end
+
+  def send_register_mail
+    RegisterUser.send_mail(self).deliver
+  end
+
 end

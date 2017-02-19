@@ -57,7 +57,8 @@
         <div class=" row rox-fix">
           <!-- Question -->
           <% clues = [] 
-             clue_index = 0 %>
+             clue_index = 0 
+             question_number = 1 %>
           <% @course_user_test.test.questions.each do |q| %>
             <% 
               clues[clue_index] = if @course_user_test.answers.where(question_id: q.id).first.marked == 1
@@ -80,7 +81,7 @@
                                            data-question-id="<%= q.id %>"> Responder luego
                 </label>
               </div>
-              <p><%= q.content %></p>
+              <p><%= question_number %>) <%= q.content %></p>
               <% if @answers
                   wrong = true if @answers.where(question_id: q.id).first.choice_id != q.choice_id
                 end %>
@@ -148,6 +149,7 @@
               <% -qs+=1 %>
             </div>
             <% clue_index += 1 %>
+            <% question_number += 1 %>
           <% end %>
           <input type="hidden" value="<%= @course_user.id %>" name="course_user_test[course_user_id]">
           <input type="hidden" value="<%= @test.id %>" name="course_user_test[test_id]">
