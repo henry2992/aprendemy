@@ -20,6 +20,6 @@ class Test < ActiveRecord::Base
                           numericality: { 
                                 only_integer: true, 
                                 greater_than_or_equal_to: 15, 
-                                less_than_or_equal_to: 120 
+                                less_than_or_equal_to: 180 
                               }
 end
