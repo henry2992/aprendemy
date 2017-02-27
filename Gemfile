@@ -55,6 +55,10 @@ gem "simple_calendar", "~> 2.0"
 
 
 group :development, :test do
+
+  # debería estar sólo en production
+  gem 'sparkpost_rails'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-nav'
   gem 'byebug'

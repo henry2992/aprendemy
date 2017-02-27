@@ -13,7 +13,7 @@ class TestMailer < ApplicationMailer
       template_id: "my-first-email"
     }
 
-    mail(to: "bjohnmer@gmail.com", subject: "Test", body: "test", sparkpost_data: data)
+    # mail(to: "bjohnmer@gmail.com", subject: "Test", body: "test", sparkpost_data: data)
     # mail(to: @user.email, subject: 'Sample Email')
   end
 end

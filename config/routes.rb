@@ -73,7 +73,7 @@ Rails.application.routes.draw do
   end
 
   # PAYMENTS
-  get 'payments' => 'payments#index', as: :payments
+  get 'pagos' => 'payments#index', as: :payments
 
   root 'home#index'
 

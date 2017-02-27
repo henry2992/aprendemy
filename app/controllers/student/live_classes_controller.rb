@@ -3,9 +3,7 @@ class Student::LiveClassesController < Student::StudentController
   before_action :set_data
 
   def index
-  	
     @categories = Category.all
-
   end
 
   private
