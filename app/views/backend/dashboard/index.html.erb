@@ -1,0 +1,22 @@
+<%= render 'backend/shared/admin_vertical_navbar' %>  
+
+<div class="admin-wrapper">
+  <h1>Bienvenido Administrador</h1>
+
+
+  <div id="container">
+    <!-- Admin Tools -->
+      <div class="row">
+
+        <div class="col-xs-6 col-sm-4">
+          <%= link_to backend_courses_path, {:style=> "text-decoration: none;"} do %>
+            <div class="tool-card-wrapper" > 
+              <div class="tool-card" style="background-color: #1B7E69; background-image: url('https://s3-us-west-2.amazonaws.com/codeplaceimages/angular.jpeg');" >
+                <h1 class="tool-card-title" >Cursos</h1>
+              </div>
+            </div>
+          <% end %>     
+        </div>
+    </div>
+  </div>
+</div>

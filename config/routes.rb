@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   
   namespace :backend do
     resources :blogs
+    resources :courses
+    
     get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     resources :attitude, only: [:index, :show, :update]
     # get '/attitude' => 'attitude#index', :as => 'attitude'
@@ -86,4 +88,16 @@ Rails.application.routes.draw do
   # get 'auth/failure', to: redirect('/')
   
   match '*unmatched_route', :to => 'application#raise_not_found!', via: :all
+
+
+
+  # ADMINISTRATOR
+
+  namespace :administrator do
+    
+    get '/dashboard' => 'dashboard#index', :as => 'dashboard'
+    
+  end
+
+
 end
