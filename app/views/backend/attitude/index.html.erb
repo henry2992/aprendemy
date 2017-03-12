@@ -171,7 +171,16 @@
                           <% end %>
                         </div>
                       </p>
-                      <textarea name="attitude_test_observation" id="ato" rows="5" tabindex="1" class="form-control"><%= u.attitude_test_observation %></textarea>
+                      <%= form_tag backend_attitude_path(u.id), :method => :put, id: "form" do %>
+                        <textarea name="attitude_test[attitude_test_observation]" id="ato" rows="5" tabindex="1" class="form-control" placeholder="Escriba aquí su evaluación"><%= u.attitude_test_observation %></textarea>
+                        <br>
+                        <p>
+                          <%= button_tag(type: 'submit', class: 'btn btn-warning col-sm-12 pull-right', data: { confirm: "¿Está seguro de almacenar la evaluación de este test?" }) do
+                              content_tag(:span, '', class:'fa fa-check-square-o') << content_tag(:span, ' Modificar Evaluación')
+                            end
+                          %>
+                        </p>
+                      <% end %>
                     </div>
                   </div>
                   <hr>
