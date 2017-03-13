@@ -52,15 +52,16 @@
 
   <div id="main">
     <!-- Navbar -->
-    <% if user_signed_in? %>
+    <% if user_signed_in? && !current_user.admin? %>
         <% if (controller.controller_name == 'courses' && controller.action_name == 'index') or (controller.controller_name == 'events' && controller.action_name == 'index') or (controller.controller_name == 'registrations' && controller.action_name == 'edit') and (controller.controller_name != 'blogs') %>
           <%= render 'student/courses/index_navbar'  %> 
         <% else %> 
           <%= render 'student/courses/courses_navbar'  %> 
         <% end %>
+    <% else %>
+      <%= render 'student/courses/index_navbar'  %>
     <% end %>
     <!-- End Navbar -->
-  
       <%= render "layouts/flash"  %>
     <%= yield %>
 

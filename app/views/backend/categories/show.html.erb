@@ -1,0 +1,33 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> Categorías </h1>
+    </div>
+    <div class="main-content-wrapper">
+      
+
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @category.name %>
+      </p>
+
+      <p>
+        <strong>Sub categories count:</strong>
+        <%= @category.sub_categories_count %>
+      </p>
+
+      <%= link_to 'Edit', edit_backend_category_path(@category) %> |
+      <%= link_to 'Back', backend_categories_path %>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+</script>

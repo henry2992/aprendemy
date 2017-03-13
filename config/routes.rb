@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :backend do
-    resources :categories
-  end
   namespace :student do
     get 'video_classes/index'
   end
