@@ -14,10 +14,11 @@ Rails.application.routes.draw do
   resources :events
   
   namespace :backend do
+    root 'dashboard#index'
     resources :blogs
-    get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     resources :attitude, only: [:index, :show, :update]
-    # get '/attitude' => 'attitude#index', :as => 'attitude'
+    
+    # get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     # resources :sections
     # resources :tasks
     # resources :schools
