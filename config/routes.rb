@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :events
   
   namespace :backend do
+    
     root 'dashboard#index'
     resources :blogs
     resources :attitude, only: [:index, :show, :update]
