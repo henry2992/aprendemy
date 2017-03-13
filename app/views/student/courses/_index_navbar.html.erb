@@ -12,6 +12,7 @@
         </div>
         <ul class="nav navbar-nav navbar-right">
             <!-- Item 1 -->
+
             <li class="nav-calendar-wrapper">
               <%= link_to "Clases en Vivo", webinar_index_path, class:"white" %>
             </li>
@@ -22,6 +23,7 @@
               <% end %>
             </li>
             <!-- Item 2 -->
+            <% if current_user %>
             <li class="dropdown nav-profile-wrapper" >
                 <a href="#" class="dropdown-toggle nav-profile-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <% if (current_user.image.present?) %>
@@ -73,25 +75,13 @@
                     </li>
                 </ul>
             </li>
+            <% end %>
             <!-- Item 2 -->
             <li class="dropdown mobile-menu-icon" onclick="openNavRight()">
               <a class="nav-mobile-btn " >
                 <%= image_tag("menu-icon.png", class:"nav-menu-btn",  alt: "Apredemy") %>
               </a>
             </li>
-
-            <% if current_user.admin? %>
-              <li class="nav-calendar-wrapper">
-                <%= link_to "Administrador", backend_dashboard_path, class:"white" %>
-              </li>
-            <% end %> 
-
-            <% if current_user.admin? %>
-              <li class="nav-calendar-wrapper">
-                <%= link_to "Inicio", student_courses_path, class:"white" %>
-              </li>
-            <% end %> 
-
         </ul>
     </div>
 </nav>
