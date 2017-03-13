@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :backend do
+    resources :categories
+  end
   namespace :student do
     get 'video_classes/index'
   end
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
     root 'dashboard#index'
     resources :blogs
     resources :attitude, only: [:index, :show, :update]
+    resources :categories
     
     # get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     # resources :sections
