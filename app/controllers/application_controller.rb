@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   rescue_from ActionController::RoutingError, :with => :render_404
 
+  before_filter :set_cache_headers
+
+
   include ApplicationHelper, AnsweredQuestionsHelper
 
   def raise_not_found!
@@ -31,4 +34,11 @@ class ApplicationController < ActionController::Base
     User.current = current_user
   end
 
+  private
+
+  def set_cache_headers
+    response.headers["Cache-Control"] = "no-cache, no-store"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
 end
