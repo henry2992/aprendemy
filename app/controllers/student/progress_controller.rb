@@ -6,6 +6,7 @@ class Student::ProgressController < Student::StudentController
   # GET /progress
   # GET /progress.json
   def index
+    expires_now
     add_breadcrumb "Inicio", :root_path
     add_breadcrumb "#{@course_user.course.name} ", student_course_path(@course_user.course)
   end
