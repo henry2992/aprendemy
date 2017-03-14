@@ -1,0 +1,25 @@
+<%= form_for(@backend_category) do |f| %>
+  <% if @backend_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@backend_category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @backend_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :sub_categories_count %><br>
+    <%= f.number_field :sub_categories_count %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

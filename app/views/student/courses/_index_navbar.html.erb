@@ -23,6 +23,7 @@
               <% end %>
             </li>
             <!-- Item 2 -->
+            <% if current_user %>
             <li class="dropdown nav-profile-wrapper" >
                 <a href="#" class="dropdown-toggle nav-profile-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                   <% if (current_user.image.present?) %>
@@ -74,6 +75,7 @@
                     </li>
                 </ul>
             </li>
+            <% end %>
             <!-- Item 2 -->
             <li class="dropdown mobile-menu-icon" onclick="openNavRight()">
               <a class="nav-mobile-btn " >

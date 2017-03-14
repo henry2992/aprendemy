@@ -1,72 +1,75 @@
 class Backend::CategoriesController < Backend::DashboardController
-  before_filter :authenticate_user!
-  before_filter :user_is_admin?, except: [:index, :show]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
-  # Helper Methods for Devise Start
-  helper_method :resource_name, :resource, :devise_mapping
-
-  def resource_name
-    :user
-  end
-
-  def resource
-    @resource ||= User.new
-  end
-
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
-  end
-  # Helper Methods for Devise End
-
+  # GET /backend/categories
+  # GET /backend/categories.json
   def index
-    @categories = Category.all.includes(:sub_categories)
-    @series = []
-    @sub_category_names = []
+    @backend_categories = Category.all
   end
 
-  def new
-    @category = Category.new
-    render_js_only
-  end
-
-  def create
-    @category = current_user.categories.create(category_params)
-    if @category
-      flash[:success] = "Category '#{@category.name}' has been created successfully"
-    else
-      flash[:danger] = "An error occured. Please try again."
-    end
-    redirect_to categories_path
-  end
-
-  def edit
-    @category = Category.find_by_id(params[:id])
-    render :new
-  end
-
+  # GET /backend/categories/1
+  # GET /backend/categories/1.json
   def show
-    @category = Category.includes(:sub_categories).find_by_id(params[:id])
-    render_js_only
   end
 
+  # GET /backend/categories/new
+  def new
+    @backend_category = Category.new
+  end
+
+  # GET /backend/categories/1/edit
+  def edit
+  end
+
+  # POST /backend/categories
+  # POST /backend/categories.json
+  def create
+    @backend_category = Category.new(categories_params)
+
+    respond_to do |format|
+      if @backend_category.save
+        format.html { redirect_to @backend_category, notice: 'Category was successfully created.' }
+        format.json { render :show, status: :created, location: @backend_category }
+      else
+        format.html { render :new }
+        format.json { render json: @backend_category.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /backend/categories/1
+  # PATCH/PUT /backend/categories/1.json
   def update
-    @category = Category.find_by_id(params[:id])
-    @category.update(category_params) if @category
-    render :show
+    respond_to do |format|
+      if @backend_category.update(categories_params)
+        format.html { redirect_to @backend_category, notice: 'Category was successfully updated.' }
+        format.json { render :show, status: :ok, location: @backend_category }
+      else
+        format.html { render :edit }
+        format.json { render json: @backend_category.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
-  def delete
-    Category.find_by_id(params[:id]).destroy!
-  end
-
-  def filter_chart
-    # our logic to filter chart by separate categories will be here
+  # DELETE /backend/categories/1
+  # DELETE /backend/categories/1.json
+  def destroy
+    @backend_category.destroy
+    respond_to do |format|
+      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_category
+      @backend_category = Category.find(params[:id])
+    end
 
-  def category_params
-    params.require(:category).permit(:name)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def categories_params
+      params.require(:backend_category).permit(:name, :sub_categories_count)
+    end
 
 end
