@@ -1,11 +1,13 @@
-<div id="application"> 
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
 
-  <div id="container">
-    <!-- Content Homework Progress-->
-    <div class="test-wrapper">
-      <div class="test-title-wrapper">
-        <h1> Pruebas de Aptitud</h1>
-      </div>
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> Pruebas de Aptitud </h1>
+    </div>
+    <div class="main-content-wrapper">
       <div class="test-content-wrapper">
         <div class=" row rox-fix">
           <ul class="nav nav-tabs nav-justified test-navs" role="tablist">
@@ -193,6 +195,20 @@
     </div>
   </div>
 </div>
+<!-- 
+
+<div id="application"> 
+
+  <div id="container">
+    <!-- Content Homework Progress--
+    <div class="test-wrapper">
+      <div class="test-title-wrapper">
+        <h1> Pruebas de Aptitud</h1>
+      </div>
+      
+    </div>
+  </div>
+</div> -->
 <script>
   $(document).ready(function() {
     $(".badge-terminados").html(<%= ut.count %>);
