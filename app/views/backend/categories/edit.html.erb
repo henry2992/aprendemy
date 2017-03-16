@@ -9,12 +9,14 @@
     </div>
     <div class="main-content-wrapper">
 
-      <h1>Editing category</h1>
+      <h1>Editar categoría</h1>
 
       <%= render 'form' %>
+      
+      <br>
 
-      <%= link_to 'Show', backend_category_path(@backend_category) %> |
-      <%= link_to 'Back', backend_categories_path %>
+      <%= link_to 'Ver', backend_category_path(@backend_category), class: "btn btn-primary" %>
+      <%= link_to 'Atrás', backend_categories_path, class: "btn btn-primary" %>
 
     </div>
   </div>

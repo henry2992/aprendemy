@@ -13,8 +13,8 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Sub categories count</th>
+            <th>Nombre</th>
+            <th>Sub-categorías</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -24,9 +24,9 @@
             <tr>
               <td><%= backend_category.name %></td>
               <td><%= backend_category.sub_categories_count %></td>
-              <td><%= link_to 'Show', backend_category_path(backend_category) %></td>
-              <td><%= link_to 'Edit', edit_backend_category_path(backend_category) %></td>
-              <td><%= link_to 'Destroy', backend_category_path(backend_category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Ver', backend_category_path(backend_category) %></td>
+              <td><%= link_to 'Editar', edit_backend_category_path(backend_category) %></td>
+              <td><%= link_to 'Eliminar', backend_category_path(backend_category), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' } %></td>
             </tr>
           <% end %>
         </tbody>
@@ -34,7 +34,7 @@
 
       <br>
 
-      <%= link_to 'New category', new_backend_category_path %>
+      <%= link_to 'Nueva categoría', new_backend_category_path, class: 'btn btn-primary' %>
 
     </div>
   </div>

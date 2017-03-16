@@ -3,6 +3,7 @@ es:
     # Models Translation
     models:
         user: usuario
+        category: categoría
     # Attributes
     attributes:
       user:

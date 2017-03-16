@@ -13,17 +13,19 @@
       <p id="notice"><%= notice %></p>
 
       <p>
-        <strong>Name:</strong>
+        <strong>Nombre:</strong>
         <%= @backend_category.name %>
       </p>
 
       <p>
-        <strong>Sub categories count:</strong>
+        <strong>Sub-categorías:</strong>
         <%= @backend_category.sub_categories_count %>
       </p>
 
-      <%= link_to 'Edit', edit_backend_category_path(@backend_category) %> |
-      <%= link_to 'Back', backend_categories_path %>
+      <br>
+
+      <%= link_to 'Editar', edit_backend_category_path(@backend_category), class: "btn btn-primary" %>
+      <%= link_to 'Atrás', backend_categories_path, class: "btn btn-primary" %>
 
     </div>
   </div>
