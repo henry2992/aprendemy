@@ -20,13 +20,13 @@
         </thead>
 
         <tbody>
-          <% @backend_categories.each do |category| %>
+          <% @backend_categories.each do |backend_category| %>
             <tr>
-              <td><%= category.name %></td>
-              <td><%= category.sub_categories_count %></td>
-              <td><%= link_to 'Show', category %></td>
-              <td><%= link_to 'Edit', edit_backend_category_path(category) %></td>
-              <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= backend_category.name %></td>
+              <td><%= backend_category.sub_categories_count %></td>
+              <td><%= link_to 'Show', backend_category_path(backend_category) %></td>
+              <td><%= link_to 'Edit', edit_backend_category_path(backend_category) %></td>
+              <td><%= link_to 'Destroy', backend_category_path(backend_category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tbody>

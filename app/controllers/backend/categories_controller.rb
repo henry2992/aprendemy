@@ -28,8 +28,8 @@ class Backend::CategoriesController < Backend::DashboardController
 
     respond_to do |format|
       if @backend_category.save
-        format.html { redirect_to @backend_category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @backend_category }
+        format.html { redirect_to backend_categories_path, notice: 'Category was successfully created.' }
+        format.json { render :show, status: :created, location: backend_category_path(@backend_category) }
       else
         format.html { render :new }
         format.json { render json: @backend_category.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class Backend::CategoriesController < Backend::DashboardController
   def update
     respond_to do |format|
       if @backend_category.update(categories_params)
-        format.html { redirect_to @backend_category, notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @backend_category }
+        format.html { redirect_to backend_categories_path, notice: 'Category was successfully updated.' }
+        format.json { render :show, status: :ok, location: backend_category_path(@backend_category) }
       else
         format.html { render :edit }
         format.json { render json: @backend_category.errors, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class Backend::CategoriesController < Backend::DashboardController
   def destroy
     @backend_category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to backend_categories_url, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,7 +69,7 @@ class Backend::CategoriesController < Backend::DashboardController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def categories_params
-      params.require(:backend_category).permit(:name, :sub_categories_count)
+      params.require(:category).permit(:name)
     end
 
 end
