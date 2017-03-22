@@ -1,26 +1,28 @@
-<%= render 'backend/shared/admin_vertical_navbar' %>  
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
 
-<div class="admin-wrapper">
-	<div class="container">
-		<h1>Administrador de Cursos </h1>
-
-		<button>Crear Curso</button>
-
-		<div class="row ">
-			<% @courses.each do |course| %>
-				<a href="/backend/courses/<%=course.id %>">
-					<div class="course col-sm-4">	
-						<div class="course-card " style="background-image:  url('<%= course.picture.url %>') " >
-							<div class="course-card-wrapper ">
-								<h2 class="course-card-title"><%= course.name %></h2>
-								<h3 class="course-card-author"><%= course.author %></h3>
-								
+    <div class="main-title-wrapper">
+      <h1> Cursos </h1>
+    </div>
+    <div class="main-content-wrapper">
+      <p id="notice"><%= notice %></p>
+      <div class="row">
+      	<% @courses.each do |course| %>
+					<a href="/backend/courses/<%=course.id %>">
+						<div class="course col-sm-4">	
+							<div class="course-card " style="background-image:  url('<%= course.picture.url %>') " >
+								<div class="course-card-wrapper ">
+									<h2 class="course-card-title"><%= course.name %></h2>
+									<h3 class="course-card-author"><%= course.author %></h3>
+								</div>
 							</div>
 						</div>
-					</div>
-				</a>
-			<% end %>
-		</div>
-	</div>
-
+					</a>
+				<% end %>
+      </div>
+    </div>
+  </div>
 </div>

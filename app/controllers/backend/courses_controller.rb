@@ -7,7 +7,6 @@ class Backend::CoursesController < ApplicationController
   end
 
   def show
-    
   end
 
   private

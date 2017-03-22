@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :blogs
     resources :attitude, only: [:index, :show, :update]
     resources :categories
+    resources :courses
     
     # get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     # resources :sections
