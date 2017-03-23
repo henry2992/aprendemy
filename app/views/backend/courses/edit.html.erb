@@ -1,0 +1,26 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> Cursos </h1>
+    </div>
+    <div class="main-content-wrapper">
+
+      <h1>Editar curso</h1>
+
+      <%= render 'form' %>
+      
+      <br>
+
+      <%= link_to 'Ver', backend_course_path(@backend_course), class: "btn btn-primary" %>
+      <%= link_to 'Atrás', backend_courses_path, class: "btn btn-primary" %>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+</script>

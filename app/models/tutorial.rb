@@ -4,6 +4,7 @@ class Tutorial < ActiveRecord::Base
   belongs_to :material, :polymorphic => true
 
   # Picture Uploader
-  mount_uploader :picture, PictureUploader
+  mount_uploader :picture, PictureUploader if Rails.env == "production"
+  mount_uploader :picture, PicUploader unless Rails.env == "production"
 
 end

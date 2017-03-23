@@ -13,7 +13,8 @@ class Test < ActiveRecord::Base
   enum test_type: [:standard, :attitude]
 
   # Picture Uploader
-  mount_uploader :picture, PictureUploader
+  mount_uploader :picture, PictureUploader if Rails.env == "production"
+  mount_uploader :picture, PicUploader unless Rails.env == "production"
 
   validates :title, :presence => true, :length => { :minimum => 2 }
   validates :time_limit, :allow_blank => true,

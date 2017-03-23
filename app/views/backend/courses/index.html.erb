@@ -10,15 +10,23 @@
     <div class="main-content-wrapper">
       <p id="notice"><%= notice %></p>
       <div class="row">
-      	<% @courses.each do |course| %>
-					<a href="/backend/courses/<%=course.id %>">
-						<div class="course col-sm-4">	
-							<div class="course-card " style="background-image:  url('<%= course.picture.url %>') " >
-								<div class="course-card-wrapper ">
-									<h2 class="course-card-title"><%= course.name %></h2>
-									<h3 class="course-card-author"><%= course.author %></h3>
-								</div>
-							</div>
+        <div class="col-sm-12">
+          <%= link_to 'Nuevo Curso', new_backend_course_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="row">
+        <% @backend_courses.each do |course| %>
+          <a href="/backend/courses/<%=course.id %>">
+            <div class="course col-sm-4"> 
+              <div class="course-card " style="background-image:  url('<%= course.picture.url %>') " >
+                <div class="course-card-wrapper ">
+                  <h2 class="course-card-title"><%= course.name %></h2>
+                  <h3 class="course-card-author"><%= course.author %></h3>
+                  <br>
+                </div>
+              </div>
+              <%= link_to 'Eliminar', backend_course_path(course), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' }, class: "btn btn-danger" %>
+              <%= link_to 'Editar', edit_backend_course_path(course), class: "btn btn-warning" %>
 						</div>
 					</a>
 				<% end %>

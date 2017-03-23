@@ -8,6 +8,7 @@ class University < ActiveRecord::Base
 	validates :city, :presence => true, :length => { :minimum => 2 }
 	validates :type, :presence => true
 
-	mount_uploader :logo, PictureUploader
+  mount_uploader :logo, PictureUploader if Rails.env == "production"
+  mount_uploader :logo, PicUploader unless Rails.env == "production"
 	self.inheritance_column = :_type_disabled
 end

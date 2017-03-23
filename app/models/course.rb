@@ -9,13 +9,13 @@ class Course < ActiveRecord::Base
 
   has_many :tests
   has_one :live_class
-
   
   # Validations
   validates :name, :description, presence: true
 
   # Picture Uploader
-  mount_uploader :picture, PictureUploader
+  mount_uploader :picture, PictureUploader if Rails.env == "production"
+  mount_uploader :picture, PicUploader unless Rails.env == "production"
 
   def plan_days_left
     (self.course_users.find_by(user: User.current).course_user_plan.expiration_date - Date.today).to_i

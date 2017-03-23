@@ -15,7 +15,8 @@ class Question < ActiveRecord::Base
   has_many :area_questions
   has_many :areas, through: :area_questions
 
-  mount_uploader :picture, PictureUploader
+  mount_uploader :picture, PictureUploader if Rails.env == "production"
+  mount_uploader :picture, PicUploader unless Rails.env == "production"
 
   # scope :avergage_time, -> (object) { where( object[:field].to_s.html_safe + " like ? ","%#{object[:textsearch].to_s.html_safe}%")}
 

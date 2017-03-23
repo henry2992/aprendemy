@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
 
   enum role: %w(free paid admin psicologist)
 
-  mount_uploader :image, UserUploader
+  mount_uploader :image, UserUploader if Rails.env == "production"
+  mount_uploader :image, PicUploader unless Rails.env == "production"
 
   has_many :course_users, :dependent => :destroy
   has_many :courses, :through => :course_users

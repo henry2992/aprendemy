@@ -1,0 +1,47 @@
+<%= form_for [:backend, @backend_course] do |f| %>
+  <% if @backend_course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@backend_course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% @backend_course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <%= f.text_field :name, class: "form-control", placeholder: "Nombre" %>
+  </div>
+  
+  <div class="form-group">
+    <label for="description">Descripción</label>
+    <%= f.text_area :description, class: "form-control", placeholder: "Descripción" %>
+  </div>
+
+  <div class="form-group">
+    <label for="author">Autor</label>
+    <%= f.text_field :author, class: "form-control", placeholder: "Autor" %>
+  </div>
+  <div class="row">
+  <% if @backend_course.picture? %>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= image_tag @backend_course.picture.url, class: "img-responsive" %>
+      </div>
+    </div>
+  <% end %>
+    <div class="col-md-8">
+      <div class="form-group">
+        <label for="picture">Imagen</label>
+        <%= f.file_field(:picture, accept: 'image/png,image/gif,image/jpeg') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-success' %> 
+  </div>
+<% end %>

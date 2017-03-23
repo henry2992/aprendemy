@@ -7,7 +7,8 @@ class SubCategory < ActiveRecord::Base
   has_many :video_classes
 
   # Picture Uploader
-  mount_uploader :picture, PictureUploader
+  mount_uploader :picture, PictureUploader if Rails.env == "production"
+  mount_uploader :picture, PicUploader unless Rails.env == "production"
 
   def question_count
     self.questions.length
