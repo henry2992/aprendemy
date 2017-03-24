@@ -15,10 +15,10 @@ class PictureUploader < CarrierWave::Uploader::Base
 
   # storage :file unless Rails.env == "production"
 
-  # def public_id
-  #   return "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  # end
-  def store_dir
-    "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  def public_id
+    return "#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  # def store_dir
+  #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  # end
 end
