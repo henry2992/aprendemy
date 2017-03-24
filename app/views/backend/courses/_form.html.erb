@@ -1,4 +1,5 @@
 <%= form_for [:backend, @backend_course] do |f| %>
+  <%= f.hidden_field(:picture_cache) %>
   <% if @backend_course.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@backend_course.errors.count, "error") %> prohibited this course from being saved:</h2>
@@ -29,7 +30,7 @@
   <% if @backend_course.picture? %>
     <div class="col-md-4">
       <div class="form-group">
-        <%= image_tag @backend_course.picture.url, class: "img-responsive" %>
+        <%= cl_image_tag @backend_course.picture.url, class: "img-responsive" %>
       </div>
     </div>
   <% end %>
