@@ -17,23 +17,3 @@ test:
   api_secret: PgPomrQlsfn9wiuRqMyt8Pa1XWQ
   enhance_image_tag: true
   static_image_support: false
-
-# ---
-# development:
-#   cloud_name: drkw6qcjz
-#   api_key: '138152763199323'
-#   api_secret: ZXnzhv7zB2NS2neEaxYQmtMUV9Y
-#   enhance_image_tag: true
-#   static_image_support: false
-# production:
-#   cloud_name: drkw6qcjz
-#   api_key: '138152763199323'
-#   api_secret: ZXnzhv7zB2NS2neEaxYQmtMUV9Y
-#   enhance_image_tag: true
-#   static_image_support: true
-# test:
-#   cloud_name: drkw6qcjz
-#   api_key: '138152763199323'
-#   api_secret: ZXnzhv7zB2NS2neEaxYQmtMUV9Y
-#   enhance_image_tag: true
-#   static_image_support: false
