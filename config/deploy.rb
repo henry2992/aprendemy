@@ -5,7 +5,7 @@ set :application, 'aprendemy'
 set :repo_url, 'git@github.com:henry2992/aprendemy.git' # Edit this to match your repository
 set :deploy_to, '/home/deploy/aprendemy'
 set :pty, true
-set :linked_files, %w{config/database.yml config/application.yml config/puma.rb}
+set :linked_files, %w{config/database.yml config/application.yml config/puma.rb config/cloudinary.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 set :keep_releases, 5
 
