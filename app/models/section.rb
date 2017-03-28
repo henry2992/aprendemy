@@ -1,7 +1,7 @@
 class Section < ActiveRecord::Base
   belongs_to :course
-  has_many :resources, -> { order(:position, :created_at) }
-  has_many :resource_progresses
+  has_many :resources, -> { order(:position, :created_at) }, :dependent => :destroy
+  has_many :resource_progresses, :dependent => :destroy
   validates :name, :presence => true, :length => { :minimum => 2 }
   validates :course, :presence => true
 

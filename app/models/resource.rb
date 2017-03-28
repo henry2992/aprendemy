@@ -2,7 +2,7 @@ class Resource < ActiveRecord::Base
 	
 	belongs_to :material, :polymorphic => true
   belongs_to :section
-	has_many :resource_progresses
+	has_many :resource_progresses, :dependent => :destroy
 
   validates :name, presence: true
   validates :material, presence: true
