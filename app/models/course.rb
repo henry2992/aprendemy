@@ -2,12 +2,12 @@ class Course < ActiveRecord::Base
   has_many :categories
   has_many :sub_categories, :through => :categories
   
-  has_many :sections
+  has_many :sections, :dependent => :destroy
 
   has_many :course_users, :dependent => :destroy
   has_many :users, :through => :course_users
 
-  has_many :tests
+  has_many :tests, :dependent => :destroy
   has_one :live_class
   
   # Validations
