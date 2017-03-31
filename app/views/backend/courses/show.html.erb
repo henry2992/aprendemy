@@ -1,16 +1,36 @@
 <div id="container">
+  <!-- Vertical Nav -->
   <%= render 'backend/navigation/vertical_navbar' %>
   
   <div class="main-navigation">
 
     <div class="main-title-wrapper">
-      <h1> Curso: <%= @backend_course.name %> </h1>
+      <h1> <%= @backend_course.name %> </h1>
     </div>
     <div class="main-content-wrapper">
       <p id="notice"><%= notice %></p>
-
-
+      <div class="row">
+        <div class="col-sm-12">
+          <%= link_to 'Nueva Categoría', new_backend_course_category_path(@backend_course), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="row">
+        <% @backend_course.categories.each do |category| %>
+          <a href="<%= backend_course_category_path(@backend_course, category) %>">
+            <div class="course col-sm-4"> 
+              <div class="course-card ">
+                <div class="course-card-wrapper ">
+                  <h2 class="course-card-title"><%= category.name %></h2>
+                  <h3 class="course-card-author">Subcategorías: <%= category.sub_categories_count %></h3>
+                  <br>
+                </div>
+              </div>
+              <%= link_to 'Eliminar', backend_course_category_path(@backend_course, category), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' }, class: "btn btn-danger" %>
+              <%= link_to 'Editar', edit_backend_course_category_path(@backend_course,category), class: "btn btn-warning" %>
+						</div>
+					</a>
+				<% end %>
+      </div>
     </div>
   </div>
 </div>
-

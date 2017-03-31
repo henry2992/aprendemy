@@ -1,0 +1,2 @@
+json.extract! backend_sub_category, :id, :name, :sub_categories_count, :created_at, :updated_at
+json.url backend_course_category_sub_category_url(backend_sub_category.category.course, backend_sub_category.category, backend_sub_category, format: :json)

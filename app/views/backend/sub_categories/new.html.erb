@@ -5,17 +5,17 @@
   <div class="main-navigation">
 
     <div class="main-title-wrapper">
-      <h1> Categorías </h1>
+      <h1> Sub-categorías </h1>
     </div>
     <div class="main-content-wrapper">
 
-      <h1>Nueva categoría</h1>
+      <h1>Nueva sub-categoría</h1>
 
       <%= render 'form' %>
 
       <hr>
       
-      <%= link_to "Atrás", backend_course_categories_path(@backend_category.course), class: "btn btn-primary" %>
+      <%= link_to "Atrás", backend_course_category_path(@backend_sub_category.category.course, @backend_sub_category.category), class: "btn btn-primary" %>
 
     </div>
   </div>

@@ -1,0 +1,26 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> Sub-categorías </h1>
+    </div>
+    <div class="main-content-wrapper">
+
+      <h1>Editar sub-categoría</h1>
+
+      <%= render 'form' %>
+      
+      <br>
+
+      <%= link_to 'Ver', backend_course_category_sub_category_path(@backend_sub_category.category.course, @backend_sub_category.category, @backend_sub_category), class: "btn btn-primary" %>
+      <%= link_to 'Atrás', backend_course_category_path(@backend_sub_category.category.course, @backend_sub_category.category), class: "btn btn-primary" %>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+</script>

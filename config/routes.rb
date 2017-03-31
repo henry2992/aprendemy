@@ -13,10 +13,16 @@ Rails.application.routes.draw do
   namespace :backend do
 
     root 'dashboard#index'
-    resources :blogs
+    # resources :blogs
     resources :attitude, only: [:index, :show, :update]
-    resources :categories
-    resources :courses
+    
+    resources :courses do
+      resources :categories do
+        resources :sub_categories do
+          # resources :questions
+        end
+      end
+    end
     
     # get '/dashboard' => 'dashboard#index', :as => 'dashboard'
     # resources :sections

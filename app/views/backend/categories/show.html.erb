@@ -5,31 +5,32 @@
   <div class="main-navigation">
 
     <div class="main-title-wrapper">
-      <h1> Categorías </h1>
+      <h1> <%= @backend_category.course.name %> | <%= @backend_category.name %> </h1>
     </div>
     <div class="main-content-wrapper">
-      
-
       <p id="notice"><%= notice %></p>
-
-      <p>
-        <strong>Nombre:</strong>
-        <%= @backend_category.name %>
-      </p>
-
-      <p>
-        <strong>Sub-categorías:</strong>
-        <%= @backend_category.sub_categories_count %>
-      </p>
-
-      <br>
-
-      <%= link_to 'Editar', edit_backend_category_path(@backend_category), class: "btn btn-primary" %>
-      <%= link_to 'Atrás', backend_categories_path, class: "btn btn-primary" %>
-
+      <div class="row">
+        <div class="col-sm-12">
+          <%= link_to 'Nueva Sub-categoría', new_backend_course_category_sub_category_path(@backend_category.course, @backend_category), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="row">
+        <% @backend_category.sub_categories.each do |sub_category| %>
+          <a href="<%= backend_course_category_sub_category_path(@backend_category.course, @backend_category, sub_category) %>">
+            <div class="course col-sm-4"> 
+              <div class="course-card " style="background-image:  url('<%= sub_category.picture.url %>') ">
+                <div class="course-card-wrapper ">
+                  <h2 class="course-card-title"><%= sub_category.name %></h2>
+                  <h3 class="course-card-author">Preguntas: <%= sub_category.questions.count %></h3>
+                  <br>
+                </div>
+              </div>
+              <%= link_to 'Eliminar', backend_course_category_sub_category_path(@backend_category.course, @backend_category, sub_category), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' }, class: "btn btn-danger" %>
+              <%= link_to 'Editar', edit_backend_course_category_sub_category_path(@backend_category.course, @backend_category, sub_category), class: "btn btn-warning" %>
+            </div>
+          </a>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-</script>

@@ -15,8 +15,8 @@
       
       <br>
 
-      <%= link_to 'Ver', backend_category_path(@backend_category), class: "btn btn-primary" %>
-      <%= link_to 'Atrás', backend_categories_path, class: "btn btn-primary" %>
+      <%= link_to 'Ver', backend_course_category_path(@backend_category.course, @backend_category), class: "btn btn-primary" %>
+      <%= link_to 'Atrás', backend_course_path(@backend_category.course), class: "btn btn-primary" %>
 
     </div>
   </div>

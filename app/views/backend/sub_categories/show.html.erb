@@ -1,0 +1,22 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> <%= @backend_sub_category.category.course.name %> | <%= @backend_sub_category.category.name %> | <%= @backend_sub_category.name %></h1>
+    </div>
+    <div class="main-content-wrapper">
+      <p id="notice"><%= notice %></p>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= link_to 'Nueva Sub-categoría', "#", class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="row">
+        
+      </div>
+    </div>
+  </div>
+</div>
