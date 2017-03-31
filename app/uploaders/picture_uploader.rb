@@ -20,7 +20,7 @@ class PictureUploader < CarrierWave::Uploader::Base
     # return "#{model.short_name}/#{mounted_as}/#{model.id}"
     uniq_id = Digest::MD5.hexdigest("#{Time.now.utc}-#{current_path}-#{rand}")
     file_id = File.basename(original_filename, '.*')
-    "#{model.short_name}\/#{file_id}-#{uniq_id}"  
+    "#{model.class.to_s.underscore}/#{file_id}-#{uniq_id}"  
   end
   # def store_dir
   #   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
