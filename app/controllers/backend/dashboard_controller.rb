@@ -14,7 +14,8 @@ class Backend::DashboardController < ApplicationController
     # (1..2).each do |i|
 
     # Getting the file
-    url = j.image.url
+    url = "http://res.cloudinary.com/drkw6qcjz/image/upload/v1472593602/djl4o23zithiicbpchhy.jpg"
+    # url = j.image.url
     file_name = url.split("/").last
     File.open("/tmp/#{file_name}", "wb") do |f| 
       f.write HTTParty.get(url).body
