@@ -23,7 +23,7 @@ class Backend::DashboardController < ApplicationController
 
     # Updating record
     file = File.open("tmp/#{file_name}")
-    u.update_attribute image: file
+    u.update_attribute :image, file
     File.delete("tmp/#{file_name}")
       
     # end
