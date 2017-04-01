@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   namespace :backend do
 
     root 'dashboard#index'
+    # get '/download' => 'dashboard#test_download', as: :download 
+    # get '/upload' => 'dashboard#test_upload', as: :upload 
+    get '/update' => 'dashboard#update_image', as: :update_image 
+
     # resources :blogs
     resources :attitude, only: [:index, :show, :update]
     

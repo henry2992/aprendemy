@@ -26,6 +26,9 @@ gem 'rename'
 #Picture Uploader
 gem 'carrierwave', '~> 0.10.0'
 gem 'cloudinary'
+
+gem 'httparty', '~> 0.14.0', require: true
+
 #Queue
 gem "queue_classic", "~> 3.0.0"
 
