@@ -16,15 +16,15 @@ class Backend::DashboardController < ApplicationController
     # Getting the file
     url = j.image.url
     file_name = url.split("/").last
-    File.open("tmp/#{file_name}", "wb") do |f| 
+    File.open("/tmp/#{file_name}", "wb") do |f| 
       f.write HTTParty.get(url).body
     end
     f.push(file_name)
 
     # Updating record
-    file = File.open("tmp/#{file_name}")
+    file = File.open("/tmp/#{file_name}")
     j.update_attribute :image, file
-    File.delete("tmp/#{file_name}")
+    File.delete("/tmp/#{file_name}")
       
     # end
     render json: f, status: 200
