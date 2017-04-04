@@ -8,7 +8,7 @@ class Backend::DashboardController < ApplicationController
 
   def update_image
 
-    courses = Question.all
+    courses = User.all
 
     fn = []
 
@@ -32,7 +32,7 @@ class Backend::DashboardController < ApplicationController
         file = File.open("/tmp/#{file_name}")
 
         puts file
-        x.update_attribute :picture, file if !file.blank?
+        x.update_attribute :picture, file if file.size > 0
         
         File.delete("/tmp/#{file_name}")
       end
