@@ -57,7 +57,7 @@ gem "breadcrumbs_on_rails"
 gem "wysiwyg-rails"
 gem "simple_calendar", "~> 2.0"
 
-gem 'turnout'
+# gem 'turnout'
 
 group :development, :test do
 
