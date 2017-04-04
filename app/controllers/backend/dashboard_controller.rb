@@ -1,39 +1,39 @@
 class Backend::DashboardController < ApplicationController
   before_filter :authenticate_user!
   before_filter :user_is_admin?
-  # require "httparty"
+  require "httparty"
 
   def index
   end
 
   def update_image
 
-    # courses = Course.all
+    courses = Course.all
 
-    # f = []
+    f = []
 
-    # courses.each do |x|
+    courses.each do |x|
 
-    #   if x.picture.url
+      if x.picture.url
 
-    #     # Getting the file
-    #     url = x.picture.url
+        # Getting the file
+        url = x.picture.url
 
-    #     file_name = url.split("/").last
-    #     File.open("/tmp/#{file_name}", "wb") do |f| 
-    #       f.write HTTParty.get(url).body
-    #     end
-    #     f.push(file_name)
+        file_name = url.split("/").last
+        File.open("/tmp/#{file_name}", "wb") do |f| 
+          f.write HTTParty.get(url).body
+        end
+        f.push(file_name)
 
-    #     # Updating record
-    #     file = File.open("/tmp/#{file_name}")
+        # Updating record
+        file = File.open("/tmp/#{file_name}")
 
-    #     x.update_attribute :picture, file
-    #     File.delete("/tmp/#{file_name}")
-    #   end
-    # end
+        x.update_attribute :picture, file
+        File.delete("/tmp/#{file_name}")
+      end
+    end
 
-    # render json: f, status: 200
+    render json: f, status: 200
   end
 
   # def test_upload
