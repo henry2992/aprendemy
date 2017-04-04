@@ -19,7 +19,10 @@ class Backend::DashboardController < ApplicationController
         # Getting the file
         url = x.picture.url
 
+        puts url
         file_name = url.split("/").last
+        
+        puts file_name
         File.open("/tmp/#{file_name}", "wb") do |f| 
           f.write HTTParty.get(url).body
         end
@@ -28,7 +31,9 @@ class Backend::DashboardController < ApplicationController
         # Updating record
         file = File.open("/tmp/#{file_name}")
 
+        puts file
         x.update_attribute :picture, file
+        
         File.delete("/tmp/#{file_name}")
       end
     end
