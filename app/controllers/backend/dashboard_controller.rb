@@ -7,34 +7,36 @@ class Backend::DashboardController < ApplicationController
   end
 
   def update_image
-    j = User.find_by_email("bjohnmer@hotmail.com")
+    
+    courses = Course.all
 
     f = []
 
-    # (1..2).each do |i|
+    courses.each do |x|
 
-    # Getting the file
-    url = "http://res.cloudinary.com/drkw6qcjz/image/upload/v1472593602/djl4o23zithiicbpchhy.jpg"
-    # url = j.image.url
-    file_name = url.split("/").last
-    File.open("/tmp/#{file_name}", "wb") do |f| 
-      f.write HTTParty.get(url).body
+      # Getting the file
+      url = if x.picture.url ? x.picture.url : ""
+
+      file_name = url.split("/").last
+      File.open("/tmp/#{file_name}", "wb") do |f| 
+        f.write HTTParty.get(url).body
+      end
+      f.push(file_name)
+
+      # Updating record
+      file = File.open("/tmp/#{file_name}")
+
+      x.update_attribute :picture, file
+      File.delete("/tmp/#{file_name}")
     end
-    f.push(file_name)
 
-    # Updating record
-    file = File.open("/tmp/#{file_name}")
-    j.update_attribute :image, file
-    File.delete("/tmp/#{file_name}")
-      
-    # end
     render json: f, status: 200
   end
 
-  def test_upload
-    file = File.open("public/1.jpg")
-    School.create! name: "Nueva escuela", description: "descripción", image: file
-    File.delete("public/1.jpg")
-    render json: "ok", status: 200
-  end
+  # def test_upload
+  #   file = File.open("public/1.jpg")
+  #   School.create! name: "Nueva escuela", description: "descripción", image: file
+  #   File.delete("public/1.jpg")
+  #   render json: "ok", status: 200
+  # end
 end
