@@ -8,16 +8,16 @@ class Backend::DashboardController < ApplicationController
 
   def update_image
 
-    courses = User.all
+    courses = Question.all
 
     fn = []
 
     courses.each do |x|
 
-      if x.image.url
+      if x.picture.url
 
         # Getting the file
-        url = x.image.url.sub("www-aprendemy-com", "drkw6qcjz")
+        url = x.picture.url.sub("www-aprendemy-com", "drkw6qcjz")
 
         puts url
         file_name = url.split("/").last
@@ -32,7 +32,7 @@ class Backend::DashboardController < ApplicationController
         file = File.open("/tmp/#{file_name}")
 
         puts file
-        x.update_attribute :image, file if file.size > 0
+        x.update_attribute :picture, file if file.size > 0
         
         File.delete("/tmp/#{file_name}")
       end
