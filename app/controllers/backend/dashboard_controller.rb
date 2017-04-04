@@ -8,37 +8,37 @@ class Backend::DashboardController < ApplicationController
 
   def update_image
 
-    courses = Course.all
+    courses = SubCategory.all
 
-    f = []
+    fn = []
 
     courses.each do |x|
 
       if x.picture.url
 
         # Getting the file
-        url = x.picture.url
+        url = x.picture.url.sub("www-aprendemy-com", "drkw6qcjz")
 
         puts url
         file_name = url.split("/").last
         
         puts file_name
-        File.open("/tmp/#{file_name}", "wb") do |f| 
-          f.write HTTParty.get(url).body
-        end
-        f.push(file_name)
+        f = File.open("/tmp/#{file_name}", "wb")
+        f.write HTTParty.get(url).body
+        
+        fn.push(file_name)
 
         # Updating record
         file = File.open("/tmp/#{file_name}")
 
         puts file
-        x.update_attribute :picture, file
+        x.update_attribute :picture, file if !file.blank?
         
         File.delete("/tmp/#{file_name}")
       end
     end
 
-    render json: f, status: 200
+    render json: fn, status: 200
   end
 
   # def test_upload
