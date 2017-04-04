@@ -8,7 +8,7 @@ class Backend::DashboardController < ApplicationController
 
   def update_image
 
-    courses = SubCategory.all
+    courses = Question.all
 
     fn = []
 
