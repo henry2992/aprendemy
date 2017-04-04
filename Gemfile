@@ -46,6 +46,7 @@ gem 'figaro'
 group :production do
   # Production gems
   gem 'puma'
+  gem 'puma_worker_killer'
 end
 
 gem 'sparkpost_rails'
@@ -56,6 +57,7 @@ gem "breadcrumbs_on_rails"
 gem "wysiwyg-rails"
 gem "simple_calendar", "~> 2.0"
 
+gem 'turnout'
 
 group :development, :test do
 
