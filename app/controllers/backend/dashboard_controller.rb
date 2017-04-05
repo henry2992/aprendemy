@@ -8,7 +8,7 @@ class Backend::DashboardController < ApplicationController
 
   def update_image
 
-    courses = Question.all
+    courses = Test.all
 
     fn = []
 
