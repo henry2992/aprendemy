@@ -18,6 +18,7 @@ class Users::PasswordsController < Devise::PasswordsController
     Rails.logger.error "Usuario #: "+ u.id.to_s
     Rails.logger.error "Email: "+ u.email
     Rails.logger.error "Error: "+ e.message
+    respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     return true
   end
 
