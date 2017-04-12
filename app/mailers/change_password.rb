@@ -16,7 +16,7 @@ class ChangePassword < Devise::Mailer
       template_id: "change-password"
     }
     mail(to: @resource.email, subject: "Hola #{@resource.first_name}, puedes cambiar tu clave", body: "", sparkpost_data: data)
-  rescue Exception => e
+  rescue Net::SMTP => e
     Rails.logger.error "/----------- Error enviando Email al Cambiar Password --------------/"
     Rails.logger.error "Archivo: app/mailers/change_password.rb"
     Rails.logger.error "Función: reset_password_instructions"
