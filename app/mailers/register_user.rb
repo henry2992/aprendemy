@@ -17,12 +17,12 @@ class RegisterUser < ApplicationMailer
       template_id: "register"
     }
     mail(to: user.email, subject: "Bienvenido al Aprendemy.com", body: "", sparkpost_data: data)
-  rescue => e
-    Rails.logger.error "/----------- Error enviando Email al registrar usuario --------------/"
-    Rails.logger.error "Archivo: app/mailers/register_user.rb"
-    Rails.logger.error "Función: send_mail"
-    Rails.logger.error "Usuario #: "+ user.id
-    Rails.logger.error "Email: "+ user.email
-    Rails.logger.error "Error: "+ e.message
+  # rescue => e
+  #   Rails.logger.error "/----------- Error enviando Email al registrar usuario --------------/"
+  #   Rails.logger.error "Archivo: app/mailers/register_user.rb"
+  #   Rails.logger.error "Función: send_mail"
+  #   Rails.logger.error "Usuario #: "+ user.id
+  #   Rails.logger.error "Email: "+ user.email
+  #   Rails.logger.error "Error: "+ e.message
   end
 end

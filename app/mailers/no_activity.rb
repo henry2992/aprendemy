@@ -16,12 +16,12 @@ class NoActivity < ApplicationMailer
       template_id: "no-activity"
     }
     mail(to: user.email, subject: "Hola #{user.first_name}, hace tiempo que no sabemos de ti", body: "", sparkpost_data: data)
-  rescue => e
-    Rails.logger.error "/----------- Error enviando Email al tener tiempo de inactividad --------------/"
-    Rails.logger.error "Archivo: app/mailers/no-activity.rb"
-    Rails.logger.error "Función: send_mail"
-    Rails.logger.error "Usuario #: "+ user.id
-    Rails.logger.error "Email: "+ user.email
-    Rails.logger.error "Error: "+ e.message
+  # rescue => e
+  #   Rails.logger.error "/----------- Error enviando Email al tener tiempo de inactividad --------------/"
+  #   Rails.logger.error "Archivo: app/mailers/no-activity.rb"
+  #   Rails.logger.error "Función: send_mail"
+  #   Rails.logger.error "Usuario #: "+ user.id
+  #   Rails.logger.error "Email: "+ user.email
+  #   Rails.logger.error "Error: "+ e.message
   end
 end

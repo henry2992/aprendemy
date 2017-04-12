@@ -18,12 +18,12 @@ class Congrats < ApplicationMailer
       template_id: "congrats"
     }
     mail(to: course_user.user.email, subject: "Felicitacionas has completado el curso: #{course_user.course.name}", body: "", sparkpost_data: data)
-  rescue => e
-    Rails.logger.error "/----------- Error enviando Email al Completar un Curso --------------/"
-    Rails.logger.error "Archivo: app/mailers/congrats.rb"
-    Rails.logger.error "Función: send_mail"
-    Rails.logger.error "Usuario #: "+ course_user.user.id
-    Rails.logger.error "Email: "+ course_user.user.email
-    Rails.logger.error "Error: "+ e.message
+  # rescue => e
+  #   Rails.logger.error "/----------- Error enviando Email al Completar un Curso --------------/"
+  #   Rails.logger.error "Archivo: app/mailers/congrats.rb"
+  #   Rails.logger.error "Función: send_mail"
+  #   Rails.logger.error "Usuario #: "+ course_user.user.id
+  #   Rails.logger.error "Email: "+ course_user.user.email
+  #   Rails.logger.error "Error: "+ e.message
   end
 end

@@ -18,12 +18,12 @@ class ExpiredLicense < ApplicationMailer
       template_id: "expired-license"
     }
     mail(to: course_user.user.email, subject: "Renueva tu plan del curso #{course_user.course.name}", body: "", sparkpost_data: data)
-  rescue => e
-    Rails.logger.error "/----------- Error enviando Email al Expirar Licencia --------------/"
-    Rails.logger.error "Archivo: app/mailers/expired-license.rb"
-    Rails.logger.error "Función: send_mail"
-    Rails.logger.error "Usuario #: "+ course_user.user.id
-    Rails.logger.error "Email: "+ course_user.user.email
-    Rails.logger.error "Error: "+ e.message
+  # rescue => e
+  #   Rails.logger.error "/----------- Error enviando Email al Expirar Licencia --------------/"
+  #   Rails.logger.error "Archivo: app/mailers/expired-license.rb"
+  #   Rails.logger.error "Función: send_mail"
+  #   Rails.logger.error "Usuario #: "+ course_user.user.id
+  #   Rails.logger.error "Email: "+ course_user.user.email
+  #   Rails.logger.error "Error: "+ e.message
   end
 end
