@@ -18,7 +18,7 @@ class TakingNewCourse < ApplicationMailer
       template_id: "welcome-to-course"
     }
     mail(to: course_user.user.email, subject: "Bienvenido al curso #{course_user.course.name}", body: "", sparkpost_data: data)
-  rescue SparkPostRails::DeliveryException => e
+  rescue => e
     Rails.logger.error "/----------- Error enviando Email al tomar un nuevo curso --------------/"
     Rails.logger.error "Archivo: app/mailers/taking_new_course.rb"
     Rails.logger.error "Función: send_mail"
