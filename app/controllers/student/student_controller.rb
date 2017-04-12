@@ -24,6 +24,14 @@ class Student::StudentController < ApplicationController
         end
       end
     end
+  rescue SparkPostRails::DeliveryException => e
+    Rails.logger.error "/----------- Error enviando Email al Expirar Licencia / Recordatorio de Renovación de Plan --------------/"
+    Rails.logger.error "Archivo: app/models/user.rb"
+    Rails.logger.error "Función: check_plan"
+    Rails.logger.error "Usuario #: " + course_user.user.id.to_s
+    Rails.logger.error "Email: " + course_user.user.email
+    Rails.logger.error "Error: " + e.message
+    return true
   end
 
   # CUAL ES LA DIFERENCIA DE UN PLAN REGISTRADO Y UN PLAN PREMIUM?

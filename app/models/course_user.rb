@@ -26,7 +26,7 @@ class CourseUser < ActiveRecord::Base
     TakingNewCourse.send_mail(self).deliver
   rescue SparkPostRails::DeliveryException => e
     Rails.logger.error "/----------- Error enviando Email al tomar un nuevo curso --------------/"
-    Rails.logger.error "Archivo: app/mailers/taking_new_course.rb"
+    Rails.logger.error "Archivo: app/models/course_user.rb"
     Rails.logger.error "Función: send_mail"
     Rails.logger.error "Usuario #: " + self.user.id.to_s
     Rails.logger.error "Email: " + self.user.email

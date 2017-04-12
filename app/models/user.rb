@@ -70,6 +70,14 @@ class User < ActiveRecord::Base
 
   def send_register_mail
     RegisterUser.send_mail(self).deliver
+  rescue SparkPostRails::DeliveryException => e
+    Rails.logger.error "/----------- Error enviando Email al registrar un usuario nuevo --------------/"
+    Rails.logger.error "Archivo: app/models/user.rb"
+    Rails.logger.error "Función: send_register_mail"
+    Rails.logger.error "Usuario #: " + self.id.to_s
+    Rails.logger.error "Email: " + self.email
+    Rails.logger.error "Error: " + e.message
+    return true
   end
 
 end
