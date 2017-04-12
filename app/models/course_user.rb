@@ -28,8 +28,9 @@ class CourseUser < ActiveRecord::Base
     Rails.logger.error "/----------- Error enviando Email al tomar un nuevo curso --------------/"
     Rails.logger.error "Archivo: app/mailers/taking_new_course.rb"
     Rails.logger.error "Función: send_mail"
-    Rails.logger.error "Usuario #: "+ self.user.id
-    Rails.logger.error "Email: "+ self.user.email
-    Rails.logger.error "Error: "+ e.message
+    Rails.logger.error "Usuario #: " + self.user.id.to_s
+    Rails.logger.error "Email: " + self.user.email
+    Rails.logger.error "Error: " + e.message
+    return true
   end
 end
