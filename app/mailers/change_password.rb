@@ -16,6 +16,5 @@ class ChangePassword < Devise::Mailer
       template_id: "change-password"
     }
     mail(to: @resource.email, subject: "Hola #{@resource.first_name}, puedes cambiar tu clave", body: "", sparkpost_data: data)
-  
   end
 end
