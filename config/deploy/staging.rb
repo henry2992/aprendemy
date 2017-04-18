@@ -8,7 +8,7 @@
 # role :web, %w{deploy@104.131.36.116}
 # role :db,  %w{deploy@104.131.36.116}
 
-set :branch, 'staging'
+set :branch, 'testing'
 set :rails_env, 'production'
 
 # Extended Server Syntax
