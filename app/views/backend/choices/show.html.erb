@@ -1,0 +1,22 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> <%= @backend_question.sub_category.category.course.name %> | <%= @backend_question.sub_category.category.name %> | <%= @backend_question.sub_category.name %> | Pregunta # <%= @backend_question.id %></h1>
+    </div>
+    <div class="main-content-wrapper">
+      <p id="notice"><%= notice %></p>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= link_to 'Nueva Opción', new_backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="row">
+        
+      </div>
+    </div>
+  </div>
+</div>

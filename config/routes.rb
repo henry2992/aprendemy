@@ -13,27 +13,20 @@ Rails.application.routes.draw do
   namespace :backend do
 
     root 'dashboard#index'
-    # get '/download' => 'dashboard#test_download', as: :download 
-    # get '/upload' => 'dashboard#test_upload', as: :upload 
-    get '/update' => 'dashboard#update_image', as: :update_image 
+    # get '/update' => 'dashboard#update_image', as: :update_image 
 
-    # resources :blogs
     resources :attitude, only: [:index, :show, :update]
     
     resources :courses do
       resources :categories do
         resources :sub_categories do
-          # resources :questions
+          resources :questions do
+            resources :choices
+          end
         end
       end
     end
-    
-    # get '/dashboard' => 'dashboard#index', :as => 'dashboard'
-    # resources :sections
-    # resources :tasks
-    # resources :schools
-    # resources :careers
-    # resources :universities
+   
   end
 
   get 'student/courses' => 'student/courses#index', as: :user_root

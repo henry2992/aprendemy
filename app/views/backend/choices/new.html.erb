@@ -1,0 +1,25 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> Opciones </h1>
+    </div>
+    <div class="main-content-wrapper">
+
+      <h1>Nueva opción</h1>
+
+      <%= render 'form' %>
+
+      <hr>
+      
+      <%= link_to "Atrás", backend_course_category_sub_category_question_path(@backend_choice.question.sub_category.category.course, @backend_choice.question.sub_category.category, @backend_choice.question.sub_category,@backend_choice.question), class: "btn btn-primary" %>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+</script>

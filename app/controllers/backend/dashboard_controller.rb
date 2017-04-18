@@ -8,7 +8,7 @@ class Backend::DashboardController < ApplicationController
 
   def update_image
 
-    courses = Tutorial.all
+    courses = Test.all
 
     fn = []
 
@@ -41,10 +41,4 @@ class Backend::DashboardController < ApplicationController
     render json: fn, status: 200
   end
 
-  # def test_upload
-  #   file = File.open("public/1.jpg")
-  #   School.create! name: "Nueva escuela", description: "descripción", image: file
-  #   File.delete("public/1.jpg")
-  #   render json: "ok", status: 200
-  # end
 end

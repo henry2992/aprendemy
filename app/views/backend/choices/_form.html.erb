@@ -1,0 +1,26 @@
+<%= form_for [:backend, @backend_choice.question.sub_category.category.course, @backend_choice.question.sub_category.category, @backend_choice.question.sub_category, @backend_choice.question, @backend_choice] do |f| %>
+  <% if @backend_choice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@backend_choice.errors.count, "error") %> prohibited this choice from being saved:</h2>
+
+      <ul>
+      <% @backend_choice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    Opción <br>
+    <%= f.text_field :content, class: "form-control", placeholder: "Opción" %>
+  </div>
+  <div class="form-group">
+    Valor <br>
+    <%= f.text_field :value_count, class: "form-control", placeholder: "Valor" %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit class: 'btn btn-success' %> 
+  </div>
+<% end %>

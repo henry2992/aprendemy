@@ -1,0 +1,45 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> <%= @backend_question.sub_category.category.course.name %> | <%= @backend_question.sub_category.category.name %> | <%= @backend_question.sub_category.name %> | Pregunta # <%= @backend_question.id %></h1>
+    </div>
+    <div class="main-content-wrapper">
+      <p id="notice"><%= notice %></p>
+      <div class="row">
+        <div class="col-sm-12">
+          <%= link_to 'Nueva Opción', new_backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question), class: "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="test-question">
+        <p><%= @backend_question.content %>
+          <% if @backend_question.picture.present? %>
+            <br>
+            <%= image_tag(@backend_question.picture.url, class: "img-question", alt: @backend_question.content) %>
+          <% end %>
+        </p>
+        <% @backend_question.choices.each do |choice| %>
+        <label class="coolbox">
+          <div class="col-sm-1">
+            <input type="radio" name="choice">
+            <span class="box-number"> A </span>
+          </div>
+          <div class="col-sm-10" style="margin-top: 1em">
+              <span class="col-sm-9">
+                <%= choice.content %> 
+              </span>
+              <span class="col-sm-3">
+                <%= link_to 'Eliminar', backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question, choice), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' }, class: "btn btn-danger" %>
+                <%= link_to 'Editar', edit_backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question, choice), class: "btn btn-warning" %> </span>
+              </span>
+            </div>
+        </label>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

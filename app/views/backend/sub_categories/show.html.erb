@@ -11,11 +11,27 @@
       <p id="notice"><%= notice %></p>
       <div class="row">
         <div class="col-sm-12">
-          <%= link_to 'Nueva Sub-categoría', "#", class: "btn btn-primary" %>
+          <%= link_to 'Nueva Pregunta', new_backend_course_category_sub_category_question_path(@backend_sub_category.category.course, @backend_sub_category.category, @backend_sub_category), class: "btn btn-primary" %>
         </div>
       </div>
       <div class="row">
-        
+        <% @backend_sub_category.questions.each do |question| %>
+          <a href="<%= backend_course_category_sub_category_question_path(@backend_sub_category.category.course, @backend_sub_category.category, @backend_sub_category, question) %>">
+            <div class="course col-sm-4"> 
+              <div class="course-card " style="background-image:  url('<%= question.picture.url %>') ">
+                <div class="course-card-wrapper ">
+                  <h3 class="course-card-title"><%= question.content.truncate(110) %></h3>
+                  <h4 class="course-card-author">Respondidas: <%= question.total_answered_count %></h4>
+                  <h4 class="course-card-author">Correctas: <%= question.total_answered_count - question.wrong_answered_count %></h4>
+                  <h4 class="course-card-author">Incorrectas: <%= question.wrong_answered_count %></h4>
+                  <br>
+                </div>
+              </div>
+              <%= link_to 'Eliminar', backend_course_category_sub_category_question_path(@backend_sub_category.category.course, @backend_sub_category.category, @backend_sub_category, question), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' }, class: "btn btn-danger" %>
+              <%= link_to 'Editar', edit_backend_course_category_sub_category_question_path(@backend_sub_category.category.course, @backend_sub_category.category, @backend_sub_category, question), class: "btn btn-warning" %>
+            </div>
+          </a>
+        <% end %>
       </div>
     </div>
   </div>

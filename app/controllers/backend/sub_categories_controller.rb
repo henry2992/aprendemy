@@ -56,13 +56,11 @@ class Backend::SubCategoriesController < Backend::DashboardController
     end
     
     def set_category
-      set_course
-      @category = @course.categories.find(params[:category_id])
+      set_course && @category = @course.categories.find(params[:category_id])
     end
 
     def set_sub_category
-      set_category
-      @backend_sub_category = @category.sub_categories.find(params[:id])
+      set_category && @backend_sub_category = @category.sub_categories.find(params[:id])
     end
 
     def sub_categories_params

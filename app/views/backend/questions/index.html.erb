@@ -1,0 +1,37 @@
+<div id="container">
+  <!-- Vertical Nav -->
+  <%= render 'backend/navigation/vertical_navbar' %>
+  
+  <div class="main-navigation">
+
+    <div class="main-title-wrapper">
+      <h1> Categorías </h1>
+    </div>
+    <div class="main-content-wrapper">
+      <p id="notice"><%= notice %></p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Sub-categorías</th>
+            <!-- <th colspan="3"></th> -->
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @backend_categories.each do |backend_category| %>
+            <tr>
+              <td><%= backend_category.name %></td>
+              <td><%= backend_category.sub_categories_count %></td>
+              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+    </div>
+  </div>
+</div>

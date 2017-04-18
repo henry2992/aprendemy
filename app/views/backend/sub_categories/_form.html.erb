@@ -1,7 +1,7 @@
 <%= form_for [:backend, @course, @category, @backend_sub_category] do |f| %>
   <% if @backend_sub_category.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@backend_sub_category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <h2><%= pluralize(@backend_sub_category.errors.count, "error") %> prohibited this sub-category from being saved:</h2>
 
       <ul>
       <% @backend_sub_category.errors.full_messages.each do |message| %>

@@ -1,73 +1,74 @@
 class Backend::ChoicesController < Backend::DashboardController
-  before_filter :authenticate_user!
-  before_filter :user_is_admin?, except: [:index, :show]
+  before_action :set_choice, only: [:show, :edit, :update, :destroy] 
+  before_action :set_question, only: [:new, :create] 
 
-  def index
-    get_category_and_sub_and_question && @choices = @choices.all
-  end
+  # def show
+  # end
 
   def new
-    get_category_and_sub_and_question && @choice = Choice.new
-    render_js_only
+    @backend_choice = @question.choices.new
   end
 
   def create
-    get_category_and_sub_and_question
-    @choice = @question.choices.create(choice_params.except(:is_answer))
-    update_choice
-    show_choices_index
-  end
+    @backend_choice = @question.choices.new(choice_params)
 
-  def edit
-    get_category_and_sub_and_question && @choice = Choice.find_by_id(params[:id])
-    render :new
-  end
-
-  def show
-    get_category_and_sub_and_question && @choice = Choice.find_by_id(params[:id])
-    render_js_only
-  end
-
-  def update
-    get_category_and_sub_and_question
-    @choice = Choice.find_by_id(params[:id])
-    @choice.update(choice_params) if @choice
-    update_if_correct_choice
-    render :show
-  end
-
-  def delete
-    Question.find_by_id(params[:id]).destroy!
-    flash[:notice] = "Question has been deleted successfully"
-    show_questions_index
-  end
-
-  private
-
-  def choice_params
-    params.require(:choice).permit(:content)
-  end
-
-  def get_category_and_sub_and_question
-    @category = Category.find_by_id(params[:category_id])
-    @sub_category = SubCategory.find_by_id(params[:sub_category_id])
-    @question = Question.find_by_id(params[:question_id])
-  end
-
-  def show_choices_index
-    redirect_to category_sub_category_question_choice_path(@category, @sub_category, @question, @choice)
-  end
-
-  def update_choice
-    if @choice
-      update_if_correct_choice
-      flash[:success] = "New question has been created successfully"
-    else
-      flash[:danger] = "An error occured. Please try again."
+    respond_to do |format|
+      if @backend_choice.save
+        format.html { redirect_to backend_course_category_sub_category_question_path(@backend_choice.question.sub_category.category.course, @backend_choice.question.sub_category.category, @backend_choice.question.sub_category, @backend_choice.question), notice: 'Opción creada satisfactoriamente.' }
+        format.json { render :show, status: :created, location: backend_course_category_sub_category_question_path(@backend_choice.question.sub_category.category.course, @backend_choice.question.sub_category.category, @backend_choice.question.sub_category, @backend_choice.question) }
+      else
+        format.html { render :new }
+        format.json { render json: @backend_choice.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def update_if_correct_choice
-    @question.update(choice_id: @choice.id) if params[:correct_choice] == "1"
+  def edit
   end
+
+  def update
+    respond_to do |format|
+      if @backend_choice.update(choice_params)
+        format.html { redirect_to backend_course_category_sub_category_question_path(@backend_choice.question.sub_category.category.course, @backend_choice.question.sub_category.category, @backend_choice.question.sub_category, @backend_choice.question), notice: 'Opción modificada satisfactoriamente.' }
+        format.json { render :show, status: :ok, location: backend_course_category_sub_category_question_path(@backend_choice.question.sub_category.category.course, @backend_choice.question.sub_category.category, @backend_choice.question.sub_category, @backend_choice.question) }
+      else
+        format.html { render :edit }
+        format.json { render json: @backend_choice.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @backend_choice.destroy
+    respond_to do |format|
+      format.html { redirect_to backend_course_category_sub_category_question_path(@backend_choice.question.sub_category.category.course, @backend_choice.question.sub_category.category, @backend_choice.question.sub_category, @backend_choice.question), notice: 'Opción eliminada satisfactoriamente.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+  #   def set_course
+  #     @course = Course.find(params[:course_id])
+  #   end
+    
+  #   def set_category
+  #     set_course && @category = @course.categories.find(params[:category_id])
+  #   end
+
+  #   def set_sub_category
+  #     set_category && @sub_category = @category.sub_categories.find(params[:sub_category_id])
+  #   end
+
+    def set_question
+      @question = Question.find(params[:question_id])
+    end
+    
+    def set_choice
+      @backend_choice = Choice.find(params[:id])
+    end
+
+    def choice_params
+      params.require(:choice).permit(:content, :value_count)
+    end
+
 end
