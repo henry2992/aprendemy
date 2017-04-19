@@ -17,11 +17,13 @@ Rails.application.routes.draw do
 
     resources :attitude, only: [:index, :show, :update]
     
+    get 'default_choice/:id' => 'choices#update_default_choice', as: :default_choice
+    
     resources :courses do
       resources :categories do
         resources :sub_categories do
-          resources :questions do
-            resources :choices
+          resources :questions, except: [:index] do
+            resources :choices, except: [:show]
           end
         end
       end

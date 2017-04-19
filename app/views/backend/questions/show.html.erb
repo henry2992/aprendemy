@@ -25,18 +25,19 @@
         <% @backend_question.choices.each do |choice| %>
         <label class="coolbox">
           <div class="col-sm-1">
-            <input type="radio" name="choice">
+            <input type="radio" name="choice" <%= "checked" if choice.question.choice_id == choice.id %>>
             <span class="box-number"> A </span>
           </div>
-          <div class="col-sm-10" style="margin-top: 1em">
-              <span class="col-sm-9">
-                <%= choice.content %> 
-              </span>
-              <span class="col-sm-3">
-                <%= link_to 'Eliminar', backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question, choice), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' }, class: "btn btn-danger" %>
-                <%= link_to 'Editar', edit_backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question, choice), class: "btn btn-warning" %> </span>
-              </span>
-            </div>
+          <div class="col-sm-11" style="margin-top: 1em">
+            <span class="col-sm-8">
+              <%= choice.content %> 
+            </span>
+            <span class="col-sm-4">
+              <%= link_to 'Eliminar', backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question, choice), method: :delete, data: { confirm: '¿Está seguro de eliminar este registro?' }, class: "btn btn-danger" %>
+              <%= link_to 'Editar', edit_backend_course_category_sub_category_question_choice_path(@backend_question.sub_category.category.course, @backend_question.sub_category.category, @backend_question.sub_category, @backend_question, choice), class: "btn btn-warning" %>
+              <%= link_to 'Correcta', backend_default_choice_path(choice), class: "btn btn-info" if choice.question.choice_id != choice.id %>
+            </span>
+          </div>
         </label>
         <% end %>
       </div>

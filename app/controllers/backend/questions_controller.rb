@@ -64,6 +64,6 @@ class Backend::QuestionsController < Backend::DashboardController
     end
 
     def question_params
-      params.require(:question).permit(:content, :choice_id, :explanation, :url, :video_url, :question_id, :picture)
+      params.require(:question).permit(:content, :explanation, :url, :video_url, :question_id, :picture)
     end
 end
