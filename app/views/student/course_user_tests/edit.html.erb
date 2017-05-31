@@ -74,13 +74,14 @@
              question_number = 1 %>
           <% @course_user_test.test.questions.each do |q| %>
             <% 
-              clues[clue_index] = if @course_user_test.answers.where(question_id: q.id).first.marked == 1
+              clues[clue_index] = "no-answer"
+              clues[clue_index] ||= if @course_user_test.answers.where(question_id: q.id).first.marked == 1
                                     "later"
                                   elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id != nil
                                     "answered"
                                   elsif @course_user_test.answers.where(question_id: q.id).first.marked == 0 && @course_user_test.answers.where(question_id: q.id).first.choice_id == nil
                                     "no-answer"
-                                  end
+                                  end if @course_user_test.answers.where(question_id: q.id)
             %>
             <div class="test-question">
               <div class="remind-later"> 
